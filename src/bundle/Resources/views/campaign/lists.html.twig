@@ -24,6 +24,16 @@
             <div class="ez-table-header__headline">
                 {{ 'campaign.lists.table.header'|trans|desc('Campaign lists') }}
             </div>
+            <div>
+                <a title="{{ 'campaign.list.new'|trans|desc('Create a new subscription list') }}"
+                   href="{{ path('edgar.campaign.list.edit') }}"
+                   class="btn btn-primary">
+                    <svg class="ez-icon ez-icon-create">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#create"></use>
+                    </svg>
+                </a>
+            </div>
         </div>
         <table class="table mb-3">
             <thead>
@@ -39,13 +49,15 @@
             </thead>
             <tbody>
             <tr>
-                <td class="ez-checkbox-cell"></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                {% for list in lists.lists %}
+                    <td class="ez-checkbox-cell"></td>
+                    <td>{{ list.name }}</td>
+                    <td>{{ list.id }}</td>
+                    <td>{{ list.date_created }}</td>
+                    <td>{{ list.stats.member_count }}</td>
+                    <td></td>
+                    <td></td>
+                {% endfor %}
             </tr>
             </tbody>
         </table>

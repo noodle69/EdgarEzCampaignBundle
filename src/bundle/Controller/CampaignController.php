@@ -2,6 +2,7 @@
 
 namespace Edgar\EzCampaignBundle\Controller;
 
+use Edgar\EzCampaignBundle\Service\CampaignsService;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 
 /**
@@ -11,9 +12,24 @@ use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
  */
 class CampaignController extends Controller
 {
+    protected $campaignsService;
+
+    public function __construct(CampaignsService $campaignsService)
+    {
+        $this->campaignsService = $campaignsService;
+    }
+
     public function campaignsAction()
     {
+        $campaigns = $this->campaignsService->get();
+
         return $this->render('@EdgarEzCampaign/campaign/campaigns.html.twig', [
+            'campaigns' => $campaigns,
         ]);
+    }
+
+    public function editAction(?int $campaignID)
+    {
+
     }
 }

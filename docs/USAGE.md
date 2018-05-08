@@ -1,0 +1,1 @@
+https://kb.mailchimp.com/integrations/api-integrations/about-api-keys?utm_source=mc-api&utm_medium=docs&utm_campaign=apidocs&_ga=2.166356094.1961493039.1525809687-625759686.1525809687&_gac=1.195772894.1525809687.CjwKCAjwlcXXBRBhEiwApfHGTWSrvNlaTvsHJDP6jKelI_Nrtc3KcV04GktzKsS79PPEesNxAVlQZBoC8BQQAvD_BwE
