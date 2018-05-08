@@ -1,0 +1,9 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Edgar\EzCampaign\FieldType\Campaign\SearchField:
+        tags:
+            - {name: ezpublish.fieldType.indexable, alias: edgarcampaign}

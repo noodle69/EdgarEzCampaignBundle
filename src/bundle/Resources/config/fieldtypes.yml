@@ -1,0 +1,10 @@
+services:
+    Edgar\EzCampaign\FieldType\Campaign\Type:
+        parent: ezpublish.fieldType
+        tags:
+            - {name: ezpublish.fieldType, alias: edgarcampaign}
+
+    Edgar\EzCampaign\FieldType\Mapper\CampaignFormMapper:
+        tags:
+            - { name: ez.fieldFormMapper.definition, fieldType: edgarcampaign }
+            - { name: ez.fieldFormMapper.value, fieldType: edgarcampaign }

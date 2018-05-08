@@ -1,0 +1,11 @@
+system:
+    default:
+        fielddefinition_settings_templates:
+            -
+                template: "EdgarEzCampaignBundle::fielddefinition_settings.html.twig"
+        fielddefinition_edit_templates:
+            -
+                template: "EdgarEzCampaignBundle::field_types.html.twig"
+        field_templates:
+            -
+                template: "EdgarEzCampaignBundle::content_fields.html.twig"

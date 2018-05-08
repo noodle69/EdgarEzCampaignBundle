@@ -1,0 +1,55 @@
+{% extends 'EzPlatformAdminUiBundle::layout.html.twig' %}
+
+{% trans_default_domain 'edgarezcampaign' %}
+
+{% block body_class %}ez-info-view{% endblock %}
+
+{% block breadcrumbs %}
+    {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
+        { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
+        { url: path('edgar.ezuifavicon.favicons'), value: 'lists.view'|trans|desc('Lists') },
+    ]} %}
+{% endblock %}
+
+{% block page_title %}
+    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+        title: 'lists.view.title'|trans|desc('Lists'),
+        iconName: 'pin'
+    } %}
+{% endblock %}
+
+{% block content %}
+    <section class="container mt-4">
+        <div class="ez-table-header">
+            <div class="ez-table-header__headline">
+                {{ 'campaign.lists.table.header'|trans|desc('Campaign lists') }}
+            </div>
+        </div>
+        <table class="table mb-3">
+            <thead>
+            <tr>
+                <th></th>
+                <th>{{ 'campaign.lists.name.th'|trans|desc('Name') }}</th>
+                <th>{{ 'campaign.lists.id.th'|trans|desc('ID') }}</th>
+                <th>{{ 'campaign.lists.date_created.th'|trans|desc('Date created') }}</th>
+                <th>{{ 'campaign.lists.member_count.th'|trans|desc('Member count') }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="ez-checkbox-cell"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
+
+

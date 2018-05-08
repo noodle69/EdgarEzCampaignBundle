@@ -1,0 +1,4 @@
+field_definition:
+    ezstring:
+        # Desc: field_definition.ezstring.default_value
+        default_value: field_definition.ezstring.default_value   # FIXME

@@ -1,0 +1,57 @@
+edgar.campaign.campaigns:
+    path: /campaigns
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:campaigns" }
+
+edgar.campaign.lists:
+    path: /lists
+    defaults: { _controller: "EdgarEzCampaignBundle:List:lists" }
+
+edgar.campaign.campaign:
+    path: /campaign/view/{campaignID}/{mode}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:view", mode: false }
+    requirements:
+        campaignID: "[0-9a-z]+"
+
+edgar.campaign.campaign.edit:
+    path: /campaign/edit/{campaignID}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:edit", campaignID: ~ }
+
+edgar.campaign.campaign.delete:
+    path: /list/delete/{campaignID}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:delete", campaignID: ~ }
+    requirements:
+        campaignID: "[0-9a-z]+"
+
+edgar.campaign.campaign.subscribe:
+    path: /campaign/{campaignID}/subscribe
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:subscribe", campaignID: ~ }
+    requirements:
+        campaignID: "[0-9a-z]+"
+
+edgar.campaign.folder.edit:
+    path: /folder/edit/{id}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:editFolder", id: ~ }
+
+edgar.campaign.folder.folders:
+    path: /folder/all/{query}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:allFolders", query: ~ }
+
+edgar.campaign.list:
+    path: /list/view/{campaignListID}
+    defaults: { _controller: "EdgarEzCampaignBundle:List:view", campaignListID: ~ }
+    requirements:
+        campaignListID: "[0-9a-z]+"
+
+edgar.campaign.list.edit:
+    path: /list/edit/{campaignListID}
+    defaults: { _controller: "EdgarEzCampaignBundle:List:edit", campaignListID: ~ }
+
+edgar.campaign.list.delete:
+    path: /list/delete/{campaignListID}
+    defaults: { _controller: "EdgarEzCampaignBundle:List:delete", campaignListID: ~ }
+    requirements:
+        campaignListID: "[0-9a-z]+"
+
+edgar.campaign.list.lists:
+    path: /list/all/{query}
+    defaults: { _controller: "EdgarEzCampaignBundle:List:all", query: ~ }

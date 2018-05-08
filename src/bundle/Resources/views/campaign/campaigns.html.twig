@@ -1,0 +1,69 @@
+{% extends 'EzPlatformAdminUiBundle::layout.html.twig' %}
+
+{% trans_default_domain 'edgarezcampaign' %}
+
+{% block body_class %}ez-info-view{% endblock %}
+
+{% block breadcrumbs %}
+    {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
+        { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
+        { url: path('edgar.ezuifavicon.favicons'), value: 'campaigns.view'|trans|desc('Campaigns') },
+    ]} %}
+{% endblock %}
+
+{% block page_title %}
+    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+        title: 'campaigns.view.title'|trans|desc('Campaigns'),
+        iconName: 'pin'
+    } %}
+{% endblock %}
+
+{% block content %}
+    <section class="container mt-4">
+        <div class="ez-table-header">
+            <div class="ez-table-header__headline">
+                {{ 'campaign.campaigns.table.header'|trans|desc('Campaigns') }}
+            </div>
+        </div>
+        <table class="table mb-3">
+            <thead>
+            <tr>
+                <th></th>
+                <th>{{ 'campaign.campaigns.title.th'|trans|desc('Title') }}</th>
+                <th>{{ 'campaign.campaigns.id.th'|trans|desc('ID') }}</th>
+                <th>{{ 'campaign.campaigns.subject.th'|trans|desc('Subject') }}</th>
+                <th>{{ 'campaign.campaigns.create_time.th'|trans|desc('Create time') }}</th>
+                <th>{{ 'campaign.campaigns.status.th'|trans|desc('Status') }}</th>
+                <th>{{ 'campaign.campaigns.emails_sent.th'|trans|desc('Emails sent') }}</th>
+                <th>{{ 'campaign.campaigns.send_time.th'|trans|desc('Send time') }}</th>
+                <th>{{ 'campaign.campaigns.list_name.th'|trans|desc('List name') }}</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="ez-checkbox-cell"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
+
+

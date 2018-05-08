@@ -1,0 +1,87 @@
+campaign:
+    campaign:
+        # Desc: campaign.campaign.folder_id
+        folder_id: campaign.campaign.folder_id   # FIXME
+
+        # Desc: campaign.campaign.from_name
+        from_name: campaign.campaign.from_name   # FIXME
+
+        # Desc: campaign.campaign.list
+        list: campaign.campaign.list   # FIXME
+
+        # Desc: campaign.campaign.reply_to
+        reply_to: campaign.campaign.reply_to   # FIXME
+
+        # Desc: campaign.campaign.subject_line
+        subject_line: campaign.campaign.subject_line   # FIXME
+
+        # Desc: campaign.campaign.title
+        title: campaign.campaign.title   # FIXME
+
+    # Desc: campaign.create
+    create: campaign.create   # FIXME
+
+    # Desc: campaign.delete
+    delete: campaign.delete   # FIXME
+
+    folder:
+        # Desc: campaign.folder.name
+        name: campaign.folder.name   # FIXME
+
+    list:
+        # Desc: campaign.list.address
+        address: campaign.list.address   # FIXME
+
+        # Desc: campaign.list.city
+        city: campaign.list.city   # FIXME
+
+        # Desc: campaign.list.company
+        company: campaign.list.company   # FIXME
+
+        # Desc: campaign.list.country
+        country: campaign.list.country   # FIXME
+
+        # Desc: campaign.list.from_email
+        from_email: campaign.list.from_email   # FIXME
+
+        # Desc: campaign.list.from_name
+        from_name: campaign.list.from_name   # FIXME
+
+        # Desc: campaign.list.language
+        language: campaign.list.language   # FIXME
+
+        # Desc: campaign.list.name
+        name: campaign.list.name   # FIXME
+
+        # Desc: campaign.list.permission_reminder
+        permission_reminder: campaign.list.permission_reminder   # FIXME
+
+        # Desc: campaign.list.state
+        state: campaign.list.state   # FIXME
+
+        # Desc: campaign.list.subject
+        subject: campaign.list.subject   # FIXME
+
+        # Desc: campaign.list.zip
+        zip: campaign.list.zip   # FIXME
+
+    # Desc: campaign.save
+    save: campaign.save   # FIXME
+
+campaigns:
+    # Desc: Campaigns
+    view: Campaigns   # FIXME
+
+    # Desc: Campaigns
+    view.title: Campaigns   # FIXME
+
+list:
+    # Desc: list.create
+    create: list.create   # FIXME
+
+lists:
+    # Desc: Lists
+    view: Lists   # FIXME
+
+    # Desc: Lists
+    view.title: Lists   # FIXME
