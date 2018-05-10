@@ -98,18 +98,18 @@ class CampaignService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function patch($campaignID, $listID, $subjectLine, $title, $fromName, $replyTo, $folderID)
+    public function patch(array $campaign)
     {
-        $return = $this->mailChimp->patch('/campaigns/' . $campaignID, array(
+        $return = $this->mailChimp->patch('/campaigns/' . $campaign['id'], array(
             'recipients' => array(
-                'list_id' => $listID
+                'list_id' => $campaign['recipients']['list_id'],
             ),
             'settings' => array(
-                'subject_line' => $subjectLine,
-                'title' => $title,
-                'fromName' => $fromName,
-                'reply_to' => $replyTo,
-                'folder_id' => $folderID
+                'subject_line' => $campaign['settings']['subject_line'],
+                'title' => $campaign['settings']['title'],
+                'fromName' => $campaign['settings']['fromName'],
+                'reply_to' => $campaign['settings']['reply_to'],
+                'folder_id' => $campaign['settings']['folder_id'],
             )
         ));
 

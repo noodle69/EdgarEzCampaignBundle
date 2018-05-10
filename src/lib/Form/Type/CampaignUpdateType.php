@@ -2,13 +2,14 @@
 
 namespace Edgar\EzCampaign\Form\Type;
 
+use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CampaignCreateType extends AbstractType
+class CampaignUpdateType extends AbstractType
 {
     public function getName()
     {
@@ -17,13 +18,14 @@ class CampaignCreateType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'edgarcampaign_campaign_create';
+        return 'edgarcampaign_campaign_edit';
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setDefaults([
+                'data_class' => CampaignUpdateData::class,
                 'translation_domain' => 'edgarezcampaign',
             ]);
     }

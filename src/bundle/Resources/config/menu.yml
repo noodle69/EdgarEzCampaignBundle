@@ -13,3 +13,13 @@ services:
         public: true
         tags:
             - { name: knp_menu.menu_builder, method: build, alias: edgar.menu.list_create.sidebar_right }
+
+    Edgar\EzCampaign\Menu\Admin\Campaign\CampaignEditRightSidebarBuilder:
+        public: true
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: edgar.menu.campaign_edit.sidebar_right }
+
+    Edgar\EzCampaign\Menu\Admin\Campaign\ListEditRightSidebarBuilder:
+        public: true
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: edgar.menu.list_edit.sidebar_right }

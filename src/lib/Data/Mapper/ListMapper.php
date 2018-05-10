@@ -36,7 +36,7 @@ class ListMapper  implements FormDataMapperInterface
                 'from_name' => $campaignList->from_name,
                 'from_email' => $campaignList->from_email,
                 'subject' => $campaignList->subject,
-                'language' => $campaignList->language
+                'language' => $campaignList->language,
             ]);
         } else {
             $data = new ListCreateData(['campaignList' => $campaignList]);

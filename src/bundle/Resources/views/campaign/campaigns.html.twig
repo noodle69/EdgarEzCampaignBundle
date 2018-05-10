@@ -84,7 +84,15 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td class="text-right">
+                        <a title="{{ 'edgar.campaign.campaign.edit'|trans|desc('Edit') }}"
+                           href="{{ path('edgar.campaign.campaign.edit', {'campaignId': campaign.id}) }}"
+                           class="btn btn-icon mx-3">
+                            <svg class="ez-icon ez-icon-edit">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#edit"></use>
+                            </svg>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>

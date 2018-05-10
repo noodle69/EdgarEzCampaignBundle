@@ -4,6 +4,7 @@ namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\ListCreateData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
+use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Data\Mapper\ListMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
@@ -70,11 +71,6 @@ class ListController extends Controller
             'lists' => $lists,
             'form_lists_delete' => $deleteListsForm->createView(),
         ]);
-    }
-
-    public function editAction(?int $listID)
-    {
-
     }
 
     public function bulkDeleteAction(Request $request): Response
@@ -161,6 +157,65 @@ class ListController extends Controller
         return $this->render('@EdgarEzCampaign/campaign/list/create.html.twig', [
             'form' => $form->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.list.create'),
+        ]);
+    }
+
+    public function editAction(Request $request, string $listId): Response
+    {
+        try {
+            $list = $this->listService->get($listId);
+
+            if ($list === false) {
+                $this->notificationHandler->warning(
+                    $this->translator->trans(
+                    /** @Desc("Subscription list does not exists.") */
+                        'list.update.warning',
+                        [],
+                        'edgarezcampaign'
+                    )
+                );
+            }
+        } catch (MailchimpException $e) {
+            $this->notificationHandler->error(
+                $this->translator->trans(
+                /** @Desc("Failed to retrieve Subscription list.") */
+                    'list.update.error',
+                    [],
+                    'edgarezcampaign'
+                )
+            );
+        }
+
+        $form = $this->formFactory->updateList(
+            new ListUpdateData($listId)
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function (ListUpdateData $data) use ($list) {
+                $this->listService->patch($list);
+
+                $this->notificationHandler->success(
+                    $this->translator->trans(
+                    /** @Desc("Subscription list '%name%' updated.") */
+                        'list.update.success',
+                        ['%name%' => $list['name']],
+                        'edgarezcampaign'
+                    )
+                );
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return $this->render('@EdgarEzCampaign/campaign/list/edit.html.twig', [
+            'form' => $form->createView(),
+            'actionUrl' => $this->generateUrl('edgar.campaign.list.edit', ['listId' => $listId]),
+            'list' => $list,
         ]);
     }
 

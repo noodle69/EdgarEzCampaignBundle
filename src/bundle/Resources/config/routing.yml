@@ -6,14 +6,6 @@ edgar.campaign.lists:
     path: /lists
     defaults: { _controller: "EdgarEzCampaignBundle:List:lists" }
 
-edgar.campaign.campaign.edit:
-    path: /campaign/edit/{campaignID}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:edit", campaignID: ~ }
-
-edgar.campaign.list.edit:
-    path: /list/edit/{listID}
-    defaults: { _controller: "EdgarEzCampaignBundle:List:edit", listID: ~ }
-
 edgar.campaign.campaign.bulk_delete:
     path: /campaigns/delete
     methods: ['POST']
@@ -31,6 +23,18 @@ edgar.campaign.campaign.create:
 edgar.campaign.list.create:
     path: /list/create
     defaults: { _controller: "EdgarEzCampaignBundle:List:create" }
+
+edgar.campaign.campaign.edit:
+    path: /campaign/edit/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:edit", campaignID: ~ }
+    requirements:
+        campaignId: "[0-9a-z]+"
+
+edgar.campaign.list.edit:
+    path: /list/edit/{listId}
+    defaults: { _controller: "EdgarEzCampaignBundle:List:edit", listId: ~ }
+    requirements:
+        listId: "[0-9a-z]+"
 
 
 

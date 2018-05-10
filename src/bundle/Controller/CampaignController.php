@@ -4,6 +4,7 @@ namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\CampaignCreateData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
+use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Data\Mapper\CampaignMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
@@ -75,11 +76,6 @@ class CampaignController extends Controller
             'campaigns' => $campaigns,
             'form_campaigns_delete' => $deleteCampaignsForm->createView(),
         ]);
-    }
-
-    public function editAction(?int $campaignID)
-    {
-
     }
 
     public function bulkDeleteAction(Request $request): Response
@@ -166,6 +162,65 @@ class CampaignController extends Controller
         return $this->render('@EdgarEzCampaign/campaign/campaign/create.html.twig', [
             'form' => $form->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.campaign.create'),
+        ]);
+    }
+
+    public function editAction(Request $request, string $campaignId): Response
+    {
+        try {
+            $campaign = $this->campaignService->get($campaignId);
+
+            if ($campaign === false) {
+                $this->notificationHandler->warning(
+                    $this->translator->trans(
+                    /** @Desc("Campaign does not exists.") */
+                        'campaign.update.warning',
+                        [],
+                        'edgarezcampaign'
+                    )
+                );
+            }
+        } catch (MailchimpException $e) {
+            $this->notificationHandler->error(
+                $this->translator->trans(
+                /** @Desc("Failed to retrieve Campaign.") */
+                    'campaign.update.error',
+                    [],
+                    'edgarezcampaign'
+                )
+            );
+        }
+
+        $form = $this->formFactory->updateCampaign(
+            new CampaignUpdateData($campaign)
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function (CampaignUpdateData $data) use ($campaign) {
+                $this->campaignService->patch($campaign);
+
+                $this->notificationHandler->success(
+                    $this->translator->trans(
+                    /** @Desc("Campaign '%name%' updated.") */
+                        'campaign.update.success',
+                        ['%name%' => $campaign['title']],
+                        'edgarezcampaign'
+                    )
+                );
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return $this->render('@EdgarEzCampaign/campaign/campaign/edit.html.twig', [
+            'form' => $form->createView(),
+            'actionUrl' => $this->generateUrl('edgar.campaign.campaign.edit', ['campaignId' => $campaignId]),
+            'campaign' => $campaign,
         ]);
     }
 

@@ -9,7 +9,7 @@ use Welp\MailchimpBundle\Exception\MailchimpException;
  *
  * @package Edgar\EzCampaignBundle\Service
  */
-class CampaignFolderService extends BaseService
+class FolderService extends BaseService
 {
     /**
      * Retrieve Campaign Folder by Folder ID

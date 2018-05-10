@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="45644badeffc5ecf07da647ba42f89a87ed29eed" resname="breadcrumb.campaign">
+        <source>Campaign</source>
+        <target>Campaign</target>
+        <note>key: breadcrumb.campaign</note>
+      </trans-unit>
+      <trans-unit id="8f2b9444ccb9cbe697f7b07f385ee29e4edeaa7f" resname="main__campaign">
+        <source>Campaign</source>
+        <target>Campaign</target>
+        <note>key: main__campaign</note>
+      </trans-unit>
+      <trans-unit id="fa2df1c777a226420b7505e21cc4b11f93b8c60b" resname="main__campaign__campaigns">
+        <source>Campaigns</source>
+        <target>Campaigns</target>
+        <note>key: main__campaign__campaigns</note>
+      </trans-unit>
+      <trans-unit id="0118cb08a9fca9b2fae3ad3e321cf9d8a447ee33" resname="main__campaign__lists">
+        <source>Subscription lists</source>
+        <target>Subscription lists</target>
+        <note>key: main__campaign__lists</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

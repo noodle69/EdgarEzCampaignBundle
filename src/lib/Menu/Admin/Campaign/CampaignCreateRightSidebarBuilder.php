@@ -67,8 +67,8 @@ class CampaignCreateRightSidebarBuilder extends AbstractBuilder implements Trans
     public static function getTranslationMessages(): array
     {
         return [
-            (new Message(self::ITEM__CREATE, 'message'))->setDesc('Create'),
-            (new Message(self::ITEM__CANCEL, 'message'))->setDesc('Discard changes'),
+            (new Message(self::ITEM__CREATE, 'menu'))->setDesc('Create'),
+            (new Message(self::ITEM__CANCEL, 'menu'))->setDesc('Discard changes'),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Edgar\EzCampaign\Form\Type;
 
+use Edgar\EzCampaign\Data\ListUpdateData;
 use EzSystems\RepositoryForms\Form\Type\FieldType\CountryFieldType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -10,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ListCreateType extends AbstractType
+class ListUpdateType extends AbstractType
 {
     public function getName()
     {
@@ -19,13 +20,14 @@ class ListCreateType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'edgarcampaign_list_create';
+        return 'edgarcampaign_list_edit';
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setDefaults([
+                'data_class' => ListUpdateData::class,
                 'translation_domain' => 'edgarezcampaign',
             ]);
     }

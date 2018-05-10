@@ -98,27 +98,24 @@ class ListService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function patch(
-        $listID, $name, $company, $address, $city, $state, $zip, $country, $permission_reminder,
-        $from_name, $from_email, $subject, $language
-    )
+    public function patch(array $list)
     {
-        $return = $this->mailChimp->patch('/lists/' . $listID, array(
-            'name' => $name,
+        $return = $this->mailChimp->patch('/lists/' . $list['id'], array(
+            'name' => $list['name'],
             'contact' => array(
-                'company' => $company,
-                'address1' => $address,
-                'city' => $city,
-                'state' => $state,
-                'zip' => $zip,
-                'country' => $country
+                'company' => $list['contact']['company'],
+                'address1' => $list['contact']['address1'],
+                'city' => $list['contact']['city'],
+                'state' => $list['contact']['state'],
+                'zip' => $list['contact']['zip'],
+                'country' => $list['contact']['country']
             ),
-            'permission_reminder' => $permission_reminder,
+            'permission_reminder' => $list['permission_reminder'],
             'campaign_defaults' => array(
-                'from_name' => $from_name,
-                'from_email' => $from_email,
-                'subject' => $subject,
-                'language' => $language
+                'from_name' => $list['campaign_defaults']['from_name'],
+                'from_email' => $list['campaign_defaults']['from_email'],
+                'subject' => $list['campaign_defaults']['subject'],
+                'language' => $list['campaign_defaults']['language']
             ),
             'email_type_option' => true
         ));

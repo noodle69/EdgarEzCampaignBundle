@@ -3,6 +3,7 @@
 namespace Edgar\EzCampaign\Menu\Admin\Campaign;
 
 use Edgar\EzCampaign\Menu\Event\ConfigureMenuEvent;
+use Edgar\EzCampaign\Values\Core\Campaign;
 use eZ\Publish\API\Repository\Exceptions as ApiExceptions;
 use EzSystems\EzPlatformAdminUi\Menu\AbstractBuilder;
 use InvalidArgumentException;
@@ -10,18 +11,18 @@ use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use Knp\Menu\ItemInterface;
 
-class ListCreateRightSidebarBuilder extends AbstractBuilder implements TranslationContainerInterface
+class CampaignEditRightSidebarBuilder extends AbstractBuilder implements TranslationContainerInterface
 {
     /* Menu items */
-    const ITEM__CREATE = 'list_create__sidebar_right__create';
-    const ITEM__CANCEL = 'list_create__sidebar_right__cancel';
+    const ITEM__SAVE = 'campaign_edit__sidebar_right__save';
+    const ITEM__CANCEL = 'campaign_edit__sidebar_right__cancel';
 
     /**
      * @return string
      */
     protected function getConfigureEventName(): string
     {
-        return ConfigureMenuEvent::LIST_CREATE_SIDEBAR_RIGHT;
+        return ConfigureMenuEvent::CAMPAIGN_EDIT_SIDEBAR_RIGHT;
     }
 
     /**
@@ -35,24 +36,27 @@ class ListCreateRightSidebarBuilder extends AbstractBuilder implements Translati
      */
     public function createStructure(array $options): ItemInterface
     {
+        /** @var Campaign $campaign */
+        $saveId = $options['save_id'];
+
         /** @var ItemInterface|ItemInterface[] $menu */
         $menu = $this->factory->createItem('root');
 
         $menu->setChildren([
-            self::ITEM__CREATE => $this->createMenuItem(
-                self::ITEM__CREATE,
+            self::ITEM__SAVE => $this->createMenuItem(
+                self::ITEM__SAVE,
                 [
                     'attributes' => [
                         'class' => 'btn--trigger',
-                        'data-click' => '#list_create_save',
+                        'data-click' => sprintf('#%s', $saveId),
                     ],
-                    'extras' => ['icon' => 'publish'],
+                    'extras' => ['icon' => 'save'],
                 ]
             ),
             self::ITEM__CANCEL => $this->createMenuItem(
                 self::ITEM__CANCEL,
                 [
-                    'route' => 'edgar.campaign.lists',
+                    'route' => 'edgar.campaign.campaigns',
                     'extras' => ['icon' => 'circle-close'],
                 ]
             ),
@@ -67,7 +71,7 @@ class ListCreateRightSidebarBuilder extends AbstractBuilder implements Translati
     public static function getTranslationMessages(): array
     {
         return [
-            (new Message(self::ITEM__CREATE, 'menu'))->setDesc('Create'),
+            (new Message(self::ITEM__SAVE, 'menu'))->setDesc('Save'),
             (new Message(self::ITEM__CANCEL, 'menu'))->setDesc('Discard changes'),
         ];
     }

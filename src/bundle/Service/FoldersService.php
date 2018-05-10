@@ -4,12 +4,7 @@ namespace Edgar\EzCampaignBundle\Service;
 
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
-/**
- * Class CampaignFoldersService
- *
- * @package Edgar\EzCampaignBundle\Service
- */
-class CampaignFoldersService extends BaseService
+class FoldersService extends BaseService
 {
     /**
      * Retrive a list of Campaign Folder

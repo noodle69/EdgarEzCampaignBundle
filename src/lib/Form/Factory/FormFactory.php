@@ -3,13 +3,17 @@
 namespace Edgar\EzCampaign\Form\Factory;
 
 use Edgar\EzCampaign\Data\CampaignCreateData;
+use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Data\ListCreateData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
+use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Form\Type\CampaignCreateType;
+use Edgar\EzCampaign\Form\Type\CampaignUpdateType;
 use Edgar\EzCampaign\Form\Type\ListCreateType;
 use Edgar\EzCampaign\Form\Type\CampaignsDeleteType;
 use Edgar\EzCampaign\Form\Type\ListsDeleteType;
+use Edgar\EzCampaign\Form\Type\ListUpdateType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Util\StringUtil;
@@ -87,5 +91,35 @@ class FormFactory
             ListCreateType::class,
             $data ?? new ListCreateData()
         );
+    }
+
+    /**
+     * @param CampaignUpdateData $data
+     * @param null|string $name
+     *
+     * @return FormInterface
+     */
+    public function updateCampaign(
+        CampaignUpdateData $data,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: sprintf('update-campaign-%d', $data->getId());
+
+        return $this->formFactory->createNamed($name, CampaignUpdateType::class, $data);
+    }
+
+    /**
+     * @param ListUpdateData $data
+     * @param null|string $name
+     *
+     * @return FormInterface
+     */
+    public function updateList(
+        ListUpdateData $data,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: sprintf('update-list-%d', $data->getId());
+
+        return $this->formFactory->createNamed($name, ListUpdateType::class, $data);
     }
 }

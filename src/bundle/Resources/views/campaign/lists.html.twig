@@ -74,7 +74,15 @@
                     <td>{{ list.date_created }}</td>
                     <td>{{ list.stats.member_count }}</td>
                     <td></td>
-                    <td></td>
+                    <td class="text-right">
+                        <a title="{{ 'edgar.campaign.list.edit'|trans|desc('Edit') }}"
+                           href="{{ path('edgar.campaign.list.edit', {'listId': list.id}) }}"
+                           class="btn btn-icon mx-3">
+                            <svg class="ez-icon ez-icon-edit">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#edit"></use>
+                            </svg>
+                        </a>
+                    </td>
                 {% endfor %}
             </tr>
             </tbody>

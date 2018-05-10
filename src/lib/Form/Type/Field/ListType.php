@@ -2,21 +2,39 @@
 
 namespace Edgar\EzCampaign\Form\Type\Field;
 
+use Edgar\EzCampaignBundle\Service\ListsService;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SearchType;
+use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ListType extends AbstractType
 {
-    public function getParent()
+    /** @var ListsService  */
+    protected $listsService;
+
+    public function __construct(ListsService $listsService)
     {
-        return SearchType::class;
+        $this->listsService = $listsService;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getParent()
     {
-        return 'campaignlist';
+        return ChoiceType::class;
+    }
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver
+            ->setDefaults([
+                'choice_loader' => new CallbackChoiceLoader(function () {
+                    $listsChoices = [];
+                    $lists = $this->listsService->get(0, 0);
+                    foreach ($lists['lists'] as $list) {
+                        $listsChoices[$list['name']] = (object)$list;
+                    }
+                    return $listsChoices;
+                }),
+                'choice_value' => 'id',
+            ]);
     }
 }
