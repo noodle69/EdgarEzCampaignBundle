@@ -14,11 +14,17 @@ edgar.campaign.list.edit:
     path: /list/edit/{listID}
     defaults: { _controller: "EdgarEzCampaignBundle:List:edit", listID: ~ }
 
-edgar.campaign.campaign.delete:
-    path: /list/delete/{campaignID}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:delete", campaignID: ~ }
-    requirements:
-        campaignID: "[0-9a-z]+"
+edgar.campaign.campaign.bulk_delete:
+    path: /campaigns/delete
+    methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:bulkDelete" }
+
+edgar.campaign.list.bulk_delete:
+    path: /lists/delete
+    methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:List:bulkDelete" }
+
+
 
 edgar.campaign.campaign.subscribe:
     path: /campaign/{campaignID}/subscribe

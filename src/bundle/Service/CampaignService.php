@@ -35,10 +35,10 @@ class CampaignService extends BaseService
      *
      * @param int $campaignID Campaign ID
      * @param array $fields Fields to return
-     * @return array Campaign informations
+     * @return array|false Campaign informations
      * @throws MailchimpException MailChimpException
      */
-    public function get($campaignID, $fields = array())
+    public function get($campaignID, array $fields = []): array
     {
         $campaign = $this->mailChimp->get('/campaigns/' . $campaignID, $fields);
 

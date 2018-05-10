@@ -7,7 +7,7 @@
 {% block breadcrumbs %}
     {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
         { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
-        { url: path('edgar.ezuifavicon.favicons'), value: 'campaigns.view'|trans|desc('Campaigns') },
+        { url: path('edgar.campaign.campaigns'), value: 'campaigns.view'|trans|desc('Campaigns') },
     ]} %}
 {% endblock %}
 
@@ -33,21 +33,36 @@
                              xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#create"></use>
                     </svg>
                 </a>
+                {% set modal_data_target = 'delete-campaigns-modal' %}
+                <button id="delete-campaigns" type="button" class="btn btn-danger" disabled data-toggle="modal"
+                        data-target="#{{ modal_data_target }}" title="{{ 'campaign.campaign.delete'|trans|desc('Delete Campaign') }}">
+                    <svg class="ez-icon ez-icon-trash">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#trash"></use>
+                    </svg>
+                </button>
+                {% include '@EzPlatformAdminUi/admin/bulk_delete_confirmation_modal.html.twig' with {
+                    'id': modal_data_target,
+                    'message': 'campaign.campaign.modal.message'|trans|desc('Do you want to delete Campaign?'),
+                    'data_click': '#campaigns_delete_delete',
+                }%}
             </div>
         </div>
+
+        {{ form_start(form_campaigns_delete, {
+            'action': path('edgar.campaign.campaign.bulk_delete'),
+            'attr': { 'class': 'ez-toggle-btn-state', 'data-toggle-button-id': '#delete-campaigns' }
+        }) }}
         <table class="table mb-3">
             <thead>
             <tr>
                 <th></th>
                 <th>{{ 'campaign.campaigns.title.th'|trans|desc('Title') }}</th>
-                <th>{{ 'campaign.campaigns.id.th'|trans|desc('ID') }}</th>
                 <th>{{ 'campaign.campaigns.subject.th'|trans|desc('Subject') }}</th>
                 <th>{{ 'campaign.campaigns.create_time.th'|trans|desc('Create time') }}</th>
-                <th>{{ 'campaign.campaigns.status.th'|trans|desc('Status') }}</th>
                 <th>{{ 'campaign.campaigns.emails_sent.th'|trans|desc('Emails sent') }}</th>
                 <th>{{ 'campaign.campaigns.send_time.th'|trans|desc('Send time') }}</th>
                 <th>{{ 'campaign.campaigns.list_name.th'|trans|desc('List name') }}</th>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -57,16 +72,15 @@
             <tbody>
             {% for campaign in campaigns.campaigns %}
                 <tr>
-                    <td class="ez-checkbox-cell"></td>
+                    <td class="ez-checkbox-cell">
+                        {{ form_widget(form_campaigns_delete.campaigns[campaign.id]) }}
+                    </td>
                     <td>{{ campaign.settings.title }}</td>
-                    <td>{{ campaign.id }}</td>
                     <td>{{ campaign.settings.subject_line }}</td>
                     <td>{{ campaign.create_time }}</td>
-                    <td>{{ campaign.status }}</td>
                     <td>{{ campaign.emails_sent }}</td>
                     <td>{{ campaign.send_time }}</td>
                     <td>{{ campaign.recipients.list_name }}</td>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -75,7 +89,14 @@
             {% endfor %}
             </tbody>
         </table>
+        {{ form_end(form_campaigns_delete) }}
     </section>
 {% endblock %}
 
-
+{% block javascripts %}
+    {% javascripts
+        '@EzPlatformAdminUiBundle/Resources/public/js/scripts/button.state.toggle.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}

@@ -7,13 +7,13 @@
 {% block breadcrumbs %}
     {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
         { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
-        { url: path('edgar.ezuifavicon.favicons'), value: 'lists.view'|trans|desc('Lists') },
+        { url: path('edgar.campaign.lists'), value: 'lists.view'|trans|desc('Subscription lists') },
     ]} %}
 {% endblock %}
 
 {% block page_title %}
     {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
-        title: 'lists.view.title'|trans|desc('Lists'),
+        title: 'lists.view.title'|trans|desc('Subscription lists'),
         iconName: 'pin'
     } %}
 {% endblock %}
@@ -22,7 +22,7 @@
     <section class="container mt-4">
         <div class="ez-table-header">
             <div class="ez-table-header__headline">
-                {{ 'campaign.lists.table.header'|trans|desc('Campaign lists') }}
+                {{ 'campaign.lists.table.header'|trans|desc('Subscription lists') }}
             </div>
             <div>
                 <a title="{{ 'campaign.list.new'|trans|desc('Create a new subscription list') }}"
@@ -33,14 +33,31 @@
                              xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#create"></use>
                     </svg>
                 </a>
+                {% set modal_data_target = 'delete-lists-modal' %}
+                <button id="delete-lists" type="button" class="btn btn-danger" disabled data-toggle="modal"
+                        data-target="#{{ modal_data_target }}" title="{{ 'campaign.list.delete'|trans|desc('Delete Subscription list') }}">
+                    <svg class="ez-icon ez-icon-trash">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                             xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#trash"></use>
+                    </svg>
+                </button>
+                {% include '@EzPlatformAdminUi/admin/bulk_delete_confirmation_modal.html.twig' with {
+                    'id': modal_data_target,
+                    'message': 'campaign.list.modal.message'|trans|desc('Do you want to delete Subscription list?'),
+                    'data_click': '#lists_delete_delete',
+                }%}
             </div>
         </div>
+
+        {{ form_start(form_lists_delete, {
+            'action': path('edgar.campaign.list.bulk_delete'),
+            'attr': { 'class': 'ez-toggle-btn-state', 'data-toggle-button-id': '#delete-lists' }
+        }) }}
         <table class="table mb-3">
             <thead>
             <tr>
                 <th></th>
                 <th>{{ 'campaign.lists.name.th'|trans|desc('Name') }}</th>
-                <th>{{ 'campaign.lists.id.th'|trans|desc('ID') }}</th>
                 <th>{{ 'campaign.lists.date_created.th'|trans|desc('Date created') }}</th>
                 <th>{{ 'campaign.lists.member_count.th'|trans|desc('Member count') }}</th>
                 <th></th>
@@ -50,9 +67,10 @@
             <tbody>
             <tr>
                 {% for list in lists.lists %}
-                    <td class="ez-checkbox-cell"></td>
+                    <td class="ez-checkbox-cell">
+                        {{ form_widget(form_lists_delete.lists[list.id]) }}
+                    </td>
                     <td>{{ list.name }}</td>
-                    <td>{{ list.id }}</td>
                     <td>{{ list.date_created }}</td>
                     <td>{{ list.stats.member_count }}</td>
                     <td></td>
@@ -61,7 +79,15 @@
             </tr>
             </tbody>
         </table>
+        {{ form_end(form_lists_delete) }}
     </section>
 {% endblock %}
 
+{% block javascripts %}
+    {% javascripts
+        '@EzPlatformAdminUiBundle/Resources/public/js/scripts/button.state.toggle.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
 

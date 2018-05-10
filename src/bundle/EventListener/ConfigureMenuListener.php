@@ -80,7 +80,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
         return [
             (new Message(self::ITEM_CAMPAIGN, 'messages'))->setDesc('Campaign'),
             (new Message(self::ITEM_CAMPAIGN_CAMPAIGNS, 'messages'))->setDesc('Campaigns'),
-            (new Message(self::ITEM_CAMPAIGN_LISTS, 'messages'))->setDesc('Lists'),
+            (new Message(self::ITEM_CAMPAIGN_LISTS, 'messages'))->setDesc('Subscription lists'),
         ];
     }
 }
