@@ -31,4 +31,6 @@ abstract class CampaignList extends ValueObject
     protected $subject;
 
     protected $language;
+
+    protected $web_id;
 }

@@ -10,7 +10,7 @@ use Edgar\EzCampaign\Data\ListCreateData;
 use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Values\API\CampaignList;
 
-class ListMapper  implements FormDataMapperInterface
+class ListMapper implements FormDataMapperInterface
 {
     /**
      * Maps a ValueObject from eZ content repository to a data usable as underlying form data (e.g. create/update struct).

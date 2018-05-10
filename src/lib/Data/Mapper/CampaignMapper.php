@@ -51,12 +51,12 @@ class CampaignMapper implements FormDataMapperInterface
         }
 
         return new CampaignCreateStruct([
-            'list_id' => '',
-            'subject_line' => '',
-            'title' => '',
-            'from_name' => '',
-            'reply_to' => '',
-            'folder_id' => '',
+            'list_id' => $data->list_id->id,
+            'subject_line' => $data->subject_line,
+            'title' => $data->title,
+            'from_name' => $data->from_name,
+            'reply_to' => $data->reply_to,
+            'folder_id' => $data->folder_id->id,
         ]);
     }
 }

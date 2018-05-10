@@ -146,7 +146,7 @@ class CampaignController extends Controller
                     $this->translator->trans(
                     /** @Desc("Campaign '%name%' created.") */
                         'campaign.create.success',
-                        ['%name%' => $campaign['name']],
+                        ['%name%' => $campaign['settings']['title']],
                         'edgarezcampaign'
                     )
                 );

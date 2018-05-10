@@ -164,6 +164,8 @@ class ListController extends Controller
     {
         try {
             $list = $this->listService->get($listId);
+            $list = $this->listService->map($list);
+            $listData = (new ListMapper())->mapToFormData($list);
 
             if ($list === false) {
                 $this->notificationHandler->warning(
@@ -186,9 +188,7 @@ class ListController extends Controller
             );
         }
 
-        $form = $this->formFactory->updateList(
-            new ListUpdateData($listId)
-        );
+        $form = $this->formFactory->updateList($listData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

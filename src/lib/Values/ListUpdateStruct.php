@@ -27,4 +27,6 @@ class ListUpdateStruct extends ListStruct
     public $subject = null;
 
     public $language = null;
+
+    public $web_id = null;
 }

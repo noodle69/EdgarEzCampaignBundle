@@ -19,4 +19,32 @@ abstract class Campaign extends ValueObject
     protected $reply_to;
 
     protected $folder_id;
+
+    protected $web_id;
+
+    protected $type;
+
+    protected $create_time;
+
+    protected $archive_url;
+
+    protected $long_archive_url;
+
+    protected $status;
+
+    protected $emails_sent;
+
+    protected $send_time;
+
+    protected $content_type;
+
+    protected $needs_block_refresh;
+
+    protected $recipients;
+
+    protected $settings;
+
+    protected $tracking;
+
+    protected $delivery_status;
 }

@@ -2,6 +2,8 @@
 
 namespace Edgar\EzCampaignBundle\Service;
 
+use Edgar\EzCampaign\Values\Core\CampaignList;
+use Edgar\EzCampaign\Values\ListCreateStruct;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
 /**
@@ -47,29 +49,28 @@ class ListService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function post(
-        $name, $company, $address, $city, $state, $zip, $country, $permission_reminder,
-        $from_name, $from_email, $subject, $language
-    )
+    public function post(ListCreateStruct $list)
     {
+        $countrySelected = key($list->country->countries);
+
         $return = $this->mailChimp->post('/lists', array(
-            'name' => $name,
+            'name' => $list->name,
             'contact' => array(
-                'company' => $company,
-                'address1' => $address,
-                'city' => $city,
-                'state' => $state,
-                'zip' => $zip,
-                'country' => $country
+                'company' => $list->company,
+                'address1' => $list->address,
+                'city' => $list->city,
+                'state' => $list->state,
+                'zip' => $list->zip,
+                'country' => $countrySelected,
             ),
-            'permission_reminder' => $permission_reminder,
+            'permission_reminder' => $list->permission_reminder,
             'campaign_defaults' => array(
-                'from_name' => $from_name,
-                'from_email' => $from_email,
-                'subject' => $subject,
-                'language' => $language
+                'from_name' => $list->from_name,
+                'from_email' => $list->from_email,
+                'subject' => $list->subject,
+                'language' => $list->language
             ),
-            'email_type_option' => true
+            'email_type_option' => false
         ));
 
         if (!$this->mailChimp->success()) {
@@ -197,5 +198,26 @@ class ListService extends BaseService
         }
 
         return $return;
+    }
+
+    public function map(array $list): CampaignList
+    {
+        $list = new CampaignList([
+            'id' => $list['id'],
+            'name' => $list['name'],
+            'company' => $list['contact']['company'],
+            'address' => $list['contact']['address1'],
+            'city' => $list['contact']['city'],
+            'state' => $list['contact']['state'],
+            'zip' => $list['contact']['zip'],
+            'country' => $list['contact']['country'],
+            'permission_reminder' => $list['permission_reminder'],
+            'from_name' => $list['campaign_defaults']['from_name'],
+            'from_email' => $list['campaign_defaults']['from_email'],
+            'subject' => $list['campaign_defaults']['subject'],
+            'language' => $list['campaign_defaults']['language']
+        ]);
+
+        return $list;
     }
 }

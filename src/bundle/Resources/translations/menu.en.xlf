@@ -16,6 +16,16 @@
         <target>Create</target>
         <note>key: campaign_create__sidebar_right__create</note>
       </trans-unit>
+      <trans-unit id="81eb5a1ff185a639f31a7c96f257ed3e6dfdb36c" resname="campaign_edit__sidebar_right__cancel">
+        <source>Discard changes</source>
+        <target state="new">Discard changes</target>
+        <note>key: campaign_edit__sidebar_right__cancel</note>
+      </trans-unit>
+      <trans-unit id="4f59627d7dda0e7635805da14e82b9fd26be901b" resname="campaign_edit__sidebar_right__save">
+        <source>Save</source>
+        <target state="new">Save</target>
+        <note>key: campaign_edit__sidebar_right__save</note>
+      </trans-unit>
       <trans-unit id="f2d762d1a35a21c154122e0c5000a4516582bf4f" resname="list_create__sidebar_right__cancel">
         <source>Discard changes</source>
         <target>Discard changes</target>
@@ -25,6 +35,16 @@
         <source>Create</source>
         <target>Create</target>
         <note>key: list_create__sidebar_right__create</note>
+      </trans-unit>
+      <trans-unit id="cd6adc17af5468c46e162adc791940f0d0a148cb" resname="list_edit__sidebar_right__cancel">
+        <source>Discard changes</source>
+        <target state="new">Discard changes</target>
+        <note>key: list_edit__sidebar_right__cancel</note>
+      </trans-unit>
+      <trans-unit id="bc33d3f7bd3e79fbe3ab45006c19069397d3e6dd" resname="list_edit__sidebar_right__save">
+        <source>Save</source>
+        <target state="new">Save</target>
+        <note>key: list_edit__sidebar_right__save</note>
       </trans-unit>
     </body>
   </file>

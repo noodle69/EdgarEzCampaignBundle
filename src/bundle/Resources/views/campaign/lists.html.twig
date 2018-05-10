@@ -65,8 +65,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                {% for list in lists.lists %}
+            {% for list in lists.lists %}
+                <tr>
                     <td class="ez-checkbox-cell">
                         {{ form_widget(form_lists_delete.lists[list.id]) }}
                     </td>
@@ -83,8 +83,8 @@
                             </svg>
                         </a>
                     </td>
-                {% endfor %}
-            </tr>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
         {{ form_end(form_lists_delete) }}

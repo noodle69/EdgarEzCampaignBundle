@@ -68,4 +68,9 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     {
         return $this->language;
     }
+
+    public function getWebId()
+    {
+        return $this->web_id;
+    }
 }
