@@ -3,11 +3,11 @@
 namespace Edgar\EzCampaign\Data;
 
 use EzSystems\RepositoryForms\Data\NewnessChecker;
-use Edgar\EzCampaign\Values\CampaignFolderUpdateStruct;
+use Edgar\EzCampaign\Values\FolderUpdateStruct;
 
-class CampaignFolderUpdateData extends CampaignFolderUpdateStruct
+class FolderUpdateData extends FolderUpdateStruct
 {
-    use CampaignFolderDataTrait, NewnessChecker;
+    use FolderDataTrait, NewnessChecker;
 
     protected function getIdValue()
     {

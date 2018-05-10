@@ -1,0 +1,42 @@
+{% extends 'EzPlatformAdminUiBundle:admin/language:base.html.twig' %}
+
+{% form_theme form '@EzPlatformAdminUi/form_fields.html.twig'  %}
+
+{% trans_default_domain 'edgarezcampaign' %}
+
+{% block breadcrumbs_admin %}
+    {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
+        { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
+        { url: path('edgar.campaign.campaigns'), value: 'campaigns.view'|trans|desc('Campaigns') },
+        { value: 'campaign.new'|trans|desc('Create a new Campaign') },
+    ]} %}
+{% endblock %}
+
+{% block page_title_admin %}
+    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+        title: 'campaign.new.title'|trans|desc('Creating a new Campaign'),
+        iconName: 'pin'
+    } %}
+{% endblock %}
+
+{% block title %}{{ 'campaign.new.title'|trans|desc('Creating a new Campaign') }}{% endblock %}
+
+{% block form %}
+    {{ form_start(form, {'action': actionUrl}) }}
+
+    <section class="container mt-4 px-5">
+        <div class="card ez-card">
+            <div class="card-body">
+            </div>
+        </div>
+    </section>
+
+    {{ form_widget(form.save, {"attr": {"hidden": "hidden"}}) }}
+
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block right_sidebar %}
+    {% set campaign_create_sidebar_right = knp_menu_get('edgar.menu.campaign_create.sidebar_right') %}
+    {{ knp_menu_render(campaign_create_sidebar_right, {'template': '@EzPlatformAdminUi/parts/menu/sidebar_right.html.twig'}) }}
+{% endblock %}

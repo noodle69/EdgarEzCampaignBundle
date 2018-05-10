@@ -24,6 +24,15 @@ edgar.campaign.list.bulk_delete:
     methods: ['POST']
     defaults: { _controller: "EdgarEzCampaignBundle:List:bulkDelete" }
 
+edgar.campaign.campaign.create:
+    path: /campaign/create
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:create" }
+
+edgar.campaign.list.create:
+    path: /list/create
+    defaults: { _controller: "EdgarEzCampaignBundle:List:create" }
+
+
 
 
 edgar.campaign.campaign.subscribe:

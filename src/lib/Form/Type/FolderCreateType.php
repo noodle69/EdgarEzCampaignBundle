@@ -8,7 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CampaignListDeleteType extends AbstractType
+class FolderCreateType extends AbstractType
 {
     public function getName()
     {
@@ -17,7 +17,7 @@ class CampaignListDeleteType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'edgarcampaign_list_delete';
+        return 'edgarcampaign_folder_create';
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -31,7 +31,8 @@ class CampaignListDeleteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('listID', HiddenType::class)
-            ->add('delete', SubmitType::class, ['label' => 'campaign.delete']);
+            ->add('campaignFolderID', HiddenType::class, [
+            ])
+            ->add('create', SubmitType::class, ['label' => 'campaign.create']);
     }
 }

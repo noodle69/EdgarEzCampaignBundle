@@ -2,7 +2,9 @@
 
 namespace Edgar\EzCampaign\Data\Mapper;
 
+use Edgar\EzCampaign\Values\CampaignCreateStruct;
 use eZ\Publish\API\Repository\Values\ValueObject;
+use EzSystems\EzPlatformAdminUi\Exception\InvalidArgumentException;
 use EzSystems\RepositoryForms\Data\Mapper\FormDataMapperInterface;
 use Edgar\EzCampaign\Data\CampaignCreateData;
 use Edgar\EzCampaign\Data\CampaignUpdateData;
@@ -40,5 +42,21 @@ class CampaignMapper implements FormDataMapperInterface
     private function isCampaignNew(Campaign $campaign)
     {
         return $campaign->id === null;
+    }
+
+    public function reverseMap($data): CampaignCreateStruct
+    {
+        if (!$data instanceof CampaignCreateData) {
+            throw new InvalidArgumentException('data', 'must be an instance of ' . CampaignCreateData::class);
+        }
+
+        return new CampaignCreateStruct([
+            'list_id' => '',
+            'subject_line' => '',
+            'title' => '',
+            'from_name' => '',
+            'reply_to' => '',
+            'folder_id' => '',
+        ]);
     }
 }

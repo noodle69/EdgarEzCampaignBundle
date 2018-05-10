@@ -2,13 +2,16 @@
 
 namespace Edgar\EzCampaignBundle\Controller;
 
+use Edgar\EzCampaign\Data\CampaignCreateData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
+use Edgar\EzCampaign\Data\Mapper\CampaignMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaignBundle\Service\CampaignService;
 use Edgar\EzCampaignBundle\Service\CampaignsService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -33,6 +36,9 @@ class CampaignController extends Controller
     /** @var CampaignsService  */
     protected $campaignsService;
 
+    /** @var CampaignMapper  */
+    protected $campaignMapper;
+
     /** @var SubmitHandler $submitHandler */
     private $submitHandler;
 
@@ -44,6 +50,7 @@ class CampaignController extends Controller
         TranslatorInterface $translator,
         CampaignsService $campaignsService,
         CampaignService $campaignService,
+        CampaignMapper $campaignCreateMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory
     ) {
@@ -51,6 +58,7 @@ class CampaignController extends Controller
         $this->translator = $translator;
         $this->campaignService = $campaignService;
         $this->campaignsService = $campaignsService;
+        $this->campaignMapper = $campaignCreateMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
     }
@@ -126,6 +134,39 @@ class CampaignController extends Controller
         }
 
         return $this->redirect($this->generateUrl('edgar.campaign.campaigns'));
+    }
+
+    public function createAction(Request $request): Response
+    {
+        $form = $this->formFactory->createCampaign();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function (CampaignCreateData $data) {
+                $campaignCreateStruct = $this->campaignMapper->reverseMap($data);
+                $campaign = $this->campaignService->post($campaignCreateStruct);
+
+                $this->notificationHandler->success(
+                    $this->translator->trans(
+                    /** @Desc("Campaign '%name%' created.") */
+                        'campaign.create.success',
+                        ['%name%' => $campaign['name']],
+                        'edgarezcampaign'
+                    )
+                );
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return $this->render('@EdgarEzCampaign/campaign/campaign/create.html.twig', [
+            'form' => $form->createView(),
+            'actionUrl' => $this->generateUrl('edgar.campaign.campaign.create'),
+        ]);
     }
 
     private function getCampaignsNumbers(array $campaigns): array

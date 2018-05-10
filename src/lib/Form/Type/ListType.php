@@ -2,23 +2,25 @@
 
 namespace Edgar\EzCampaign\Form\Type;
 
+use Edgar\EzCampaign\Values\ListStruct;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CampaignListType extends AbstractType
+class ListType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', TextType::class, ['required' => true, 'label' => 'campaign.list.name'])
             ->add(
-                $builder->create('contact', 'form', array('virtual' => true))
+                $builder->create('contact', FormType::class, array('inherit_data' => true))
                     ->add('company', TextType::class, ['required' => true, 'label' => 'campaign.list.company'])
                     ->add('address', TextType::class, ['required' => true, 'label' => 'campaign.list.address'])
                     ->add('city', TextType::class, ['required' => true, 'label' => 'campaign.list.city'])
@@ -27,7 +29,7 @@ class CampaignListType extends AbstractType
                     ->add('country', CountryType::class, ['required' => true, 'label' => 'campaign.list.country'])
             )
             ->add(
-                $builder->create('campaign_defaults', 'form', array('virtual' => true))
+                $builder->create('campaign_defaults', FormType::class, array('inherit_data' => true))
                     ->add('from_name', TextType::class, ['required' => true, 'label' => 'campaign.list.from_name'])
                     ->add('from_email', EmailType::class, ['required' => true, 'label' => 'campaign.list.from_email'])
                     ->add('subject', TextType::class, ['required' => true, 'label' => 'campaign.list.subject'])
@@ -50,7 +52,7 @@ class CampaignListType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => '\Edgar\EzCampaign\Values\CampaignListStruct',
+            'data_class' => ListStruct::class,
             'translation_domain' => 'edgarezcampaign',
         ]);
     }

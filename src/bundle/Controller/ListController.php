@@ -2,13 +2,16 @@
 
 namespace Edgar\EzCampaignBundle\Controller;
 
+use Edgar\EzCampaign\Data\ListCreateData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
+use Edgar\EzCampaign\Data\Mapper\ListMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -28,6 +31,9 @@ class ListController extends Controller
     /** @var ListsService  */
     protected $listsService;
 
+    /** @var ListMapper  */
+    protected $listMapper;
+
     /** @var SubmitHandler $submitHandler */
     private $submitHandler;
 
@@ -39,6 +45,7 @@ class ListController extends Controller
         TranslatorInterface $translator,
         ListService $listService,
         ListsService $listsService,
+        ListMapper $listMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory
     ) {
@@ -46,6 +53,7 @@ class ListController extends Controller
         $this->translator = $translator;
         $this->listService = $listService;
         $this->listsService = $listsService;
+        $this->listMapper = $listMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
     }
@@ -121,6 +129,39 @@ class ListController extends Controller
         }
 
         return $this->redirect($this->generateUrl('edgar.campaign.lists'));
+    }
+
+    public function createAction(Request $request): Response
+    {
+        $form = $this->formFactory->createList();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function (ListCreateData $data) {
+                $listCreateStruct = $this->listMapper->reverseMap($data);
+                $list = $this->listService->post($listCreateStruct);
+
+                $this->notificationHandler->success(
+                    $this->translator->trans(
+                    /** @Desc("List '%name%' created.") */
+                        'list.create.success',
+                        ['%name%' => $list['name']],
+                        'edgarezcampaign'
+                    )
+                );
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return $this->render('@EdgarEzCampaign/campaign/list/create.html.twig', [
+            'form' => $form->createView(),
+            'actionUrl' => $this->generateUrl('edgar.campaign.list.create'),
+        ]);
     }
 
     private function getListsNumbers(array $lists): array

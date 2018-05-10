@@ -2,8 +2,12 @@
 
 namespace Edgar\EzCampaign\Form\Factory;
 
+use Edgar\EzCampaign\Data\CampaignCreateData;
+use Edgar\EzCampaign\Data\ListCreateData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
+use Edgar\EzCampaign\Form\Type\CampaignCreateType;
+use Edgar\EzCampaign\Form\Type\ListCreateType;
 use Edgar\EzCampaign\Form\Type\CampaignsDeleteType;
 use Edgar\EzCampaign\Form\Type\ListsDeleteType;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -45,5 +49,43 @@ class FormFactory
         $name = $name ?: StringUtil::fqcnToBlockPrefix(ListsDeleteType::class);
 
         return $this->formFactory->createNamed($name, ListsDeleteType::class, $data);
+    }
+
+    /**
+     * @param CampaignCreateData|null $data
+     * @param null|string $name
+     *
+     * @return FormInterface
+     */
+    public function createCampaign(
+        ?CampaignCreateData $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignCreateType::class);
+
+        return $this->formFactory->createNamed(
+            $name,
+            CampaignCreateType::class,
+            $data ?? new CampaignCreateData()
+        );
+    }
+
+    /**
+     * @param ListCreateData|null $data
+     * @param null|string $name
+     *
+     * @return FormInterface
+     */
+    public function createList(
+        ?ListCreateData $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(ListCreateType::class);
+
+        return $this->formFactory->createNamed(
+            $name,
+            ListCreateType::class,
+            $data ?? new ListCreateData()
+        );
     }
 }

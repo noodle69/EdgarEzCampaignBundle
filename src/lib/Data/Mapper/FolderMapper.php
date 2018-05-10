@@ -4,32 +4,32 @@ namespace Edgar\EzCampaign\Data\Mapper;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
 use EzSystems\RepositoryForms\Data\Mapper\FormDataMapperInterface;
-use Edgar\EzCampaign\Data\CampaignFolderCreateData;
-use Edgar\EzCampaign\Data\CampaignFolderUpdateData;
-use Edgar\EzCampaign\Values\API\CampaignFolder;
+use Edgar\EzCampaign\Data\FolderCreateData;
+use Edgar\EzCampaign\Data\FolderUpdateData;
+use Edgar\EzCampaign\Values\API\Folder;
 
-class CampaignFolderMapper implements FormDataMapperInterface
+class FolderMapper implements FormDataMapperInterface
 {
     /**
      * Maps a ValueObject from eZ content repository to a data usable as underlying form data (e.g. create/update struct).
      *
-     * @param ValueObject|CampaignFolder $campaignFolder
+     * @param ValueObject|Folder $campaignFolder
      * @param array $params
      *
-     * @return CampaignFolderCreateData|CampaignFolderUpdateData
+     * @return FolderCreateData|FolderUpdateData
      */
     public function mapToFormData(ValueObject $campaignFolder, array $params = [])
     {
         if (!$this->isCampaignFolderNew($campaignFolder)) {
-            $data = new CampaignFolderUpdateData(['campaignFolder' => $campaignFolder]);
+            $data = new FolderUpdateData(['campaignFolder' => $campaignFolder]);
         } else {
-            $data = new CampaignFolderCreateData(['campaignFolder' => $campaignFolder]);
+            $data = new FolderCreateData(['campaignFolder' => $campaignFolder]);
         }
 
         return $data;
     }
 
-    private function isCampaignFolderNew(CampaignFolder $campaignFolder)
+    private function isCampaignFolderNew(Folder $campaignFolder)
     {
         return $campaignFolder->id === null;
     }

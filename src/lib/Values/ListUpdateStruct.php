@@ -2,7 +2,7 @@
 
 namespace Edgar\EzCampaign\Values;
 
-class CampaignListUpdateStruct extends CampaignListStruct
+class ListUpdateStruct extends ListStruct
 {
     public $name = null;
 

@@ -5,7 +5,7 @@ namespace Edgar\EzCampaign\Form\ActionDispatcher;
 use EzSystems\RepositoryForms\Form\ActionDispatcher\AbstractActionDispatcher;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CampaignFolderActionDispatcher extends AbstractActionDispatcher
+class FolderActionDispatcher extends AbstractActionDispatcher
 {
     /**
      * @param OptionsResolver $resolver

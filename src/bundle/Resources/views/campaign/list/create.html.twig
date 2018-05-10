@@ -1,0 +1,54 @@
+{% extends 'EzPlatformAdminUiBundle:admin/language:base.html.twig' %}
+
+{% form_theme form '@EzPlatformAdminUi/form_fields.html.twig'  %}
+
+{% trans_default_domain 'edgarezcampaign' %}
+
+{% block breadcrumbs_admin %}
+    {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
+        { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
+        { url: path('edgar.campaign.lists'), value: 'lists.view'|trans|desc('Subscription lists') },
+        { value: 'list.new'|trans|desc('Create a new Subscription list') },
+    ]} %}
+{% endblock %}
+
+{% block page_title_admin %}
+    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+        title: 'list.new.title'|trans|desc('Creating a new Subscription list'),
+        iconName: 'pin'
+    } %}
+{% endblock %}
+
+{% block title %}{{ 'list.new.title'|trans|desc('Creating a new Subscription list') }}{% endblock %}
+
+{% block form %}
+    {{ form_start(form, {'action': actionUrl}) }}
+
+    <section class="container mt-4 px-5">
+        <div class="card ez-card">
+            <div class="card-body">
+                {{ form_row(form.name) }}
+                {{ form_row(form.company) }}
+                {{ form_row(form.address) }}
+                {{ form_row(form.city) }}
+                {{ form_row(form.state) }}
+                {{ form_row(form.zip) }}
+                {{ form_row(form.country) }}
+                {{ form_row(form.permission_reminder) }}
+                {{ form_row(form.from_name) }}
+                {{ form_row(form.from_email) }}
+                {{ form_row(form.subject) }}
+                {{ form_row(form.language) }}
+            </div>
+        </div>
+    </section>
+
+    {{ form_widget(form.save, {"attr": {"hidden": "hidden"}}) }}
+
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block right_sidebar %}
+    {% set list_create_sidebar_right = knp_menu_get('edgar.menu.list_create.sidebar_right') %}
+    {{ knp_menu_render(list_create_sidebar_right, {'template': '@EzPlatformAdminUi/parts/menu/sidebar_right.html.twig'}) }}
+{% endblock %}

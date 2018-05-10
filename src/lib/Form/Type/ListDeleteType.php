@@ -3,11 +3,12 @@
 namespace Edgar\EzCampaign\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CampaignListCreateType extends AbstractType
+class ListDeleteType extends AbstractType
 {
     public function getName()
     {
@@ -16,7 +17,7 @@ class CampaignListCreateType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'edgarcampaign_list_create';
+        return 'edgarcampaign_list_delete';
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -30,6 +31,7 @@ class CampaignListCreateType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('create', SubmitType::class, ['label' => 'list.create']);
+            ->add('listID', HiddenType::class)
+            ->add('delete', SubmitType::class, ['label' => 'campaign.delete']);
     }
 }

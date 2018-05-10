@@ -4,7 +4,7 @@ namespace Edgar\EzCampaign\Data;
 
 use Edgar\EzCampaign\Values\API\CampaignList;
 
-trait CampaignListDataTrait
+trait ListDataTrait
 {
     /**
      * @var CampaignList $campaignList

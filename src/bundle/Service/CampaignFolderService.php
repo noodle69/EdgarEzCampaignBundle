@@ -5,7 +5,7 @@ namespace Edgar\EzCampaignBundle\Service;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
 /**
- * Class CampaignFolderService
+ * Class FolderService
  *
  * @package Edgar\EzCampaignBundle\Service
  */

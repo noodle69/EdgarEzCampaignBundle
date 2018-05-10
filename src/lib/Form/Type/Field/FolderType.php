@@ -5,7 +5,7 @@ namespace Edgar\EzCampaign\Form\Type\Field;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 
-class CampaignListType extends AbstractType
+class FolderType extends AbstractType
 {
     public function getParent()
     {
@@ -17,6 +17,6 @@ class CampaignListType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'campaignlist';
+        return 'campaignfolder';
     }
 }

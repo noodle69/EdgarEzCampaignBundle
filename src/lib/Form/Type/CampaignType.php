@@ -16,7 +16,7 @@ class CampaignType extends AbstractType
         $builder
             ->add(
                 $builder->create('recipients', 'form', array('virtual' => true))
-                    ->add('list_id', \Edgar\EzCampaign\Form\Type\Field\CampaignListType::class, ['required' => true, 'label' => 'campaign.campaign.list'])
+                    ->add('list_id', \Edgar\EzCampaign\Form\Type\Field\ListType::class, ['required' => true, 'label' => 'campaign.campaign.list'])
             )
             ->add(
                 $builder->create('settings', 'form', array('virtual' => true))
@@ -24,7 +24,7 @@ class CampaignType extends AbstractType
                     ->add('title', TextType::class, ['required' => true, 'label' => 'campaign.campaign.title'])
                     ->add('from_name', TextType::class, ['required' => true, 'label' => 'campaign.campaign.from_name'])
                     ->add('reply_to', EmailType::class, ['required' => true, 'label' => 'campaign.campaign.reply_to'])
-                    ->add('folder_id', \Edgar\EzCampaign\Form\Type\Field\CampaignFolderType::class, ['required' => true, 'label' => 'campaign.campaign.folder_id'])
+                    ->add('folder_id', \Edgar\EzCampaign\Form\Type\Field\FolderType::class, ['required' => true, 'label' => 'campaign.campaign.folder_id'])
             )
             ->add('save', SubmitType::class, ['label' => 'campaign.save']);
     }

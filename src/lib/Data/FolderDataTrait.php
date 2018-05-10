@@ -2,16 +2,16 @@
 
 namespace Edgar\EzCampaign\Data;
 
-use Edgar\EzCampaign\Values\API\CampaignFolder;
+use Edgar\EzCampaign\Values\API\Folder;
 
-trait CampaignFolderDataTrait
+trait FolderDataTrait
 {
     /**
-     * @var CampaignFolder $campaignFolder
+     * @var Folder $campaignFolder
      */
     protected $campaignFolder;
 
-    public function setCampaignFolder(CampaignFolder $campaignFolder)
+    public function setCampaignFolder(Folder $campaignFolder)
     {
         $this->campaignFolder = $campaignFolder;
     }

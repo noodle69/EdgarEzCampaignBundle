@@ -2,7 +2,7 @@
 
 namespace Edgar\EzCampaign\Values\Core;
 
-class CampaignFolder extends \Edgar\EzCampaign\Values\API\CampaignFolder
+class Folder extends \Edgar\EzCampaign\Values\API\Folder
 {
     public function getName()
     {

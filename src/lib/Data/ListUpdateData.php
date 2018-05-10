@@ -3,11 +3,11 @@
 namespace Edgar\EzCampaign\Data;
 
 use EzSystems\RepositoryForms\Data\NewnessChecker;
-use Edgar\EzCampaign\Values\CampaignListUpdateStruct;
+use Edgar\EzCampaign\Values\ListUpdateStruct;
 
-class CampaignListUpdateData extends CampaignListUpdateStruct
+class ListUpdateData extends ListUpdateStruct
 {
-    use CampaignListDataTrait, NewnessChecker;
+    use ListDataTrait, NewnessChecker;
 
     protected function getIdValue()
     {

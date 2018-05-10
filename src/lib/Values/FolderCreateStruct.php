@@ -2,7 +2,7 @@
 
 namespace Edgar\EzCampaign\Values;
 
-class CampaignFolderCreateStruct extends CampaignFolderStruct
+class FolderCreateStruct extends FolderStruct
 {
     public $name;
 }
