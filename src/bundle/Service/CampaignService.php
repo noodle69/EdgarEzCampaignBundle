@@ -4,6 +4,7 @@ namespace Edgar\EzCampaignBundle\Service;
 
 use DrewM\MailChimp\MailChimp;
 use Edgar\EzCampaign\Values\CampaignCreateStruct;
+use Edgar\EzCampaign\Values\Core\Campaign;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
 /**
@@ -270,5 +271,20 @@ class CampaignService extends BaseService
         } catch (MailchimpException $exception) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
+    }
+
+    public function map(array $campaign): Campaign
+    {
+        $campaign = new Campaign([
+            'id' => $campaign['id'],
+            'list_id' => $campaign['recipients']['list_id'],
+            'subject_line' => $campaign['settings']['subject_line'],
+            'title' => $campaign['settings']['title'],
+            'from_name' => $campaign['settings']['from_name'],
+            'reply_to' => $campaign['settings']['reply_to'],
+            'folder_id' => $campaign['settings']['folder_id'],
+        ]);
+
+        return $campaign;
     }
 }

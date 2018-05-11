@@ -8,18 +8,18 @@
     {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
         { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
         { url: path('edgar.campaign.campaigns'), value: 'campaigns.view'|trans|desc('Campaigns') },
-        { value: 'campaign.edit.identifier'|trans({ '%title%': campaign.settings.title })|desc('Editing Campaign "%title%"') }
+        { value: 'campaign.edit.identifier'|trans({ '%title%': campaign.title })|desc('Editing Campaign "%title%"') }
     ]} %}
 {% endblock %}
 
 {% block page_title_admin %}
     {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
-        title: 'campaign.edit.identifier'|trans({ '%title%': campaign.settings.title })|desc('Editing Campaign "%title%"'),
+        title: 'campaign.edit.identifier'|trans({ '%title%': campaign.title })|desc('Editing Campaign "%title%"'),
         iconName: 'pin'
     } %}
 {% endblock %}
 
-{% block title %}{{ 'campaign.edit.identifier'|trans({ '%title%': campaign.settings.title })|desc('Editing Campaign "%title%"') }}{% endblock %}
+{% block title %}{{ 'campaign.edit.identifier'|trans({ '%title%': campaign.title })|desc('Editing Campaign "%title%"') }}{% endblock %}
 
 {% block form %}
     {{ form_start(form, {'action': actionUrl}) }}
@@ -27,6 +27,12 @@
     <section class="container mt-4 px-5">
         <div class="card ez-card">
             <div class="card-body">
+                {{ form_row(form.title) }}
+                {{ form_row(form.list_id) }}
+                {{ form_row(form.subject_line) }}
+                {{ form_row(form.from_name) }}
+                {{ form_row(form.reply_to) }}
+                {{ form_row(form.folder_id) }}
             </div>
         </div>
     </section>

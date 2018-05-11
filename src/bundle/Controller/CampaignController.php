@@ -5,11 +5,14 @@ namespace Edgar\EzCampaignBundle\Controller;
 use Edgar\EzCampaign\Data\CampaignCreateData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Edgar\EzCampaign\Data\CampaignUpdateData;
+use Edgar\EzCampaign\Data\FoldersDeleteData;
 use Edgar\EzCampaign\Data\Mapper\CampaignMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaignBundle\Service\CampaignService;
 use Edgar\EzCampaignBundle\Service\CampaignsService;
+use Edgar\EzCampaignBundle\Service\FolderService;
+use Edgar\EzCampaignBundle\Service\FoldersService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -37,6 +40,12 @@ class CampaignController extends Controller
     /** @var CampaignsService  */
     protected $campaignsService;
 
+    /** @var FolderService  */
+    protected $folderService;
+
+    /** @var FoldersService  */
+    protected $foldersService;
+
     /** @var CampaignMapper  */
     protected $campaignMapper;
 
@@ -51,6 +60,8 @@ class CampaignController extends Controller
         TranslatorInterface $translator,
         CampaignsService $campaignsService,
         CampaignService $campaignService,
+        FoldersService $foldersService,
+        FolderService $folderService,
         CampaignMapper $campaignCreateMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory
@@ -59,22 +70,35 @@ class CampaignController extends Controller
         $this->translator = $translator;
         $this->campaignService = $campaignService;
         $this->campaignsService = $campaignsService;
+        $this->folderService = $folderService;
+        $this->foldersService = $foldersService;
         $this->campaignMapper = $campaignCreateMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
     }
 
-    public function campaignsAction()
+    public function campaignsAction(Request $request): Response
     {
         $campaigns = $this->campaignsService->get();
+        $folders = $this->foldersService->get(0, 0);
 
         $deleteCampaignsForm = $this->formFactory->deleteCampaigns(
             new CampaignsDeleteData($this->getCampaignsNumbers($campaigns['campaigns']))
         );
 
+        $formFolderCreate = $this->formFactory->createFolder();
+        $formFolderCreate->handleRequest($request);
+
+        $deleteFoldersForm = $this->formFactory->deleteFolders(
+            new FoldersDeleteData($this->getFoldersNumbers($folders['folders']))
+        );
+
         return $this->render('@EdgarEzCampaign/campaign/campaigns.html.twig', [
             'campaigns' => $campaigns,
             'form_campaigns_delete' => $deleteCampaignsForm->createView(),
+            'folders' => $folders,
+            'form_folder_create' => $formFolderCreate->createView(),
+            'fomr_folders_delete' => $deleteFoldersForm->createView()
         ]);
     }
 
@@ -169,6 +193,8 @@ class CampaignController extends Controller
     {
         try {
             $campaign = $this->campaignService->get($campaignId);
+            $campaign = $this->campaignService->map($campaign);
+            $campaignData = (new CampaignMapper())->mapToFormData($campaign);
 
             if ($campaign === false) {
                 $this->notificationHandler->warning(
@@ -191,9 +217,7 @@ class CampaignController extends Controller
             );
         }
 
-        $form = $this->formFactory->updateCampaign(
-            new CampaignUpdateData($campaign)
-        );
+        $form = $this->formFactory->updateCampaign($campaignData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -234,5 +258,17 @@ class CampaignController extends Controller
         }
 
         return array_combine($campaignsNumbers, array_fill_keys($campaignsNumbers, false));
+    }
+
+    private function getFoldersNumbers(array $folders): array
+    {
+        $foldersNumbers = [];
+        foreach ($folders as $folder) {
+            if ($folder['id'] !== false) {
+                $foldersNumbers[] = $folder['id'];
+            }
+        }
+
+        return array_combine($foldersNumbers, array_fill_keys($foldersNumbers, false));
     }
 }

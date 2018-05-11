@@ -69,4 +69,22 @@ class FolderService extends BaseService
 
         return $return;
     }
+
+    /**
+     * Delete Campaign Folder
+     *
+     * @param string $folderId Campaign Folder ID
+     * @return array MailChimp service informations
+     * @throws MailchimpException MailChimpException
+     */
+    public function delete(string $folderId)
+    {
+        $return = $this->mailChimp->delete('/folders/' . $folderId, array());
+
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
+        }
+
+        return $return;
+    }
 }

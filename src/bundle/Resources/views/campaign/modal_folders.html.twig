@@ -1,0 +1,77 @@
+{% form_theme form_folder_create '@EzPlatformAdminUi/form_fields.html.twig' %}
+{% form_theme fomr_folders_delete '@EzPlatformAdminUi/form_fields.html.twig' %}
+
+<div class="modal fade ez-modal edgar-modal--campaign-folder" id="campaign-folder-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                {{ form_start(form_folder_create, {'action': path('edgar.campaign.folder.create')}) }}
+                <p class="ez-modal-body__main">
+                    {{ 'campaign.folder.add'|trans|desc('Create new Campaign folder') }}
+                </p>
+                {{ form_row(form_folder_create.name) }}
+                {{ form_end(form_folder_create) }}
+
+                <section class="container mt-4">
+                    <div class="ez-table-header">
+                        <div class="ez-table-header__headline">
+                            {{ 'campaign.folder.table.header'|trans|desc('Campaign Folders') }}
+                        </div>
+                        <div>
+                            {% set modal_data_target_folder = 'delete-folders-modal' %}
+                            <button id="delete-folders" type="button" class="btn btn-danger" disabled data-toggle="modal"
+                                    data-target="#{{ modal_data_target_folder }}" title="{{ 'campaign.folder.delete'|trans|desc('Delete Campaign Folder') }}">
+                                <svg class="ez-icon ez-icon-trash">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#trash"></use>
+                                </svg>
+                            </button>
+                            {% include '@EzPlatformAdminUi/admin/bulk_delete_confirmation_modal.html.twig' with {
+                                'id': modal_data_target_folder,
+                                'message': 'campaign.folder.modal.message'|trans|desc('Do you want to delete Campaign Folder?'),
+                                'data_click': '#folders_delete_delete',
+                            }%}
+                        </div>
+                    </div>
+
+                    {{ form_start(fomr_folders_delete, {
+                        'action': path('edgar.campaign.folder.bulk_delete'),
+                        'attr': { 'class': 'ez-toggle-btn-state', 'data-toggle-button-id': '#delete-folders' }
+                    }) }}
+                    <table class="table mb-3">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>{{ 'campaign.folder.name.th'|trans|desc('Name') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for folder in folders.folders %}
+                            <tr>
+                                <td class="ez-checkbox-cell">
+                                    {{ form_widget(fomr_folders_delete.folders[folder.id]) }}
+                                </td>
+                                <td>{{ folder.name }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {{ form_end(fomr_folders_delete) }}
+
+                </section>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn--no" data-dismiss="modal">
+                    {{ 'campaign.folder.form.cancel'|trans|desc('Cancel') }}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
