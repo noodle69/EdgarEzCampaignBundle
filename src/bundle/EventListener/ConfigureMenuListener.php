@@ -56,7 +56,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
                 self::ITEM_CAMPAIGN_CAMPAIGNS,
                 [
                     'route' => 'edgar.campaign.campaigns',
-                    'extras' => ['icon' => 'pin'],
+                    'extras' => ['icon' => 'newsletter'],
                 ]
             );
         }
@@ -66,7 +66,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
                 self::ITEM_CAMPAIGN_LISTS,
                 [
                     'route' => 'edgar.campaign.lists',
-                    'extras' => ['icon' => 'pin'],
+                    'extras' => ['icon' => 'newsletter'],
                 ]
             );
         }
