@@ -1,0 +1,3 @@
+parameters:
+    edgar_ez_campaign.default.pagination.campaign_limit: 10
+    edgar_ez_campaign.default.pagination.list_limit: 10

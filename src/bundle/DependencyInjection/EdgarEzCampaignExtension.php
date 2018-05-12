@@ -2,6 +2,8 @@
 
 namespace Edgar\EzCampaignBundle\DependencyInjection;
 
+use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\SiteAccessAware\ConfigurationProcessor;
+use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\Suggestion\Collector\SuggestionCollector;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -12,6 +14,27 @@ use Symfony\Component\Yaml\Yaml;
 
 class EdgarEzCampaignExtension extends Extension implements PrependExtensionInterface
 {
+    /**
+     * @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\Suggestion\Collector\SuggestionCollector
+     */
+    private $suggestionCollector;
+
+    /**
+     * @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ParserInterface
+     */
+    private $mainConfigParser;
+
+    /**
+     * @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ParserInterface[]
+     */
+    private $configParsers;
+
+    public function __construct(array $configParsers = array())
+    {
+        $this->configParsers = $configParsers;
+        $this->suggestionCollector = new SuggestionCollector();
+    }
+
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader(
@@ -20,10 +43,17 @@ class EdgarEzCampaignExtension extends Extension implements PrependExtensionInte
         );
 
         $loader->load('services.yml');
+        $loader->load('default_settings.yml');
 
         $loader->load('fieldtypes.yml');
         $loader->load('indexable_fieldtypes.yml');
         $loader->load('field_value_converters.yml');
+
+        $configuration = $this->getConfiguration($configs, $container);
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $processor = new ConfigurationProcessor($container, 'edgar_ez_campaign');
+        $processor->mapSetting('pagination', $config);
     }
 
     public function prepend(ContainerBuilder $container)

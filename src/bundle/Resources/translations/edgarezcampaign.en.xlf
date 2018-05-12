@@ -8,12 +8,12 @@
     <body>
       <trans-unit id="237dfa0a21c8e17a7276cf161eef7e0fba067c47" resname="Private">
         <source>Private</source>
-        <target state="new">Private</target>
+        <target>Private</target>
         <note>key: Private</note>
       </trans-unit>
       <trans-unit id="dc5eb704bbcae1aff4efb71c55461d47767dabe7" resname="Public">
         <source>Public</source>
-        <target state="new">Public</target>
+        <target>Public</target>
         <note>key: Public</note>
       </trans-unit>
       <trans-unit id="d194f4e45d7da9c18717e9ca78b4f745e7060e90" resname="campaign.campaign.delete">
@@ -96,6 +96,11 @@
         <target>Title</target>
         <note>key: campaign.campaigns.title.th</note>
       </trans-unit>
+      <trans-unit id="94fb6c63ad553488d5dff117fef8ebab34bdaf7e" resname="campaign.campaigns.viewing">
+        <source><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></source>
+        <target state="new"><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></target>
+        <note>key: campaign.campaigns.viewing</note>
+      </trans-unit>
       <trans-unit id="d4e814701ca13375e1793cdb7a8f23565d6eb8c2" resname="campaign.create.success">
         <source>Campaign '%name%' created.</source>
         <target>Campaign '%name%' created.</target>
@@ -115,11 +120,6 @@
         <source>campaign.folder.create</source>
         <target>campaign.folder.create</target>
         <note>key: campaign.folder.create</note>
-      </trans-unit>
-      <trans-unit id="b092c03fba9f13c8f33b285217113bff4b09e470" resname="campaign.folder.manage">
-        <source>Manage Folders</source>
-        <target>Manage Folders</target>
-        <note>key: campaign.folder.manage</note>
       </trans-unit>
       <trans-unit id="dce2b75873b1cdc9e8e6965bc7b3a65d566ac6c8" resname="campaign.folder.name">
         <source>campaign.folder.name</source>
@@ -220,6 +220,11 @@
         <source>Subscription lists</source>
         <target>Subscription lists</target>
         <note>key: campaign.lists.table.header</note>
+      </trans-unit>
+      <trans-unit id="f8544db7e09e845b8bf2572b98eec6f55377a303" resname="campaign.lists.viewing">
+        <source><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></source>
+        <target state="new"><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></target>
+        <note>key: campaign.lists.viewing</note>
       </trans-unit>
       <trans-unit id="2816c04f80a7549cb8e4182168780793e080464b" resname="campaign.new">
         <source>Create a new Campaign</source>
@@ -333,7 +338,7 @@
       </trans-unit>
       <trans-unit id="93d0fcca9f2a22da36f34ceedfd4c2d55ac4464b" resname="edgar.campaign.list.create.address2">
         <source>Additionnal address</source>
-        <target state="new">Additionnal address</target>
+        <target>Additionnal address</target>
         <note>key: edgar.campaign.list.create.address2</note>
       </trans-unit>
       <trans-unit id="2724ee0ad09ee39002e168828052464f4c3b08db" resname="edgar.campaign.list.create.city">
@@ -373,12 +378,12 @@
       </trans-unit>
       <trans-unit id="62dee8c45e57cefce82d792387c5d30636f0173c" resname="edgar.campaign.list.create.notify_on_subscribe">
         <source>Notify on subscribe</source>
-        <target state="new">Notify on subscribe</target>
+        <target>Notify on subscribe</target>
         <note>key: edgar.campaign.list.create.notify_on_subscribe</note>
       </trans-unit>
       <trans-unit id="ee1ea966a1c5ef82e051742e0e61c7f47851a5d4" resname="edgar.campaign.list.create.notify_on_unsubscribe">
         <source>Notify on unsubscribe</source>
-        <target state="new">Notify on unsubscribe</target>
+        <target>Notify on unsubscribe</target>
         <note>key: edgar.campaign.list.create.notify_on_unsubscribe</note>
       </trans-unit>
       <trans-unit id="a2c0d90b8872f8cd77b7fa42aece03a303e19cfd" resname="edgar.campaign.list.create.permission_reminder">
@@ -388,7 +393,7 @@
       </trans-unit>
       <trans-unit id="38090f00f18cc6ad6dff065e81de34000e4d740a" resname="edgar.campaign.list.create.phone">
         <source>Phone</source>
-        <target state="new">Phone</target>
+        <target>Phone</target>
         <note>key: edgar.campaign.list.create.phone</note>
       </trans-unit>
       <trans-unit id="6cfa287cdd28f78a96bf6da19294f07b32e9e5c4" resname="edgar.campaign.list.create.save">
@@ -408,12 +413,12 @@
       </trans-unit>
       <trans-unit id="6a8f4757fffd98d3a8020d3c57c067336bb6e166" resname="edgar.campaign.list.create.use_archive_bar">
         <source>Use archive bar?</source>
-        <target state="new">Use archive bar?</target>
+        <target>Use archive bar?</target>
         <note>key: edgar.campaign.list.create.use_archive_bar</note>
       </trans-unit>
       <trans-unit id="9d04de8c61ce4ca7d2bc2f484d835e4618fa21ab" resname="edgar.campaign.list.create.visibility">
         <source>Visibility</source>
-        <target state="new">Visibility</target>
+        <target>Visibility</target>
         <note>key: edgar.campaign.list.create.visibility</note>
       </trans-unit>
       <trans-unit id="eee5e01ad4a0840b17fedf4ca0946fe58ea9e9fa" resname="edgar.campaign.list.create.zip">
@@ -430,6 +435,11 @@
         <source>Campaign Folder '%name%' created.</source>
         <target>Campaign Folder '%name%' created.</target>
         <note>key: folder.create.success</note>
+      </trans-unit>
+      <trans-unit id="5b40d6d240fb4e440f48c90ca0def2a305ec1255" resname="folder.delete.campaigns_exists">
+        <source>Campaign Folder '%name%' is associated with Campaigns, so it can't be removed.</source>
+        <target state="new">Campaign Folder '%name%' is associated with Campaigns, so it can't be removed.</target>
+        <note>key: folder.delete.campaigns_exists</note>
       </trans-unit>
       <trans-unit id="f5738de402172df803c2b66ea3227f3b2f35a268" resname="folder.delete.success">
         <source>Campaign Folder '%name%' removed.</source>
@@ -485,6 +495,11 @@
         <source>Subscription list does not exists.</source>
         <target>Subscription list does not exists.</target>
         <note>key: list.update.warning</note>
+      </trans-unit>
+      <trans-unit id="0d0de680360e23b482566d6d5a0b3b03a8cdfa20" resname="lists.delete.campaigns_exists">
+        <source>List '%name%' is associated with campaigns, it can't be removedd.</source>
+        <target state="new">List '%name%' is associated with campaigns, it can't be removedd.</target>
+        <note>key: lists.delete.campaigns_exists</note>
       </trans-unit>
       <trans-unit id="56b5183950497ab32818fe6359e5b69a1f017ae3" resname="lists.delete.error">
         <source>Error when deleting list.</source>

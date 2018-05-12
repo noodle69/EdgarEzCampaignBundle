@@ -12,6 +12,8 @@ use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -41,6 +43,9 @@ class ListController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /** @var int */
+    private $defaultPaginationLimit;
+
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
@@ -48,7 +53,8 @@ class ListController extends Controller
         ListsService $listsService,
         ListMapper $listMapper,
         SubmitHandler $submitHandler,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        int $defaultPaginationLimit
     ) {
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
@@ -57,17 +63,29 @@ class ListController extends Controller
         $this->listMapper = $listMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
+        $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
 
-    public function listsAction()
+    public function listsAction(Request $request): Response
     {
-        $lists = $this->listsService->get();
+        $page = $request->query->get('page') ?? 1;
+        $allLists = $this->listsService->get(0, 0);
+
+        $pagerfanta = new Pagerfanta(
+            new ArrayAdapter($allLists['lists'])
+        );
+
+        $pagerfanta->setMaxPerPage($this->defaultPaginationLimit);
+        $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
+
+        $lists = $this->listsService->get($this->defaultPaginationLimit * ($page - 1), $this->defaultPaginationLimit);
 
         $deleteListsForm = $this->formFactory->deleteLists(
             new ListsDeleteData($this->getListsNumbers($lists['lists']))
         );
 
         return $this->render('@EdgarEzCampaign/campaign/lists.html.twig', [
+            'pager' => $pagerfanta,
             'lists' => $lists,
             'form_lists_delete' => $deleteListsForm->createView(),
         ]);

@@ -2,6 +2,7 @@
 
 namespace Edgar\EzCampaignBundle;
 
+use Edgar\EzCampaignBundle\DependencyInjection\Configuration\Pagination;
 use Edgar\EzCampaignBundle\DependencyInjection\Security\PolicyProvider\CampaignPolicyProvider;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\EzPublishCoreExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

@@ -1,13 +1,15 @@
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        public: false
-
     Edgar\EzCampaignBundle\Controller\:
         resource: "../../Controller/*"
-        public: true
-        tags: ['controller.service_arguments']
-        calls:
-            - [setContainer, ["@service_container"]]
-            - [performAccessCheck, []]
+        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+
+    Edgar\EzCampaignBundle\Controller\CampaignController:
+        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+        arguments:
+            $defaultPaginationLimit: '$pagination.campaign_limit;edgar_ez_campaign$'
+
+    Edgar\EzCampaignBundle\Controller\ListController:
+        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+        arguments:
+            $defaultPaginationLimit: '$pagination.list_limit;edgar_ez_campaign$'
+

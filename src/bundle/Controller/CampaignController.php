@@ -15,6 +15,8 @@ use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,6 +57,9 @@ class CampaignController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /** @var int */
+    private $defaultPaginationLimit;
+
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
@@ -64,7 +69,8 @@ class CampaignController extends Controller
         FolderService $folderService,
         CampaignMapper $campaignCreateMapper,
         SubmitHandler $submitHandler,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        int $defaultPaginationLimit
     ) {
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
@@ -75,12 +81,22 @@ class CampaignController extends Controller
         $this->campaignMapper = $campaignCreateMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
+        $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
 
     public function campaignsAction(Request $request): Response
     {
-        $campaigns = $this->campaignsService->get();
-        $folders = $this->foldersService->get(0, 0);
+        $page = $request->query->get('page') ?? 1;
+        $allCampaigns = $this->campaignsService->get(0, 0);
+
+        $pagerfanta = new Pagerfanta(
+            new ArrayAdapter($allCampaigns['campaigns'])
+        );
+
+        $pagerfanta->setMaxPerPage($this->defaultPaginationLimit);
+        $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
+
+        $campaigns = $this->campaignsService->get($this->defaultPaginationLimit * ($page - 1), $this->defaultPaginationLimit);
 
         $deleteCampaignsForm = $this->formFactory->deleteCampaigns(
             new CampaignsDeleteData($this->getCampaignsNumbers($campaigns['campaigns']))
@@ -89,11 +105,14 @@ class CampaignController extends Controller
         $formFolderCreate = $this->formFactory->createFolder();
         $formFolderCreate->handleRequest($request);
 
+        $folders = $this->foldersService->get(0, 0);
+
         $deleteFoldersForm = $this->formFactory->deleteFolders(
             new FoldersDeleteData($this->getFoldersNumbers($folders['folders']))
         );
 
         return $this->render('@EdgarEzCampaign/campaign/campaigns.html.twig', [
+            'pager' => $pagerfanta,
             'campaigns' => $campaigns,
             'form_campaigns_delete' => $deleteCampaignsForm->createView(),
             'folders' => $folders,

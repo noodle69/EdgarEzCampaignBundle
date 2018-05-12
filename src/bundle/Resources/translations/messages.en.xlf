@@ -26,6 +26,11 @@
         <target>Cancel</target>
         <note>key: campaign.folder.form.cancel</note>
       </trans-unit>
+      <trans-unit id="b092c03fba9f13c8f33b285217113bff4b09e470" resname="campaign.folder.manage">
+        <source>Manage Folders</source>
+        <target state="new">Manage Folders</target>
+        <note>key: campaign.folder.manage</note>
+      </trans-unit>
       <trans-unit id="5bfc31983254cd115d1f0dd18a0c5945bc0a306b" resname="campaign.folder.modal.message">
         <source>Do you want to delete Campaign Folder?</source>
         <target>Do you want to delete Campaign Folder?</target>
