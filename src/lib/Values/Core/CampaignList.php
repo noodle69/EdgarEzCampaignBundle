@@ -24,6 +24,11 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
         return $this->address;
     }
 
+    public function getAddress2()
+    {
+        return $this->address2;
+    }
+
     public function getCity()
     {
         return $this->city;
@@ -44,9 +49,19 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
         return $this->country;
     }
 
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
     public function getPermissionReminder()
     {
         return $this->permission_reminder;
+    }
+
+    public function getUseArchiveBar()
+    {
+        return $this->use_archive_bar;
     }
 
     public function getFromName()
@@ -69,8 +84,18 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
         return $this->language;
     }
 
-    public function getWebId()
+    public function getNotifyOnSubscribe()
     {
-        return $this->web_id;
+        return $this->notify_on_subscribe;
+    }
+
+    public function getNotifyOnUnsubscribe()
+    {
+        return $this->notify_on_unsubscribe;
+    }
+
+    public function getVisibility()
+    {
+        return $this->visibility;
     }
 }

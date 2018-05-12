@@ -5,6 +5,8 @@ namespace Edgar\EzCampaign\Form\Type;
 use Edgar\EzCampaign\Data\ListUpdateData;
 use EzSystems\RepositoryForms\Form\Type\FieldType\CountryFieldType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -51,6 +53,14 @@ class ListUpdateType extends AbstractType
                 ['label' => /** @Desc("Address") */ 'edgar.campaign.list.create.address']
             )
             ->add(
+                'address2',
+                TextType::class,
+                [
+                    'required' => false,
+                    'label' => /** @Desc("Additionnal address") */ 'edgar.campaign.list.create.address2'
+                ]
+            )
+            ->add(
                 'city',
                 TextType::class,
                 ['label' => /** @Desc("City") */ 'edgar.campaign.list.create.city']
@@ -71,9 +81,25 @@ class ListUpdateType extends AbstractType
                 ['label' => /** @Desc("Country") */ 'edgar.campaign.list.create.country']
             )
             ->add(
+                'phone',
+                TextType::class,
+                [
+                    'required' => false,
+                    'label' => /** @Desc("Phone") */ 'edgar.campaign.list.create.phone'
+                ]
+            )
+            ->add(
                 'permission_reminder',
                 TextType::class,
                 ['label' => /** @Desc("Permission reminder") */ 'edgar.campaign.list.create.permission_reminder']
+            )
+            ->add(
+                'use_archive_bar',
+                CheckboxType::class,
+                [
+                    'required' => false,
+                    'label' => /** @Desc("Use archive bar?") */ 'edgar.campaign.list.create.use_archive_bar'
+                ]
             )
             ->add(
                 'from_name',
@@ -94,6 +120,33 @@ class ListUpdateType extends AbstractType
                 'language',
                 TextType::class,
                 ['label' => /** @Desc("Language") */ 'edgar.campaign.list.create.language']
+            )
+            ->add(
+                'notify_on_subscribe',
+                EmailType::class,
+                [
+                    'required' => false,
+                    'label' => /** @Desc("Notify on subscribe") */ 'edgar.campaign.list.create.notify_on_subscribe'
+                ]
+            )
+            ->add(
+                'notify_on_unsubscribe',
+                EmailType::class,
+                [
+                    'required' => false,
+                    'label' => /** @Desc("Notify on unsubscribe") */ 'edgar.campaign.list.create.notify_on_unsubscribe'
+                ]
+            )
+            ->add(
+                'visibility',
+                ChoiceType::class,
+                [
+                    'choices'  => [
+                        'Public' => 'pub',
+                        'Private' => 'priv',
+                    ],
+                    'label' => /** @Desc("Visibility") */ 'edgar.campaign.list.create.visibility'
+                ]
             )
             ->add(
                 'save',

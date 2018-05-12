@@ -10,6 +10,8 @@ class ListUpdateStruct extends ListStruct
 
     public $address = null;
 
+    public $address2 = null;
+
     public $city = null;
 
     public $state = null;
@@ -18,7 +20,11 @@ class ListUpdateStruct extends ListStruct
 
     public $country = null;
 
+    public $phone;
+
     public $permission_reminder = null;
+
+    public $use_archive_bar = null;
 
     public $from_name = null;
 
@@ -28,5 +34,9 @@ class ListUpdateStruct extends ListStruct
 
     public $language = null;
 
-    public $web_id = null;
+    public $notify_on_subscribe = null;
+
+    public $notify_on_unsubscribe = null;
+
+    public $visibility = null;
 }

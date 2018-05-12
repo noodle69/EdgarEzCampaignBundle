@@ -28,15 +28,21 @@ class ListMapper implements FormDataMapperInterface
                 'name' => $campaignList->name,
                 'company' => $campaignList->company,
                 'address' => $campaignList->address,
+                'address2' => $campaignList->address2,
                 'city' => $campaignList->city,
                 'state' => $campaignList->state,
                 'zip' => $campaignList->zip,
                 'country' => $campaignList->country,
+                'phone' => $campaignList->phone,
                 'permission_reminder' => $campaignList->permission_reminder,
+                'use_archive_bar' => $campaignList->use_archive_bar,
                 'from_name' => $campaignList->from_name,
                 'from_email' => $campaignList->from_email,
                 'subject' => $campaignList->subject,
                 'language' => $campaignList->language,
+                'notify_on_subscribe' => $campaignList->notify_on_subscribe,
+                'notify_on_unsubscribe' => $campaignList->notify_on_unsubscribe,
+                'visibility' => $campaignList->visibility,
             ]);
         } else {
             $data = new ListCreateData(['campaignList' => $campaignList]);
@@ -60,15 +66,21 @@ class ListMapper implements FormDataMapperInterface
             'name' => $data->name,
             'company' => $data->company,
             'address' => $data->address,
+            'address2' => $data->address2,
             'city' => $data->city,
             'state' => $data->state,
             'zip' => $data->zip,
             'country' => $data->country,
+            'phone' => $data->phone,
             'permission_reminder' => $data->permission_reminder,
+            'use_archive_bar' => $data->use_archive_bar,
             'from_name' => $data->from_name,
             'from_email' => $data->from_email,
             'subject' => $data->subject,
             'language' => $data->language,
+            'notify_on_subscribe' => $data->notify_on_subscribe,
+            'notify_on_unsubscribe' => $data->notify_on_unsubscribe,
+            'visibility' => $data->visibility,
         ]);
     }
 }

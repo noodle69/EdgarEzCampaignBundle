@@ -10,6 +10,8 @@ class ListCreateStruct extends ListStruct
 
     public $address;
 
+    public $address2;
+
     public $city;
 
     public $state;
@@ -18,7 +20,11 @@ class ListCreateStruct extends ListStruct
 
     public $country;
 
+    public $phone;
+
     public $permission_reminder;
+
+    public $use_archive_bar;
 
     public $from_name;
 
@@ -27,4 +33,10 @@ class ListCreateStruct extends ListStruct
     public $subject;
 
     public $language;
+
+    public $notify_on_subscribe;
+
+    public $notify_on_unsubscribe;
+
+    public $visibility;
 }

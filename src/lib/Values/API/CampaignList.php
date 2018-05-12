@@ -14,6 +14,8 @@ abstract class CampaignList extends ValueObject
 
     protected $address;
 
+    protected $address2;
+
     protected $city;
 
     protected $state;
@@ -22,7 +24,11 @@ abstract class CampaignList extends ValueObject
 
     protected $country;
 
+    protected $phone;
+
     protected $permission_reminder;
+
+    protected $use_archive_bar;
 
     protected $from_name;
 
@@ -32,5 +38,9 @@ abstract class CampaignList extends ValueObject
 
     protected $language;
 
-    protected $web_id;
+    protected $notify_on_subscribe;
+
+    protected $notify_on_unsubscribe;
+
+    protected $visibility;
 }
