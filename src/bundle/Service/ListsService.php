@@ -35,4 +35,15 @@ class ListsService extends BaseService
 
         return $lists;
     }
+
+    public function countCampaigns(string $listId): int
+    {
+        $return = $this->mailChimp->get('/campaigns?list_id=' . $listId, []);
+
+        if ($this->mailChimp->success()) {
+            return $return['total_items'];
+        }
+
+        return 0;
+    }
 }

@@ -86,16 +86,27 @@ class ListController extends Controller
                     try {
                         $list = $this->listService->get($listId);
                         if ($list !== false) {
-                            $this->listService->delete($listId);
+                            if ($this->listsService->countCampaigns($listId) > 0) {
+                                $this->notificationHandler->success(
+                                    $this->translator->trans(
+                                    /** @Desc("List '%name%' is associated with campaigns, it can't be removedd.") */
+                                        'lists.delete.campaigns_exists',
+                                        ['%name%' => $list['name']],
+                                        'edgarezcampaign'
+                                    )
+                                );
+                            } else {
+                                $this->listService->delete($listId);
 
-                            $this->notificationHandler->success(
-                                $this->translator->trans(
-                                /** @Desc("List '%name%' removed.") */
-                                    'lists.delete.success',
-                                    ['%name%' => $list['name']],
-                                    'edgarezcampaign'
-                                )
-                            );
+                                $this->notificationHandler->success(
+                                    $this->translator->trans(
+                                    /** @Desc("List '%name%' removed.") */
+                                        'lists.delete.success',
+                                        ['%name%' => $list['name']],
+                                        'edgarezcampaign'
+                                    )
+                                );
+                            }
                         } else {
                             $this->notificationHandler->warning(
                                 $this->translator->trans(

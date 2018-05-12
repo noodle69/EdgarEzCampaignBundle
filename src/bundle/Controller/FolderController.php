@@ -101,16 +101,27 @@ class FolderController extends Controller
                     try {
                         $folder = $this->folderService->get($folderId);
                         if ($folder !== false) {
-                            $this->folderService->delete($folderId);
+                            if ($this->foldersService->countCampaigns($folderId) > 0) {
+                                $this->notificationHandler->success(
+                                    $this->translator->trans(
+                                    /** @Desc("Campaign Folder '%name%' is associated with Campaigns, so it can't be removed.") */
+                                        'folder.delete.campaigns_exists',
+                                        ['%name%' => $folder['name']],
+                                        'edgarezcampaign'
+                                    )
+                                );
+                            } else {
+                                $this->folderService->delete($folderId);
 
-                            $this->notificationHandler->success(
-                                $this->translator->trans(
-                                /** @Desc("Campaign Folder '%name%' removed.") */
-                                    'folder.delete.success',
-                                    ['%name%' => $folder['name']],
-                                    'edgarezcampaign'
-                                )
-                            );
+                                $this->notificationHandler->success(
+                                    $this->translator->trans(
+                                    /** @Desc("Campaign Folder '%name%' removed.") */
+                                        'folder.delete.success',
+                                        ['%name%' => $folder['name']],
+                                        'edgarezcampaign'
+                                    )
+                                );
+                            }
                         } else {
                             $this->notificationHandler->warning(
                                 $this->translator->trans(

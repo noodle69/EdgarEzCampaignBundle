@@ -30,4 +30,15 @@ class FoldersService extends BaseService
 
         return $campaignFolders;
     }
+
+    public function countCampaigns(string $folderId): int
+    {
+        $return = $this->mailChimp->get('/campaigns?folder_id=' . $folderId, []);
+
+        if ($this->mailChimp->success()) {
+            return $return['total_items'];
+        }
+
+        return 0;
+    }
 }
