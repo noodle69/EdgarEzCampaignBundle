@@ -2,6 +2,7 @@
 
 namespace Edgar\EzCampaignBundle\Service;
 
+use Edgar\EzCampaign\Values\FolderCreateStruct;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
 /**
@@ -36,11 +37,11 @@ class FolderService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function post($name)
+    public function post(FolderCreateStruct $folder)
     {
-        $return = $this->mailChimp->post('/campaign-folders', array(
-            'name' => $name
-        ));
+        $return = $this->mailChimp->post('/campaign-folders', [
+            'name' => $folder->name,
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());

@@ -4,7 +4,6 @@ namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\FolderCreateData;
 use Edgar\EzCampaign\Data\FoldersDeleteData;
-use Edgar\EzCampaign\Data\Mapper\CampaignMapper;
 use Edgar\EzCampaign\Data\Mapper\FolderMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
@@ -32,7 +31,7 @@ class FolderController extends Controller
     /** @var FoldersService  */
     protected $foldersService;
 
-    /** @var CampaignMapper  */
+    /** @var FolderMapper  */
     protected $folderMapper;
 
     /** @var SubmitHandler $submitHandler */
