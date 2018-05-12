@@ -86,11 +86,6 @@
         <target>Title</target>
         <note>key: campaign.campaigns.title.th</note>
       </trans-unit>
-      <trans-unit id="222529aac645743f477aeda842704da7d44b0a78" resname="campaign.create">
-        <source>campaign.create</source>
-        <target>campaign.create</target>
-        <note>key: campaign.create</note>
-      </trans-unit>
       <trans-unit id="d4e814701ca13375e1793cdb7a8f23565d6eb8c2" resname="campaign.create.success">
         <source>Campaign '%name%' created.</source>
         <target>Campaign '%name%' created.</target>
@@ -103,8 +98,18 @@
       </trans-unit>
       <trans-unit id="7f2ef18ac269916939d91c15c8988bbf19291b70" resname="campaign.edit.identifier">
         <source>Editing Campaign "%title%"</source>
-        <target state="new">Editing Campaign "%title%"</target>
+        <target>Editing Campaign "%title%"</target>
         <note>key: campaign.edit.identifier</note>
+      </trans-unit>
+      <trans-unit id="651874ddf3faeeb6d23bde0dce99b541ebd4f737" resname="campaign.folder.create">
+        <source>campaign.folder.create</source>
+        <target state="new">campaign.folder.create</target>
+        <note>key: campaign.folder.create</note>
+      </trans-unit>
+      <trans-unit id="b092c03fba9f13c8f33b285217113bff4b09e470" resname="campaign.folder.manage">
+        <source>Manage Folders</source>
+        <target state="new">Manage Folders</target>
+        <note>key: campaign.folder.manage</note>
       </trans-unit>
       <trans-unit id="dce2b75873b1cdc9e8e6965bc7b3a65d566ac6c8" resname="campaign.folder.name">
         <source>campaign.folder.name</source>
@@ -223,17 +228,17 @@
       </trans-unit>
       <trans-unit id="1682bec6b5b6ad80b214dab0dcb466230181f284" resname="campaign.update.error">
         <source>Failed to retrieve Campaign.</source>
-        <target state="new">Failed to retrieve Campaign.</target>
+        <target>Failed to retrieve Campaign.</target>
         <note>key: campaign.update.error</note>
       </trans-unit>
       <trans-unit id="258c5ac6493444093f3a003773234e5b66a69eef" resname="campaign.update.success">
         <source>Campaign '%name%' updated.</source>
-        <target state="new">Campaign '%name%' updated.</target>
+        <target>Campaign '%name%' updated.</target>
         <note>key: campaign.update.success</note>
       </trans-unit>
       <trans-unit id="5cb19622baa4162663264b9da0b136a4f8946cef" resname="campaign.update.warning">
         <source>Campaign does not exists.</source>
-        <target state="new">Campaign does not exists.</target>
+        <target>Campaign does not exists.</target>
         <note>key: campaign.update.warning</note>
       </trans-unit>
       <trans-unit id="c86b0fda67fe3289baaa36c0a43f0146dd4ca583" resname="campaigns.delete.error">
@@ -260,6 +265,11 @@
         <source>Campaigns</source>
         <target>Campaigns</target>
         <note>key: campaigns.view.title</note>
+      </trans-unit>
+      <trans-unit id="ac66ee16ef2afb65db5a9a48c378dc7132b2d403" resname="campaigns_delete_form.delete">
+        <source>Delete Campaigns</source>
+        <target state="new">Delete Campaigns</target>
+        <note>key: campaigns_delete_form.delete</note>
       </trans-unit>
       <trans-unit id="6f8e8c51273390974868f1af37b4c95416e9420b" resname="edgar.campaign.campaign.create.folder_id">
         <source>Folder</source>
@@ -293,13 +303,18 @@
       </trans-unit>
       <trans-unit id="059b08c8defaed39f3538729eaf9fec2c5c5aa0d" resname="edgar.campaign.campaign.edit">
         <source>Edit</source>
-        <target state="new">Edit</target>
+        <target>Edit</target>
         <note>key: edgar.campaign.campaign.edit</note>
       </trans-unit>
       <trans-unit id="bec268d2dc635b8a54a339ac2c47b6d0a3601547" resname="edgar.campaign.create.save">
         <source>Create</source>
         <target>Create</target>
         <note>key: edgar.campaign.create.save</note>
+      </trans-unit>
+      <trans-unit id="904e9bc34656449fd8e0aab88d231ebc9ac86bdf" resname="edgar.campaign.folder.create.name">
+        <source>Name</source>
+        <target state="new">Name</target>
+        <note>key: edgar.campaign.folder.create.name</note>
       </trans-unit>
       <trans-unit id="54f305d08bda4792c076bc65d263725755a747d2" resname="edgar.campaign.list.create.address">
         <source>Address</source>
@@ -368,8 +383,33 @@
       </trans-unit>
       <trans-unit id="3a5fa05ad10fe98115fd94a1f736c5b93f9618f1" resname="edgar.campaign.list.edit">
         <source>Edit</source>
-        <target state="new">Edit</target>
+        <target>Edit</target>
         <note>key: edgar.campaign.list.edit</note>
+      </trans-unit>
+      <trans-unit id="d30c8b0055b2dc1df242eb8d0f22fc8ad452ecda" resname="folder.create.success">
+        <source>Campaign Folder '%name%' created.</source>
+        <target state="new">Campaign Folder '%name%' created.</target>
+        <note>key: folder.create.success</note>
+      </trans-unit>
+      <trans-unit id="f5738de402172df803c2b66ea3227f3b2f35a268" resname="folder.delete.success">
+        <source>Campaign Folder '%name%' removed.</source>
+        <target state="new">Campaign Folder '%name%' removed.</target>
+        <note>key: folder.delete.success</note>
+      </trans-unit>
+      <trans-unit id="4c5b0873d596d338ba6048a20606fc43af9e9426" resname="folders.delete.error">
+        <source>Error when deleting Campaign Folder.</source>
+        <target state="new">Error when deleting Campaign Folder.</target>
+        <note>key: folders.delete.error</note>
+      </trans-unit>
+      <trans-unit id="33b476815550510f8b89576d93308cfe5010586d" resname="folders.delete.warning">
+        <source>Campaign Folder '%id%' doesn't exists.</source>
+        <target state="new">Campaign Folder '%id%' doesn't exists.</target>
+        <note>key: folders.delete.warning</note>
+      </trans-unit>
+      <trans-unit id="a002dc5d93f0e3c0639213684da03023c7d93d30" resname="folders_delete_form.delete">
+        <source>Delete Campaign Folders</source>
+        <target state="new">Delete Campaign Folders</target>
+        <note>key: folders_delete_form.delete</note>
       </trans-unit>
       <trans-unit id="3ff9a8ff6cd6c9d7d8e7f26a480ae096682fa7e5" resname="list.create.success">
         <source>List '%name%' created.</source>
@@ -378,7 +418,7 @@
       </trans-unit>
       <trans-unit id="685ae6715ed4e17b7ddbd92acf2bab83ecd2e92e" resname="list.edit.identifier">
         <source>Editing Subscription list "%name%"</source>
-        <target state="new">Editing Subscription list "%name%"</target>
+        <target>Editing Subscription list "%name%"</target>
         <note>key: list.edit.identifier</note>
       </trans-unit>
       <trans-unit id="9a8b33fd58294692f9be1cd3b9db69437fb312d4" resname="list.new">
@@ -393,17 +433,17 @@
       </trans-unit>
       <trans-unit id="e17197210b61367bb4d5e3019af1fe632340bec9" resname="list.update.error">
         <source>Failed to retrieve Subscription list.</source>
-        <target state="new">Failed to retrieve Subscription list.</target>
+        <target>Failed to retrieve Subscription list.</target>
         <note>key: list.update.error</note>
       </trans-unit>
       <trans-unit id="5fa05e3c69f61385b37cfea027913f4e08286191" resname="list.update.success">
         <source>Subscription list '%name%' updated.</source>
-        <target state="new">Subscription list '%name%' updated.</target>
+        <target>Subscription list '%name%' updated.</target>
         <note>key: list.update.success</note>
       </trans-unit>
       <trans-unit id="4f6697dabd37ddd8170167abdf4cb7a4b0a7a313" resname="list.update.warning">
         <source>Subscription list does not exists.</source>
-        <target state="new">Subscription list does not exists.</target>
+        <target>Subscription list does not exists.</target>
         <note>key: list.update.warning</note>
       </trans-unit>
       <trans-unit id="56b5183950497ab32818fe6359e5b69a1f017ae3" resname="lists.delete.error">

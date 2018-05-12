@@ -80,7 +80,7 @@ class FolderService extends BaseService
      */
     public function delete(string $folderId)
     {
-        $return = $this->mailChimp->delete('/folders/' . $folderId, array());
+        $return = $this->mailChimp->delete('/campaign-folders/' . $folderId, []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());

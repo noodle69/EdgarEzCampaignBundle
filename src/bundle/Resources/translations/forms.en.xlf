@@ -6,11 +6,6 @@
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="ac66ee16ef2afb65db5a9a48c378dc7132b2d403" resname="campaigns_delete_form.delete">
-        <source>Delete campaigns</source>
-        <target>Delete campaigns</target>
-        <note>key: campaigns_delete_form.delete</note>
-      </trans-unit>
       <trans-unit id="1e11ab00a31a4b84d2ffaccdc6964e0f4506e2a5" resname="lists_delete_form.delete">
         <source>Delete lists</source>
         <target>Delete lists</target>
