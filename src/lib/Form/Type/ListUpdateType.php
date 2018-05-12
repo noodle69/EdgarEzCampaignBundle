@@ -143,7 +143,7 @@ class ListUpdateType extends AbstractType
                 [
                     'choices'  => [
                         'Public' => 'pub',
-                        'Private' => 'priv',
+                        'Private' => 'prv',
                     ],
                     'label' => /** @Desc("Visibility") */ 'edgar.campaign.list.create.visibility'
                 ]

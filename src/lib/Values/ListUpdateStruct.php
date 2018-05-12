@@ -20,7 +20,7 @@ class ListUpdateStruct extends ListStruct
 
     public $country = null;
 
-    public $phone;
+    public $phone = null;
 
     public $permission_reminder = null;
 
