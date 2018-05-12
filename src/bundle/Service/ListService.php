@@ -2,6 +2,7 @@
 
 namespace Edgar\EzCampaignBundle\Service;
 
+use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Values\Core\CampaignList;
 use Edgar\EzCampaign\Values\ListCreateStruct;
 use Welp\MailchimpBundle\Exception\MailchimpException;
@@ -79,8 +80,6 @@ class ListService extends BaseService
             'visibility' => $list->visibility,
         ]);
 
-// var_dump($return);exit();
-
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
@@ -107,27 +106,35 @@ class ListService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function patch(array $list)
+    public function patch(string $listId, ListUpdateData $list)
     {
-        $return = $this->mailChimp->patch('/lists/' . $list['id'], array(
-            'name' => $list['name'],
-            'contact' => array(
-                'company' => $list['contact']['company'],
-                'address1' => $list['contact']['address1'],
-                'city' => $list['contact']['city'],
-                'state' => $list['contact']['state'],
-                'zip' => $list['contact']['zip'],
-                'country' => $list['contact']['country']
-            ),
-            'permission_reminder' => $list['permission_reminder'],
-            'campaign_defaults' => array(
-                'from_name' => $list['campaign_defaults']['from_name'],
-                'from_email' => $list['campaign_defaults']['from_email'],
-                'subject' => $list['campaign_defaults']['subject'],
-                'language' => $list['campaign_defaults']['language']
-            ),
-            'email_type_option' => true
-        ));
+        $countrySelected = key($list->country->countries);
+
+        $return = $this->mailChimp->patch('/lists/' .$listId, [
+            'name' => $list->name,
+            'contact' => [
+                'company' => $list->company,
+                'address1' => $list->address,
+                'address2' => $list->address2,
+                'city' => $list->city,
+                'state' => $list->state,
+                'zip' => $list->zip,
+                'country' => $countrySelected,
+                'phone' => $list->phone,
+            ],
+            'permission_reminder' => $list->permission_reminder,
+            'use_archive_bar' => $list->use_archive_bar,
+            'campaign_defaults' => [
+                'from_name' => $list->from_name,
+                'from_email' => $list->from_email,
+                'subject' => $list->subject,
+                'language' => $list->language,
+            ],
+            'email_type_option' => false,
+            'notify_on_subscribe' => $list->notify_on_subscribe,
+            'notify_on_unsubscribe' => $list->notify_on_unsubscribe,
+            'visibility' => $list->visibility,
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());

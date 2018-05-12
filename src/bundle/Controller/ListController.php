@@ -192,14 +192,14 @@ class ListController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (ListUpdateData $data) use ($list) {
-                $this->listService->patch($list);
+            $result = $this->submitHandler->handle($form, function (ListUpdateData $list) use ($listId) {
+                $this->listService->patch($listId, $list);
 
                 $this->notificationHandler->success(
                     $this->translator->trans(
                     /** @Desc("Subscription list '%name%' updated.") */
                         'list.update.success',
-                        ['%name%' => $list['name']],
+                        ['%name%' => $list->name],
                         'edgarezcampaign'
                     )
                 );
