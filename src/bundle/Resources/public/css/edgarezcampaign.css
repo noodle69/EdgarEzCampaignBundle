@@ -1,0 +1,9 @@
+.edgar-campaign-page-title {
+    display: grid;
+    grid-template-columns: auto 12.25rem;
+}
+
+.edgar-campaign-page-title .edgar-campaign__create_folder {
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,21 @@
+{% if title is defined %}
+    <div class="ez-page-title pt-3 pb-4 px-4 edgar-campaign-page-title">
+        <h1>
+            {% if iconName is defined%}
+                <svg class="ez-icon ez-icon-{{ iconName }}">
+                    <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#{{ iconName }}"></use>
+                </svg>
+            {% endif %}
+            {{ title }}
+        </h1>
+        <div class="edgar-campaign__create_folder">
+            <button class="btn btn-primary ez-btn--cotf-create" data-toggle="modal" data-target="#campaign-folder-modal">
+                <svg class="ez-icon ez-icon--medium ez-icon--light ez-icon-create">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                         xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#create"></use>
+                </svg>
+                <span>{{ 'campaign.folder.manage'|trans|desc('Manage Folders') }}</span>
+            </button>
+        </div>
+    </div>
+{% endif %}

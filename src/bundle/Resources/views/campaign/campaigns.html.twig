@@ -12,19 +12,10 @@
 {% endblock %}
 
 {% block page_title %}
-    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+    {% include '@EdgarEzCampaign/campaign/page_title.html.twig' with {
         title: 'campaigns.view.title'|trans|desc('Campaigns'),
         iconName: 'newsletter'
     } %}
-    <div class="edgar-campaign__create_folder">
-        <button class="btn btn-primary ez-btn--cotf-create" data-toggle="modal" data-target="#campaign-folder-modal">
-            <svg class="ez-icon ez-icon--medium ez-icon--light ez-icon-create">
-                <use xmlns:xlink="http://www.w3.org/1999/xlink"
-                     xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#create"></use>
-            </svg>
-            <span>{{ 'campaign.folder.manage'|trans|desc('Manage Folders') }}</span>
-        </button>
-    </div>
 {% endblock %}
 
 {% block content %}
@@ -118,4 +109,12 @@
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets
+        '@EdgarEzCampaignBundle/Resources/public/css/edgarezcampaign.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
