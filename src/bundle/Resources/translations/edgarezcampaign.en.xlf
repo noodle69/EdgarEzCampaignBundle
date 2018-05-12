@@ -6,6 +6,16 @@
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="237dfa0a21c8e17a7276cf161eef7e0fba067c47" resname="Private">
+        <source>Private</source>
+        <target state="new">Private</target>
+        <note>key: Private</note>
+      </trans-unit>
+      <trans-unit id="dc5eb704bbcae1aff4efb71c55461d47767dabe7" resname="Public">
+        <source>Public</source>
+        <target state="new">Public</target>
+        <note>key: Public</note>
+      </trans-unit>
       <trans-unit id="d194f4e45d7da9c18717e9ca78b4f745e7060e90" resname="campaign.campaign.delete">
         <source>Delete Campaign</source>
         <target>Delete Campaign</target>
@@ -103,12 +113,12 @@
       </trans-unit>
       <trans-unit id="651874ddf3faeeb6d23bde0dce99b541ebd4f737" resname="campaign.folder.create">
         <source>campaign.folder.create</source>
-        <target state="new">campaign.folder.create</target>
+        <target>campaign.folder.create</target>
         <note>key: campaign.folder.create</note>
       </trans-unit>
       <trans-unit id="b092c03fba9f13c8f33b285217113bff4b09e470" resname="campaign.folder.manage">
         <source>Manage Folders</source>
-        <target state="new">Manage Folders</target>
+        <target>Manage Folders</target>
         <note>key: campaign.folder.manage</note>
       </trans-unit>
       <trans-unit id="dce2b75873b1cdc9e8e6965bc7b3a65d566ac6c8" resname="campaign.folder.name">
@@ -268,7 +278,7 @@
       </trans-unit>
       <trans-unit id="ac66ee16ef2afb65db5a9a48c378dc7132b2d403" resname="campaigns_delete_form.delete">
         <source>Delete Campaigns</source>
-        <target state="new">Delete Campaigns</target>
+        <target>Delete Campaigns</target>
         <note>key: campaigns_delete_form.delete</note>
       </trans-unit>
       <trans-unit id="6f8e8c51273390974868f1af37b4c95416e9420b" resname="edgar.campaign.campaign.create.folder_id">
@@ -313,13 +323,18 @@
       </trans-unit>
       <trans-unit id="904e9bc34656449fd8e0aab88d231ebc9ac86bdf" resname="edgar.campaign.folder.create.name">
         <source>Name</source>
-        <target state="new">Name</target>
+        <target>Name</target>
         <note>key: edgar.campaign.folder.create.name</note>
       </trans-unit>
       <trans-unit id="54f305d08bda4792c076bc65d263725755a747d2" resname="edgar.campaign.list.create.address">
         <source>Address</source>
         <target>Address</target>
         <note>key: edgar.campaign.list.create.address</note>
+      </trans-unit>
+      <trans-unit id="93d0fcca9f2a22da36f34ceedfd4c2d55ac4464b" resname="edgar.campaign.list.create.address2">
+        <source>Additionnal address</source>
+        <target state="new">Additionnal address</target>
+        <note>key: edgar.campaign.list.create.address2</note>
       </trans-unit>
       <trans-unit id="2724ee0ad09ee39002e168828052464f4c3b08db" resname="edgar.campaign.list.create.city">
         <source>City</source>
@@ -356,10 +371,25 @@
         <target>Name</target>
         <note>key: edgar.campaign.list.create.name</note>
       </trans-unit>
+      <trans-unit id="62dee8c45e57cefce82d792387c5d30636f0173c" resname="edgar.campaign.list.create.notify_on_subscribe">
+        <source>Notify on subscribe</source>
+        <target state="new">Notify on subscribe</target>
+        <note>key: edgar.campaign.list.create.notify_on_subscribe</note>
+      </trans-unit>
+      <trans-unit id="ee1ea966a1c5ef82e051742e0e61c7f47851a5d4" resname="edgar.campaign.list.create.notify_on_unsubscribe">
+        <source>Notify on unsubscribe</source>
+        <target state="new">Notify on unsubscribe</target>
+        <note>key: edgar.campaign.list.create.notify_on_unsubscribe</note>
+      </trans-unit>
       <trans-unit id="a2c0d90b8872f8cd77b7fa42aece03a303e19cfd" resname="edgar.campaign.list.create.permission_reminder">
         <source>Permission reminder</source>
         <target>Permission reminder</target>
         <note>key: edgar.campaign.list.create.permission_reminder</note>
+      </trans-unit>
+      <trans-unit id="38090f00f18cc6ad6dff065e81de34000e4d740a" resname="edgar.campaign.list.create.phone">
+        <source>Phone</source>
+        <target state="new">Phone</target>
+        <note>key: edgar.campaign.list.create.phone</note>
       </trans-unit>
       <trans-unit id="6cfa287cdd28f78a96bf6da19294f07b32e9e5c4" resname="edgar.campaign.list.create.save">
         <source>Create</source>
@@ -376,6 +406,16 @@
         <target>Subject</target>
         <note>key: edgar.campaign.list.create.subject</note>
       </trans-unit>
+      <trans-unit id="6a8f4757fffd98d3a8020d3c57c067336bb6e166" resname="edgar.campaign.list.create.use_archive_bar">
+        <source>Use archive bar?</source>
+        <target state="new">Use archive bar?</target>
+        <note>key: edgar.campaign.list.create.use_archive_bar</note>
+      </trans-unit>
+      <trans-unit id="9d04de8c61ce4ca7d2bc2f484d835e4618fa21ab" resname="edgar.campaign.list.create.visibility">
+        <source>Visibility</source>
+        <target state="new">Visibility</target>
+        <note>key: edgar.campaign.list.create.visibility</note>
+      </trans-unit>
       <trans-unit id="eee5e01ad4a0840b17fedf4ca0946fe58ea9e9fa" resname="edgar.campaign.list.create.zip">
         <source>Zip</source>
         <target>Zip</target>
@@ -388,27 +428,27 @@
       </trans-unit>
       <trans-unit id="d30c8b0055b2dc1df242eb8d0f22fc8ad452ecda" resname="folder.create.success">
         <source>Campaign Folder '%name%' created.</source>
-        <target state="new">Campaign Folder '%name%' created.</target>
+        <target>Campaign Folder '%name%' created.</target>
         <note>key: folder.create.success</note>
       </trans-unit>
       <trans-unit id="f5738de402172df803c2b66ea3227f3b2f35a268" resname="folder.delete.success">
         <source>Campaign Folder '%name%' removed.</source>
-        <target state="new">Campaign Folder '%name%' removed.</target>
+        <target>Campaign Folder '%name%' removed.</target>
         <note>key: folder.delete.success</note>
       </trans-unit>
       <trans-unit id="4c5b0873d596d338ba6048a20606fc43af9e9426" resname="folders.delete.error">
         <source>Error when deleting Campaign Folder.</source>
-        <target state="new">Error when deleting Campaign Folder.</target>
+        <target>Error when deleting Campaign Folder.</target>
         <note>key: folders.delete.error</note>
       </trans-unit>
       <trans-unit id="33b476815550510f8b89576d93308cfe5010586d" resname="folders.delete.warning">
         <source>Campaign Folder '%id%' doesn't exists.</source>
-        <target state="new">Campaign Folder '%id%' doesn't exists.</target>
+        <target>Campaign Folder '%id%' doesn't exists.</target>
         <note>key: folders.delete.warning</note>
       </trans-unit>
       <trans-unit id="a002dc5d93f0e3c0639213684da03023c7d93d30" resname="folders_delete_form.delete">
         <source>Delete Campaign Folders</source>
-        <target state="new">Delete Campaign Folders</target>
+        <target>Delete Campaign Folders</target>
         <note>key: folders_delete_form.delete</note>
       </trans-unit>
       <trans-unit id="3ff9a8ff6cd6c9d7d8e7f26a480ae096682fa7e5" resname="list.create.success">

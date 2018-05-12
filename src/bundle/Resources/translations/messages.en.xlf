@@ -13,32 +13,32 @@
       </trans-unit>
       <trans-unit id="02a6ae23020777b6c087394f9bd4a108810defbf" resname="campaign.folder.add">
         <source>Create new Campaign folder</source>
-        <target state="new">Create new Campaign folder</target>
+        <target>Create new Campaign folder</target>
         <note>key: campaign.folder.add</note>
       </trans-unit>
       <trans-unit id="4c811fb533ef372f7d5478f465b1ca9b74d78c7d" resname="campaign.folder.delete">
         <source>Delete Campaign Folder</source>
-        <target state="new">Delete Campaign Folder</target>
+        <target>Delete Campaign Folder</target>
         <note>key: campaign.folder.delete</note>
       </trans-unit>
       <trans-unit id="be6b6bdfb7c5227554d3c771520fbd5ab1b29e51" resname="campaign.folder.form.cancel">
         <source>Cancel</source>
-        <target state="new">Cancel</target>
+        <target>Cancel</target>
         <note>key: campaign.folder.form.cancel</note>
       </trans-unit>
       <trans-unit id="5bfc31983254cd115d1f0dd18a0c5945bc0a306b" resname="campaign.folder.modal.message">
         <source>Do you want to delete Campaign Folder?</source>
-        <target state="new">Do you want to delete Campaign Folder?</target>
+        <target>Do you want to delete Campaign Folder?</target>
         <note>key: campaign.folder.modal.message</note>
       </trans-unit>
       <trans-unit id="316439351a3beccbe1bee051689a4b59a6b6aca0" resname="campaign.folder.name.th">
         <source>Name</source>
-        <target state="new">Name</target>
+        <target>Name</target>
         <note>key: campaign.folder.name.th</note>
       </trans-unit>
       <trans-unit id="b3114dbeb72ad6048ec1b95a8d0d9c0d65839a1e" resname="campaign.folder.table.header">
         <source>Campaign Folders</source>
-        <target state="new">Campaign Folders</target>
+        <target>Campaign Folders</target>
         <note>key: campaign.folder.table.header</note>
       </trans-unit>
       <trans-unit id="8f2b9444ccb9cbe697f7b07f385ee29e4edeaa7f" resname="main__campaign">
