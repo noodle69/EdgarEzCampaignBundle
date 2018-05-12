@@ -3,6 +3,7 @@
 namespace Edgar\EzCampaignBundle\Service;
 
 use DrewM\MailChimp\MailChimp;
+use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Values\CampaignCreateStruct;
 use Edgar\EzCampaign\Values\Core\Campaign;
 use Welp\MailchimpBundle\Exception\MailchimpException;
@@ -65,19 +66,19 @@ class CampaignService extends BaseService
      */
     public function post(CampaignCreateStruct $campaign)
     {
-        $return = $this->mailChimp->post('/campaigns', array(
+        $return = $this->mailChimp->post('/campaigns', [
             'type' => 'regular',
-            'recipients' => array(
+            'recipients' => [
                 'list_id' => $campaign->list_id,
-            ),
-            'settings' => array(
+            ],
+            'settings' => [
                 'subject_line' => $campaign->subject_line,
                 'title' => $campaign->title,
                 'from_name' => $campaign->from_name,
                 'reply_to' => $campaign->reply_to,
                 'folder_id' => $campaign->folder_id,
-            )
-        ));
+            ],
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -99,20 +100,21 @@ class CampaignService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function patch(array $campaign)
+    public function patch(string $campaignId, CampaignUpdateData $campaign)
     {
-        $return = $this->mailChimp->patch('/campaigns/' . $campaign['id'], array(
-            'recipients' => array(
-                'list_id' => $campaign['recipients']['list_id'],
-            ),
-            'settings' => array(
-                'subject_line' => $campaign['settings']['subject_line'],
-                'title' => $campaign['settings']['title'],
-                'fromName' => $campaign['settings']['fromName'],
-                'reply_to' => $campaign['settings']['reply_to'],
-                'folder_id' => $campaign['settings']['folder_id'],
-            )
-        ));
+        $return = $this->mailChimp->patch('/campaigns/' . $campaignId, [
+            'type' => 'regular',
+            'recipients' => [
+                'list_id' => $campaign->list_id->id,
+            ],
+            'settings' => [
+                'subject_line' => $campaign->subject_line,
+                'title' => $campaign->title,
+                'fromName' => $campaign->from_name,
+                'reply_to' => $campaign->reply_to,
+                'folder_id' => $campaign->folder_id->id,
+            ],
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());

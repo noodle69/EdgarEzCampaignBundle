@@ -215,20 +215,22 @@ class CampaignController extends Controller
                     'edgarezcampaign'
                 )
             );
+
+            return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
         }
 
         $form = $this->formFactory->updateCampaign($campaignData);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (CampaignUpdateData $data) use ($campaign) {
-                $this->campaignService->patch($campaign);
+            $result = $this->submitHandler->handle($form, function (CampaignUpdateData $campaign) use ($campaignId) {
+                $this->campaignService->patch($campaignId, $campaign);
 
                 $this->notificationHandler->success(
                     $this->translator->trans(
                     /** @Desc("Campaign '%name%' updated.") */
                         'campaign.update.success',
-                        ['%name%' => $campaign['title']],
+                        ['%name%' => $campaign->title],
                         'edgarezcampaign'
                     )
                 );
