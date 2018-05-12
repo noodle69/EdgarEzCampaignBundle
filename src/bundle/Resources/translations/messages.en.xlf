@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="b092c03fba9f13c8f33b285217113bff4b09e470" resname="campaign.folder.manage">
         <source>Manage Folders</source>
-        <target state="new">Manage Folders</target>
+        <target>Manage Folders</target>
         <note>key: campaign.folder.manage</note>
       </trans-unit>
       <trans-unit id="5bfc31983254cd115d1f0dd18a0c5945bc0a306b" resname="campaign.folder.modal.message">
@@ -60,6 +60,11 @@
         <source>Subscription lists</source>
         <target>Subscription lists</target>
         <note>key: main__campaign__lists</note>
+      </trans-unit>
+      <trans-unit id="4f7e438c3b9757fc4098981dd1b8f16c4ae87f74" resname="main__campaign__reports">
+        <source>Reports</source>
+        <target>Reports</target>
+        <note>key: main__campaign__reports</note>
       </trans-unit>
     </body>
   </file>

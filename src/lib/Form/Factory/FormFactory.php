@@ -10,6 +10,7 @@ use Edgar\EzCampaign\Data\ListCreateData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Data\ListUpdateData;
+use Edgar\EzCampaign\Data\ReportsData;
 use Edgar\EzCampaign\Form\Type\CampaignCreateType;
 use Edgar\EzCampaign\Form\Type\CampaignUpdateType;
 use Edgar\EzCampaign\Form\Type\FolderCreateType;
@@ -18,6 +19,7 @@ use Edgar\EzCampaign\Form\Type\ListCreateType;
 use Edgar\EzCampaign\Form\Type\CampaignsDeleteType;
 use Edgar\EzCampaign\Form\Type\ListsDeleteType;
 use Edgar\EzCampaign\Form\Type\ListUpdateType;
+use Edgar\EzCampaign\Form\Type\ReportsType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Util\StringUtil;
@@ -153,5 +155,24 @@ class FormFactory
         $name = $name ?: sprintf('update-list-%d', $data->getId());
 
         return $this->formFactory->createNamed($name, ListUpdateType::class, $data);
+    }
+
+    /**
+     * @param FolderCreateData|null $data
+     * @param null|string $name
+     *
+     * @return FormInterface
+     */
+    public function reportsChooseCampaign(
+        ?ReportsData $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(ReportsType::class);
+
+        return $this->formFactory->createNamed(
+            $name,
+            ReportsType::class,
+            $data ?? new ReportsData()
+        );
     }
 }

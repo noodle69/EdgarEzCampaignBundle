@@ -1,0 +1,10 @@
+imports:
+    - { resource: tab/reports.yml }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+

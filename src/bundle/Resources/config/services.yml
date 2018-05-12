@@ -1,6 +1,7 @@
 imports:
     - { resource: controllers.yml }
     - { resource: menu.yml }
+    - { resource: tabs.yml }
 
 services:
     _defaults:
@@ -15,3 +16,4 @@ services:
 
     Edgar\EzCampaign\Form\Type\Field\ListType: ~
     Edgar\EzCampaign\Form\Type\Field\FolderType: ~
+    Edgar\EzCampaign\Form\Type\Field\CampaignsType: ~

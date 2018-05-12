@@ -13,6 +13,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
     const ITEM_CAMPAIGN = 'main__campaign';
     const ITEM_CAMPAIGN_CAMPAIGNS = 'main__campaign__campaigns';
     const ITEM_CAMPAIGN_LISTS = 'main__campaign__lists';
+    const ITEM_CAMPAIGN_REPORTS = 'main__campaign__reports';
 
     /** @var PermissionResolver */
     private $permissionResolver;
@@ -70,6 +71,16 @@ class ConfigureMenuListener implements TranslationContainerInterface
                 ]
             );
         }
+
+        if ($this->permissionResolver->hasAccess('campaign', 'reports')) {
+            $menuItems[self::ITEM_CAMPAIGN_REPORTS] = $campaignMenu->addChild(
+                self::ITEM_CAMPAIGN_REPORTS,
+                [
+                    'route' => 'edgar.campaign.reports',
+                    'extras' => ['icon' => 'newsletter'],
+                ]
+            );
+        }
     }
 
     /**
@@ -81,6 +92,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
             (new Message(self::ITEM_CAMPAIGN, 'messages'))->setDesc('Campaign'),
             (new Message(self::ITEM_CAMPAIGN_CAMPAIGNS, 'messages'))->setDesc('Campaigns'),
             (new Message(self::ITEM_CAMPAIGN_LISTS, 'messages'))->setDesc('Subscription lists'),
+            (new Message(self::ITEM_CAMPAIGN_REPORTS, 'messages'))->setDesc('Reports'),
         ];
     }
 }

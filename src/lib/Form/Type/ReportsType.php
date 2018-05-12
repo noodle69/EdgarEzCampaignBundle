@@ -2,13 +2,13 @@
 
 namespace Edgar\EzCampaign\Form\Type;
 
+use Edgar\EzCampaign\Form\Type\Field\CampaignsType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FolderCreateType extends AbstractType
+class ReportsType extends AbstractType
 {
     public function getName()
     {
@@ -17,7 +17,7 @@ class FolderCreateType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'edgarcampaign_folder_create';
+        return 'edgarcampaign_reports';
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -32,12 +32,12 @@ class FolderCreateType extends AbstractType
     {
         $builder
             ->add(
-                'name',
-                TextType::class,
-                ['label' => /** @Desc("Name") */ 'edgar.campaign.folder.create.name']
+                'campaign',
+                CampaignsType::class,
+                ['label' => /** @Desc("Campaigns") */ 'edgar.campaign.reports.campaigns.name']
             )
-            ->add('create', SubmitType::class, [
-                'label' => /** @Desc("Create") */ 'edgar.campaign.folder.create'
+            ->add('choose', SubmitType::class, [
+                'label' => /** @Desc("Choose") */ 'edgar.campaign.reports.choose'
             ]);
     }
 }

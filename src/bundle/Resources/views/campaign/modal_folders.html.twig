@@ -12,10 +12,14 @@
 
             <div class="modal-body">
                 {{ form_start(form_folder_create, {'action': path('edgar.campaign.folder.create')}) }}
-                <p class="ez-modal-body__main">
-                    {{ 'campaign.folder.add'|trans|desc('Create new Campaign folder') }}
-                </p>
-                {{ form_row(form_folder_create.name) }}
+                    <p class="ez-modal-body__main">
+                        {{ 'campaign.folder.add'|trans|desc('Create new Campaign folder') }}
+                    </p>
+                    {{ form_label(form_folder_create.name) }}
+                    <div class="input-group">
+                        {{ form_widget(form_folder_create.name) }}
+                        {{ form_widget(form_folder_create.create) }}
+                    </div>
                 {{ form_end(form_folder_create) }}
 
                 <section class="container mt-4">

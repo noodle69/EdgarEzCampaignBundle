@@ -1,0 +1,36 @@
+{% extends 'EzPlatformAdminUiBundle::layout.html.twig' %}
+
+{% trans_default_domain 'edgarezcampaign' %}
+
+{% form_theme form '@EzPlatformAdminUi/form_fields.html.twig'  %}
+
+{% block body_class %}ez-info-view{% endblock %}
+
+{% block breadcrumbs %}
+    {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
+        { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
+        { url: path('edgar.campaign.reports'), value: 'reports.view'|trans|desc('Reports') },
+    ]} %}
+{% endblock %}
+
+{% block page_title %}
+    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+        title: 'reports.view.title'|trans|desc('Reports'),
+        iconName: 'newsletter'
+    } %}
+{% endblock %}
+
+{% block content %}
+    <section class="container mt-4">
+        {{ form_start(form, {
+            'action': path('edgar.campaign.reports')
+        }) }}
+            <div class="input-group">
+                {{ form_widget(form.campaign) }}
+                {{ form_widget(form.choose) }}
+            </div>
+        {{ form_end(form) }}
+    </section>
+
+    {{ ez_platform_tabs('edgarezcampaign-reports', {}, 'EzPlatformAdminUiBundle:parts/tab:system_info.html.twig') }}
+{% endblock %}

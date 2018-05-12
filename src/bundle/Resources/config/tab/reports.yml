@@ -1,0 +1,24 @@
+services:
+    Edgar\EzCampaign\Tab\Reports\AbuseTab:
+        parent: EzSystems\EzPlatformAdminUi\Tab\AbstractTab
+        public: false
+        tags:
+            - { name: ezplatform.tab, group: edgarezcampaign-reports }
+
+    Edgar\EzCampaign\Tab\Reports\AdviceTab:
+        parent: EzSystems\EzPlatformAdminUi\Tab\AbstractTab
+        public: false
+        tags:
+            - { name: ezplatform.tab, group: edgarezcampaign-reports }
+
+    Edgar\EzCampaign\Tab\Reports\OpenTab:
+        parent: EzSystems\EzPlatformAdminUi\Tab\AbstractTab
+        public: false
+        tags:
+            - { name: ezplatform.tab, group: edgarezcampaign-reports }
+
+    Edgar\EzCampaign\Tab\Reports\ClickTab:
+        parent: EzSystems\EzPlatformAdminUi\Tab\AbstractTab
+        public: false
+        tags:
+            - { name: ezplatform.tab, group: edgarezcampaign-reports }

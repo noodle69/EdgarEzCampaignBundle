@@ -98,7 +98,7 @@
       </trans-unit>
       <trans-unit id="94fb6c63ad553488d5dff117fef8ebab34bdaf7e" resname="campaign.campaigns.viewing">
         <source><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></source>
-        <target state="new"><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></target>
+        <target><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></target>
         <note>key: campaign.campaigns.viewing</note>
       </trans-unit>
       <trans-unit id="d4e814701ca13375e1793cdb7a8f23565d6eb8c2" resname="campaign.create.success">
@@ -115,11 +115,6 @@
         <source>Editing Campaign "%title%"</source>
         <target>Editing Campaign "%title%"</target>
         <note>key: campaign.edit.identifier</note>
-      </trans-unit>
-      <trans-unit id="651874ddf3faeeb6d23bde0dce99b541ebd4f737" resname="campaign.folder.create">
-        <source>campaign.folder.create</source>
-        <target>campaign.folder.create</target>
-        <note>key: campaign.folder.create</note>
       </trans-unit>
       <trans-unit id="dce2b75873b1cdc9e8e6965bc7b3a65d566ac6c8" resname="campaign.folder.name">
         <source>campaign.folder.name</source>
@@ -223,7 +218,7 @@
       </trans-unit>
       <trans-unit id="f8544db7e09e845b8bf2572b98eec6f55377a303" resname="campaign.lists.viewing">
         <source><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></source>
-        <target state="new"><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></target>
+        <target><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></target>
         <note>key: campaign.lists.viewing</note>
       </trans-unit>
       <trans-unit id="2816c04f80a7549cb8e4182168780793e080464b" resname="campaign.new">
@@ -235,6 +230,26 @@
         <source>Creating a new Campaign</source>
         <target>Creating a new Campaign</target>
         <note>key: campaign.new.title</note>
+      </trans-unit>
+      <trans-unit id="319551f0ae3611289f980f3b5f322cc6be7f05df" resname="campaign.reports.name.abuse">
+        <source>Abuse</source>
+        <target>Abuse</target>
+        <note>key: campaign.reports.name.abuse</note>
+      </trans-unit>
+      <trans-unit id="f0cf0aed58135002325b5b50a27b99b1415ae638" resname="campaign.reports.name.advice">
+        <source>Advice</source>
+        <target>Advice</target>
+        <note>key: campaign.reports.name.advice</note>
+      </trans-unit>
+      <trans-unit id="ad9927099a92ad7bab82c8169781e8414a549740" resname="campaign.reports.name.click">
+        <source>Click</source>
+        <target>Click</target>
+        <note>key: campaign.reports.name.click</note>
+      </trans-unit>
+      <trans-unit id="6a70b5ab3c09b753f4f421866ae6873102b42575" resname="campaign.reports.name.open">
+        <source>Open</source>
+        <target>Open</target>
+        <note>key: campaign.reports.name.open</note>
       </trans-unit>
       <trans-unit id="d30cebfc516ff91574331ec13edcd40e4dae0690" resname="campaign.save">
         <source>campaign.save</source>
@@ -325,6 +340,11 @@
         <source>Create</source>
         <target>Create</target>
         <note>key: edgar.campaign.create.save</note>
+      </trans-unit>
+      <trans-unit id="f248c125d847f45466514aa88fce874a851a057b" resname="edgar.campaign.folder.create">
+        <source>Create</source>
+        <target state="new">Create</target>
+        <note>key: edgar.campaign.folder.create</note>
       </trans-unit>
       <trans-unit id="904e9bc34656449fd8e0aab88d231ebc9ac86bdf" resname="edgar.campaign.folder.create.name">
         <source>Name</source>
@@ -431,6 +451,16 @@
         <target>Edit</target>
         <note>key: edgar.campaign.list.edit</note>
       </trans-unit>
+      <trans-unit id="20fd2f70efde204b93d1c3864a03dee59af62b62" resname="edgar.campaign.reports.campaigns.name">
+        <source>Campaigns</source>
+        <target>Campaigns</target>
+        <note>key: edgar.campaign.reports.campaigns.name</note>
+      </trans-unit>
+      <trans-unit id="e468a8b94435b1b5c6a433617bd40f7e95c40a34" resname="edgar.campaign.reports.choose">
+        <source>Choose</source>
+        <target state="new">Choose</target>
+        <note>key: edgar.campaign.reports.choose</note>
+      </trans-unit>
       <trans-unit id="d30c8b0055b2dc1df242eb8d0f22fc8ad452ecda" resname="folder.create.success">
         <source>Campaign Folder '%name%' created.</source>
         <target>Campaign Folder '%name%' created.</target>
@@ -438,7 +468,7 @@
       </trans-unit>
       <trans-unit id="5b40d6d240fb4e440f48c90ca0def2a305ec1255" resname="folder.delete.campaigns_exists">
         <source>Campaign Folder '%name%' is associated with Campaigns, so it can't be removed.</source>
-        <target state="new">Campaign Folder '%name%' is associated with Campaigns, so it can't be removed.</target>
+        <target>Campaign Folder '%name%' is associated with Campaigns, so it can't be removed.</target>
         <note>key: folder.delete.campaigns_exists</note>
       </trans-unit>
       <trans-unit id="f5738de402172df803c2b66ea3227f3b2f35a268" resname="folder.delete.success">
@@ -498,7 +528,7 @@
       </trans-unit>
       <trans-unit id="0d0de680360e23b482566d6d5a0b3b03a8cdfa20" resname="lists.delete.campaigns_exists">
         <source>List '%name%' is associated with campaigns, it can't be removedd.</source>
-        <target state="new">List '%name%' is associated with campaigns, it can't be removedd.</target>
+        <target>List '%name%' is associated with campaigns, it can't be removedd.</target>
         <note>key: lists.delete.campaigns_exists</note>
       </trans-unit>
       <trans-unit id="56b5183950497ab32818fe6359e5b69a1f017ae3" resname="lists.delete.error">
@@ -525,6 +555,16 @@
         <source>Subscription lists</source>
         <target>Subscription lists</target>
         <note>key: lists.view.title</note>
+      </trans-unit>
+      <trans-unit id="5b1f8755d673e1f7a90995a5777f74b18e3beed0" resname="reports.view">
+        <source>Reports</source>
+        <target>Reports</target>
+        <note>key: reports.view</note>
+      </trans-unit>
+      <trans-unit id="2cc9f2578616c505a308eadf82e9035dd594bffe" resname="reports.view.title">
+        <source>Reports</source>
+        <target>Reports</target>
+        <note>key: reports.view.title</note>
       </trans-unit>
     </body>
   </file>
