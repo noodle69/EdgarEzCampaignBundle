@@ -3,6 +3,7 @@
 namespace Edgar\EzCampaign\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -53,7 +54,7 @@ class CampaignCreateType extends AbstractType
             )
             ->add(
                 'reply_to',
-                TextType::class,
+                EmailType::class,
                 ['label' => /** @Desc("Reply to") */ 'edgar.campaign.campaign.create.reply_to']
             )
             ->add(
