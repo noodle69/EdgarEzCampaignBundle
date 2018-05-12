@@ -7,3 +7,9 @@
     display: flex;
     align-items: center;
 }
+
+td.edgarezcampaign-td-icon,
+td.edgarezcampaign-td-icon a{
+    padding-right: 5px;
+    padding-left: 5px;
+}

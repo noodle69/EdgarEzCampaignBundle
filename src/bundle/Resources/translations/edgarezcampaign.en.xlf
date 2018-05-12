@@ -336,6 +336,26 @@
         <target>Edit</target>
         <note>key: edgar.campaign.campaign.edit</note>
       </trans-unit>
+      <trans-unit id="e0229876253cd0b6e276074de9b0f52e49a14aa2" resname="edgar.campaign.campaign.preview">
+        <source>Preview</source>
+        <target state="new">Preview</target>
+        <note>key: edgar.campaign.campaign.preview</note>
+      </trans-unit>
+      <trans-unit id="1d15cb9d3257183c8bddd5e49b930432dcecbb16" resname="edgar.campaign.campaign.reports">
+        <source>Reports</source>
+        <target state="new">Reports</target>
+        <note>key: edgar.campaign.campaign.reports</note>
+      </trans-unit>
+      <trans-unit id="7c245e19081c16d02b26194ee7d171cf7036dc91" resname="edgar.campaign.campaign.schedule">
+        <source>Schedule</source>
+        <target state="new">Schedule</target>
+        <note>key: edgar.campaign.campaign.schedule</note>
+      </trans-unit>
+      <trans-unit id="13c173d55ddfd2f91a30ca533ca4468fc97c1eb0" resname="edgar.campaign.campaign.send">
+        <source>Send</source>
+        <target state="new">Send</target>
+        <note>key: edgar.campaign.campaign.send</note>
+      </trans-unit>
       <trans-unit id="bec268d2dc635b8a54a339ac2c47b6d0a3601547" resname="edgar.campaign.create.save">
         <source>Create</source>
         <target>Create</target>
@@ -343,7 +363,7 @@
       </trans-unit>
       <trans-unit id="f248c125d847f45466514aa88fce874a851a057b" resname="edgar.campaign.folder.create">
         <source>Create</source>
-        <target state="new">Create</target>
+        <target>Create</target>
         <note>key: edgar.campaign.folder.create</note>
       </trans-unit>
       <trans-unit id="904e9bc34656449fd8e0aab88d231ebc9ac86bdf" resname="edgar.campaign.folder.create.name">
@@ -458,7 +478,7 @@
       </trans-unit>
       <trans-unit id="e468a8b94435b1b5c6a433617bd40f7e95c40a34" resname="edgar.campaign.reports.choose">
         <source>Choose</source>
-        <target state="new">Choose</target>
+        <target>Choose</target>
         <note>key: edgar.campaign.reports.choose</note>
       </trans-unit>
       <trans-unit id="d30c8b0055b2dc1df242eb8d0f22fc8ad452ecda" resname="folder.create.success">

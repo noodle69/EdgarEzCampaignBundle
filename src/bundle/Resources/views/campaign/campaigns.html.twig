@@ -63,10 +63,7 @@
                 <th>{{ 'campaign.campaigns.emails_sent.th'|trans|desc('Emails sent') }}</th>
                 <th>{{ 'campaign.campaigns.send_time.th'|trans|desc('Send time') }}</th>
                 <th>{{ 'campaign.campaigns.list_name.th'|trans|desc('List name') }}</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th colspan="5"></th>
             </tr>
             </thead>
             <tbody>
@@ -81,10 +78,43 @@
                     <td>{{ campaign.emails_sent }}</td>
                     <td>{{ campaign.send_time }}</td>
                     <td>{{ campaign.recipients.list_name }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="text-right">
+                    <td class="text-right edgarezcampaign-td-icon">
+                        <a title="{{ 'edgar.campaign.campaign.preview'|trans|desc('Preview') }}"
+                           href="{{ path('edgar.campaign.reports', {'campaignId': campaign.id}) }}"
+                           class="btn btn-icon mx-3">
+                            <svg class="ez-icon ez-icon-edit">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#view"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="text-right edgarezcampaign-td-icon">
+                        <a title="{{ 'edgar.campaign.campaign.send'|trans|desc('Send') }}"
+                           href="{{ path('edgar.campaign.reports', {'campaignId': campaign.id}) }}"
+                           class="btn btn-icon mx-3">
+                            <svg class="ez-icon ez-icon-edit">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#mail"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="text-right edgarezcampaign-td-icon">
+                        <a title="{{ 'edgar.campaign.campaign.schedule'|trans|desc('Schedule') }}"
+                           href="{{ path('edgar.campaign.reports', {'campaignId': campaign.id}) }}"
+                           class="btn btn-icon mx-3">
+                            <svg class="ez-icon ez-icon-edit">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#schedule"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="text-right edgarezcampaign-td-icon">
+                        <a title="{{ 'edgar.campaign.campaign.reports'|trans|desc('Reports') }}"
+                           href="{{ path('edgar.campaign.reports', {'campaignId': campaign.id}) }}"
+                           class="btn btn-icon mx-3">
+                            <svg class="ez-icon ez-icon-edit">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#stats"></use>
+                            </svg>
+                        </a>
+                    </td>
+                    <td class="text-right edgarezcampaign-td-icon">
                         <a title="{{ 'edgar.campaign.campaign.edit'|trans|desc('Edit') }}"
                            href="{{ path('edgar.campaign.campaign.edit', {'campaignId': campaign.id}) }}"
                            class="btn btn-icon mx-3">
