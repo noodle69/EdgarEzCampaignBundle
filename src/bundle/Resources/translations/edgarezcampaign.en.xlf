@@ -338,22 +338,22 @@
       </trans-unit>
       <trans-unit id="e0229876253cd0b6e276074de9b0f52e49a14aa2" resname="edgar.campaign.campaign.preview">
         <source>Preview</source>
-        <target state="new">Preview</target>
+        <target>Preview</target>
         <note>key: edgar.campaign.campaign.preview</note>
       </trans-unit>
       <trans-unit id="1d15cb9d3257183c8bddd5e49b930432dcecbb16" resname="edgar.campaign.campaign.reports">
         <source>Reports</source>
-        <target state="new">Reports</target>
+        <target>Reports</target>
         <note>key: edgar.campaign.campaign.reports</note>
       </trans-unit>
       <trans-unit id="7c245e19081c16d02b26194ee7d171cf7036dc91" resname="edgar.campaign.campaign.schedule">
         <source>Schedule</source>
-        <target state="new">Schedule</target>
+        <target>Schedule</target>
         <note>key: edgar.campaign.campaign.schedule</note>
       </trans-unit>
       <trans-unit id="13c173d55ddfd2f91a30ca533ca4468fc97c1eb0" resname="edgar.campaign.campaign.send">
         <source>Send</source>
-        <target state="new">Send</target>
+        <target>Send</target>
         <note>key: edgar.campaign.campaign.send</note>
       </trans-unit>
       <trans-unit id="bec268d2dc635b8a54a339ac2c47b6d0a3601547" resname="edgar.campaign.create.save">
