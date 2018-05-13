@@ -3,6 +3,7 @@
 namespace Edgar\EzCampaign\FieldType\Campaign;
 
 use Edgar\EzCampaignBundle\Service\CampaignsService;
+use eZ\Publish\Core\Base\Exceptions\InvalidArgumentValue;
 use eZ\Publish\Core\FieldType\FieldType;
 use eZ\Publish\Core\FieldType\ValidationError;
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
@@ -177,7 +178,7 @@ class Type extends FieldType
                 }
             }
 
-            throw new InvalidValue($campaign);
+            throw new InvalidArgumentValue('$campaign', $campaign);
         }
 
         return new Value($campaigns);
