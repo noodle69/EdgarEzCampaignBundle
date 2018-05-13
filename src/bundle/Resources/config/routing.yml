@@ -49,36 +49,3 @@ edgar.campaign.list.edit:
     defaults: { _controller: "EdgarEzCampaignBundle:List:edit", listId: ~ }
     requirements:
         listId: "[0-9a-z]+"
-
-
-
-
-edgar.campaign.campaign.subscribe:
-    path: /campaign/{campaignID}/subscribe
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:subscribe", campaignID: ~ }
-    requirements:
-        campaignID: "[0-9a-z]+"
-
-edgar.campaign.folder.edit:
-    path: /folder/edit/{id}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:editFolder", id: ~ }
-
-edgar.campaign.folder.folders:
-    path: /folder/all/{query}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:allFolders", query: ~ }
-
-edgar.campaign.list:
-    path: /list/view/{campaignListID}
-    defaults: { _controller: "EdgarEzCampaignBundle:List:view", campaignListID: ~ }
-    requirements:
-        campaignListID: "[0-9a-z]+"
-
-edgar.campaign.list.delete:
-    path: /list/delete/{campaignListID}
-    defaults: { _controller: "EdgarEzCampaignBundle:List:delete", campaignListID: ~ }
-    requirements:
-        campaignListID: "[0-9a-z]+"
-
-edgar.campaign.list.lists:
-    path: /list/all/{query}
-    defaults: { _controller: "EdgarEzCampaignBundle:List:all", query: ~ }
