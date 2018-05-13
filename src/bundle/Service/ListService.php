@@ -53,6 +53,7 @@ class ListService extends BaseService
     public function post(ListCreateStruct $list)
     {
         $countrySelected = key($list->country->countries);
+        $languageCode = $list->language->getIdentifier();
 
         $return = $this->mailChimp->post('/lists', [
             'name' => $list->name,
@@ -72,7 +73,7 @@ class ListService extends BaseService
                 'from_name' => $list->from_name,
                 'from_email' => $list->from_email,
                 'subject' => $list->subject,
-                'language' => $list->language
+                'language' => $languageCode,
             ],
             'email_type_option' => false,
             'notify_on_subscribe' => $list->notify_on_subscribe,
@@ -109,6 +110,7 @@ class ListService extends BaseService
     public function patch(string $listId, ListUpdateData $list)
     {
         $countrySelected = key($list->country->countries);
+        $languageCode = $list->language->getIdentifier();
 
         $return = $this->mailChimp->patch('/lists/' .$listId, [
             'name' => $list->name,
@@ -128,7 +130,7 @@ class ListService extends BaseService
                 'from_name' => $list->from_name,
                 'from_email' => $list->from_email,
                 'subject' => $list->subject,
-                'language' => $list->language,
+                'language' => $languageCode,
             ],
             'email_type_option' => false,
             'notify_on_subscribe' => $list->notify_on_subscribe,

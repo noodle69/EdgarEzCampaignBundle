@@ -3,12 +3,12 @@
 namespace Edgar\EzCampaign\Form\Type;
 
 use Edgar\EzCampaign\Data\ListUpdateData;
+use Edgar\EzCampaign\Form\Type\Field\LanguageType;
 use EzSystems\RepositoryForms\Form\Type\FieldType\CountryFieldType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -119,7 +119,7 @@ class ListUpdateType extends AbstractType
             )
             ->add(
                 'language',
-                TextType::class,
+                LanguageType::class,
                 ['label' => /** @Desc("Language") */ 'edgar.campaign.list.create.language']
             )
             ->add(
