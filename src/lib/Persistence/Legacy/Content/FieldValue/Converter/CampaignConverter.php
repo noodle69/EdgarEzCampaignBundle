@@ -32,7 +32,7 @@ class CampaignConverter implements Converter
      */
     public function toStorageValue(FieldValue $value, StorageFieldValue $storageFieldValue)
     {
-        $storageFieldValue->dataText = $value->data;
+        $storageFieldValue->dataText = empty($value->data) ? '' : implode(',', $value->data);
         $storageFieldValue->sortKeyString = $value->sortKey;
     }
 
@@ -44,7 +44,7 @@ class CampaignConverter implements Converter
      */
     public function toFieldValue(StorageFieldValue $value, FieldValue $fieldValue)
     {
-        $fieldValue->data = $value->dataText;
+        $fieldValue->data = empty($value->dataText) ? null : explode(',', $value->dataText);
         $fieldValue->sortKey = $value->sortKeyString;
     }
 
@@ -56,7 +56,9 @@ class CampaignConverter implements Converter
      */
     public function toStorageFieldDefinition(FieldDefinition $fieldDef, StorageFieldDefinition $storageDef)
     {
-        $storageDef->dataText1 = $fieldDef->defaultValue->data;
+        $storageDef->dataText5 = $fieldDef->defaultValue->data === null
+            ? ''
+            : implode(',', $fieldDef->defaultValue->data);
     }
 
     /**
@@ -67,11 +69,10 @@ class CampaignConverter implements Converter
      */
     public function toFieldDefinition(StorageFieldDefinition $storageDef, FieldDefinition $fieldDef)
     {
-        $validatorConstraints = array();
-
-        $fieldDef->fieldTypeConstraints->validators = $validatorConstraints;
-        $fieldDef->defaultValue->data = $storageDef->dataText1 ?: null;
-        $fieldDef->defaultValue->sortKey = $storageDef->dataText1 ?: '';
+        $fieldDef->defaultValue->data = empty($storageDef->dataText5)
+            ? null
+            : explode(',', $storageDef->dataText5);
+        $fieldDef->defaultValue->sortKey = $storageDef->dataText5;
     }
 
     /**

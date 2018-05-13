@@ -6,21 +6,11 @@ use eZ\Publish\Core\FieldType\Value as BaseValue;
 
 class Value extends BaseValue
 {
-    /**
-     * Text content.
-     *
-     * @var string
-     */
-    public $text;
+    public $campaigns = array();
 
-    /**
-     * Construct a new Value object and initialize it $text.
-     *
-     * @param string $text
-     */
-    public function __construct($text = '')
+    public function __construct(array $campaigns = [])
     {
-        $this->text = $text;
+        $this->campaigns = $campaigns;
     }
 
     /**
@@ -28,6 +18,14 @@ class Value extends BaseValue
      */
     public function __toString()
     {
-        return (string)$this->text;
+        return implode(
+            ', ',
+            array_map(
+                function ($campaign) {
+                    return $campaign['settings']['title'];
+                },
+                $this->campaigns
+            )
+        );
     }
 }

@@ -64,5 +64,10 @@ class EdgarEzCampaignExtension extends Extension implements PrependExtensionInte
         $config = Yaml::parse(file_get_contents($configFile));
         $container->prependExtensionConfig('ezpublish', $config);
         $container->addResource(new FileResource($configFile));
+
+        $configFile = __DIR__ . '/../Resources/config/field_templates_ui.yml';
+        $config = Yaml::parse(file_get_contents($configFile));
+        $container->prependExtensionConfig('ezpublish', $config);
+        $container->addResource(new FileResource($configFile));
     }
 }

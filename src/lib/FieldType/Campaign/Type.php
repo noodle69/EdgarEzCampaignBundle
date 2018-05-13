@@ -2,67 +2,30 @@
 
 namespace Edgar\EzCampaign\FieldType\Campaign;
 
+use Edgar\EzCampaignBundle\Service\CampaignsService;
 use eZ\Publish\Core\FieldType\FieldType;
 use eZ\Publish\Core\FieldType\ValidationError;
 use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
 use eZ\Publish\Core\Base\Exceptions\InvalidArgumentType;
 use eZ\Publish\SPI\FieldType\Value as SPIValue;
 use eZ\Publish\Core\FieldType\Value as BaseValue;
+use Welp\MailchimpBundle\Exception\MailchimpException;
 
 class Type extends FieldType
 {
-    protected $validatorConfigurationSchema = array();
-
     /**
-     * Validates the validatorConfiguration of a FieldDefinitionCreateStruct or FieldDefinitionUpdateStruct.
-     *
-     * @param mixed $validatorConfiguration
-     *
-     * @return \eZ\Publish\SPI\FieldType\ValidationError[]
+     * @var array
      */
-    public function validateValidatorConfiguration($validatorConfiguration)
+    protected $campaigns;
+
+    public function __construct(CampaignsService $campaignsService)
     {
-        $validationErrors = [];
-
-        if (!$validatorConfiguration) {
-            return $validationErrors;
+        try {
+            $campaigns = $campaignsService->get(0, 0);
+            $this->campaigns = $campaigns['campaigns'];
+        } catch (MailchimpException $e) {
+            $this->campaigns = [];
         }
-
-        foreach ($validatorConfiguration as $validatorIdentifier => $constraints) {
-            if ($validatorIdentifier !== 'StringLengthValidator') {
-                $validationErrors[] = new ValidationError(
-                    "Validator '%validator%' is unknown",
-                    null,
-                    array(
-                        '%validator%' => $validatorIdentifier,
-                    )
-                );
-                continue;
-            }
-        }
-
-        return $validationErrors;
-    }
-
-    /**
-     * Validates a field based on the validators in the field definition.
-     *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
-     *
-     * @param \eZ\Publish\API\Repository\Values\ContentType\FieldDefinition $fieldDefinition The field definition of the field
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $fieldValue The field value for which an action is performed
-     *
-     * @return \eZ\Publish\SPI\FieldType\ValidationError[]
-     */
-    public function validate(FieldDefinition $fieldDefinition, SPIValue $fieldValue)
-    {
-        $validationErrors = [];
-
-        if ($this->isEmptyValue($fieldValue)) {
-            return $validationErrors;
-        }
-
-        return $validationErrors;
     }
 
     /**
@@ -81,36 +44,37 @@ class Type extends FieldType
      * It will be used to generate content name and url alias if current field is designated
      * to be used in the content name/urlAlias pattern.
      *
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $value
+     * @param Value $value
      *
      * @return string
      */
     public function getName(SPIValue $value)
     {
-        return (string)$value->text;
+        return (string)$value->campaigns['settings']['title'];
     }
 
+    /**
+     * Returns the fallback default value of field type when no such default
+     * value is provided in the field definition in content types.
+     *
+     * @return Value
+     */
     public function getEmptyValue()
     {
         return new Value();
     }
 
     /**
-     * Returns if the given $value is considered empty by the field type.
+     * Inspects given $inputValue and potentially converts it into a dedicated value object.
      *
-     * @param mixed $value
+     * @param array|Value $inputValue
      *
-     * @return bool
+     * @return Value The potentially converted and structurally plausible value.
      */
-    public function isEmptyValue(SPIValue $value)
-    {
-        return $value->text === null || trim($value->text) === '';
-    }
-
     protected function createValueFromInput($inputValue)
     {
-        if (is_string($inputValue)) {
-            $inputValue = new Value($inputValue);
+        if (is_array($inputValue)) {
+            $inputValue = $this->fromHash($inputValue);
         }
 
         return $inputValue;
@@ -121,51 +85,108 @@ class Type extends FieldType
      *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If the value does not match the expected structure.
      *
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $value
+     * @param Value $value
      */
     protected function checkValueStructure(BaseValue $value)
     {
-        if (!is_string($value->text)) {
+        if (!is_array($value->campaigns)) {
             throw new InvalidArgumentType(
-                '$value->text',
-                'string',
-                $value->text
+                '$value->campaigns',
+                'array',
+                $value->campaigns
             );
         }
     }
 
     /**
+     * Validates field value against 'isMultiple' setting.
+     *
+     * Does not use validators.
+     *
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
+     *
+     * @param \eZ\Publish\API\Repository\Values\ContentType\FieldDefinition $fieldDefinition The field definition of the field
+     * @param Value $fieldValue The field value for which an action is performed
+     *
+     * @return \eZ\Publish\SPI\FieldType\ValidationError[]
+     */
+    public function validate(FieldDefinition $fieldDefinition, SPIValue $fieldValue)
+    {
+        $validationErrors = array();
+
+        if ($this->isEmptyValue($fieldValue)) {
+            return $validationErrors;
+        }
+
+        foreach ($fieldValue->campaigns as $id => $campaign) {
+            $exists = false;
+            foreach ($this->campaigns as $camp) {
+                if ($id == $camp['id']) {
+                    $exists = true;
+                }
+            }
+
+            if (!$exists) {
+                $validationErrors[] = new ValidationError(
+                    "Campaign with id code '%id%' is not defined in FieldType settings.",
+                    null,
+                    array(
+                        '%id%' => $id,
+                    ),
+                    'edgarezcampaign'
+                );
+            }
+        }
+
+        return $validationErrors;
+    }
+
+    /**
      * Returns information for FieldValue->$sortKey relevant to the field type.
      *
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $value
+     * @param Value $value
      *
      * @return array
      */
     protected function getSortInfo(BaseValue $value)
     {
-        return $this->transformationProcessor->transformByGroup((string)$value, 'lowercase');
+        $campaigns = array();
+        foreach ($value->campaigns as $campaign) {
+            $campaigns[] = $this->transformationProcessor->transformByGroup($campaign['settings']['title'], 'lowercase');
+        }
+
+        sort($campaigns);
+
+        return implode(',', $campaigns);
     }
 
-    /**
-     * Converts an $hash to the Value defined by the field type.
-     *
-     * @param mixed $hash
-     *
-     * @return \eZ\Publish\Core\FieldType\TextLine\Value $value
-     */
     public function fromHash($hash)
     {
         if ($hash === null) {
             return $this->getEmptyValue();
         }
 
-        return new Value($hash);
+        $campaigns = array();
+        foreach ($hash as $campaign) {
+            foreach ($this->campaigns as $camp) {
+                switch ($campaign) {
+                    case $camp['settings']['title']:
+                    case $camp['id']:
+                        $campaigns[$camp['id']] = $camp;
+                        continue 3;
+                }
+            }
+
+            throw new InvalidValue($campaign);
+        }
+
+        return new Value($campaigns);
     }
 
     /**
      * Converts a $Value to a hash.
      *
-     * @param \eZ\Publish\Core\FieldType\TextLine\Value $value
+     * @param Value $value
      *
      * @return mixed
      */
@@ -175,7 +196,7 @@ class Type extends FieldType
             return null;
         }
 
-        return $value->text;
+        return array_keys($value->campaigns);
     }
 
     /**
@@ -185,6 +206,34 @@ class Type extends FieldType
      */
     public function isSearchable()
     {
-        return true;
+        return false;
+    }
+
+    /**
+     * Validates the fieldSettings of a FieldDefinitionCreateStruct or FieldDefinitionUpdateStruct.
+     *
+     * @param mixed $fieldSettings
+     *
+     * @return \eZ\Publish\SPI\FieldType\ValidationError[]
+     */
+    public function validateFieldSettings($fieldSettings)
+    {
+        $validationErrors = array();
+
+        foreach ($fieldSettings as $name => $value) {
+            if (!isset($this->settingsSchema[$name])) {
+                $validationErrors[] = new ValidationError(
+                    "Setting '%setting%' is unknown",
+                    null,
+                    array(
+                        '%setting%' => $name,
+                    ),
+                    "[$name]"
+                );
+                continue;
+            }
+        }
+
+        return $validationErrors;
     }
 }

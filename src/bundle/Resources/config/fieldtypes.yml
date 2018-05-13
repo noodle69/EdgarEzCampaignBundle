@@ -1,6 +1,8 @@
 services:
     Edgar\EzCampaign\FieldType\Campaign\Type:
         parent: ezpublish.fieldType
+        arguments:
+            $campaignsService: '@Edgar\EzCampaignBundle\Service\CampaignsService'
         tags:
             - {name: ezpublish.fieldType, alias: edgarcampaign}
 

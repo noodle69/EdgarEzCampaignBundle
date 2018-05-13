@@ -14,6 +14,8 @@ services:
         tags:
             - { name: kernel.event_listener, event: ezplatform_admin_ui.menu_configure.main_menu, method: onMenuConfigure }
 
+    Edgar\EzCampaignBundle\Service\CampaignsService: ~
+
     Edgar\EzCampaign\Form\Type\Field\ListType: ~
     Edgar\EzCampaign\Form\Type\Field\FolderType: ~
     Edgar\EzCampaign\Form\Type\Field\CampaignsType: ~
