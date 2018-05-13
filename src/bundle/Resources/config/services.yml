@@ -17,3 +17,4 @@ services:
     Edgar\EzCampaign\Form\Type\Field\ListType: ~
     Edgar\EzCampaign\Form\Type\Field\FolderType: ~
     Edgar\EzCampaign\Form\Type\Field\CampaignsType: ~
+    Edgar\EzCampaign\Form\Type\Field\LanguageType: ~
