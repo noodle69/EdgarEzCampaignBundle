@@ -1,4 +1,5 @@
 imports:
+    - { resource: controllers_ui.yml }
     - { resource: controllers.yml }
     - { resource: menu.yml }
     - { resource: tabs.yml }

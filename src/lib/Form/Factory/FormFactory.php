@@ -11,6 +11,7 @@ use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Data\ReportsData;
+use Edgar\EzCampaign\Data\SubscribeData;
 use Edgar\EzCampaign\Form\Type\CampaignCreateType;
 use Edgar\EzCampaign\Form\Type\CampaignUpdateType;
 use Edgar\EzCampaign\Form\Type\FolderCreateType;
@@ -20,6 +21,7 @@ use Edgar\EzCampaign\Form\Type\CampaignsDeleteType;
 use Edgar\EzCampaign\Form\Type\ListsDeleteType;
 use Edgar\EzCampaign\Form\Type\ListUpdateType;
 use Edgar\EzCampaign\Form\Type\ReportsType;
+use Edgar\EzCampaign\Form\Type\SubscribeType;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Util\StringUtil;
@@ -173,6 +175,19 @@ class FormFactory
             $name,
             ReportsType::class,
             $data ?? new ReportsData()
+        );
+    }
+
+    public function subscribe(
+        ?SubscribeData $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(SubscribeType::class);
+
+        return $this->formFactory->createNamed(
+            $name,
+            SubscribeType::class,
+            $data ?? new SubscribeData()
         );
     }
 }

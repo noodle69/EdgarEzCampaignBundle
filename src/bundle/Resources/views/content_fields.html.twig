@@ -5,15 +5,10 @@
         {% if not ez_is_field_empty(content, 'campaign') %}
             {% set field_value = field.value.campaigns %}
             {% for campaign in field_value %}
-                <div id="campaign-container-{{ field.id }}">
-                    <label for="campaign-{{ field.id }}">{{ 'Subscribe'|trans }}</label>
-                    <span class="message"></span>
-                    <input type="text"
-                           id="campaign-{{ field.id }}"
-                           class="edgarezcampaign-field"
-                           data-path="{{ path("edgar.campaign.campaign.subscribe", {"campaignID": campaign.id}) }}"/>
-                    <input type="submit" class="edgarezcampaign-submit" data-id="{{ field.id }}"/>
-                </div>
+                {{ render(controller(
+                    'EdgarEzCampaignBundle:Front:subscribe',
+                    { campaignId: campaign.id }
+                )) }}
             {% endfor %}
         {% endif %}
     {% endspaceless %}

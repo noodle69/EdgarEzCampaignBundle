@@ -21,21 +21,6 @@
         <target>Delete Campaign</target>
         <note>key: campaign.campaign.delete</note>
       </trans-unit>
-      <trans-unit id="5240757cde4591ed01705c47556207a4a9608bce" resname="campaign.campaign.folder_id">
-        <source>campaign.campaign.folder_id</source>
-        <target>campaign.campaign.folder_id</target>
-        <note>key: campaign.campaign.folder_id</note>
-      </trans-unit>
-      <trans-unit id="7f3db8b455b9591fe373d4f7331abca5f75ea268" resname="campaign.campaign.from_name">
-        <source>campaign.campaign.from_name</source>
-        <target>campaign.campaign.from_name</target>
-        <note>key: campaign.campaign.from_name</note>
-      </trans-unit>
-      <trans-unit id="d2d1a3e780ec01e7d77475bff548b563f4c8f64c" resname="campaign.campaign.list">
-        <source>campaign.campaign.list</source>
-        <target>campaign.campaign.list</target>
-        <note>key: campaign.campaign.list</note>
-      </trans-unit>
       <trans-unit id="73ba7d3f8d2613db0a48a21b557a4f7989ca1f62" resname="campaign.campaign.modal.message">
         <source>Do you want to delete Campaign?</source>
         <target>Do you want to delete Campaign?</target>
@@ -45,21 +30,6 @@
         <source>Create a new campaign</source>
         <target>Create a new campaign</target>
         <note>key: campaign.campaign.new</note>
-      </trans-unit>
-      <trans-unit id="d4dd78aa8f09e317b296007afdaaa950d43af684" resname="campaign.campaign.reply_to">
-        <source>campaign.campaign.reply_to</source>
-        <target>campaign.campaign.reply_to</target>
-        <note>key: campaign.campaign.reply_to</note>
-      </trans-unit>
-      <trans-unit id="ed4914164f539a3d5412290c254c19732e55bfb8" resname="campaign.campaign.subject_line">
-        <source>campaign.campaign.subject_line</source>
-        <target>campaign.campaign.subject_line</target>
-        <note>key: campaign.campaign.subject_line</note>
-      </trans-unit>
-      <trans-unit id="9dc0364aea33b83ae2cb07c9bb523ac801b45069" resname="campaign.campaign.title">
-        <source>campaign.campaign.title</source>
-        <target>campaign.campaign.title</target>
-        <note>key: campaign.campaign.title</note>
       </trans-unit>
       <trans-unit id="d7b46a2dffff1e8982526922efadf7207eb2c881" resname="campaign.campaigns.create_time.th">
         <source>Create time</source>
@@ -106,95 +76,25 @@
         <target>Campaign '%name%' created.</target>
         <note>key: campaign.create.success</note>
       </trans-unit>
-      <trans-unit id="6061fc1304924c8215a7341881ac620dbd94844b" resname="campaign.delete">
-        <source>campaign.delete</source>
-        <target>campaign.delete</target>
-        <note>key: campaign.delete</note>
-      </trans-unit>
       <trans-unit id="7f2ef18ac269916939d91c15c8988bbf19291b70" resname="campaign.edit.identifier">
         <source>Editing Campaign "%title%"</source>
         <target>Editing Campaign "%title%"</target>
         <note>key: campaign.edit.identifier</note>
-      </trans-unit>
-      <trans-unit id="dce2b75873b1cdc9e8e6965bc7b3a65d566ac6c8" resname="campaign.folder.name">
-        <source>campaign.folder.name</source>
-        <target>campaign.folder.name</target>
-        <note>key: campaign.folder.name</note>
-      </trans-unit>
-      <trans-unit id="308684418808d31f12d3ddaf68e9d2cc3f7d79c2" resname="campaign.list.address">
-        <source>campaign.list.address</source>
-        <target>campaign.list.address</target>
-        <note>key: campaign.list.address</note>
-      </trans-unit>
-      <trans-unit id="5fdc7869809c2a6ace2616f678b450b697e67f14" resname="campaign.list.city">
-        <source>campaign.list.city</source>
-        <target>campaign.list.city</target>
-        <note>key: campaign.list.city</note>
-      </trans-unit>
-      <trans-unit id="1236e0d017525e5d7eb3c05ecf361b48d9b039c7" resname="campaign.list.company">
-        <source>campaign.list.company</source>
-        <target>campaign.list.company</target>
-        <note>key: campaign.list.company</note>
-      </trans-unit>
-      <trans-unit id="a6838a53fabf291a9682c032efd04614de9e0438" resname="campaign.list.country">
-        <source>campaign.list.country</source>
-        <target>campaign.list.country</target>
-        <note>key: campaign.list.country</note>
       </trans-unit>
       <trans-unit id="2e83cc1d3a1cd46ff835c01fcd86ce975c6385c3" resname="campaign.list.delete">
         <source>Delete Subscription list</source>
         <target>Delete Subscription list</target>
         <note>key: campaign.list.delete</note>
       </trans-unit>
-      <trans-unit id="bc51ae456f213eb3b67a84d618f573a832a34219" resname="campaign.list.from_email">
-        <source>campaign.list.from_email</source>
-        <target>campaign.list.from_email</target>
-        <note>key: campaign.list.from_email</note>
-      </trans-unit>
-      <trans-unit id="3672a20a3141d62e1dd9c3b5e6a60a48ea5d5b2d" resname="campaign.list.from_name">
-        <source>campaign.list.from_name</source>
-        <target>campaign.list.from_name</target>
-        <note>key: campaign.list.from_name</note>
-      </trans-unit>
-      <trans-unit id="2ea5f199fb02338a4e8442352a0fd63ea3fa020b" resname="campaign.list.language">
-        <source>campaign.list.language</source>
-        <target>campaign.list.language</target>
-        <note>key: campaign.list.language</note>
-      </trans-unit>
       <trans-unit id="179723216956a3643bdfc9a2eea32e237b3cfffc" resname="campaign.list.modal.message">
         <source>Do you want to delete Subscription list?</source>
         <target>Do you want to delete Subscription list?</target>
         <note>key: campaign.list.modal.message</note>
       </trans-unit>
-      <trans-unit id="f36c7f32c8ef2b1254848a4d137ecb9285b30176" resname="campaign.list.name">
-        <source>campaign.list.name</source>
-        <target>campaign.list.name</target>
-        <note>key: campaign.list.name</note>
-      </trans-unit>
       <trans-unit id="ee59c3043e46182f04be450086c0df91cf21916a" resname="campaign.list.new">
         <source>Create a new subscription list</source>
         <target>Create a new subscription list</target>
         <note>key: campaign.list.new</note>
-      </trans-unit>
-      <trans-unit id="2e8b18e66db44c046560fdde901cb91c2dbe9241" resname="campaign.list.permission_reminder">
-        <source>campaign.list.permission_reminder</source>
-        <target>campaign.list.permission_reminder</target>
-        <note>key: campaign.list.permission_reminder</note>
-      </trans-unit>
-      <trans-unit id="c6a333a6ba3dfa43201255a13081d99ac3f45304" resname="campaign.list.state">
-        <source>campaign.list.state</source>
-        <target>campaign.list.state</target>
-        <note>key: campaign.list.state</note>
-      </trans-unit>
-      <trans-unit id="b5c987d7ab724f7b2aa377736e2ffafa23991e69" resname="campaign.list.subject">
-        <source>campaign.list.subject</source>
-        <target>campaign.list.subject</target>
-        <note>key: campaign.list.subject</note>
-      </trans-unit>
-      <trans-unit id="f7f81b1f1388683d32c3ecca98b545d02d542cd8" resname="campaign.list.zip">
-        <source>campaign.list.zip</source>
-        <target>campaign.list.zip</target>
-        <note>key: campaign.list.zip</note>
       </trans-unit>
       <trans-unit id="774a210771cd78446d70005713fa3cc39bc7754f" resname="campaign.lists.date_created.th">
         <source>Date created</source>
@@ -250,11 +150,6 @@
         <source>Open</source>
         <target>Open</target>
         <note>key: campaign.reports.name.open</note>
-      </trans-unit>
-      <trans-unit id="d30cebfc516ff91574331ec13edcd40e4dae0690" resname="campaign.save">
-        <source>campaign.save</source>
-        <target>campaign.save</target>
-        <note>key: campaign.save</note>
       </trans-unit>
       <trans-unit id="1682bec6b5b6ad80b214dab0dcb466230181f284" resname="campaign.update.error">
         <source>Failed to retrieve Campaign.</source>
@@ -356,10 +251,20 @@
         <target>Send</target>
         <note>key: edgar.campaign.campaign.send</note>
       </trans-unit>
+      <trans-unit id="8a2466c3ab4659b7a01f5565139ea5d7433aa64f" resname="edgar.campaign.campaign.subscribe.title">
+        <source>Email</source>
+        <target state="new">Email</target>
+        <note>key: edgar.campaign.campaign.subscribe.title</note>
+      </trans-unit>
       <trans-unit id="bec268d2dc635b8a54a339ac2c47b6d0a3601547" resname="edgar.campaign.create.save">
         <source>Create</source>
         <target>Create</target>
         <note>key: edgar.campaign.create.save</note>
+      </trans-unit>
+      <trans-unit id="10aacd7c2c51e5542053dec07cb7fa4dc20ae97a" resname="edgar.campaign.create.subscribe">
+        <source>Subscribe</source>
+        <target state="new">Subscribe</target>
+        <note>key: edgar.campaign.create.subscribe</note>
       </trans-unit>
       <trans-unit id="f248c125d847f45466514aa88fce874a851a057b" resname="edgar.campaign.folder.create">
         <source>Create</source>
@@ -480,6 +385,11 @@
         <source>Choose</source>
         <target>Choose</target>
         <note>key: edgar.campaign.reports.choose</note>
+      </trans-unit>
+      <trans-unit id="a165be11ec0a69eee703ec6b84268858f06e25ca" resname="edgar.campaign.subscribe">
+        <source>Campaign subscription: "%title%"</source>
+        <target state="new">Campaign subscription: "%title%"</target>
+        <note>key: edgar.campaign.subscribe</note>
       </trans-unit>
       <trans-unit id="d30c8b0055b2dc1df242eb8d0f22fc8ad452ecda" resname="folder.create.success">
         <source>Campaign Folder '%name%' created.</source>

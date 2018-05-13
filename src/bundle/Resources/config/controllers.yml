@@ -1,15 +1,8 @@
 services:
-    Edgar\EzCampaignBundle\Controller\:
-        resource: "../../Controller/*"
-        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
 
-    Edgar\EzCampaignBundle\Controller\CampaignController:
-        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
-        arguments:
-            $defaultPaginationLimit: '$pagination.campaign_limit;edgar_ez_campaign$'
-
-    Edgar\EzCampaignBundle\Controller\ListController:
-        parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
-        arguments:
-            $defaultPaginationLimit: '$pagination.list_limit;edgar_ez_campaign$'
-
+    Edgar\EzCampaignBundle\Controller\FrontController:
+        public: true

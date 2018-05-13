@@ -1,0 +1,18 @@
+{% form_theme form '@EzPlatformAdminUi/form_fields.html.twig'  %}
+
+{% trans_default_domain 'edgarezcampaign' %}
+
+{% block campaign_subscribe_form %}
+    {{ form_start(form, {'action': actionUrl}) }}
+        <div id="campaign-container-{{ campaign.id }}">
+            <h3>
+                {{ 'edgar.campaign.subscribe'|trans({ '%title%': campaign.settings.title })|desc('Campaign subscription: "%title%"') }}
+            </h3>
+            <p>
+                {{ campaign.settings.subject_line }}
+            </p>
+            {{ form_row(form.email) }}
+            {{ form_row(form.subscribe) }}
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

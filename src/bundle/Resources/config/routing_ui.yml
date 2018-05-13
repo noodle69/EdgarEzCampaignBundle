@@ -1,0 +1,51 @@
+edgar.campaign.campaigns:
+    path: /campaigns
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:campaigns" }
+
+edgar.campaign.lists:
+    path: /lists
+    defaults: { _controller: "EdgarEzCampaignBundle:List:lists" }
+
+edgar.campaign.reports:
+    path: /reports/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Reports:view", campaignId: ~ }
+
+edgar.campaign.campaign.bulk_delete:
+    path: /campaigns/delete
+    methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:bulkDelete" }
+
+edgar.campaign.folder.bulk_delete:
+    path: /folders/delete
+    methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Folder:bulkDelete" }
+
+edgar.campaign.list.bulk_delete:
+    path: /lists/delete
+    methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:List:bulkDelete" }
+
+edgar.campaign.campaign.create:
+    path: /campaign/create
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:create" }
+
+edgar.campaign.folder.create:
+    path: /folder/create
+    methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Folder:create" }
+
+edgar.campaign.list.create:
+    path: /list/create
+    defaults: { _controller: "EdgarEzCampaignBundle:List:create" }
+
+edgar.campaign.campaign.edit:
+    path: /campaign/edit/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:edit", campaignID: ~ }
+    requirements:
+        campaignId: "[0-9a-z]+"
+
+edgar.campaign.list.edit:
+    path: /list/edit/{listId}
+    defaults: { _controller: "EdgarEzCampaignBundle:List:edit", listId: ~ }
+    requirements:
+        listId: "[0-9a-z]+"
