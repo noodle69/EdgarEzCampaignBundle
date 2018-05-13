@@ -112,7 +112,7 @@ class Type extends FieldType
      */
     public function validate(FieldDefinition $fieldDefinition, SPIValue $fieldValue)
     {
-        $validationErrors = array();
+        $validationErrors = [];
 
         if ($this->isEmptyValue($fieldValue)) {
             return $validationErrors;
@@ -130,9 +130,9 @@ class Type extends FieldType
                 $validationErrors[] = new ValidationError(
                     "Campaign with id code '%id%' is not defined in FieldType settings.",
                     null,
-                    array(
+                    [
                         '%id%' => $id,
-                    ),
+                    ],
                     'edgarezcampaign'
                 );
             }
@@ -150,7 +150,7 @@ class Type extends FieldType
      */
     protected function getSortInfo(BaseValue $value)
     {
-        $campaigns = array();
+        $campaigns = [];
         foreach ($value->campaigns as $campaign) {
             $campaigns[] = $this->transformationProcessor->transformByGroup($campaign['settings']['title'], 'lowercase');
         }
@@ -166,7 +166,7 @@ class Type extends FieldType
             return $this->getEmptyValue();
         }
 
-        $campaigns = array();
+        $campaigns = [];
         foreach ($hash as $campaign) {
             foreach ($this->campaigns as $camp) {
                 switch ($campaign) {
@@ -218,16 +218,16 @@ class Type extends FieldType
      */
     public function validateFieldSettings($fieldSettings)
     {
-        $validationErrors = array();
+        $validationErrors = [];
 
         foreach ($fieldSettings as $name => $value) {
             if (!isset($this->settingsSchema[$name])) {
                 $validationErrors[] = new ValidationError(
                     "Setting '%setting%' is unknown",
                     null,
-                    array(
+                    [
                         '%setting%' => $name,
-                    ),
+                    ],
                     "[$name]"
                 );
                 continue;

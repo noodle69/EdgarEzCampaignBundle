@@ -6,7 +6,7 @@ use eZ\Publish\Core\FieldType\Value as BaseValue;
 
 class Value extends BaseValue
 {
-    public $campaigns = array();
+    public $campaigns = [];
 
     public function __construct(array $campaigns = [])
     {

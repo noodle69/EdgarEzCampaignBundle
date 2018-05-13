@@ -29,7 +29,7 @@ class EdgarEzCampaignExtension extends Extension implements PrependExtensionInte
      */
     private $configParsers;
 
-    public function __construct(array $configParsers = array())
+    public function __construct(array $configParsers = [])
     {
         $this->configParsers = $configParsers;
         $this->suggestionCollector = new SuggestionCollector();

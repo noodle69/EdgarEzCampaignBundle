@@ -132,7 +132,7 @@ class CampaignService extends BaseService
      */
     public function delete($campaignID)
     {
-        $return = $this->mailChimp->delete('/campaigns/' . $campaignID, array());
+        $return = $this->mailChimp->delete('/campaigns/' . $campaignID, []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -151,10 +151,10 @@ class CampaignService extends BaseService
      */
     public function test($campaignID, $email)
     {
-        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/test', array(
-            'test_emails' => array($email),
-            'send_type' => 'html'
-        ));
+        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/test', [
+            'test_emails' => [$email],
+            'send_type' => 'html',
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -172,7 +172,7 @@ class CampaignService extends BaseService
      */
     public function send($campaignID)
     {
-        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/send', array());
+        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/send', []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -190,7 +190,7 @@ class CampaignService extends BaseService
      */
     public function pause($campaignID)
     {
-        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/pause', array());
+        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/pause', []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -208,7 +208,7 @@ class CampaignService extends BaseService
      */
     public function resume($campaignID)
     {
-        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/resume', array());
+        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/resume', []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -227,9 +227,9 @@ class CampaignService extends BaseService
      */
     public function schedule($campaignID, $scheduleTime)
     {
-        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/schedule', array(
-            'schedule_time' => $scheduleTime
-        ));
+        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/schedule', [
+            'schedule_time' => $scheduleTime,
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -247,7 +247,7 @@ class CampaignService extends BaseService
      */
     public function unschedule($campaignID)
     {
-        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/unschedule', array());
+        $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/unschedule', []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());

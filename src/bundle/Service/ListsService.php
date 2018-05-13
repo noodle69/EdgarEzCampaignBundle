@@ -21,16 +21,16 @@ class ListsService extends BaseService
      */
     public function get($offset = 0, $count = 10)
     {
-        $lists = $this->mailChimp->get('/lists', array(
+        $lists = $this->mailChimp->get('/lists', [
             'offset' => $offset,
-            'count' => $count
-        ));
+            'count' => $count,
+        ]);
 
         if (!$this->mailChimp->success()) {
-            $lists = array(
-                'lists' => array(),
-                'total_items' => 0
-            );
+            $lists = [
+                'lists' => [],
+                'total_items' => 0,
+            ];
         }
 
         return $lists;

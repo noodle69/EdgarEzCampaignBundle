@@ -16,16 +16,16 @@ class FoldersService extends BaseService
      */
     public function get($offset = 0, $count = 10)
     {
-        $campaignFolders = $this->mailChimp->get('/campaign-folders', array(
+        $campaignFolders = $this->mailChimp->get('/campaign-folders', [
             'offset' => $offset,
-            'count' => $count
-        ));
+            'count' => $count,
+        ]);
 
         if (!$this->mailChimp->success()) {
-            $campaignFolders = array(
-                'folders' => array(),
-                'total_items' => 0
-            );
+            $campaignFolders = [
+                'folders' => [],
+                'total_items' => 0,
+            ];
         }
 
         return $campaignFolders;

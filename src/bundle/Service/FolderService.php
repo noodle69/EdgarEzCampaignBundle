@@ -21,7 +21,7 @@ class FolderService extends BaseService
      */
     public function get($campaignFolderID)
     {
-        $campaignFolder = $this->mailChimp->get('/campaign-folders/' . $campaignFolderID, array());
+        $campaignFolder = $this->mailChimp->get('/campaign-folders/' . $campaignFolderID, []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -60,9 +60,9 @@ class FolderService extends BaseService
      */
     public function patch($campaignFolderID, $name)
     {
-        $return = $this->mailChimp->patch('/campaign-folders/' . $campaignFolderID, array(
+        $return = $this->mailChimp->patch('/campaign-folders/' . $campaignFolderID, [
             'name' => $name,
-        ));
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());

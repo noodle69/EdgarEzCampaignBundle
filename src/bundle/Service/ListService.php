@@ -23,7 +23,7 @@ class ListService extends BaseService
      */
     public function get($listID)
     {
-        $list = $this->mailChimp->get('/lists/' . $listID, array());
+        $list = $this->mailChimp->get('/lists/' . $listID, []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -154,7 +154,7 @@ class ListService extends BaseService
      */
     public function delete($listID)
     {
-        $return = $this->mailChimp->delete('/lists/' . $listID, array());
+        $return = $this->mailChimp->delete('/lists/' . $listID, []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -173,15 +173,15 @@ class ListService extends BaseService
      */
     public function subscribe($listID, $email)
     {
-        $return = $this->mailChimp->post('/lists/' . $listID, array(
-            'members' => array(
-                array(
+        $return = $this->mailChimp->post('/lists/' . $listID, [
+            'members' => [
+                [
                     'email_address' => $email,
-                    'status' => 'subscribed'
-                )
-            ),
-            'update_existing' => true
-        ));
+                    'status' => 'subscribed',
+                ],
+            ],
+            'update_existing' => true,
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -200,15 +200,15 @@ class ListService extends BaseService
      */
     public function unsubscribe($listID, $email)
     {
-        $return = $this->mailChimp->post('/lists/' . $listID, array(
-            'members' => array(
-                array(
+        $return = $this->mailChimp->post('/lists/' . $listID, [
+            'members' => [
+                [
                     'email_address' => $email,
-                    'status' => 'unsubscribed'
-                )
-            ),
-            'update_existing' => true
-        ));
+                    'status' => 'unsubscribed',
+                ],
+            ],
+            'update_existing' => true,
+        ]);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());

@@ -21,16 +21,16 @@ class CampaignsService extends BaseService
      */
     public function get($offset = 0, $count = 10)
     {
-        $campaigns = $this->mailChimp->get('/campaigns', array(
+        $campaigns = $this->mailChimp->get('/campaigns', [
             'offset' => $offset,
-            'count' => $count
-        ));
+            'count' => $count,
+        ]);
 
         if (!$this->mailChimp->success()) {
-            $campaigns = array(
-                'campaigns' => array(),
-                'total_items' => 0
-            );
+            $campaigns = [
+                'campaigns' => [],
+                'total_items' => 0,
+            ];
         }
 
         return $campaigns;
@@ -46,16 +46,16 @@ class CampaignsService extends BaseService
      */
     public function search($query)
     {
-        $campaigns = $this->mailChimp->get('/search-campaigns', array(
+        $campaigns = $this->mailChimp->get('/search-campaigns', [
             'query' => $query,
-            'fields' => 'id,settings.title'
-        ));
+            'fields' => 'id,settings.title',
+        ]);
 
         if (!$this->mailChimp->success()) {
-            $campaigns = array(
-                'campaigns' => array(),
-                'total_items' => 0
-            );
+            $campaigns = [
+                'campaigns' => [],
+                'total_items' => 0,
+            ];
         }
 
         return $campaigns;
