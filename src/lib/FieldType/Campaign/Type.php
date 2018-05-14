@@ -221,20 +221,6 @@ class Type extends FieldType
     {
         $validationErrors = [];
 
-        foreach ($fieldSettings as $name => $value) {
-            if (!isset($this->settingsSchema[$name])) {
-                $validationErrors[] = new ValidationError(
-                    "Setting '%setting%' is unknown",
-                    null,
-                    [
-                        '%setting%' => $name,
-                    ],
-                    "[$name]"
-                );
-                continue;
-            }
-        }
-
         return $validationErrors;
     }
 }
