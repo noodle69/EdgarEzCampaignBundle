@@ -1,5 +1,6 @@
 edgar.campaign.campaign.subscribe:
-    path: /subscribe/{campaignId}
+    path: /subscribe/{campaignId}/{contentId}
     defaults: { _controller: "EdgarEzCampaignBundle:Front:subscribe" }
     requirements:
         campaignId: "[0-9a-z]+"
+        contentId: "[0-9]+"

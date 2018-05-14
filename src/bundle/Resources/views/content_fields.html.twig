@@ -7,7 +7,7 @@
             {% for campaign in field_value %}
                 {{ render(controller(
                     'EdgarEzCampaignBundle:Front:subscribe',
-                    { campaignId: campaign.id }
+                    { campaignId: campaign.id, contentId: content.id }
                 )) }}
             {% endfor %}
         {% endif %}

@@ -7,6 +7,8 @@ use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaignBundle\Service\CampaignService;
 use eZ\Bundle\EzPublishCoreBundle\Controller;
 use Edgar\EzCampaign\Data\SubscribeData;
+use eZ\Publish\API\Repository\Values\Content\Content;
+use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,22 +33,28 @@ class FrontController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    private $router;
+
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
         CampaignService $campaignService,
         SubmitHandler $submitHandler,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        UrlAliasRouter $router
     ) {
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
         $this->campaignService = $campaignService;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
+        $this->router = $router;
     }
 
-    public function subscribeAction(Request $request, string $campaignId): Response
+    public function subscribeAction(Request $request, string $campaignId, Content $content): Response
     {
+        $redirectUrl = $this->router->generate(URLAliasRouter::URL_ALIAS_ROUTE_NAME, ['contentId' => $content->id]);
+
         try {
             $campaign = $this->campaignService->get($campaignId);
 
@@ -70,17 +78,17 @@ class FrontController extends Controller
                 )
             );
 
-            return new RedirectResponse($request->server->get('SCRIPT_URI'));
+            return new RedirectResponse($redirectUrl);
         }
 
         $form = $this->formFactory->subscribe();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (SubscribeData $subscribe) use ($campaignId, $request) {
+            $result = $this->submitHandler->handle($form, function (SubscribeData $subscribe) use ($campaignId, $redirectUrl) {
                 $this->campaignService->subscribe($campaignId, $subscribe->email);
 
-                return new RedirectResponse($request->server->get('SCRIPT_URI'));
+                return new RedirectResponse($redirectUrl);
             });
 
             if ($result instanceof Response) {
@@ -90,7 +98,10 @@ class FrontController extends Controller
 
         return $this->render('@EdgarEzCampaign/campaign/campaign/subscribe.html.twig', [
             'form' => $form->createView(),
-            'actionUrl' => $this->generateUrl('edgar.campaign.campaign.subscribe', ['campaignId' => $campaignId]),
+            'actionUrl' => $this->generateUrl('edgar.campaign.campaign.subscribe', [
+                'campaignId' => $campaignId,
+                'contentId' => $content->id,
+            ]),
             'campaign' => $campaign,
         ]);
     }
