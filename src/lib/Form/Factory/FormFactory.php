@@ -3,21 +3,25 @@
 namespace Edgar\EzCampaign\Form\Factory;
 
 use Edgar\EzCampaign\Data\CampaignCreateData;
+use Edgar\EzCampaign\Data\CampaignDeleteData;
 use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Data\FolderCreateData;
 use Edgar\EzCampaign\Data\FoldersDeleteData;
 use Edgar\EzCampaign\Data\ListCreateData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
+use Edgar\EzCampaign\Data\ListDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Data\ReportsData;
 use Edgar\EzCampaign\Data\SubscribeData;
 use Edgar\EzCampaign\Form\Type\CampaignCreateType;
+use Edgar\EzCampaign\Form\Type\CampaignDeleteType;
 use Edgar\EzCampaign\Form\Type\CampaignUpdateType;
 use Edgar\EzCampaign\Form\Type\FolderCreateType;
 use Edgar\EzCampaign\Form\Type\FoldersDeleteType;
 use Edgar\EzCampaign\Form\Type\ListCreateType;
 use Edgar\EzCampaign\Form\Type\CampaignsDeleteType;
+use Edgar\EzCampaign\Form\Type\ListDeleteType;
 use Edgar\EzCampaign\Form\Type\ListsDeleteType;
 use Edgar\EzCampaign\Form\Type\ListUpdateType;
 use Edgar\EzCampaign\Form\Type\ReportsType;
@@ -144,12 +148,6 @@ class FormFactory
         return $this->formFactory->createNamed($name, CampaignUpdateType::class, $data);
     }
 
-    /**
-     * @param ListUpdateData $data
-     * @param null|string $name
-     *
-     * @return FormInterface
-     */
     public function updateList(
         ListUpdateData $data,
         ?string $name = null
@@ -189,5 +187,23 @@ class FormFactory
             SubscribeType::class,
             $data ?? new SubscribeData()
         );
+    }
+
+    public function deleteCampaign(
+        CampaignDeleteData $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignDeleteType::class);
+
+        return $this->formFactory->createNamed($name, CampaignDeleteType::class, $data);
+    }
+
+    public function deleteList(
+        ListDeleteData $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(ListDeleteType::class);
+
+        return $this->formFactory->createNamed($name, ListDeleteType::class, $data);
     }
 }

@@ -26,6 +26,11 @@
         <target>Save</target>
         <note>key: campaign_edit__sidebar_right__save</note>
       </trans-unit>
+      <trans-unit id="196b94dd7036155c2634320b03a5e98cc8173fa8" resname="campaign_view__sidebar_right__remove">
+        <source>Remove</source>
+        <target state="new">Remove</target>
+        <note>key: campaign_view__sidebar_right__remove</note>
+      </trans-unit>
       <trans-unit id="f2d762d1a35a21c154122e0c5000a4516582bf4f" resname="list_create__sidebar_right__cancel">
         <source>Discard changes</source>
         <target>Discard changes</target>
@@ -45,6 +50,11 @@
         <source>Save</source>
         <target>Save</target>
         <note>key: list_edit__sidebar_right__save</note>
+      </trans-unit>
+      <trans-unit id="0f85fe13496cad4c1f0430846f2f57819f574815" resname="list_view__sidebar_right__remove">
+        <source>Remove</source>
+        <target state="new">Remove</target>
+        <note>key: list_view__sidebar_right__remove</note>
       </trans-unit>
     </body>
   </file>

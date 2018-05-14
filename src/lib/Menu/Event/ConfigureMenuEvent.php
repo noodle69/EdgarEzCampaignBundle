@@ -10,8 +10,10 @@ class ConfigureMenuEvent extends Event
 {
     const CAMPAIGN_CREATE_SIDEBAR_RIGHT = 'edgar.menu.campaign_create.sidebar_right';
     const CAMPAIGN_EDIT_SIDEBAR_RIGHT = 'edgar.menu.campaign_edit.sidebar_right';
+    const CAMPAIGN_VIEW_SIDEBAR_RIGHT = 'edgar.menu.campaign_view.sidebar_right';
     const LIST_CREATE_SIDEBAR_RIGHT = 'edgar.menu.list_create.sidebar_right';
     const LIST_EDIT_SIDEBAR_RIGHT = 'edgar.menu.list_edit.sidebar_right';
+    const LIST_VIEW_SIDEBAR_RIGHT = 'edgar.menu.list_view.sidebar_right';
 
     /** @var FactoryInterface */
     private $factory;

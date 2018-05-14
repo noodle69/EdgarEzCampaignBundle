@@ -1,0 +1,34 @@
+{% extends 'EzPlatformAdminUiBundle:admin/language:base.html.twig' %}
+
+{% trans_default_domain 'edgarezcampaign' %}
+
+{% block breadcrumbs_admin %}
+    {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
+        { value: 'breadcrumb.campaign'|trans(domain='messages')|desc('Campaign') },
+        { url: path('edgar.campaign.campaigns'), value: 'campaigns.view'|trans|desc('Campaigns') },
+        { value: 'campaign.view.identifier'|trans({ '%title%': campaign.title })|desc('Campaign "%title%"') }
+    ]} %}
+{% endblock %}
+
+{% block page_title_admin %}
+    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+        title: 'campaign.view.identifier'|trans({ '%title%': campaign.title })|desc('Campaign "%title%"'),
+        iconName: 'newsletter'
+    } %}
+{% endblock %}
+
+{% block title %}{{ 'campaign.view.identifier'|trans({ '%title%': campaign.title })|desc('Campaign "%title%"') }}{% endblock %}
+
+{% block form %}
+
+    <section class="container mt-4 px-5">
+    </section>
+
+    {% include '@EdgarEzCampaign/campaign/campaign/modal_delete.html.twig' with {'form': form_delete, 'actionUrl' : actionUrl} only %}
+
+{% endblock %}
+
+{% block right_sidebar %}
+    {% set campaign_view_sidebar_right = knp_menu_get('edgar.menu.campaign_view.sidebar_right', [], {'campaign_id': campaign.id}) %}
+    {{ knp_menu_render(campaign_view_sidebar_right, {'template': '@EzPlatformAdminUi/parts/menu/sidebar_right.html.twig'}) }}
+{% endblock %}

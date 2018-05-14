@@ -60,8 +60,9 @@
                 <th>{{ 'campaign.lists.name.th'|trans|desc('Name') }}</th>
                 <th>{{ 'campaign.lists.date_created.th'|trans|desc('Date created') }}</th>
                 <th>{{ 'campaign.lists.member_count.th'|trans|desc('Member count') }}</th>
-                <th></th>
-                <th></th>
+                <th>{{ 'campaign.lists.open_rate.th'|trans|desc('Open rate') }}</th>
+                <th>{{ 'campaign.lists.click_rate.th'|trans|desc('Click rate') }}</th>
+                <th colspan="2"></th>
             </tr>
             </thead>
             <tbody>
@@ -73,7 +74,17 @@
                     <td>{{ list.name }}</td>
                     <td>{{ list.date_created }}</td>
                     <td>{{ list.stats.member_count }}</td>
-                    <td></td>
+                    <td>{{ list.stats.open_rate }} %</td>
+                    <td>{{ list.stats.click_rate }} %</td>
+                    <td class="text-right edgarezcampaign-td-icon">
+                        <a title="{{ 'edgar.campaign.list.preview'|trans|desc('Detail') }}"
+                           href="{{ path('edgar.campaign.list.view', {'listId': list.id}) }}"
+                           class="btn btn-icon mx-3">
+                            <svg class="ez-icon ez-icon-edit">
+                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#view"></use>
+                            </svg>
+                        </a>
+                    </td>
                     <td class="text-right edgarezcampaign-td-icon">
                         <a title="{{ 'edgar.campaign.list.edit'|trans|desc('Edit') }}"
                            href="{{ path('edgar.campaign.list.edit', {'listId': list.id}) }}"

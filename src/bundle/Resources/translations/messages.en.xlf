@@ -46,6 +46,26 @@
         <target>Campaign Folders</target>
         <note>key: campaign.folder.table.header</note>
       </trans-unit>
+      <trans-unit id="df482fc7bdc8a9ac10e56a67c4b5b81401f4e971" resname="campaign.trash.form.cancel">
+        <source>Cancel</source>
+        <target state="new">Cancel</target>
+        <note>key: campaign.trash.form.cancel</note>
+      </trans-unit>
+      <trans-unit id="3843cfef2196c4c1f42b966fd546822afe4deaf2" resname="campaign.trash.modal.message">
+        <source>Are you sure you want to Delete this Campaign?</source>
+        <target state="new">Are you sure you want to Delete this Campaign?</target>
+        <note>key: campaign.trash.modal.message</note>
+      </trans-unit>
+      <trans-unit id="ee64316552c1077bd9a64db935c5961979eda7bf" resname="list.trash.form.cancel">
+        <source>Cancel</source>
+        <target state="new">Cancel</target>
+        <note>key: list.trash.form.cancel</note>
+      </trans-unit>
+      <trans-unit id="800f3b30b745eda4f8e57fb9a917643013746e48" resname="list.trash.modal.message">
+        <source>Are you sure you want to Delete this Subscription list?</source>
+        <target state="new">Are you sure you want to Delete this Subscription list?</target>
+        <note>key: list.trash.modal.message</note>
+      </trans-unit>
       <trans-unit id="8f2b9444ccb9cbe697f7b07f385ee29e4edeaa7f" resname="main__campaign">
         <source>Campaign</source>
         <target>Campaign</target>

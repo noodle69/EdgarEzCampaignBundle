@@ -31,6 +31,11 @@
         <target>Create a new campaign</target>
         <note>key: campaign.campaign.new</note>
       </trans-unit>
+      <trans-unit id="b99d567f3080fb985339ff516a76762fa894b0a7" resname="campaign.campaign_trash_form.trash">
+        <source>Send to Trash</source>
+        <target state="new">Send to Trash</target>
+        <note>key: campaign.campaign_trash_form.trash</note>
+      </trans-unit>
       <trans-unit id="d7b46a2dffff1e8982526922efadf7207eb2c881" resname="campaign.campaigns.create_time.th">
         <source>Create time</source>
         <target>Create time</target>
@@ -76,6 +81,11 @@
         <target>Campaign '%name%' created.</target>
         <note>key: campaign.create.success</note>
       </trans-unit>
+      <trans-unit id="e24def51a6a15827043c3a8853c4f21890ac6b08" resname="campaign.delete.success">
+        <source>Campaign '%name%' updated.</source>
+        <target state="new">Campaign '%name%' updated.</target>
+        <note>key: campaign.delete.success</note>
+      </trans-unit>
       <trans-unit id="7f2ef18ac269916939d91c15c8988bbf19291b70" resname="campaign.edit.identifier">
         <source>Editing Campaign "%title%"</source>
         <target>Editing Campaign "%title%"</target>
@@ -96,6 +106,16 @@
         <target>Create a new subscription list</target>
         <note>key: campaign.list.new</note>
       </trans-unit>
+      <trans-unit id="ee1468703b967d30f9461257a4c2ccadfdea44ec" resname="campaign.list_trash_form.trash">
+        <source>Send to Trash</source>
+        <target state="new">Send to Trash</target>
+        <note>key: campaign.list_trash_form.trash</note>
+      </trans-unit>
+      <trans-unit id="47f6e8207477b6ade4bd246292f2e5cf335a3880" resname="campaign.lists.click_rate.th">
+        <source>Click rate</source>
+        <target>Click rate</target>
+        <note>key: campaign.lists.click_rate.th</note>
+      </trans-unit>
       <trans-unit id="774a210771cd78446d70005713fa3cc39bc7754f" resname="campaign.lists.date_created.th">
         <source>Date created</source>
         <target>Date created</target>
@@ -110,6 +130,11 @@
         <source>Name</source>
         <target>Name</target>
         <note>key: campaign.lists.name.th</note>
+      </trans-unit>
+      <trans-unit id="fd5ed8b6ebca308031dd2e36073df92424663a5a" resname="campaign.lists.open_rate.th">
+        <source>Open rate</source>
+        <target>Open rate</target>
+        <note>key: campaign.lists.open_rate.th</note>
       </trans-unit>
       <trans-unit id="6b18945909024fdc0629fc2a1ac26865fc0fbf42" resname="campaign.lists.table.header">
         <source>Subscription lists</source>
@@ -165,6 +190,11 @@
         <source>Campaign does not exists.</source>
         <target>Campaign does not exists.</target>
         <note>key: campaign.update.warning</note>
+      </trans-unit>
+      <trans-unit id="1e2f986cc45fd52469ffa9cdd9ae8a0a86fc196e" resname="campaign.view.identifier">
+        <source>Campaign "%title%"</source>
+        <target state="new">Campaign "%title%"</target>
+        <note>key: campaign.view.identifier</note>
       </trans-unit>
       <trans-unit id="c86b0fda67fe3289baaa36c0a43f0146dd4ca583" resname="campaigns.delete.error">
         <source>Error when deleting campaign.</source>
@@ -231,11 +261,6 @@
         <target>Edit</target>
         <note>key: edgar.campaign.campaign.edit</note>
       </trans-unit>
-      <trans-unit id="e0229876253cd0b6e276074de9b0f52e49a14aa2" resname="edgar.campaign.campaign.preview">
-        <source>Preview</source>
-        <target>Preview</target>
-        <note>key: edgar.campaign.campaign.preview</note>
-      </trans-unit>
       <trans-unit id="1d15cb9d3257183c8bddd5e49b930432dcecbb16" resname="edgar.campaign.campaign.reports">
         <source>Reports</source>
         <target>Reports</target>
@@ -253,8 +278,13 @@
       </trans-unit>
       <trans-unit id="8a2466c3ab4659b7a01f5565139ea5d7433aa64f" resname="edgar.campaign.campaign.subscribe.title">
         <source>Email</source>
-        <target state="new">Email</target>
+        <target>Email</target>
         <note>key: edgar.campaign.campaign.subscribe.title</note>
+      </trans-unit>
+      <trans-unit id="0e73695b627dfe6161af926366b140a2238d5d53" resname="edgar.campaign.campaign.view">
+        <source>Detail</source>
+        <target state="new">Detail</target>
+        <note>key: edgar.campaign.campaign.view</note>
       </trans-unit>
       <trans-unit id="bec268d2dc635b8a54a339ac2c47b6d0a3601547" resname="edgar.campaign.create.save">
         <source>Create</source>
@@ -263,7 +293,7 @@
       </trans-unit>
       <trans-unit id="10aacd7c2c51e5542053dec07cb7fa4dc20ae97a" resname="edgar.campaign.create.subscribe">
         <source>Subscribe</source>
-        <target state="new">Subscribe</target>
+        <target>Subscribe</target>
         <note>key: edgar.campaign.create.subscribe</note>
       </trans-unit>
       <trans-unit id="f248c125d847f45466514aa88fce874a851a057b" resname="edgar.campaign.folder.create">
@@ -376,6 +406,11 @@
         <target>Edit</target>
         <note>key: edgar.campaign.list.edit</note>
       </trans-unit>
+      <trans-unit id="7a28121c09687b6136b12f7e6f198f8e43e7143f" resname="edgar.campaign.list.preview">
+        <source>Detail</source>
+        <target state="new">Detail</target>
+        <note>key: edgar.campaign.list.preview</note>
+      </trans-unit>
       <trans-unit id="20fd2f70efde204b93d1c3864a03dee59af62b62" resname="edgar.campaign.reports.campaigns.name">
         <source>Campaigns</source>
         <target>Campaigns</target>
@@ -388,7 +423,7 @@
       </trans-unit>
       <trans-unit id="a165be11ec0a69eee703ec6b84268858f06e25ca" resname="edgar.campaign.subscribe">
         <source>Campaign subscription: "%title%"</source>
-        <target state="new">Campaign subscription: "%title%"</target>
+        <target>Campaign subscription: "%title%"</target>
         <note>key: edgar.campaign.subscribe</note>
       </trans-unit>
       <trans-unit id="d30c8b0055b2dc1df242eb8d0f22fc8ad452ecda" resname="folder.create.success">
@@ -426,6 +461,11 @@
         <target>List '%name%' created.</target>
         <note>key: list.create.success</note>
       </trans-unit>
+      <trans-unit id="6c03ef47e7b5114f49b72e803f8f4dcbb5c11687" resname="list.delete.success">
+        <source>Subscription list '%name%' updated.</source>
+        <target state="new">Subscription list '%name%' updated.</target>
+        <note>key: list.delete.success</note>
+      </trans-unit>
       <trans-unit id="685ae6715ed4e17b7ddbd92acf2bab83ecd2e92e" resname="list.edit.identifier">
         <source>Editing Subscription list "%name%"</source>
         <target>Editing Subscription list "%name%"</target>
@@ -455,6 +495,11 @@
         <source>Subscription list does not exists.</source>
         <target>Subscription list does not exists.</target>
         <note>key: list.update.warning</note>
+      </trans-unit>
+      <trans-unit id="b65bb6f89e6b622cb43d07a8868275a3ceb005c2" resname="list.view.identifier">
+        <source>Subscription list "%name%"</source>
+        <target state="new">Subscription list "%name%"</target>
+        <note>key: list.view.identifier</note>
       </trans-unit>
       <trans-unit id="0d0de680360e23b482566d6d5a0b3b03a8cdfa20" resname="lists.delete.campaigns_exists">
         <source>List '%name%' is associated with campaigns, it can't be removedd.</source>

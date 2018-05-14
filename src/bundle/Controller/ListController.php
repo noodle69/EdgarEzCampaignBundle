@@ -3,6 +3,7 @@
 namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\ListCreateData;
+use Edgar\EzCampaign\Data\ListDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Data\Mapper\ListMapper;
@@ -246,6 +247,106 @@ class ListController extends Controller
             'actionUrl' => $this->generateUrl('edgar.campaign.list.edit', ['listId' => $listId]),
             'list' => $list,
         ]);
+    }
+
+    public function viewAction(Request $request, string $listId): Response
+    {
+        try {
+            $list = $this->listService->get($listId);
+            $list = $this->listService->map($list);
+            $listData = new ListDeleteData(['id' => $list->getId()]);
+
+            if ($listData === false) {
+                $this->notificationHandler->warning(
+                    $this->translator->trans(
+                    /** @Desc("Subscription list does not exists.") */
+                        'list.update.warning',
+                        [],
+                        'edgarezcampaign'
+                    )
+                );
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+            }
+        } catch (MailchimpException $e) {
+            $this->notificationHandler->error(
+                $this->translator->trans(
+                /** @Desc("Failed to retrieve Subscription list.") */
+                    'list.update.error',
+                    [],
+                    'edgarezcampaign'
+                )
+            );
+
+            return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+        }
+
+        $listDeleteType = $this->formFactory->deleteList($listData);
+
+        return $this->render('@EdgarEzCampaign/campaign/list/view.html.twig', [
+            'form_delete' => $listDeleteType->createView(),
+            'actionUrl' => $this->generateUrl('edgar.campaign.list.delete', ['listId' => $listId]),
+            'list' => $list,
+        ]);
+    }
+
+    public function deleteAction(Request $request, string $listId): Response
+    {
+        try {
+            $list = $this->listService->get($listId);
+            $list = $this->listService->map($list);
+            $listData = new ListDeleteData(['id' => $list->getId()]);
+
+            if ($listData === false) {
+                $this->notificationHandler->warning(
+                    $this->translator->trans(
+                    /** @Desc("Subscription list does not exists.") */
+                        'list.update.warning',
+                        [],
+                        'edgarezcampaign'
+                    )
+                );
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+            }
+        } catch (MailchimpException $e) {
+            $this->notificationHandler->error(
+                $this->translator->trans(
+                /** @Desc("Failed to retrieve Subscription list.") */
+                    'list.update.error',
+                    [],
+                    'edgarezcampaign'
+                )
+            );
+
+            return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+        }
+
+        $form = $this->formFactory->deleteList($listData);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function (ListDeleteData $listDeleteData) use ($list) {
+                $this->listService->delete($list->id);
+
+                $this->notificationHandler->success(
+                    $this->translator->trans(
+                    /** @Desc("Subscription list '%name%' updated.") */
+                        'list.delete.success',
+                        ['%name%' => $list->getName()],
+                        'edgarezcampaign'
+                    )
+                );
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return new RedirectResponse($this->generateUrl('edgar.campaign.list.view', ['listId' => $listId]));
     }
 
     private function getListsNumbers(array $lists): array

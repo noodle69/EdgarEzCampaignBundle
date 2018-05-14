@@ -19,7 +19,17 @@ services:
         tags:
             - { name: knp_menu.menu_builder, method: build, alias: edgar.menu.campaign_edit.sidebar_right }
 
+    Edgar\EzCampaign\Menu\Admin\Campaign\CampaignViewRightSidebarBuilder:
+        public: true
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: edgar.menu.campaign_view.sidebar_right }
+
     Edgar\EzCampaign\Menu\Admin\Campaign\ListEditRightSidebarBuilder:
         public: true
         tags:
             - { name: knp_menu.menu_builder, method: build, alias: edgar.menu.list_edit.sidebar_right }
+
+    Edgar\EzCampaign\Menu\Admin\Campaign\ListViewRightSidebarBuilder:
+        public: true
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: edgar.menu.list_view.sidebar_right }

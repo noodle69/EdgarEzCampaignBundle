@@ -79,8 +79,8 @@
                     <td>{{ campaign.send_time }}</td>
                     <td>{{ campaign.recipients.list_name }}</td>
                     <td class="text-right edgarezcampaign-td-icon">
-                        <a title="{{ 'edgar.campaign.campaign.preview'|trans|desc('Preview') }}"
-                           href="{{ path('edgar.campaign.reports', {'campaignId': campaign.id}) }}"
+                        <a title="{{ 'edgar.campaign.campaign.view'|trans|desc('Detail') }}"
+                           href="{{ path('edgar.campaign.campaign.view', {'campaignId': campaign.id}) }}"
                            class="btn btn-icon mx-3">
                             <svg class="ez-icon ez-icon-edit">
                                 <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#view"></use>

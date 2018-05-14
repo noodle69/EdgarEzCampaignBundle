@@ -3,6 +3,7 @@
 namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\CampaignCreateData;
+use Edgar\EzCampaign\Data\CampaignDeleteData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Data\FoldersDeleteData;
@@ -267,6 +268,102 @@ class CampaignController extends Controller
             'actionUrl' => $this->generateUrl('edgar.campaign.campaign.edit', ['campaignId' => $campaignId]),
             'campaign' => $campaign,
         ]);
+    }
+
+    public function viewAction(Request $request, string $campaignId): Response
+    {
+        try {
+            $campaign = $this->campaignService->get($campaignId);
+            $campaign = $this->campaignService->map($campaign);
+            $campaignData = new CampaignDeleteData(['id' => $campaignId]);
+
+            if ($campaign === false) {
+                $this->notificationHandler->warning(
+                    $this->translator->trans(
+                    /** @Desc("Campaign does not exists.") */
+                        'campaign.update.warning',
+                        [],
+                        'edgarezcampaign'
+                    )
+                );
+            }
+        } catch (MailchimpException $e) {
+            $this->notificationHandler->error(
+                $this->translator->trans(
+                /** @Desc("Failed to retrieve Campaign.") */
+                    'campaign.update.error',
+                    [],
+                    'edgarezcampaign'
+                )
+            );
+
+            return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+        }
+
+        $campaignDeleteType = $this->formFactory->deleteCampaign($campaignData);
+
+        return $this->render('@EdgarEzCampaign/campaign/campaign/view.html.twig', [
+            'form_delete' => $campaignDeleteType->createView(),
+            'actionUrl' => $this->generateUrl('edgar.campaign.campaign.delete', ['campaignId' => $campaignId]),
+            'campaign' => $campaign,
+        ]);
+    }
+
+    public function deleteAction(Request $request, string $campaignId): Response
+    {
+        try {
+            $campaign = $this->campaignService->get($campaignId);
+            $campaign = $this->campaignService->map($campaign);
+            $campaignData = new CampaignDeleteData(['id' => $campaignId]);
+
+            if ($campaign === false) {
+                $this->notificationHandler->warning(
+                    $this->translator->trans(
+                    /** @Desc("Campaign does not exists.") */
+                        'campaign.update.warning',
+                        [],
+                        'edgarezcampaign'
+                    )
+                );
+            }
+        } catch (MailchimpException $e) {
+            $this->notificationHandler->error(
+                $this->translator->trans(
+                /** @Desc("Failed to retrieve Campaign.") */
+                    'campaign.update.error',
+                    [],
+                    'edgarezcampaign'
+                )
+            );
+
+            return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+        }
+
+        $form = $this->formFactory->deleteCampaign($campaignData);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function (CampaignDeleteData $campaignDeleteData) use ($campaign) {
+                $this->campaignService->delete($campaign->id);
+
+                $this->notificationHandler->success(
+                    $this->translator->trans(
+                    /** @Desc("Campaign '%name%' updated.") */
+                        'campaign.delete.success',
+                        ['%name%' => $campaign->title],
+                        'edgarezcampaign'
+                    )
+                );
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaignId]));
     }
 
     private function getCampaignsNumbers(array $campaigns): array
