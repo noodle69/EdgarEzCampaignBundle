@@ -15,6 +15,7 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
 {
     /* Menu items */
     const ITEM__EDIT = 'campaign_view__sidebar_right__edit';
+    const ITEM__REPORTS = 'campaign_view__sidebar_right__reports';
     const ITEM__REMOVE = 'campaign_view__sidebar_right__remove';
 
     /**
@@ -53,6 +54,16 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
                     'extras' => ['icon' => 'edit'],
                 ]
             ),
+            self::ITEM__REPORTS => $this->createMenuItem(
+                self::ITEM__REPORTS,
+                [
+                    'route' => 'edgar.campaign.reports',
+                    'routeParameters' => [
+                        'campaignId' => $campaignId,
+                    ],
+                    'extras' => ['icon' => 'stats'],
+                ]
+            ),
             self::ITEM__REMOVE => $this->createMenuItem(
                 self::ITEM__REMOVE,
                 [
@@ -75,6 +86,7 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
     {
         return [
             (new Message(self::ITEM__EDIT, 'menu'))->setDesc('Edit'),
+            (new Message(self::ITEM__REPORTS, 'menu'))->setDesc('Reports'),
             (new Message(self::ITEM__REMOVE, 'menu'))->setDesc('Remove'),
         ];
     }

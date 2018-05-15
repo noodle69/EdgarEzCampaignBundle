@@ -31,6 +31,36 @@
         <target>Create a new campaign</target>
         <note>key: campaign.campaign.new</note>
       </trans-unit>
+      <trans-unit id="67f0e149cc2fcc0053eb1b411bc9e863bdd81313" resname="campaign.campaign.view.folder.td">
+        <source>Folder</source>
+        <target state="new">Folder</target>
+        <note>key: campaign.campaign.view.folder.td</note>
+      </trans-unit>
+      <trans-unit id="4c7717f3cc1c8e39391871dfa04651b9726cfbec" resname="campaign.campaign.view.from_name.td">
+        <source>From name</source>
+        <target state="new">From name</target>
+        <note>key: campaign.campaign.view.from_name.td</note>
+      </trans-unit>
+      <trans-unit id="0e60e2531f08abed02c2cc31a30d171845230b09" resname="campaign.campaign.view.list.td">
+        <source>List</source>
+        <target state="new">List</target>
+        <note>key: campaign.campaign.view.list.td</note>
+      </trans-unit>
+      <trans-unit id="cab264adac83c24703194ed32e54e8d759750d0a" resname="campaign.campaign.view.reply_to.td">
+        <source>Reply to</source>
+        <target state="new">Reply to</target>
+        <note>key: campaign.campaign.view.reply_to.td</note>
+      </trans-unit>
+      <trans-unit id="3a3f59f5d02a528f62926d2d80777598723d86aa" resname="campaign.campaign.view.subject_line.td">
+        <source>Subject line</source>
+        <target state="new">Subject line</target>
+        <note>key: campaign.campaign.view.subject_line.td</note>
+      </trans-unit>
+      <trans-unit id="7817842c37ea7d011356785e91894468d6358501" resname="campaign.campaign.view.table.header">
+        <source>Campaign detail</source>
+        <target state="new">Campaign detail</target>
+        <note>key: campaign.campaign.view.table.header</note>
+      </trans-unit>
       <trans-unit id="b99d567f3080fb985339ff516a76762fa894b0a7" resname="campaign.campaign_trash_form.trash">
         <source>Send to Trash</source>
         <target>Send to Trash</target>
@@ -105,6 +135,91 @@
         <source>Create a new subscription list</source>
         <target>Create a new subscription list</target>
         <note>key: campaign.list.new</note>
+      </trans-unit>
+      <trans-unit id="cd0574e54583dca4fe6e21eee223ee780011e935" resname="campaign.list.view.address.td">
+        <source>Address</source>
+        <target state="new">Address</target>
+        <note>key: campaign.list.view.address.td</note>
+      </trans-unit>
+      <trans-unit id="09fe58f40d51486960995af00e18fbdd41e665db" resname="campaign.list.view.address2.td">
+        <source>Additionnal Address</source>
+        <target state="new">Additionnal Address</target>
+        <note>key: campaign.list.view.address2.td</note>
+      </trans-unit>
+      <trans-unit id="a2c91344e9316302336405dbcbe0efd3fb26d704" resname="campaign.list.view.city.td">
+        <source>City</source>
+        <target state="new">City</target>
+        <note>key: campaign.list.view.city.td</note>
+      </trans-unit>
+      <trans-unit id="6d68abf3d30e6c9f2822b7399d8a7f4364e36433" resname="campaign.list.view.company.td">
+        <source>Company</source>
+        <target state="new">Company</target>
+        <note>key: campaign.list.view.company.td</note>
+      </trans-unit>
+      <trans-unit id="8de63f8ca840231939d064e900b69d6e2044f984" resname="campaign.list.view.country.td">
+        <source>Country</source>
+        <target state="new">Country</target>
+        <note>key: campaign.list.view.country.td</note>
+      </trans-unit>
+      <trans-unit id="04b2a41de2869a2a4063fff3b39d04a47b5c687a" resname="campaign.list.view.from_email.td">
+        <source>From email</source>
+        <target state="new">From email</target>
+        <note>key: campaign.list.view.from_email.td</note>
+      </trans-unit>
+      <trans-unit id="ecd2589fd34494a0e9298b9262baa8a6a9124269" resname="campaign.list.view.from_name.td">
+        <source>From name</source>
+        <target state="new">From name</target>
+        <note>key: campaign.list.view.from_name.td</note>
+      </trans-unit>
+      <trans-unit id="1b2cd337069710e2548b5037b96e7f2c33292c04" resname="campaign.list.view.language.td">
+        <source>Language</source>
+        <target state="new">Language</target>
+        <note>key: campaign.list.view.language.td</note>
+      </trans-unit>
+      <trans-unit id="1a9dc19ad46e32ce17a30b316fca4462641a4ed8" resname="campaign.list.view.notify_on_subscribe.td">
+        <source>Notify on subscribe</source>
+        <target state="new">Notify on subscribe</target>
+        <note>key: campaign.list.view.notify_on_subscribe.td</note>
+      </trans-unit>
+      <trans-unit id="2ce065d880563fdfa7d590490bb247cff9f3ac93" resname="campaign.list.view.notify_on_unsubscribe.td">
+        <source>Notify on unsubscribe</source>
+        <target state="new">Notify on unsubscribe</target>
+        <note>key: campaign.list.view.notify_on_unsubscribe.td</note>
+      </trans-unit>
+      <trans-unit id="b875e2fca1a7673e1646fa905d60192bd3202e3d" resname="campaign.list.view.permission_reminder.td">
+        <source>Permission reminder</source>
+        <target state="new">Permission reminder</target>
+        <note>key: campaign.list.view.permission_reminder.td</note>
+      </trans-unit>
+      <trans-unit id="2f55acb2e4997e19c35cb06ae82f63519bae5eab" resname="campaign.list.view.phone.td">
+        <source>phone</source>
+        <target state="new">phone</target>
+        <note>key: campaign.list.view.phone.td</note>
+      </trans-unit>
+      <trans-unit id="7728e0841b8ccf6cfdddff4aac134dd0aed3368d" resname="campaign.list.view.state.td">
+        <source>State</source>
+        <target state="new">State</target>
+        <note>key: campaign.list.view.state.td</note>
+      </trans-unit>
+      <trans-unit id="cf9e38cb9d0d77f7bfd49b9dee0e1d3a390e159c" resname="campaign.list.view.subject.td">
+        <source>Subject</source>
+        <target state="new">Subject</target>
+        <note>key: campaign.list.view.subject.td</note>
+      </trans-unit>
+      <trans-unit id="aeb8ce9a76faab6b0cce9f1b280341e040e4839a" resname="campaign.list.view.table.header">
+        <source>List detail</source>
+        <target state="new">List detail</target>
+        <note>key: campaign.list.view.table.header</note>
+      </trans-unit>
+      <trans-unit id="f8f56061c7ab5774ab9ae16ea9b67834fcc253bf" resname="campaign.list.view.visibility.td">
+        <source>Visibility</source>
+        <target state="new">Visibility</target>
+        <note>key: campaign.list.view.visibility.td</note>
+      </trans-unit>
+      <trans-unit id="edea191f38091fa9dcd91e83d2071af3eaf3b981" resname="campaign.list.view.zip.td">
+        <source>Zip</source>
+        <target state="new">Zip</target>
+        <note>key: campaign.list.view.zip.td</note>
       </trans-unit>
       <trans-unit id="ee1468703b967d30f9461257a4c2ccadfdea44ec" resname="campaign.list_trash_form.trash">
         <source>Send to Trash</source>
@@ -298,7 +413,7 @@
       </trans-unit>
       <trans-unit id="bd44cbf931ea651b3d948075fd59003eb32cf735" resname="edgar.campaign.error">
         <source>Field errors: %errors%.</source>
-        <target state="new">Field errors: %errors%.</target>
+        <target>Field errors: %errors%.</target>
         <note>key: edgar.campaign.error</note>
       </trans-unit>
       <trans-unit id="f248c125d847f45466514aa88fce874a851a057b" resname="edgar.campaign.folder.create">

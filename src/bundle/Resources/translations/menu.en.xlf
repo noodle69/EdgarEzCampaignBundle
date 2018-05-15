@@ -36,6 +36,11 @@
         <target>Remove</target>
         <note>key: campaign_view__sidebar_right__remove</note>
       </trans-unit>
+      <trans-unit id="81ec4d0254adb4f378d369e645876a6f73000855" resname="campaign_view__sidebar_right__reports">
+        <source>Reports</source>
+        <target state="new">Reports</target>
+        <note>key: campaign_view__sidebar_right__reports</note>
+      </trans-unit>
       <trans-unit id="f2d762d1a35a21c154122e0c5000a4516582bf4f" resname="list_create__sidebar_right__cancel">
         <source>Discard changes</source>
         <target>Discard changes</target>
