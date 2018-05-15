@@ -163,20 +163,29 @@ class ListController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (ListCreateData $data) {
-                $listCreateStruct = $this->listMapper->reverseMap($data);
-                $list = $this->listService->post($listCreateStruct);
+            $result = $this->submitHandler->handle($form, function (ListCreateData $data) use ($form) {
+                try {
+                    $listCreateStruct = $this->listMapper->reverseMap($data);
+                    $list = $this->listService->post($listCreateStruct);
 
-                $this->notificationHandler->success(
-                    $this->translator->trans(
-                    /** @Desc("List '%name%' created.") */
-                        'list.create.success',
-                        ['%name%' => $list['name']],
-                        'edgarezcampaign'
-                    )
-                );
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
+                        /** @Desc("List '%name%' created.") */
+                            'list.create.success',
+                            ['%name%' => $list['name']],
+                            'edgarezcampaign'
+                        )
+                    );
 
-                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+                    return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+                } catch (MailchimpException $e) {
+                    $this->notifyError($e);
+
+                    return $this->render('@EdgarEzCampaign/campaign/list/create.html.twig', [
+                        'form' => $form->createView(),
+                        'actionUrl' => $this->generateUrl('edgar.campaign.list.create'),
+                    ]);
+                }
             });
 
             if ($result instanceof Response) {
@@ -222,19 +231,29 @@ class ListController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (ListUpdateData $list) use ($listId) {
-                $this->listService->patch($listId, $list);
+            $result = $this->submitHandler->handle($form, function (ListUpdateData $list) use ($form, $listId) {
+                try {
+                    $this->listService->patch($listId, $list);
 
-                $this->notificationHandler->success(
-                    $this->translator->trans(
-                    /** @Desc("Subscription list '%name%' updated.") */
-                        'list.update.success',
-                        ['%name%' => $list->name],
-                        'edgarezcampaign'
-                    )
-                );
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
+                        /** @Desc("Subscription list '%name%' updated.") */
+                            'list.update.success',
+                            ['%name%' => $list->name],
+                            'edgarezcampaign'
+                        )
+                    );
 
-                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+                    return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
+                } catch (MailchimpException $e) {
+                    $this->notifyError($e);
+
+                    return $this->render('@EdgarEzCampaign/campaign/list/edit.html.twig', [
+                        'form' => $form->createView(),
+                        'actionUrl' => $this->generateUrl('edgar.campaign.list.edit', ['listId' => $listId]),
+                        'list' => $list,
+                    ]);
+                }
             });
 
             if ($result instanceof Response) {
@@ -359,5 +378,21 @@ class ListController extends Controller
         }
 
         return array_combine($listsNumbers, array_fill_keys($listsNumbers, false));
+    }
+
+    private function notifyError(MailchimpException $e) {
+        $errors = [];
+        $errorsArray = $e->getErrors();
+        foreach ($errorsArray as $error) {
+            $errors[] = 'field: ' . $error['field'] . ', ' . $error['message'];
+        }
+        $this->notificationHandler->error(
+            $this->translator->trans(
+            /** @Desc("Field errors: %errors%.") */
+                'edgar.campaign.error',
+                ['%errors%' => implode( '|', $errors)],
+                'edgarezcampaign'
+            )
+        );
     }
 }

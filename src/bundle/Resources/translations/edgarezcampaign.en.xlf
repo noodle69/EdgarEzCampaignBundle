@@ -296,6 +296,11 @@
         <target>Subscribe</target>
         <note>key: edgar.campaign.create.subscribe</note>
       </trans-unit>
+      <trans-unit id="bd44cbf931ea651b3d948075fd59003eb32cf735" resname="edgar.campaign.error">
+        <source>Field errors: %errors%.</source>
+        <target state="new">Field errors: %errors%.</target>
+        <note>key: edgar.campaign.error</note>
+      </trans-unit>
       <trans-unit id="f248c125d847f45466514aa88fce874a851a057b" resname="edgar.campaign.folder.create">
         <source>Create</source>
         <target>Create</target>

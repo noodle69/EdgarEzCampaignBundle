@@ -182,20 +182,29 @@ class CampaignController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (CampaignCreateData $data) {
-                $campaignCreateStruct = $this->campaignMapper->reverseMap($data);
-                $campaign = $this->campaignService->post($campaignCreateStruct);
+            $result = $this->submitHandler->handle($form, function (CampaignCreateData $data) use ($form) {
+                try {
+                    $campaignCreateStruct = $this->campaignMapper->reverseMap($data);
+                    $campaign = $this->campaignService->post($campaignCreateStruct);
 
-                $this->notificationHandler->success(
-                    $this->translator->trans(
-                    /** @Desc("Campaign '%name%' created.") */
-                        'campaign.create.success',
-                        ['%name%' => $campaign['settings']['title']],
-                        'edgarezcampaign'
-                    )
-                );
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
+                        /** @Desc("Campaign '%name%' created.") */
+                            'campaign.create.success',
+                            ['%name%' => $campaign['settings']['title']],
+                            'edgarezcampaign'
+                        )
+                    );
 
-                return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+                    return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+                } catch (MailchimpException $e) {
+                    $this->notifyError($e);
+
+                    return $this->render('@EdgarEzCampaign/campaign/campaign/create.html.twig', [
+                        'form' => $form->createView(),
+                        'actionUrl' => $this->generateUrl('edgar.campaign.campaign.create'),
+                    ]);
+                }
             });
 
             if ($result instanceof Response) {
@@ -243,31 +252,33 @@ class CampaignController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (CampaignUpdateData $campaign) use ($campaignId) {
-                $this->campaignService->patch($campaignId, $campaign);
+            $result = $this->submitHandler->handle($form, function (CampaignUpdateData $campaign) use ($form, $campaignId) {
+                try {
+                    $this->campaignService->patch($campaignId, $campaign);
 
-                $this->notificationHandler->success(
-                    $this->translator->trans(
-                    /** @Desc("Campaign '%name%' updated.") */
-                        'campaign.update.success',
-                        ['%name%' => $campaign->title],
-                        'edgarezcampaign'
-                    )
-                );
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
+                        /** @Desc("Campaign '%name%' updated.") */
+                            'campaign.update.success',
+                            ['%name%' => $campaign->title],
+                            'edgarezcampaign'
+                        )
+                    );
 
-                return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+                    return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
+                } catch (MailchimpException $e) {
+                    return $this->render('@EdgarEzCampaign/campaign/campaign/edit.html.twig', [
+                        'form' => $form->createView(),
+                        'actionUrl' => $this->generateUrl('edgar.campaign.campaign.edit', ['campaignId' => $campaignId]),
+                        'campaign' => $campaign,
+                    ]);
+                }
             });
 
             if ($result instanceof Response) {
                 return $result;
             }
         }
-
-        return $this->render('@EdgarEzCampaign/campaign/campaign/edit.html.twig', [
-            'form' => $form->createView(),
-            'actionUrl' => $this->generateUrl('edgar.campaign.campaign.edit', ['campaignId' => $campaignId]),
-            'campaign' => $campaign,
-        ]);
     }
 
     public function viewAction(Request $request, string $campaignId): Response
@@ -388,5 +399,21 @@ class CampaignController extends Controller
         }
 
         return array_combine($foldersNumbers, array_fill_keys($foldersNumbers, false));
+    }
+
+    private function notifyError(MailchimpException $e) {
+        $errors = [];
+        $errorsArray = $e->getErrors();
+        foreach ($errorsArray as $error) {
+            $errors[] = 'field: ' . $error['field'] . ', ' . $error['message'];
+        }
+        $this->notificationHandler->error(
+            $this->translator->trans(
+            /** @Desc("Field errors: %errors%.") */
+                'edgar.campaign.error',
+                ['%errors%' => implode( '|', $errors)],
+                'edgarezcampaign'
+            )
+        );
     }
 }

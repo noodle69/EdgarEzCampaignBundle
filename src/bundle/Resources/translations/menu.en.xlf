@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="d820627927e995ebc2bd17afc44f7c55aa73d7a3" resname="campaign_view__sidebar_right__edit">
         <source>Edit</source>
-        <target state="new">Edit</target>
+        <target>Edit</target>
         <note>key: campaign_view__sidebar_right__edit</note>
       </trans-unit>
       <trans-unit id="196b94dd7036155c2634320b03a5e98cc8173fa8" resname="campaign_view__sidebar_right__remove">
@@ -58,7 +58,7 @@
       </trans-unit>
       <trans-unit id="e998a34239b7e1955dde783daf948447682f6143" resname="list_view__sidebar_right__edit">
         <source>Edit</source>
-        <target state="new">Edit</target>
+        <target>Edit</target>
         <note>key: list_view__sidebar_right__edit</note>
       </trans-unit>
       <trans-unit id="0f85fe13496cad4c1f0430846f2f57819f574815" resname="list_view__sidebar_right__remove">
