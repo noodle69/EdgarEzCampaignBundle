@@ -14,6 +14,7 @@ use Knp\Menu\ItemInterface;
 class CampaignViewRightSidebarBuilder extends AbstractBuilder implements TranslationContainerInterface
 {
     /* Menu items */
+    const ITEM__EDIT = 'campaign_view__sidebar_right__edit';
     const ITEM__REMOVE = 'campaign_view__sidebar_right__remove';
 
     /**
@@ -42,6 +43,16 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
         $menu = $this->factory->createItem('root');
 
         $menu->setChildren([
+            self::ITEM__EDIT => $this->createMenuItem(
+                self::ITEM__EDIT,
+                [
+                    'route' => 'edgar.campaign.campaign.edit',
+                    'routeParameters' => [
+                        'campaignId' => $campaignId,
+                    ],
+                    'extras' => ['icon' => 'edit'],
+                ]
+            ),
             self::ITEM__REMOVE => $this->createMenuItem(
                 self::ITEM__REMOVE,
                 [
@@ -63,6 +74,7 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
     public static function getTranslationMessages(): array
     {
         return [
+            (new Message(self::ITEM__EDIT, 'menu'))->setDesc('Edit'),
             (new Message(self::ITEM__REMOVE, 'menu'))->setDesc('Remove'),
         ];
     }
