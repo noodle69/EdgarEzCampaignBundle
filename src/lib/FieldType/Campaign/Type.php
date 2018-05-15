@@ -177,8 +177,6 @@ class Type extends FieldType
                         continue 3;
                 }
             }
-
-            throw new InvalidArgumentValue('$campaign', $campaign);
         }
 
         return new Value($campaigns);
