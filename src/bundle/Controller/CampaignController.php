@@ -14,6 +14,7 @@ use Edgar\EzCampaignBundle\Service\CampaignService;
 use Edgar\EzCampaignBundle\Service\CampaignsService;
 use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
+use Edgar\EzCampaignBundle\Service\ListService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Pagerfanta\Adapter\ArrayAdapter;
@@ -49,6 +50,9 @@ class CampaignController extends Controller
     /** @var FoldersService  */
     protected $foldersService;
 
+    /** @var ListService  */
+    protected $listService;
+
     /** @var CampaignMapper  */
     protected $campaignMapper;
 
@@ -68,6 +72,7 @@ class CampaignController extends Controller
         CampaignService $campaignService,
         FoldersService $foldersService,
         FolderService $folderService,
+        ListService $listService,
         CampaignMapper $campaignCreateMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
@@ -79,6 +84,7 @@ class CampaignController extends Controller
         $this->campaignsService = $campaignsService;
         $this->folderService = $folderService;
         $this->foldersService = $foldersService;
+        $this->listService = $listService;
         $this->campaignMapper = $campaignCreateMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
@@ -324,6 +330,8 @@ class CampaignController extends Controller
         return $this->render('@EdgarEzCampaign/campaign/campaign/view.html.twig', [
             'form_delete' => $campaignDeleteType->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.campaign.delete', ['campaignId' => $campaignId]),
+            'list' => $this->listService->get($campaign->getListId()),
+            'folder' => $this->folderService->get($campaign->getFolderId()),
             'campaign' => $campaign,
         ]);
     }

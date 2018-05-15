@@ -18,6 +18,9 @@ class CampaignService extends BaseService
     /** @var ListService $listService Campaign List service */
     protected $listService;
 
+    /** @var FolderService  */
+    protected $folderService;
+
     /**
      * CampaignService constructor.
      *
@@ -26,11 +29,12 @@ class CampaignService extends BaseService
      */
     public function __construct(
         MailChimp $mailChimp,
-        ListService $listService
-    )
-    {
+        ListService $listService,
+        FolderService $folderService
+    ) {
         parent::__construct($mailChimp);
         $this->listService = $listService;
+        $this->folderService = $folderService;
     }
 
     /**

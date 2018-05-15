@@ -22,6 +22,39 @@
 {% block form %}
 
     <section class="container mt-4 px-5">
+        <header class="ez-table-header">
+            <div class="ez-table-header__headline">
+                {{ 'campaign.campaign.view.table.header'|trans|desc('Campaign detail') }}
+            </div>
+        </header>
+        <table class="table">
+            <colgroup>
+                <col width="30%">
+                <col>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>{{ 'campaign.campaign.view.list.td'|trans|desc('List') }}</th>
+                <td><a href="{{ path('edgar.campaign.list.view', {'listId': campaign.list_id}) }}">{{ list.name }}</a></td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.campaign.view.subject_line.td'|trans|desc('Subject line') }}</th>
+                <td>{{ campaign.subject_line }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.campaign.view.from_name.td'|trans|desc('From name') }}</th>
+                <td>{{ campaign.from_name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.campaign.view.reply_to.td'|trans|desc('Reply to') }}</th>
+                <td>{{ campaign.reply_to }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.campaign.view.folder.td'|trans|desc('Folder') }}</th>
+                <td>{{ folder.name }}</td>
+            </tr>
+            </tbody>
+        </table>
     </section>
 
     {% include '@EdgarEzCampaign/campaign/campaign/modal_delete.html.twig' with {'form': form_delete, 'actionUrl' : actionUrl} only %}

@@ -22,6 +22,83 @@
 {% block form %}
 
     <section class="container mt-4 px-5">
+        <header class="ez-table-header">
+            <div class="ez-table-header__headline">
+                {{ 'campaign.list.view.table.header'|trans|desc('List detail') }}
+            </div>
+        </header>
+        <table class="table">
+            <colgroup>
+                <col width="30%">
+                <col>
+            </colgroup>
+            <tbody>
+            <tr>
+                <th>{{ 'campaign.list.view.company.td'|trans|desc('Company') }}</th>
+                <td>{{ list.company }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.address.td'|trans|desc('Address') }}</th>
+                <td>{{ list.address }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.address2.td'|trans|desc('Additionnal Address') }}</th>
+                <td>{{ list.address2 }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.city.td'|trans|desc('City') }}</th>
+                <td></td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.state.td'|trans|desc('State') }}</th>
+                <td>{{ list.state }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.zip.td'|trans|desc('Zip') }}</th>
+                <td>{{ list.zip }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.country.td'|trans|desc('Country') }}</th>
+                <td>{{ list.country }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.phone.td'|trans|desc('phone') }}</th>
+                <td>{{ list.phone }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.permission_reminder.td'|trans|desc('Permission reminder') }}</th>
+                <td>{{ list.permission_reminder }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.from_name.td'|trans|desc('From name') }}</th>
+                <td>{{ list.from_name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.from_email.td'|trans|desc('From email') }}</th>
+                <td>{{ list.from_email }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.subject.td'|trans|desc('Subject') }}</th>
+                <td>{{ list.subject }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.language.td'|trans|desc('Language') }}</th>
+                <td>{{ list.language }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.notify_on_subscribe.td'|trans|desc('Notify on subscribe') }}</th>
+                <td>{{ list.notify_on_subscribe }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.notify_on_unsubscribe.td'|trans|desc('Notify on unsubscribe') }}</th>
+                <td>{{ list.notify_on_unsubscribe }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'campaign.list.view.visibility.td'|trans|desc('Visibility') }}</th>
+                <td>{{ list.visibility }}</td>
+            </tr>
+            </tbody>
+        </table>
     </section>
 
     {% include '@EdgarEzCampaign/campaign/list/modal_delete.html.twig' with {'form': form_delete, 'actionUrl': actionUrl} only %}
