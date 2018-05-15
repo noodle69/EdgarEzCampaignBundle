@@ -267,6 +267,8 @@ class CampaignController extends Controller
 
                     return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
                 } catch (MailchimpException $e) {
+                    $this->notifyError($e);
+
                     return $this->render('@EdgarEzCampaign/campaign/campaign/edit.html.twig', [
                         'form' => $form->createView(),
                         'actionUrl' => $this->generateUrl('edgar.campaign.campaign.edit', ['campaignId' => $campaignId]),
@@ -279,6 +281,12 @@ class CampaignController extends Controller
                 return $result;
             }
         }
+
+        return $this->render('@EdgarEzCampaign/campaign/campaign/edit.html.twig', [
+            'form' => $form->createView(),
+            'actionUrl' => $this->generateUrl('edgar.campaign.campaign.edit', ['campaignId' => $campaignId]),
+            'campaign' => $campaign,
+        ]);
     }
 
     public function viewAction(Request $request, string $campaignId): Response

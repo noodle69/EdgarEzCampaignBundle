@@ -5,7 +5,7 @@
         {% if not ez_is_field_empty(content, 'campaign') %}
             {% set field_value = field.value.campaigns %}
             {% for campaign in field_value %}
-                {{ render(controller(
+                {{ render_esi(controller(
                     'EdgarEzCampaignBundle:Front:subscribe',
                     { campaignId: campaign.id, contentId: content.id }
                 )) }}

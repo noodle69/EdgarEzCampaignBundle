@@ -78,7 +78,7 @@ class FrontController extends Controller
                 )
             );
 
-            return new RedirectResponse($redirectUrl);
+            return new RedirectResponse($redirectUrl . '?subscribe_error');
         }
 
         $form = $this->formFactory->subscribe();
@@ -86,9 +86,13 @@ class FrontController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $result = $this->submitHandler->handle($form, function (SubscribeData $subscribe) use ($campaignId, $redirectUrl) {
-                $this->campaignService->subscribe($campaignId, $subscribe->email);
+                try {
+                    $this->campaignService->subscribe($campaignId, $subscribe->email);
 
-                return new RedirectResponse($redirectUrl);
+                    return new RedirectResponse($redirectUrl . '?subscribed');
+                } catch (MailchimpException $e) {
+                    return new RedirectResponse($redirectUrl . '?subscribe_error');
+                }
             });
 
             if ($result instanceof Response) {
