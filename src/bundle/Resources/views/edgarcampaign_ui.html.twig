@@ -1,4 +1,10 @@
 {% extends "@EzPublishCore/content_fields.html.twig" %}
 
 {% block edgarcampaign_field %}
+    {% spaceless %}
+        {% set field_value = field.value.campaigns %}
+        {% for campaign in field_value %}
+            <a href="{{ path('edgar.campaign.campaign.view', {'campaignId': campaign.id}) }}">{{ campaign.settings.title }}</a><br />
+        {% endfor %}
+    {% endspaceless %}
 {% endblock %}
