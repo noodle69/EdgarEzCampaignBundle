@@ -60,12 +60,12 @@ class ListService extends BaseService
             'contact' => [
                 'company' => $list->company,
                 'address1' => $list->address,
-                'address2' => $list->address2,
+                'address2' => $list->address2 ?? '',
                 'city' => $list->city,
                 'state' => $list->state,
                 'zip' => $list->zip,
                 'country' => $countrySelected,
-                'phone' => $list->phone,
+                'phone' => $list->phone ?? '',
             ],
             'permission_reminder' => $list->permission_reminder,
             'use_archive_bar' => $list->use_archive_bar ? true : false,
@@ -76,8 +76,8 @@ class ListService extends BaseService
                 'language' => $languageCode,
             ],
             'email_type_option' => false,
-            'notify_on_subscribe' => $list->notify_on_subscribe,
-            'notify_on_unsubscribe' => $list->notify_on_unsubscribe,
+            'notify_on_subscribe' => $list->notify_on_subscribe ?? '',
+            'notify_on_unsubscribe' => $list->notify_on_unsubscribe ?? '',
             'visibility' => $list->visibility,
         ]);
 
@@ -117,12 +117,12 @@ class ListService extends BaseService
             'contact' => [
                 'company' => $list->company,
                 'address1' => $list->address,
-                'address2' => $list->address2,
+                'address2' => $list->address2 ?? '',
                 'city' => $list->city,
                 'state' => $list->state,
                 'zip' => $list->zip,
                 'country' => $countrySelected,
-                'phone' => $list->phone,
+                'phone' => $list->phone ?? '',
             ],
             'permission_reminder' => $list->permission_reminder,
             'use_archive_bar' => $list->use_archive_bar,
@@ -133,8 +133,8 @@ class ListService extends BaseService
                 'language' => $languageCode,
             ],
             'email_type_option' => false,
-            'notify_on_subscribe' => $list->notify_on_subscribe,
-            'notify_on_unsubscribe' => $list->notify_on_unsubscribe,
+            'notify_on_subscribe' => $list->notify_on_subscribe ?? '',
+            'notify_on_unsubscribe' => $list->notify_on_unsubscribe ?? '',
             'visibility' => $list->visibility,
         ]);
 
