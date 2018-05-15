@@ -15,6 +15,7 @@ use Edgar\EzCampaignBundle\Service\CampaignsService;
 use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
 use Edgar\EzCampaignBundle\Service\ListService;
+use Edgar\EzCampaignBundle\Service\ListsService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Pagerfanta\Adapter\ArrayAdapter;
@@ -53,6 +54,9 @@ class CampaignController extends Controller
     /** @var ListService  */
     protected $listService;
 
+    /** @var ListsService  */
+    protected $listsService;
+
     /** @var CampaignMapper  */
     protected $campaignMapper;
 
@@ -73,6 +77,7 @@ class CampaignController extends Controller
         FoldersService $foldersService,
         FolderService $folderService,
         ListService $listService,
+        ListsService $listsService,
         CampaignMapper $campaignCreateMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
@@ -85,6 +90,7 @@ class CampaignController extends Controller
         $this->folderService = $folderService;
         $this->foldersService = $foldersService;
         $this->listService = $listService;
+        $this->listsService = $listsService;
         $this->campaignMapper = $campaignCreateMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
@@ -113,6 +119,7 @@ class CampaignController extends Controller
         $formFolderCreate->handleRequest($request);
 
         $folders = $this->foldersService->get(0, 0);
+        $lists = $this->listsService->get(0, 1);
 
         $deleteFoldersForm = $this->formFactory->deleteFolders(
             new FoldersDeleteData($this->getFoldersNumbers($folders['folders']))
@@ -123,6 +130,7 @@ class CampaignController extends Controller
             'campaigns' => $campaigns,
             'form_campaigns_delete' => $deleteCampaignsForm->createView(),
             'folders' => $folders,
+            'lists' => $lists,
             'form_folder_create' => $formFolderCreate->createView(),
             'fomr_folders_delete' => $deleteFoldersForm->createView()
         ]);
