@@ -16,13 +16,16 @@ use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
 use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
+use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
+use Symfony\Cmf\Component\Routing\ChainedRouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
@@ -66,6 +69,9 @@ class CampaignController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /** @var UrlAliasRouter  */
+    private $urlAliasRouter;
+
     /** @var int */
     private $defaultPaginationLimit;
 
@@ -81,6 +87,7 @@ class CampaignController extends Controller
         CampaignMapper $campaignCreateMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
+        UrlAliasRouter $urlAliasRouter,
         int $defaultPaginationLimit
     ) {
         $this->notificationHandler = $notificationHandler;
@@ -94,6 +101,7 @@ class CampaignController extends Controller
         $this->campaignMapper = $campaignCreateMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
+        $this->urlAliasRouter = $urlAliasRouter;
         $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
 
@@ -201,6 +209,16 @@ class CampaignController extends Controller
                     $campaignCreateStruct = $this->campaignMapper->reverseMap($data);
                     $campaign = $this->campaignService->post($campaignCreateStruct);
 
+                    if ($data->site && $data->content) {
+                        $url = $this->urlAliasRouter->generate(
+                            $data->content,
+                            ['siteaccess' => $data->site->getIdentifier()],
+                            UrlGeneratorInterface::ABSOLUTE_URL
+                        );
+
+                        $this->campaignService->putContent($campaign['id'], $url);
+                    }
+
                     $this->notificationHandler->success(
                         $this->translator->trans(
                         /** @Desc("Campaign '%name%' created.") */
@@ -269,6 +287,16 @@ class CampaignController extends Controller
             $result = $this->submitHandler->handle($form, function (CampaignUpdateData $campaign) use ($form, $campaignId) {
                 try {
                     $this->campaignService->patch($campaignId, $campaign);
+
+                    if ($campaign->site && $campaign->content) {
+                        $url = $this->urlAliasRouter->generate(
+                            $campaign->content,
+                            ['siteaccess' => $campaign->site->getIdentifier()],
+                            UrlGeneratorInterface::ABSOLUTE_URL
+                        );
+
+                        $this->campaignService->putContent($campaignId, $url);
+                    }
 
                     $this->notificationHandler->success(
                         $this->translator->trans(

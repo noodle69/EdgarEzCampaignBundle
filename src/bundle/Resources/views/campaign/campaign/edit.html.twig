@@ -29,10 +29,15 @@
             <div class="card-body">
                 {{ form_row(form.title) }}
                 {{ form_row(form.list_id) }}
+                {{ form_row(form.folder_id) }}
+                <div class="form-group">
+                    {{ form_widget(form.content) }}
+                    <div id="campaign_edit_content_select_content_label"></div>
+                </div>
+                {{ form_row(form.site) }}
                 {{ form_row(form.subject_line) }}
                 {{ form_row(form.from_name) }}
                 {{ form_row(form.reply_to) }}
-                {{ form_row(form.folder_id) }}
             </div>
         </div>
     </section>
@@ -45,4 +50,20 @@
 {% block right_sidebar %}
     {% set campaign_edit_sidebar_right = knp_menu_get('edgar.menu.campaign_edit.sidebar_right', [], {'save_id': form.save.vars.id}) %}
     {{ knp_menu_render(campaign_edit_sidebar_right, {'template': '@EzPlatformAdminUi/parts/menu/sidebar_right.html.twig'}) }}
+{% endblock %}
+
+{% block javascripts %}
+    {% javascripts
+        '@EdgarEzCampaignBundle/Resources/public/js/admin.campaign.location.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+    {% stylesheets
+        '@EdgarEzCampaignBundle/Resources/public/css/edgarezcampaign.css'
+    %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}

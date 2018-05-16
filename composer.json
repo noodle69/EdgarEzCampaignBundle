@@ -22,7 +22,8 @@
     "php": ">=7.1",
     "ezsystems/ezpublish-kernel": "^7.1",
     "ezsystems/ezplatform-admin-ui": "^1.1",
-    "welp/mailchimp-bundle": "~1.2"
+    "welp/mailchimp-bundle": "~1.2",
+    "edgar/ez-uisites-bundle": "~1.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "~2.7.1",

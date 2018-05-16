@@ -78,22 +78,22 @@
       </trans-unit>
       <trans-unit id="80d402ccc7678812d1e5005f9612bd8da9b1577d" resname="campaign.campaigns.empty">
         <source>No campaign yet registered</source>
-        <target state="new">No campaign yet registered</target>
+        <target>No campaign yet registered</target>
         <note>key: campaign.campaigns.empty</note>
       </trans-unit>
       <trans-unit id="62647086cded21af238a467e0c2c18b4e7f8b321" resname="campaign.campaigns.folders.empty">
         <source>There is no Folder registered</source>
-        <target state="new">There is no Folder registered</target>
+        <target>There is no Folder registered</target>
         <note>key: campaign.campaigns.folders.empty</note>
       </trans-unit>
       <trans-unit id="3d5306e3c3257b58b8dd4d07a2b3d0376a939e32" resname="campaign.campaigns.list_name.th">
-        <source>List name</source>
+        <source>List</source>
         <target>List name</target>
         <note>key: campaign.campaigns.list_name.th</note>
       </trans-unit>
       <trans-unit id="e4f16c0184ff7d4616b2b65dbc816aa3a708ddf9" resname="campaign.campaigns.lists.empty">
         <source>There is no Subscription list registered</source>
-        <target state="new">There is no Subscription list registered</target>
+        <target>There is no Subscription list registered</target>
         <note>key: campaign.campaigns.lists.empty</note>
       </trans-unit>
       <trans-unit id="90cc7608ef2a19b5541ae2ca798d7c0c8a95e9ca" resname="campaign.campaigns.send_time.th">
@@ -356,6 +356,11 @@
         <target>Delete Campaigns</target>
         <note>key: campaigns_delete_form.delete</note>
       </trans-unit>
+      <trans-unit id="84e1996b0c3ee2e7a331c9f807e0a34a6097d926" resname="edgar.campaign.campaign.create.content">
+        <source>Choose a content</source>
+        <target>Choose a content</target>
+        <note>key: edgar.campaign.campaign.create.content</note>
+      </trans-unit>
       <trans-unit id="6f8e8c51273390974868f1af37b4c95416e9420b" resname="edgar.campaign.campaign.create.folder_id">
         <source>Folder</source>
         <target>Folder</target>
@@ -375,6 +380,16 @@
         <source>Reply to</source>
         <target>Reply to</target>
         <note>key: edgar.campaign.campaign.create.reply_to</note>
+      </trans-unit>
+      <trans-unit id="61bbb2bd556509dc7bee41392e3b6a5cc09482d2" resname="edgar.campaign.campaign.create.site">
+        <source>Site</source>
+        <target>Site</target>
+        <note>key: edgar.campaign.campaign.create.site</note>
+      </trans-unit>
+      <trans-unit id="40d8ebe1214b760370502071f1e6d725a5b0ca79" resname="edgar.campaign.campaign.create.site.placeholder">
+        <source>Choose a site</source>
+        <target>Choose a site</target>
+        <note>key: edgar.campaign.campaign.create.site.placeholder</note>
       </trans-unit>
       <trans-unit id="bfed4bea527348f71f7d1892baa77c6493bbf210" resname="edgar.campaign.campaign.create.subject_line">
         <source>Subject</source>

@@ -279,6 +279,20 @@ class CampaignService extends BaseService
         }
     }
 
+    public function putContent(string $campaignId, string $url)
+    {
+        $url = 'http://www.smile.fr';
+        $return = $this->mailChimp->put('/campaigns/' . $campaignId . '/content', [
+            'url' => $url,
+        ]);
+
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
+        }
+
+        return $return;
+    }
+
     public function map(array $campaign): Campaign
     {
         $campaign = new Campaign([

@@ -3,6 +3,11 @@
 namespace Edgar\EzCampaign\Form\Type;
 
 use Edgar\EzCampaign\Data\CampaignUpdateData;
+use Edgar\EzCampaign\Form\Type\Field\FolderType;
+use Edgar\EzCampaign\Form\Type\Field\ListType;
+use Edgar\EzUISites\Form\Constraints\SiteConstraint;
+use Edgar\EzUISites\Form\Type\FilterSitesType;
+use EzSystems\EzPlatformAdminUi\Form\Type\UniversalDiscoveryWidget\UniversalDiscoveryWidgetType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -41,8 +46,33 @@ class CampaignUpdateType extends AbstractType
             )
             ->add(
                 'list_id',
-                \Edgar\EzCampaign\Form\Type\Field\ListType::class,
+                ListType::class,
                 ['label' => /** @Desc("List") */ 'edgar.campaign.campaign.create.list_id']
+            )
+            ->add(
+                'folder_id',
+                FolderType::class,
+                ['label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id']
+            )
+            ->add(
+                'content',
+                UniversalDiscoveryWidgetType::class,
+                [
+                    'required' => false,
+                    'label' => /** @Desc("Choose a content") */ 'edgar.campaign.campaign.create.content',
+                ]
+            )
+            ->add(
+                'site',
+                FilterSitesType::class,
+                [
+                    'label' => /** @Desc("Site") */ 'edgar.campaign.campaign.create.site',
+                    'required' => false,
+                    'placeholder' => /** @Desc("Choose a site") */ 'edgar.campaign.campaign.create.site.placeholder',
+                    'multiple' => false,
+                    'expanded' => false,
+                    'constraints' => [new SiteConstraint()],
+                ]
             )
             ->add(
                 'subject_line',
@@ -58,11 +88,6 @@ class CampaignUpdateType extends AbstractType
                 'reply_to',
                 EmailType::class,
                 ['label' => /** @Desc("Reply to") */ 'edgar.campaign.campaign.create.reply_to']
-            )
-            ->add(
-                'folder_id',
-                \Edgar\EzCampaign\Form\Type\Field\FolderType::class,
-                ['label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id']
             )
             ->add(
                 'save',

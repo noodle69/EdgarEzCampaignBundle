@@ -2,6 +2,9 @@
 
 namespace Edgar\EzCampaign\Values\Core;
 
+use Edgar\EzUISites\Data\SiteData;
+use eZ\Publish\Core\Repository\Values\Content\Location;
+
 class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
 {
     public function getId()
@@ -12,6 +15,21 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function getListId()
     {
         return $this->list_id;
+    }
+
+    public function getFolderId()
+    {
+        return $this->folder_id;
+    }
+
+    public function getContent(): Location
+    {
+        return $this->content;
+    }
+
+    public function getSite(): SiteData
+    {
+        return $this->site;
     }
 
     public function getSubjectLine()
@@ -32,10 +50,5 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function getReplyTo()
     {
         return $this->reply_to;
-    }
-
-    public function getFolderId()
-    {
-        return $this->folder_id;
     }
 }
