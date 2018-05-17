@@ -100,7 +100,9 @@
                         <td>{{ campaign.create_time }}</td>
                         <td>{{ campaign.emails_sent }}</td>
                         <td>{{ campaign.send_time }}</td>
-                        <td>{{ campaign.recipients.list_name }}</td>
+                        <td>
+                            <a href="{{ path('edgar.campaign.list.view', {'listId': campaign.recipients.list_id}) }}">{{ campaign.recipients.list_name }}</a>
+                        </td>
                         <td class="text-right edgarezcampaign-td-icon">
                             <a title="{{ 'edgar.campaign.campaign.view'|trans|desc('Detail') }}"
                                href="{{ path('edgar.campaign.campaign.view', {'campaignId': campaign.id}) }}"
