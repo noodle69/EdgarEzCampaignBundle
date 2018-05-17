@@ -10,8 +10,8 @@
 
 td.edgarezcampaign-td-icon,
 td.edgarezcampaign-td-icon a{
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 button#campaign_create_content_select_content,
@@ -25,4 +25,8 @@ button#update-campaign-0_content_select_content {
     cursor: pointer;
     transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), background 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     margin-top: 0.4rem;
+}
+
+.btn.disabled {
+    cursor: not-allowed;
 }
