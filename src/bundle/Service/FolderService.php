@@ -2,6 +2,7 @@
 
 namespace Edgar\EzCampaignBundle\Service;
 
+use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzCampaign\Values\FolderCreateStruct;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
@@ -87,5 +88,15 @@ class FolderService extends BaseService
         }
 
         return $return;
+    }
+
+    public function map(array $folder): Folder
+    {
+        $folder = new Folder([
+            'id' => $folder['id'],
+            'name' => $folder['name'],
+        ]);
+
+        return $folder;
     }
 }

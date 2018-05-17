@@ -12,12 +12,12 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
         return $this->id;
     }
 
-    public function getListId()
+    public function getListId(): CampaignList
     {
         return $this->list_id;
     }
 
-    public function getFolderId()
+    public function getFolderId(): Folder
     {
         return $this->folder_id;
     }

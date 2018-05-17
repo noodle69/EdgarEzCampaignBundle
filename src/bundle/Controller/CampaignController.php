@@ -255,7 +255,7 @@ class CampaignController extends Controller
         try {
             $campaign = $this->campaignService->get($campaignId);
             $campaign = $this->campaignService->map($campaign);
-            $campaignData = (new CampaignMapper())->mapToFormData($campaign);
+            $campaignData = (new CampaignMapper($this->listService, $this->folderService))->mapToFormData($campaign);
 
             if ($campaign === false) {
                 $this->notificationHandler->warning(

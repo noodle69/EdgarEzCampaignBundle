@@ -10,8 +10,10 @@ abstract class Campaign extends ValueObject
 {
     protected $id;
 
+    /** @var \Edgar\EzCampaign\Values\Core\CampaignList */
     protected $list_id;
 
+    /** @var \Edgar\EzCampaign\Values\Core\Folder */
     protected $folder_id;
 
     /** @var Location */

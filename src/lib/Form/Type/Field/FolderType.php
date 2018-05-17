@@ -2,6 +2,9 @@
 
 namespace Edgar\EzCampaign\Form\Type\Field;
 
+use Edgar\EzCampaign\Data\Mapper\FolderMapper;
+use Edgar\EzCampaign\Values\Core\Folder;
+use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
@@ -13,9 +16,15 @@ class FolderType extends AbstractType
     /** @var FoldersService  */
     protected $foldersService;
 
-    public function __construct(FoldersService $foldersService)
-    {
+    /** @var FolderService  */
+    protected $folderService;
+
+    public function __construct(
+        FoldersService $foldersService,
+        FolderService $folderService
+    ) {
         $this->foldersService = $foldersService;
+        $this->folderService = $folderService;
     }
 
     public function getParent()
@@ -35,6 +44,8 @@ class FolderType extends AbstractType
                     }
                     return $foldersChoices;
                 }),
+                'data_class' => Folder::class,
+                'choice_name' => 'id',
                 'choice_value' => 'id',
             ]);
     }

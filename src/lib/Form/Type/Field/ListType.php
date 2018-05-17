@@ -2,6 +2,9 @@
 
 namespace Edgar\EzCampaign\Form\Type\Field;
 
+use Edgar\EzCampaign\Data\Mapper\ListMapper;
+use Edgar\EzCampaign\Values\Core\CampaignList;
+use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\Loader\CallbackChoiceLoader;
@@ -13,15 +16,22 @@ class ListType extends AbstractType
     /** @var ListsService  */
     protected $listsService;
 
-    public function __construct(ListsService $listsService)
-    {
+    /** @var ListService  */
+    protected $listService;
+
+    public function __construct(
+        ListsService $listsService,
+        ListService $listService
+    ) {
         $this->listsService = $listsService;
+        $this->listService = $listService;
     }
 
     public function getParent()
     {
         return ChoiceType::class;
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
@@ -34,6 +44,8 @@ class ListType extends AbstractType
                     }
                     return $listsChoices;
                 }),
+                'data_class' => CampaignList::class,
+                'choice_name' => 'id',
                 'choice_value' => 'id',
             ]);
     }

@@ -5,6 +5,8 @@ namespace Edgar\EzCampaign\Form\Type;
 use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Form\Type\Field\FolderType;
 use Edgar\EzCampaign\Form\Type\Field\ListType;
+use Edgar\EzCampaign\Values\Core\CampaignList;
+use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzUISites\Form\Constraints\SiteConstraint;
 use Edgar\EzUISites\Form\Type\FilterSitesType;
 use EzSystems\EzPlatformAdminUi\Form\Type\UniversalDiscoveryWidget\UniversalDiscoveryWidgetType;
@@ -47,12 +49,18 @@ class CampaignUpdateType extends AbstractType
             ->add(
                 'list_id',
                 ListType::class,
-                ['label' => /** @Desc("List") */ 'edgar.campaign.campaign.create.list_id']
+                [
+                    'data_class' => CampaignList::class,
+                    'label' => /** @Desc("List") */ 'edgar.campaign.campaign.create.list_id',
+                ]
             )
             ->add(
                 'folder_id',
                 FolderType::class,
-                ['label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id']
+                [
+                    'data_class' => Folder::class,
+                    'label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id',
+                ]
             )
             ->add(
                 'content',
