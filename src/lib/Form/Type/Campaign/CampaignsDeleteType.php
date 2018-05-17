@@ -1,8 +1,8 @@
 <?php
 
-namespace Edgar\EzCampaign\Form\Type;
+namespace Edgar\EzCampaign\Form\Type\Campaign;
 
-use Edgar\EzCampaign\Data\FoldersDeleteData;
+use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -10,12 +10,12 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FoldersDeleteType extends AbstractType
+class CampaignsDeleteType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('folders', CollectionType::class, [
+            ->add('campaigns', CollectionType::class, [
                 'entry_type' => CheckboxType::class,
                 'required' => false,
                 'allow_add' => true,
@@ -24,14 +24,14 @@ class FoldersDeleteType extends AbstractType
             ])
             ->add('delete', SubmitType::class, [
                 'attr' => ['hidden' => true],
-                'label' => /** @Desc("Delete Campaign Folders") */ 'folders_delete_form.delete',
+                'label' => /** @Desc("Delete Campaigns") */ 'campaigns_delete_form.delete',
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => FoldersDeleteData::class,
+            'data_class' => CampaignsDeleteData::class,
             'translation_domain' => 'edgarezcampaign',
         ]);
     }

@@ -14,16 +14,18 @@ use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Data\ReportsData;
 use Edgar\EzCampaign\Data\SubscribeData;
-use Edgar\EzCampaign\Form\Type\CampaignCreateType;
-use Edgar\EzCampaign\Form\Type\CampaignDeleteType;
-use Edgar\EzCampaign\Form\Type\CampaignUpdateType;
-use Edgar\EzCampaign\Form\Type\FolderCreateType;
-use Edgar\EzCampaign\Form\Type\FoldersDeleteType;
-use Edgar\EzCampaign\Form\Type\ListCreateType;
-use Edgar\EzCampaign\Form\Type\CampaignsDeleteType;
-use Edgar\EzCampaign\Form\Type\ListDeleteType;
-use Edgar\EzCampaign\Form\Type\ListsDeleteType;
-use Edgar\EzCampaign\Form\Type\ListUpdateType;
+use Edgar\EzCampaign\Form\Type\Campaign\CampaignScheduleType;
+use Edgar\EzCampaign\Form\Type\Campaign\CampaignSendType;
+use Edgar\EzCampaign\Form\Type\Campaign\CampaignCreateType;
+use Edgar\EzCampaign\Form\Type\Campaign\CampaignDeleteType;
+use Edgar\EzCampaign\Form\Type\Campaign\CampaignUpdateType;
+use Edgar\EzCampaign\Form\Type\Campaign\CampaignsDeleteType;
+use Edgar\EzCampaign\Form\Type\Folder\FolderCreateType;
+use Edgar\EzCampaign\Form\Type\Folder\FoldersDeleteType;
+use Edgar\EzCampaign\Form\Type\CampaignList\ListCreateType;
+use Edgar\EzCampaign\Form\Type\CampaignList\ListDeleteType;
+use Edgar\EzCampaign\Form\Type\CampaignList\ListsDeleteType;
+use Edgar\EzCampaign\Form\Type\CampaignList\ListUpdateType;
 use Edgar\EzCampaign\Form\Type\ReportsType;
 use Edgar\EzCampaign\Form\Type\SubscribeType;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -205,5 +207,21 @@ class FormFactory
         $name = $name ?: StringUtil::fqcnToBlockPrefix(ListDeleteType::class);
 
         return $this->formFactory->createNamed($name, ListDeleteType::class, $data);
+    }
+
+    public function sendCampaign(
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignSendType::class);
+
+        return $this->formFactory->createNamed($name, CampaignSendType::class, null);
+    }
+
+    public function scheduleCampaign(
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignScheduleType::class);
+
+        return $this->formFactory->createNamed($name, CampaignScheduleType::class, null);
     }
 }

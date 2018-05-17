@@ -1,6 +1,6 @@
 <?php
 
-namespace Edgar\EzCampaign\Form\Type;
+namespace Edgar\EzCampaign\Form\Type\CampaignList;
 
 use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Form\Type\Field\LanguageType;

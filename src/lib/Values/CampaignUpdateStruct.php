@@ -9,10 +9,10 @@ use eZ\Publish\Core\Repository\Values\Content\Location;
 
 class CampaignUpdateStruct extends CampaignStruct
 {
-    /** @var ?CampaignList */
+    /** @var CampaignList */
     public $list_id = null;
 
-    /** @var ?Folder */
+    /** @var Folder */
     public $folder_id = null;
 
     /** @var Location */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Edgar\EzCampaign\Form\Type;
+namespace Edgar\EzCampaign\Form\Type\CampaignList;
 
 use Edgar\EzCampaign\Form\Type\Field\LanguageType;
 use EzSystems\RepositoryForms\Form\Type\FieldType\CountryFieldType;

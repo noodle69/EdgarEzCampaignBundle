@@ -1,6 +1,6 @@
 <?php
 
-namespace Edgar\EzCampaign\Form\Type;
+namespace Edgar\EzCampaign\Form\Type\Campaign;
 
 use Edgar\EzCampaign\Data\CampaignDeleteData;
 use Edgar\EzCampaign\Form\Type\Field\CampaignsType;

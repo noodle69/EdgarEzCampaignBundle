@@ -75,3 +75,17 @@ edgar.campaign.list.delete:
     methods: ['POST']
     requirements:
         listId: "[0-9a-z]+"
+
+edgar.campaign.send:
+    path: /canpaign/send/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:send", campaignId: ~ }
+    methods: ['POST']
+    requirements:
+        campaignId: "[0-9a-z]+"
+
+edgar.campaign.schedule:
+    path: /canpaign/send/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:schedule", campaignId: ~ }
+    methods: ['POST']
+    requirements:
+        campaignId: "[0-9a-z]+"

@@ -21,7 +21,6 @@ use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
-use Symfony\Cmf\Component\Routing\ChainedRouterInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -133,6 +132,9 @@ class CampaignController extends Controller
             new FoldersDeleteData($this->getFoldersNumbers($folders['folders']))
         );
 
+        $sendForm = $this->formFactory->sendCampaign();
+        $scheduleForm = $this->formFactory->scheduleCampaign();
+
         return $this->render('@EdgarEzCampaign/campaign/campaigns.html.twig', [
             'pager' => $pagerfanta,
             'campaigns' => $campaigns,
@@ -140,7 +142,9 @@ class CampaignController extends Controller
             'folders' => $folders,
             'lists' => $lists,
             'form_folder_create' => $formFolderCreate->createView(),
-            'fomr_folders_delete' => $deleteFoldersForm->createView()
+            'fomr_folders_delete' => $deleteFoldersForm->createView(),
+            'form_send' => $sendForm->createView(),
+            'form_schedule' => $scheduleForm->createView(),
         ]);
     }
 
@@ -334,8 +338,8 @@ class CampaignController extends Controller
     public function viewAction(Request $request, string $campaignId): Response
     {
         try {
-            $campaign = $this->campaignService->get($campaignId);
-            $campaign = $this->campaignService->map($campaign);
+            $campaignGet = $this->campaignService->get($campaignId);
+            $campaign = $this->campaignService->map($campaignGet);
             $campaignData = new CampaignDeleteData(['id' => $campaignId]);
 
             if ($campaign === false) {
@@ -366,8 +370,8 @@ class CampaignController extends Controller
         return $this->render('@EdgarEzCampaign/campaign/campaign/view.html.twig', [
             'form_delete' => $campaignDeleteType->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.campaign.delete', ['campaignId' => $campaignId]),
-            'list' => $this->listService->get($campaign->getListId()),
-            'folder' => $this->folderService->get($campaign->getFolderId()),
+            'list' => $this->listService->get($campaignGet['recipients']['list_id']),
+            'folder' => $this->folderService->get($campaignGet['settings']['folder_id']),
             'campaign' => $campaign,
         ]);
     }
@@ -426,6 +430,16 @@ class CampaignController extends Controller
             }
         }
 
+        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaignId]));
+    }
+
+    public function sendAction(string $campaignId): Response
+    {
+        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaignId]));
+    }
+
+    public function scheduleAction(string $campaignId): Response
+    {
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaignId]));
     }
 

@@ -6,6 +6,7 @@ use DrewM\MailChimp\MailChimp;
 use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Values\CampaignCreateStruct;
 use Edgar\EzCampaign\Values\Core\Campaign;
+use Edgar\EzCampaign\Values\Core\CampaignList;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
 /**
@@ -298,11 +299,11 @@ class CampaignService extends BaseService
         $campaign = new Campaign([
             'id' => $campaign['id'],
             'list_id' => $campaign['recipients']['list_id'],
+            'folder_id' => $campaign['settings']['folder_id'],
             'subject_line' => $campaign['settings']['subject_line'],
             'title' => $campaign['settings']['title'],
             'from_name' => $campaign['settings']['from_name'],
             'reply_to' => $campaign['settings']['reply_to'],
-            'folder_id' => $campaign['settings']['folder_id'],
         ]);
 
         return $campaign;

@@ -1,12 +1,9 @@
 <?php
 
-namespace Edgar\EzCampaign\Form\Type;
+namespace Edgar\EzCampaign\Form\Type\Campaign;
 
-use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Form\Type\Field\FolderType;
 use Edgar\EzCampaign\Form\Type\Field\ListType;
-use Edgar\EzCampaign\Values\Core\CampaignList;
-use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzUISites\Form\Constraints\SiteConstraint;
 use Edgar\EzUISites\Form\Type\FilterSitesType;
 use EzSystems\EzPlatformAdminUi\Form\Type\UniversalDiscoveryWidget\UniversalDiscoveryWidgetType;
@@ -17,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CampaignUpdateType extends AbstractType
+class CampaignCreateType extends AbstractType
 {
     public function getName()
     {
@@ -26,14 +23,13 @@ class CampaignUpdateType extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'edgarcampaign_campaign_edit';
+        return 'edgarcampaign_campaign_create';
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setDefaults([
-                'data_class' => CampaignUpdateData::class,
                 'translation_domain' => 'edgarezcampaign',
             ]);
     }
@@ -49,18 +45,12 @@ class CampaignUpdateType extends AbstractType
             ->add(
                 'list_id',
                 ListType::class,
-                [
-                    'data_class' => CampaignList::class,
-                    'label' => /** @Desc("List") */ 'edgar.campaign.campaign.create.list_id',
-                ]
+                ['label' => /** @Desc("List") */ 'edgar.campaign.campaign.create.list_id']
             )
             ->add(
                 'folder_id',
                 FolderType::class,
-                [
-                    'data_class' => Folder::class,
-                    'label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id',
-                ]
+                ['label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id']
             )
             ->add(
                 'content',
@@ -76,7 +66,7 @@ class CampaignUpdateType extends AbstractType
                 [
                     'label' => /** @Desc("Site") */ 'edgar.campaign.campaign.create.site',
                     'required' => false,
-                    'placeholder' => /** @Desc("Choose a site") */ 'edgar.campaign.campaign.create.site.placeholder',
+                    'placeholder' => /** @Desc("Select a site") */ 'edgar.campaign.campaign.create.site.placeholder',
                     'multiple' => false,
                     'expanded' => false,
                     'constraints' => [new SiteConstraint()],
