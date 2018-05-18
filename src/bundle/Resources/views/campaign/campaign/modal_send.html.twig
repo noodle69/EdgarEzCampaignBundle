@@ -10,7 +10,11 @@
             </div>
 
             <div class="modal-body">
-                {{ form_start(form) }}
+                {% if actionUrl is defined %}
+                    {{ form_start(form, {'action': actionUrl}) }}
+                {% else %}
+                    {{ form_start(form) }}
+                {% endif %}
                 {{ form_end(form) }}
             </div>
 

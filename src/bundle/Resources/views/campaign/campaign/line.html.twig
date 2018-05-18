@@ -1,5 +1,7 @@
 {% set disable_send = '' %}
-{% if campaign.status == 'save' and campaign.content_type != 'url' %}
+{% if campaign.status == 'save' and campaign.content_type != 'url'
+    or (not campaign.recipients.list_is_active or campaign.recipients.recipient_count == 0)
+%}
     {% set disable_send = 'disabled' %}
 {% endif %}
 <tr>

@@ -251,6 +251,11 @@
         <target>Date created</target>
         <note>key: campaign.lists.date_created.th</note>
       </trans-unit>
+      <trans-unit id="223b4b3781395d0046648bb25a2ca06212869f85" resname="campaign.lists.empty">
+        <source>No Subscription List yet registered</source>
+        <target state="new">No Subscription List yet registered</target>
+        <note>key: campaign.lists.empty</note>
+      </trans-unit>
       <trans-unit id="5e154c4b8eaae136811ec327906c563f0d70a8b9" resname="campaign.lists.member_count.th">
         <source>Member count</source>
         <target>Member count</target>
@@ -401,35 +406,10 @@
         <target>Title</target>
         <note>key: edgar.campaign.campaign.create.title</note>
       </trans-unit>
-      <trans-unit id="059b08c8defaed39f3538729eaf9fec2c5c5aa0d" resname="edgar.campaign.campaign.edit">
-        <source>Edit</source>
-        <target>Edit</target>
-        <note>key: edgar.campaign.campaign.edit</note>
-      </trans-unit>
-      <trans-unit id="1d15cb9d3257183c8bddd5e49b930432dcecbb16" resname="edgar.campaign.campaign.reports">
-        <source>Reports</source>
-        <target>Reports</target>
-        <note>key: edgar.campaign.campaign.reports</note>
-      </trans-unit>
-      <trans-unit id="7c245e19081c16d02b26194ee7d171cf7036dc91" resname="edgar.campaign.campaign.schedule">
-        <source>Schedule</source>
-        <target>Schedule</target>
-        <note>key: edgar.campaign.campaign.schedule</note>
-      </trans-unit>
-      <trans-unit id="13c173d55ddfd2f91a30ca533ca4468fc97c1eb0" resname="edgar.campaign.campaign.send">
-        <source>Send</source>
-        <target>Send</target>
-        <note>key: edgar.campaign.campaign.send</note>
-      </trans-unit>
       <trans-unit id="8a2466c3ab4659b7a01f5565139ea5d7433aa64f" resname="edgar.campaign.campaign.subscribe.title">
         <source>Email</source>
         <target>Email</target>
         <note>key: edgar.campaign.campaign.subscribe.title</note>
-      </trans-unit>
-      <trans-unit id="0e73695b627dfe6161af926366b140a2238d5d53" resname="edgar.campaign.campaign.view">
-        <source>Detail</source>
-        <target>Detail</target>
-        <note>key: edgar.campaign.campaign.view</note>
       </trans-unit>
       <trans-unit id="bec268d2dc635b8a54a339ac2c47b6d0a3601547" resname="edgar.campaign.create.save">
         <source>Create</source>
@@ -551,16 +531,6 @@
         <target>Zip</target>
         <note>key: edgar.campaign.list.create.zip</note>
       </trans-unit>
-      <trans-unit id="3a5fa05ad10fe98115fd94a1f736c5b93f9618f1" resname="edgar.campaign.list.edit">
-        <source>Edit</source>
-        <target>Edit</target>
-        <note>key: edgar.campaign.list.edit</note>
-      </trans-unit>
-      <trans-unit id="7a28121c09687b6136b12f7e6f198f8e43e7143f" resname="edgar.campaign.list.preview">
-        <source>Detail</source>
-        <target>Detail</target>
-        <note>key: edgar.campaign.list.preview</note>
-      </trans-unit>
       <trans-unit id="20fd2f70efde204b93d1c3864a03dee59af62b62" resname="edgar.campaign.reports.campaigns.name">
         <source>Campaigns</source>
         <target>Campaigns</target>
@@ -573,12 +543,12 @@
       </trans-unit>
       <trans-unit id="f2540a3047f2a13984784257dc3df826bbbfe3a9" resname="edgar.campaign.schedule.schedule">
         <source>Schedule</source>
-        <target state="new">Schedule</target>
+        <target>Schedule</target>
         <note>key: edgar.campaign.schedule.schedule</note>
       </trans-unit>
       <trans-unit id="8b1d33b60b308ffcca74c5c4dbd77b9836015b81" resname="edgar.campaign.send.send">
         <source>Send</source>
-        <target state="new">Send</target>
+        <target>Send</target>
         <note>key: edgar.campaign.send.send</note>
       </trans-unit>
       <trans-unit id="a165be11ec0a69eee703ec6b84268858f06e25ca" resname="edgar.campaign.subscribe">
@@ -641,20 +611,10 @@
         <target>Creating a new Subscription list</target>
         <note>key: list.new.title</note>
       </trans-unit>
-      <trans-unit id="e17197210b61367bb4d5e3019af1fe632340bec9" resname="list.update.error">
-        <source>Failed to retrieve Subscription list.</source>
-        <target>Failed to retrieve Subscription list.</target>
-        <note>key: list.update.error</note>
-      </trans-unit>
       <trans-unit id="5fa05e3c69f61385b37cfea027913f4e08286191" resname="list.update.success">
         <source>Subscription list '%name%' updated.</source>
         <target>Subscription list '%name%' updated.</target>
         <note>key: list.update.success</note>
-      </trans-unit>
-      <trans-unit id="4f6697dabd37ddd8170167abdf4cb7a4b0a7a313" resname="list.update.warning">
-        <source>Subscription list does not exists.</source>
-        <target>Subscription list does not exists.</target>
-        <note>key: list.update.warning</note>
       </trans-unit>
       <trans-unit id="b65bb6f89e6b622cb43d07a8868275a3ceb005c2" resname="list.view.identifier">
         <source>Subscription list "%name%"</source>

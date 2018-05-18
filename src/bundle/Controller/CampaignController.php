@@ -310,9 +310,16 @@ class CampaignController extends Controller
     {
         $campaignDeleteType = $this->formFactory->deleteCampaign($campaign);
 
+        $sendForm = $this->formFactory->sendCampaign();
+        $scheduleForm = $this->formFactory->scheduleCampaign();
+
         return $this->render('@EdgarEzCampaign/campaign/campaign/view.html.twig', [
             'form_delete' => $campaignDeleteType->createView(),
+            'form_send' => $sendForm->createView(),
+            'form_schedule' => $scheduleForm->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.campaign.delete', ['campaignId' => $campaign->getId()]),
+            'actionUrlSend' => $this->generateUrl('edgar.campaign.send', ['campaignId' => $campaign->getId()]),
+            'actionUrlSchedule' => $this->generateUrl('edgar.campaign.schedule', ['campaignId' => $campaign->getId()]),
             'list' => $campaign->getList(),
             'folder' => $campaign->getFolder(),
             'campaign' => $campaign,

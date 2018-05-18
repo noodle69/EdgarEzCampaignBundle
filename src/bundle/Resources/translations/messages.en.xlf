@@ -46,14 +46,19 @@
         <target>Campaign Folders</target>
         <note>key: campaign.folder.table.header</note>
       </trans-unit>
+      <trans-unit id="c63d169d6448afa95ef03fa322a7dca09029e33e" resname="campaign.folders.empty">
+        <source>No Folder yet registered</source>
+        <target state="new">No Folder yet registered</target>
+        <note>key: campaign.folders.empty</note>
+      </trans-unit>
       <trans-unit id="3ba1bf1246d2cda0917e34437ba05ced808a5248" resname="campaign.schedule.form.cancel">
         <source>Cancel</source>
-        <target state="new">Cancel</target>
+        <target>Cancel</target>
         <note>key: campaign.schedule.form.cancel</note>
       </trans-unit>
       <trans-unit id="d095e58376e53fa1990b807a11fc67ab408fd70b" resname="campaign.send.form.cancel">
         <source>Cancel</source>
-        <target state="new">Cancel</target>
+        <target>Cancel</target>
         <note>key: campaign.send.form.cancel</note>
       </trans-unit>
       <trans-unit id="df482fc7bdc8a9ac10e56a67c4b5b81401f4e971" resname="campaign.trash.form.cancel">
@@ -65,6 +70,41 @@
         <source>Are you sure you want to Delete this Campaign?</source>
         <target>Are you sure you want to Delete this Campaign?</target>
         <note>key: campaign.trash.modal.message</note>
+      </trans-unit>
+      <trans-unit id="059b08c8defaed39f3538729eaf9fec2c5c5aa0d" resname="edgar.campaign.campaign.edit">
+        <source>Edit</source>
+        <target state="new">Edit</target>
+        <note>key: edgar.campaign.campaign.edit</note>
+      </trans-unit>
+      <trans-unit id="1d15cb9d3257183c8bddd5e49b930432dcecbb16" resname="edgar.campaign.campaign.reports">
+        <source>Reports</source>
+        <target state="new">Reports</target>
+        <note>key: edgar.campaign.campaign.reports</note>
+      </trans-unit>
+      <trans-unit id="7c245e19081c16d02b26194ee7d171cf7036dc91" resname="edgar.campaign.campaign.schedule">
+        <source>Schedule</source>
+        <target state="new">Schedule</target>
+        <note>key: edgar.campaign.campaign.schedule</note>
+      </trans-unit>
+      <trans-unit id="13c173d55ddfd2f91a30ca533ca4468fc97c1eb0" resname="edgar.campaign.campaign.send">
+        <source>Send</source>
+        <target state="new">Send</target>
+        <note>key: edgar.campaign.campaign.send</note>
+      </trans-unit>
+      <trans-unit id="0e73695b627dfe6161af926366b140a2238d5d53" resname="edgar.campaign.campaign.view">
+        <source>Detail</source>
+        <target state="new">Detail</target>
+        <note>key: edgar.campaign.campaign.view</note>
+      </trans-unit>
+      <trans-unit id="3a5fa05ad10fe98115fd94a1f736c5b93f9618f1" resname="edgar.campaign.list.edit">
+        <source>Edit</source>
+        <target state="new">Edit</target>
+        <note>key: edgar.campaign.list.edit</note>
+      </trans-unit>
+      <trans-unit id="7a28121c09687b6136b12f7e6f198f8e43e7143f" resname="edgar.campaign.list.preview">
+        <source>Detail</source>
+        <target state="new">Detail</target>
+        <note>key: edgar.campaign.list.preview</note>
       </trans-unit>
       <trans-unit id="ee64316552c1077bd9a64db935c5961979eda7bf" resname="list.trash.form.cancel">
         <source>Cancel</source>

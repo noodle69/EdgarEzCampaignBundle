@@ -58,6 +58,8 @@
     </section>
 
     {% include '@EdgarEzCampaign/campaign/campaign/modal_delete.html.twig' with {'form': form_delete, 'actionUrl' : actionUrl} only %}
+    {% include '@EdgarEzCampaign/campaign/campaign/modal_send.html.twig' with {'form': form_send, 'actionUrl' : actionUrlSend} only %}
+    {% include '@EdgarEzCampaign/campaign/campaign/modal_schedule.html.twig' with {'form': form_schedule, 'actionUrl' : actionUrlSchedule} only %}
 
 {% endblock %}
 
