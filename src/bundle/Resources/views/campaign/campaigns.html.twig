@@ -87,70 +87,7 @@
                 </tr>
             {% else %}
                 {% for campaign in campaigns.campaigns %}
-                    {% set disable_send = '' %}
-                    {% if campaign.status == 'save' and campaign.content_type != 'url' %}
-                        {% set disable_send = 'disabled' %}
-                    {% endif %}
-                    <tr>
-                        <td class="ez-checkbox-cell">
-                            {{ form_widget(form_campaigns_delete.campaigns[campaign.id]) }}
-                        </td>
-                        <td>{{ campaign.settings.title }}</td>
-                        <td>{{ campaign.settings.subject_line }}</td>
-                        <td>{{ campaign.create_time }}</td>
-                        <td>{{ campaign.emails_sent }}</td>
-                        <td>{{ campaign.send_time }}</td>
-                        <td>
-                            <a href="{{ path('edgar.campaign.list.view', {'listId': campaign.recipients.list_id}) }}">{{ campaign.recipients.list_name }}</a>
-                        </td>
-                        <td class="text-right edgarezcampaign-td-icon">
-                            <a title="{{ 'edgar.campaign.campaign.view'|trans|desc('Detail') }}"
-                               href="{{ path('edgar.campaign.campaign.view', {'campaignId': campaign.id}) }}"
-                               class="btn btn-icon mx-3">
-                                <svg class="ez-icon ez-icon-edit">
-                                    <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#view"></use>
-                                </svg>
-                            </a>
-                        </td>
-                        <td class="text-right edgarezcampaign-td-icon">
-                            <a title="{{ 'edgar.campaign.campaign.send'|trans|desc('Send') }}"
-                               data-toggle="modal" data-target="#campaign-send-modal"
-                               data-action="{{ path('edgar.campaign.send', {'campaignId': campaign.id}) }}"
-                               class="btn btn-icon mx-3 {{ disable_send }}">
-                                <svg class="ez-icon ez-icon-edit">
-                                    <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#mail"></use>
-                                </svg>
-                            </a>
-                        </td>
-                        <td class="text-right edgarezcampaign-td-icon">
-                            <a title="{{ 'edgar.campaign.campaign.schedule'|trans|desc('Schedule') }}"
-                               data-toggle="modal" data-target="#campaign-schedule-modal"
-                               data-action="{{ path('edgar.campaign.schedule', {'campaignId': campaign.id}) }}"
-                               class="btn btn-icon mx-3 {{ disable_send }}">
-                                <svg class="ez-icon ez-icon-edit">
-                                    <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#schedule"></use>
-                                </svg>
-                            </a>
-                        </td>
-                        <td class="text-right edgarezcampaign-td-icon">
-                            <a title="{{ 'edgar.campaign.campaign.reports'|trans|desc('Reports') }}"
-                               href="{{ path('edgar.campaign.reports', {'campaignId': campaign.id}) }}"
-                               class="btn btn-icon mx-3 {{ disable_send }}">
-                                <svg class="ez-icon ez-icon-edit">
-                                    <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#stats"></use>
-                                </svg>
-                            </a>
-                        </td>
-                        <td class="text-right edgarezcampaign-td-icon">
-                            <a title="{{ 'edgar.campaign.campaign.edit'|trans|desc('Edit') }}"
-                               href="{{ path('edgar.campaign.campaign.edit', {'campaignId': campaign.id}) }}"
-                               class="btn btn-icon mx-3">
-                                <svg class="ez-icon ez-icon-edit">
-                                    <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#edit"></use>
-                                </svg>
-                            </a>
-                        </td>
-                    </tr>
+                    {% include '@EdgarEzCampaign/campaign/campaign/line.html.twig' %}
                 {% endfor %}
             {% endif %}
             </tbody>

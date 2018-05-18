@@ -1,0 +1,28 @@
+<tr>
+    <td class="ez-checkbox-cell">
+        {{ form_widget(form_lists_delete.lists[list.id]) }}
+    </td>
+    <td>{{ list.name }}</td>
+    <td>{{ list.date_created }}</td>
+    <td>{{ list.stats.member_count }}</td>
+    <td>{{ list.stats.open_rate }} %</td>
+    <td>{{ list.stats.click_rate }} %</td>
+    <td class="text-right edgarezcampaign-td-icon">
+        <a title="{{ 'edgar.campaign.list.preview'|trans|desc('Detail') }}"
+           href="{{ path('edgar.campaign.list.view', {'listId': list.id}) }}"
+           class="btn btn-icon mx-3">
+            <svg class="ez-icon ez-icon-edit">
+                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#view"></use>
+            </svg>
+        </a>
+    </td>
+    <td class="text-right edgarezcampaign-td-icon">
+        <a title="{{ 'edgar.campaign.list.edit'|trans|desc('Edit') }}"
+           href="{{ path('edgar.campaign.list.edit', {'listId': list.id}) }}"
+           class="btn btn-icon mx-3">
+            <svg class="ez-icon ez-icon-edit">
+                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#edit"></use>
+            </svg>
+        </a>
+    </td>
+</tr>

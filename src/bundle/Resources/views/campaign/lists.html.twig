@@ -54,48 +54,31 @@
             'attr': { 'class': 'ez-toggle-btn-state', 'data-toggle-button-id': '#delete-lists' }
         }) }}
         <table class="table mb-3">
-            <thead>
-            <tr>
-                <th></th>
-                <th>{{ 'campaign.lists.name.th'|trans|desc('Name') }}</th>
-                <th>{{ 'campaign.lists.date_created.th'|trans|desc('Date created') }}</th>
-                <th>{{ 'campaign.lists.member_count.th'|trans|desc('Member count') }}</th>
-                <th>{{ 'campaign.lists.open_rate.th'|trans|desc('Open rate') }}</th>
-                <th>{{ 'campaign.lists.click_rate.th'|trans|desc('Click rate') }}</th>
-                <th colspan="2"></th>
-            </tr>
-            </thead>
+            {% if lists.lists|length != 0 %}
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>{{ 'campaign.lists.name.th'|trans|desc('Name') }}</th>
+                        <th>{{ 'campaign.lists.date_created.th'|trans|desc('Date created') }}</th>
+                        <th>{{ 'campaign.lists.member_count.th'|trans|desc('Member count') }}</th>
+                        <th>{{ 'campaign.lists.open_rate.th'|trans|desc('Open rate') }}</th>
+                        <th>{{ 'campaign.lists.click_rate.th'|trans|desc('Click rate') }}</th>
+                        <th colspan="2"></th>
+                    </tr>
+                </thead>
+            {% endif %}
             <tbody>
-            {% for list in lists.lists %}
+            {% if lists.lists|length == 0 %}
                 <tr>
-                    <td class="ez-checkbox-cell">
-                        {{ form_widget(form_lists_delete.lists[list.id]) }}
-                    </td>
-                    <td>{{ list.name }}</td>
-                    <td>{{ list.date_created }}</td>
-                    <td>{{ list.stats.member_count }}</td>
-                    <td>{{ list.stats.open_rate }} %</td>
-                    <td>{{ list.stats.click_rate }} %</td>
-                    <td class="text-right edgarezcampaign-td-icon">
-                        <a title="{{ 'edgar.campaign.list.preview'|trans|desc('Detail') }}"
-                           href="{{ path('edgar.campaign.list.view', {'listId': list.id}) }}"
-                           class="btn btn-icon mx-3">
-                            <svg class="ez-icon ez-icon-edit">
-                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#view"></use>
-                            </svg>
-                        </a>
-                    </td>
-                    <td class="text-right edgarezcampaign-td-icon">
-                        <a title="{{ 'edgar.campaign.list.edit'|trans|desc('Edit') }}"
-                           href="{{ path('edgar.campaign.list.edit', {'listId': list.id}) }}"
-                           class="btn btn-icon mx-3">
-                            <svg class="ez-icon ez-icon-edit">
-                                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#edit"></use>
-                            </svg>
-                        </a>
+                    <td>
+                        {{ 'campaign.lists.empty'|trans|desc('No Subscription List yet registered') }}<br />
                     </td>
                 </tr>
-            {% endfor %}
+            {% else %}
+                {% for list in lists.lists %}
+                    {% include '@EdgarEzCampaign/campaign/list/line.html.twig' %}
+                {% endfor %}
+            {% endif %}
             </tbody>
         </table>
         {{ form_end(form_lists_delete) }}

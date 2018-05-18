@@ -49,21 +49,31 @@
                         'attr': { 'class': 'ez-toggle-btn-state', 'data-toggle-button-id': '#delete-folders' }
                     }) }}
                     <table class="table mb-3">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>{{ 'campaign.folder.name.th'|trans|desc('Name') }}</th>
-                        </tr>
-                        </thead>
+                        {% if folders.folders|length != 0 %}
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>{{ 'campaign.folder.name.th'|trans|desc('Name') }}</th>
+                                </tr>
+                            </thead>
+                        {% endif %}
                         <tbody>
-                        {% for folder in folders.folders %}
+                        {% if folders.folders|length == 0 %}
                             <tr>
-                                <td class="ez-checkbox-cell">
-                                    {{ form_widget(fomr_folders_delete.folders[folder.id]) }}
+                                <td>
+                                    {{ 'campaign.folders.empty'|trans|desc('No Folder yet registered') }}<br />
                                 </td>
-                                <td>{{ folder.name }}</td>
                             </tr>
-                        {% endfor %}
+                        {% else %}
+                            {% for folder in folders.folders %}
+                                <tr>
+                                    <td class="ez-checkbox-cell">
+                                        {{ form_widget(fomr_folders_delete.folders[folder.id]) }}
+                                    </td>
+                                    <td>{{ folder.name }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
                         </tbody>
                     </table>
                     {{ form_end(fomr_folders_delete) }}
