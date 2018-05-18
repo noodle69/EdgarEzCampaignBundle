@@ -31,28 +31,9 @@ class ListService extends BaseService
         return $list;
     }
 
-    /**
-     * Create new Campaign List
-     *
-     * @param string $name Campaign List name
-     * @param string $company Campaign List contact company information
-     * @param string $address Campaign List contact address information
-     * @param string $city Campaign List contact city information
-     * @param string $state Campaign List contact state information
-     * @param string $zip Campaign List contact zip information
-     * @param string $country Campaign List contact country information
-     * @param string $permission_reminder Campaign List permission reminder
-     * @param string $from_name Campaign List default from name
-     * @param string $from_email Campaign List default from email
-     * @param string $subject Campaign List default subject
-     * @param string $language Campaign List default language
-     * @return array MailChimp service informations
-     * @throws MailchimpException MailChimpException
-     */
     public function post(CampaignList $list)
     {
-        $countrySelected = key($list->country->countries);
-        $languageCode = $list->language->getIdentifier();
+        // $countrySelected = key($list->getCountry()->countries);
 
         $return = $this->mailChimp->post('/lists', [
             'name' => $list->getName(),
@@ -63,7 +44,7 @@ class ListService extends BaseService
                 'city' => $list->getCity(),
                 'state' => $list->getState(),
                 'zip' => $list->getZip(),
-                'country' => $countrySelected,
+                'country' => $list->getCountry(),
                 'phone' => $list->getPhone() ?? '',
             ],
             'permission_reminder' => $list->getPermissionReminder(),
@@ -72,7 +53,7 @@ class ListService extends BaseService
                 'from_name' => $list->getFromName(),
                 'from_email' => $list->getFromEmail(),
                 'subject' => $list->getSubject(),
-                'language' => $languageCode,
+                'language' => $list->getLanguage(),
             ],
             'email_type_option' => false,
             'notify_on_subscribe' => $list->getNotifyOnSubscribe() ?? '',

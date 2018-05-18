@@ -387,7 +387,7 @@
         <note>key: edgar.campaign.campaign.create.site</note>
       </trans-unit>
       <trans-unit id="40d8ebe1214b760370502071f1e6d725a5b0ca79" resname="edgar.campaign.campaign.create.site.placeholder">
-        <source>Choose a site</source>
+        <source>Select a site</source>
         <target>Choose a site</target>
         <note>key: edgar.campaign.campaign.create.site.placeholder</note>
       </trans-unit>
@@ -570,6 +570,16 @@
         <source>Choose</source>
         <target>Choose</target>
         <note>key: edgar.campaign.reports.choose</note>
+      </trans-unit>
+      <trans-unit id="f2540a3047f2a13984784257dc3df826bbbfe3a9" resname="edgar.campaign.schedule.schedule">
+        <source>Schedule</source>
+        <target state="new">Schedule</target>
+        <note>key: edgar.campaign.schedule.schedule</note>
+      </trans-unit>
+      <trans-unit id="8b1d33b60b308ffcca74c5c4dbd77b9836015b81" resname="edgar.campaign.send.send">
+        <source>Send</source>
+        <target state="new">Send</target>
+        <note>key: edgar.campaign.send.send</note>
       </trans-unit>
       <trans-unit id="a165be11ec0a69eee703ec6b84268858f06e25ca" resname="edgar.campaign.subscribe">
         <source>Campaign subscription: "%title%"</source>

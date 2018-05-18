@@ -46,6 +46,16 @@
         <target>Campaign Folders</target>
         <note>key: campaign.folder.table.header</note>
       </trans-unit>
+      <trans-unit id="3ba1bf1246d2cda0917e34437ba05ced808a5248" resname="campaign.schedule.form.cancel">
+        <source>Cancel</source>
+        <target state="new">Cancel</target>
+        <note>key: campaign.schedule.form.cancel</note>
+      </trans-unit>
+      <trans-unit id="d095e58376e53fa1990b807a11fc67ab408fd70b" resname="campaign.send.form.cancel">
+        <source>Cancel</source>
+        <target state="new">Cancel</target>
+        <note>key: campaign.send.form.cancel</note>
+      </trans-unit>
       <trans-unit id="df482fc7bdc8a9ac10e56a67c4b5b81401f4e971" resname="campaign.trash.form.cancel">
         <source>Cancel</source>
         <target>Cancel</target>

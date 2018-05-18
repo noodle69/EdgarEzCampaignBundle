@@ -76,7 +76,7 @@ class CampaignUpdateType extends AbstractType
                 [
                     'label' => /** @Desc("Site") */ 'edgar.campaign.campaign.create.site',
                     'required' => false,
-                    'placeholder' => /** @Desc("Choose a site") */ 'edgar.campaign.campaign.create.site.placeholder',
+                    'placeholder' => /** @Desc("Select a site") */ 'edgar.campaign.campaign.create.site.placeholder',
                     'multiple' => false,
                     'expanded' => false,
                     'constraints' => [new SiteConstraint()],

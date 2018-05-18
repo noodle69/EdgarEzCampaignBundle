@@ -2,6 +2,8 @@
 
 namespace Edgar\EzCampaign\Values\Core;
 
+use eZ\Publish\Core\FieldType\Country\Value as CountryValue;
+
 class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
 {
     public function getId(): ?string
@@ -92,14 +94,20 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
         return $this;
     }
 
-    public function getCountry()
+    public function getCountry(): ?string
     {
         return $this->country;
     }
 
-    public function setCountry($country)
+    public function setCountry($country): self
     {
-        $this->country = $country;
+        if (is_object($country)) {
+            $this->country = key($country->countries);
+        } else {
+            $this->country = $country;
+        }
+
+        return $this;
     }
 
     public function getPhone(): ?string

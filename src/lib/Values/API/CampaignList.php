@@ -3,6 +3,7 @@
 namespace Edgar\EzCampaign\Values\API;
 
 use eZ\Publish\API\Repository\Values\ValueObject;
+use eZ\Publish\Core\FieldType\Country\Value as CountryValue;
 
 abstract class CampaignList extends ValueObject
 {
@@ -22,6 +23,7 @@ abstract class CampaignList extends ValueObject
 
     protected $zip;
 
+    /** @var CountryValue */
     protected $country;
 
     protected $phone;
