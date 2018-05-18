@@ -3,7 +3,6 @@
 namespace Edgar\EzCampaign\Menu\Admin\Campaign;
 
 use Edgar\EzCampaign\Menu\Event\ConfigureMenuEvent;
-use Edgar\EzCampaign\Values\Core\CampaignList;
 use eZ\Publish\API\Repository\Exceptions as ApiExceptions;
 use EzSystems\EzPlatformAdminUi\Menu\AbstractBuilder;
 use InvalidArgumentException;

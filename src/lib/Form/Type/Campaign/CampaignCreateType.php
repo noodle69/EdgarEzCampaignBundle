@@ -4,6 +4,7 @@ namespace Edgar\EzCampaign\Form\Type\Campaign;
 
 use Edgar\EzCampaign\Form\Type\Field\FolderType;
 use Edgar\EzCampaign\Form\Type\Field\ListType;
+use Edgar\EzCampaign\Values\Core\Campaign;
 use Edgar\EzUISites\Form\Constraints\SiteConstraint;
 use Edgar\EzUISites\Form\Type\FilterSitesType;
 use EzSystems\EzPlatformAdminUi\Form\Type\UniversalDiscoveryWidget\UniversalDiscoveryWidgetType;
@@ -30,6 +31,7 @@ class CampaignCreateType extends AbstractType
     {
         $resolver
             ->setDefaults([
+                'data_class' => Campaign::class,
                 'translation_domain' => 'edgarezcampaign',
             ]);
     }
@@ -45,12 +47,16 @@ class CampaignCreateType extends AbstractType
             ->add(
                 'list_id',
                 ListType::class,
-                ['label' => /** @Desc("List") */ 'edgar.campaign.campaign.create.list_id']
+                [
+                    'label' => /** @Desc("List") */ 'edgar.campaign.campaign.create.list_id'
+                ]
             )
             ->add(
                 'folder_id',
                 FolderType::class,
-                ['label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id']
+                [
+                    'label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id'
+                ]
             )
             ->add(
                 'content',

@@ -2,16 +2,9 @@
 
 namespace Edgar\EzCampaign\Form\Factory;
 
-use Edgar\EzCampaign\Data\CampaignCreateData;
-use Edgar\EzCampaign\Data\CampaignDeleteData;
-use Edgar\EzCampaign\Data\CampaignUpdateData;
-use Edgar\EzCampaign\Data\FolderCreateData;
 use Edgar\EzCampaign\Data\FoldersDeleteData;
-use Edgar\EzCampaign\Data\ListCreateData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
-use Edgar\EzCampaign\Data\ListDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
-use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Data\ReportsData;
 use Edgar\EzCampaign\Data\SubscribeData;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignScheduleType;
@@ -28,6 +21,9 @@ use Edgar\EzCampaign\Form\Type\CampaignList\ListsDeleteType;
 use Edgar\EzCampaign\Form\Type\CampaignList\ListUpdateType;
 use Edgar\EzCampaign\Form\Type\ReportsType;
 use Edgar\EzCampaign\Form\Type\SubscribeType;
+use Edgar\EzCampaign\Values\Core\Campaign;
+use Edgar\EzCampaign\Values\Core\CampaignList;
+use Edgar\EzCampaign\Values\Core\Folder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\Util\StringUtil;
@@ -78,14 +74,8 @@ class FormFactory
         return $this->formFactory->createNamed($name, ListsDeleteType::class, $data);
     }
 
-    /**
-     * @param CampaignCreateData|null $data
-     * @param null|string $name
-     *
-     * @return FormInterface
-     */
     public function createCampaign(
-        ?CampaignCreateData $data = null,
+        ?Campaign $data = null,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignCreateType::class);
@@ -93,18 +83,12 @@ class FormFactory
         return $this->formFactory->createNamed(
             $name,
             CampaignCreateType::class,
-            $data ?? new CampaignCreateData()
+            $data ?? new Campaign()
         );
     }
 
-    /**
-     * @param FolderCreateData|null $data
-     * @param null|string $name
-     *
-     * @return FormInterface
-     */
     public function createFolder(
-        ?FolderCreateData $data = null,
+        ?Folder $data = null,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(FolderCreateType::class);
@@ -112,18 +96,12 @@ class FormFactory
         return $this->formFactory->createNamed(
             $name,
             FolderCreateType::class,
-            $data ?? new FolderCreateData()
+            $data ?? new Folder()
         );
     }
 
-    /**
-     * @param ListCreateData|null $data
-     * @param null|string $name
-     *
-     * @return FormInterface
-     */
     public function createList(
-        ?ListCreateData $data = null,
+        ?CampaignList $data = null,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(ListCreateType::class);
@@ -131,18 +109,12 @@ class FormFactory
         return $this->formFactory->createNamed(
             $name,
             ListCreateType::class,
-            $data ?? new ListCreateData()
+            $data ?? new CampaignList()
         );
     }
 
-    /**
-     * @param CampaignUpdateData $data
-     * @param null|string $name
-     *
-     * @return FormInterface
-     */
     public function updateCampaign(
-        CampaignUpdateData $data,
+        Campaign $data,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: sprintf('update-campaign-%d', $data->getId());
@@ -151,7 +123,7 @@ class FormFactory
     }
 
     public function updateList(
-        ListUpdateData $data,
+        CampaignList $data,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: sprintf('update-list-%d', $data->getId());
@@ -159,12 +131,6 @@ class FormFactory
         return $this->formFactory->createNamed($name, ListUpdateType::class, $data);
     }
 
-    /**
-     * @param FolderCreateData|null $data
-     * @param null|string $name
-     *
-     * @return FormInterface
-     */
     public function reportsChooseCampaign(
         ?ReportsData $data = null,
         ?string $name = null
@@ -192,7 +158,7 @@ class FormFactory
     }
 
     public function deleteCampaign(
-        CampaignDeleteData $data = null,
+        Campaign $data = null,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignDeleteType::class);
@@ -201,7 +167,7 @@ class FormFactory
     }
 
     public function deleteList(
-        ListDeleteData $data = null,
+        CampaignList $data = null,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(ListDeleteType::class);

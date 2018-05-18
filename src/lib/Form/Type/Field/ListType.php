@@ -2,7 +2,6 @@
 
 namespace Edgar\EzCampaign\Form\Type\Field;
 
-use Edgar\EzCampaign\Data\Mapper\ListMapper;
 use Edgar\EzCampaign\Values\Core\CampaignList;
 use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;

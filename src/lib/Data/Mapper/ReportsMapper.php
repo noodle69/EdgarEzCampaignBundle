@@ -3,9 +3,7 @@
 namespace Edgar\EzCampaign\Data\Mapper;
 
 use Edgar\EzCampaign\Data\ReportsData;
-use Edgar\EzCampaign\Values\CampaignCreateStruct;
 use eZ\Publish\API\Repository\Values\ValueObject;
-use EzSystems\EzPlatformAdminUi\Exception\InvalidArgumentException;
 use EzSystems\RepositoryForms\Data\Mapper\FormDataMapperInterface;
 use Edgar\EzCampaign\Data\CampaignCreateData;
 use Edgar\EzCampaign\Data\CampaignUpdateData;

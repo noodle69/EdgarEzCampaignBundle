@@ -2,7 +2,6 @@
 
 namespace Edgar\EzCampaign\Form\Type\Field;
 
-use Edgar\EzCampaign\Data\Mapper\FolderMapper;
 use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;

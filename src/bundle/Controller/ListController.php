@@ -2,13 +2,12 @@
 
 namespace Edgar\EzCampaignBundle\Controller;
 
-use Edgar\EzCampaign\Data\ListCreateData;
-use Edgar\EzCampaign\Data\ListDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Data\Mapper\ListMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
+use Edgar\EzCampaign\Values\Core\CampaignList;
 use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
@@ -163,16 +162,15 @@ class ListController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (ListCreateData $data) use ($form) {
+            $result = $this->submitHandler->handle($form, function (CampaignList $data) use ($form) {
                 try {
-                    $listCreateStruct = $this->listMapper->reverseMap($data);
-                    $list = $this->listService->post($listCreateStruct);
+                    $this->listService->post($data);
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
                         /** @Desc("List '%name%' created.") */
                             'list.create.success',
-                            ['%name%' => $list['name']],
+                            ['%name%' => $data->getName()],
                             'edgarezcampaign'
                         )
                     );
@@ -199,38 +197,13 @@ class ListController extends Controller
         ]);
     }
 
-    public function editAction(Request $request, string $listId): Response
+    public function editAction(Request $request, CampaignList $list): Response
     {
-        try {
-            $list = $this->listService->get($listId);
-            $list = $this->listService->map($list);
-            $listData = (new ListMapper())->mapToFormData($list);
-
-            if ($list === false) {
-                $this->notificationHandler->warning(
-                    $this->translator->trans(
-                    /** @Desc("Subscription list does not exists.") */
-                        'list.update.warning',
-                        [],
-                        'edgarezcampaign'
-                    )
-                );
-            }
-        } catch (MailchimpException $e) {
-            $this->notificationHandler->error(
-                $this->translator->trans(
-                /** @Desc("Failed to retrieve Subscription list.") */
-                    'list.update.error',
-                    [],
-                    'edgarezcampaign'
-                )
-            );
-        }
-
-        $form = $this->formFactory->updateList($listData);
+        $form = $this->formFactory->updateList($list);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $listId = $list->getId();
             $result = $this->submitHandler->handle($form, function (ListUpdateData $list) use ($form, $listId) {
                 try {
                     $this->listService->patch($listId, $list);
@@ -263,90 +236,30 @@ class ListController extends Controller
 
         return $this->render('@EdgarEzCampaign/campaign/list/edit.html.twig', [
             'form' => $form->createView(),
-            'actionUrl' => $this->generateUrl('edgar.campaign.list.edit', ['listId' => $listId]),
+            'actionUrl' => $this->generateUrl('edgar.campaign.list.edit', ['listId' => $list->getId()]),
             'list' => $list,
         ]);
     }
 
-    public function viewAction(Request $request, string $listId): Response
+    public function viewAction(CampaignList $list): Response
     {
-        try {
-            $list = $this->listService->get($listId);
-            $list = $this->listService->map($list);
-            $listData = new ListDeleteData(['id' => $list->getId()]);
-
-            if ($listData === false) {
-                $this->notificationHandler->warning(
-                    $this->translator->trans(
-                    /** @Desc("Subscription list does not exists.") */
-                        'list.update.warning',
-                        [],
-                        'edgarezcampaign'
-                    )
-                );
-
-                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
-            }
-        } catch (MailchimpException $e) {
-            $this->notificationHandler->error(
-                $this->translator->trans(
-                /** @Desc("Failed to retrieve Subscription list.") */
-                    'list.update.error',
-                    [],
-                    'edgarezcampaign'
-                )
-            );
-
-            return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
-        }
-
-        $listDeleteType = $this->formFactory->deleteList($listData);
+        $listDeleteType = $this->formFactory->deleteList($list);
 
         return $this->render('@EdgarEzCampaign/campaign/list/view.html.twig', [
             'form_delete' => $listDeleteType->createView(),
-            'actionUrl' => $this->generateUrl('edgar.campaign.list.delete', ['listId' => $listId]),
+            'actionUrl' => $this->generateUrl('edgar.campaign.list.delete', ['listId' => $list->getId()]),
             'list' => $list,
         ]);
     }
 
-    public function deleteAction(Request $request, string $listId): Response
+    public function deleteAction(Request $request, CampaignList $list): Response
     {
-        try {
-            $list = $this->listService->get($listId);
-            $list = $this->listService->map($list);
-            $listData = new ListDeleteData(['id' => $list->getId()]);
-
-            if ($listData === false) {
-                $this->notificationHandler->warning(
-                    $this->translator->trans(
-                    /** @Desc("Subscription list does not exists.") */
-                        'list.update.warning',
-                        [],
-                        'edgarezcampaign'
-                    )
-                );
-
-                return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
-            }
-        } catch (MailchimpException $e) {
-            $this->notificationHandler->error(
-                $this->translator->trans(
-                /** @Desc("Failed to retrieve Subscription list.") */
-                    'list.update.error',
-                    [],
-                    'edgarezcampaign'
-                )
-            );
-
-            return new RedirectResponse($this->generateUrl('edgar.campaign.lists', []));
-        }
-
-        $form = $this->formFactory->deleteList($listData);
+        $form = $this->formFactory->deleteList($list);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (ListDeleteData $listDeleteData) use ($list) {
-                $this->listService->delete($list->id);
+            $result = $this->submitHandler->handle($form, function () use ($list) {
+                $this->listService->delete($list->getId());
 
                 $this->notificationHandler->success(
                     $this->translator->trans(
@@ -365,7 +278,7 @@ class ListController extends Controller
             }
         }
 
-        return new RedirectResponse($this->generateUrl('edgar.campaign.list.view', ['listId' => $listId]));
+        return new RedirectResponse($this->generateUrl('edgar.campaign.list.view', ['listId' => $list->getId()]));
     }
 
     private function getListsNumbers(array $lists): array

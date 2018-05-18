@@ -2,9 +2,8 @@
 
 namespace Edgar\EzCampaign\Form\Type\CampaignList;
 
-use Edgar\EzCampaign\Data\ListDeleteData;
+use Edgar\EzCampaign\Values\Core\CampaignList;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -34,7 +33,7 @@ class ListDeleteType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ListDeleteData::class,
+            'data_class' => CampaignList::class,
             'translation_domain' => 'edgarezcampaign',
         ]);
     }

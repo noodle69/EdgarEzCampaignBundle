@@ -2,9 +2,9 @@
 
 namespace Edgar\EzCampaign\Form\Type\Campaign;
 
-use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Form\Type\Field\FolderType;
 use Edgar\EzCampaign\Form\Type\Field\ListType;
+use Edgar\EzCampaign\Values\Core\Campaign;
 use Edgar\EzCampaign\Values\Core\CampaignList;
 use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzUISites\Form\Constraints\SiteConstraint;
@@ -33,7 +33,7 @@ class CampaignUpdateType extends AbstractType
     {
         $resolver
             ->setDefaults([
-                'data_class' => CampaignUpdateData::class,
+                'data_class' => Campaign::class,
                 'translation_domain' => 'edgarezcampaign',
             ]);
     }

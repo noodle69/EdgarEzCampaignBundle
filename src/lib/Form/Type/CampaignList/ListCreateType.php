@@ -3,6 +3,7 @@
 namespace Edgar\EzCampaign\Form\Type\CampaignList;
 
 use Edgar\EzCampaign\Form\Type\Field\LanguageType;
+use Edgar\EzCampaign\Values\Core\CampaignList;
 use EzSystems\RepositoryForms\Form\Type\FieldType\CountryFieldType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -29,6 +30,7 @@ class ListCreateType extends AbstractType
     {
         $resolver
             ->setDefaults([
+                'data_class' => CampaignList::class,
                 'translation_domain' => 'edgarezcampaign',
             ]);
     }

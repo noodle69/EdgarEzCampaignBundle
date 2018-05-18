@@ -2,7 +2,6 @@
 
 namespace Edgar\EzCampaignBundle\Controller;
 
-use Edgar\EzCampaign\Data\Mapper\CampaignMapper;
 use Edgar\EzCampaign\Data\Mapper\ReportsMapper;
 use Edgar\EzCampaign\Data\ReportsData;
 use Edgar\EzCampaign\Form\Factory\FormFactory;

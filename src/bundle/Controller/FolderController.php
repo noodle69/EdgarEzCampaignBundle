@@ -2,11 +2,11 @@
 
 namespace Edgar\EzCampaignBundle\Controller;
 
-use Edgar\EzCampaign\Data\FolderCreateData;
 use Edgar\EzCampaign\Data\FoldersDeleteData;
 use Edgar\EzCampaign\Data\Mapper\FolderMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
+use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
@@ -64,9 +64,8 @@ class FolderController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $result = $this->submitHandler->handle($form, function (FolderCreateData $data) {
-                $folderCreateStruct = $this->folderMapper->reverseMap($data);
-                $folder = $this->folderService->post($folderCreateStruct);
+            $result = $this->submitHandler->handle($form, function (Folder $data) {
+                $folder = $this->folderService->post($data);
 
                 $this->notificationHandler->success(
                     $this->translator->trans(

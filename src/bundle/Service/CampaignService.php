@@ -4,9 +4,7 @@ namespace Edgar\EzCampaignBundle\Service;
 
 use DrewM\MailChimp\MailChimp;
 use Edgar\EzCampaign\Data\CampaignUpdateData;
-use Edgar\EzCampaign\Values\CampaignCreateStruct;
 use Edgar\EzCampaign\Values\Core\Campaign;
-use Edgar\EzCampaign\Values\Core\CampaignList;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
 /**
@@ -69,19 +67,19 @@ class CampaignService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function post(CampaignCreateStruct $campaign)
+    public function post(Campaign $campaign)
     {
         $return = $this->mailChimp->post('/campaigns', [
             'type' => 'regular',
             'recipients' => [
-                'list_id' => $campaign->list_id,
+                'list_id' => $campaign->getListId(),
             ],
             'settings' => [
-                'subject_line' => $campaign->subject_line,
-                'title' => $campaign->title,
-                'from_name' => $campaign->from_name,
-                'reply_to' => $campaign->reply_to,
-                'folder_id' => $campaign->folder_id,
+                'subject_line' => $campaign->getSubjectLine(),
+                'title' => $campaign->getTitle(),
+                'from_name' => $campaign->getFromName(),
+                'reply_to' => $campaign->getReplyTo(),
+                'folder_id' => $campaign->getFolderId(),
             ],
         ]);
 

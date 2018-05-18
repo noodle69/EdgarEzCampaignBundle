@@ -4,7 +4,6 @@ namespace Edgar\EzCampaignBundle\Service;
 
 use Edgar\EzCampaign\Data\ListUpdateData;
 use Edgar\EzCampaign\Values\Core\CampaignList;
-use Edgar\EzCampaign\Values\ListCreateStruct;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
 /**
@@ -50,35 +49,35 @@ class ListService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function post(ListCreateStruct $list)
+    public function post(CampaignList $list)
     {
         $countrySelected = key($list->country->countries);
         $languageCode = $list->language->getIdentifier();
 
         $return = $this->mailChimp->post('/lists', [
-            'name' => $list->name,
+            'name' => $list->getName(),
             'contact' => [
-                'company' => $list->company,
-                'address1' => $list->address,
-                'address2' => $list->address2 ?? '',
-                'city' => $list->city,
-                'state' => $list->state,
-                'zip' => $list->zip,
+                'company' => $list->getCompany(),
+                'address1' => $list->getAddress(),
+                'address2' => $list->getAddress2() ?? '',
+                'city' => $list->getCity(),
+                'state' => $list->getState(),
+                'zip' => $list->getZip(),
                 'country' => $countrySelected,
-                'phone' => $list->phone ?? '',
+                'phone' => $list->getPhone() ?? '',
             ],
-            'permission_reminder' => $list->permission_reminder,
-            'use_archive_bar' => $list->use_archive_bar ? true : false,
+            'permission_reminder' => $list->getPermissionReminder(),
+            'use_archive_bar' => $list->getUseArchiveBar() ? true : false,
             'campaign_defaults' => [
-                'from_name' => $list->from_name,
-                'from_email' => $list->from_email,
-                'subject' => $list->subject,
+                'from_name' => $list->getFromName(),
+                'from_email' => $list->getFromEmail(),
+                'subject' => $list->getSubject(),
                 'language' => $languageCode,
             ],
             'email_type_option' => false,
-            'notify_on_subscribe' => $list->notify_on_subscribe ?? '',
-            'notify_on_unsubscribe' => $list->notify_on_unsubscribe ?? '',
-            'visibility' => $list->visibility,
+            'notify_on_subscribe' => $list->getNotifyOnSubscribe() ?? '',
+            'notify_on_unsubscribe' => $list->getNotifyOnUnsubscribe() ?? '',
+            'visibility' => $list->getVisibility(),
         ]);
 
         if (!$this->mailChimp->success()) {

@@ -2,8 +2,7 @@
 
 namespace Edgar\EzCampaign\Form\Type\Campaign;
 
-use Edgar\EzCampaign\Data\CampaignDeleteData;
-use Edgar\EzCampaign\Form\Type\Field\CampaignsType;
+use Edgar\EzCampaign\Values\Core\Campaign;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,7 +23,7 @@ class CampaignDeleteType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => CampaignDeleteData::class,
+            'data_class' => Campaign::class,
             'translation_domain' => 'edgarezcampaign',
         ]);
     }

@@ -2,6 +2,7 @@
 
 namespace Edgar\EzCampaign\Form\Type\Folder;
 
+use Edgar\EzCampaign\Values\Core\Folder;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,6 +25,7 @@ class FolderCreateType extends AbstractType
     {
         $resolver
             ->setDefaults([
+                'data_class' => Folder::class,
                 'translation_domain' => 'edgarezcampaign',
             ]);
     }

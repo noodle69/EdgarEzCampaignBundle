@@ -20,11 +20,6 @@ class EdgarEzCampaignExtension extends Extension implements PrependExtensionInte
     private $suggestionCollector;
 
     /**
-     * @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ParserInterface
-     */
-    private $mainConfigParser;
-
-    /**
      * @var \eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Configuration\ParserInterface[]
      */
     private $configParsers;

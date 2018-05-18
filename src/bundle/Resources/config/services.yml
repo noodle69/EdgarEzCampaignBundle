@@ -4,6 +4,11 @@ imports:
     - { resource: menu.yml }
     - { resource: tabs.yml }
 
+parameters:
+    edgar.ezcampaign.param_converter.campaign.priority: 0
+    edgar.ezcampaign.param_converter.list.priority: 0
+    edgar.ezcampaign.param_converter.folder.priority: 0
+
 services:
     _defaults:
         autowire: true
@@ -21,3 +26,15 @@ services:
     Edgar\EzCampaign\Form\Type\Field\FolderType: ~
     Edgar\EzCampaign\Form\Type\Field\CampaignsType: ~
     Edgar\EzCampaign\Form\Type\Field\LanguageType: ~
+
+    Edgar\EzCampaignBundle\Converter\CampaignParamConverter:
+        tags:
+            - { name: request.param_converter, priority: "%edgar.ezcampaign.param_converter.campaign.priority%", converter: edgarez_campaign_converter }
+
+    Edgar\EzCampaignBundle\Converter\ListParamConverter:
+        tags:
+            - { name: request.param_converter, priority: "%edgar.ezcampaign.param_converter.list.priority%", converter: edgarez_list_converter }
+
+    Edgar\EzCampaignBundle\Converter\FolderParamConverter:
+        tags:
+            - { name: request.param_converter, priority: "%edgar.ezcampaign.param_converter.folder.priority%", converter: edgarez_folder_converter }
