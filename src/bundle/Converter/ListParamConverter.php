@@ -39,7 +39,7 @@ class ListParamConverter extends RepositoryParamConverter
         $listData->setCity($list['contact']['city']);
         $listData->setState($list['contact']['state']);
         $listData->setZip($list['contact']['zip']);
-        //$listData->setCountry($list['country']);
+        $listData->setCountry($list['contact']['country']);
         $listData->setPhone($list['contact']['phone']);
         $listData->setPermissionReminder($list['permission_reminder']);
         $listData->setUseArchiveBar($list['use_archive_bar']);

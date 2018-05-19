@@ -33,8 +33,6 @@ class ListService extends BaseService
 
     public function post(CampaignList $list)
     {
-        // $countrySelected = key($list->getCountry()->countries);
-
         $return = $this->mailChimp->post('/lists', [
             'name' => $list->getName(),
             'contact' => [
