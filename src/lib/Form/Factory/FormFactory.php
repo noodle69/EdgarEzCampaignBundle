@@ -176,11 +176,12 @@ class FormFactory
     }
 
     public function sendCampaign(
+        ?Campaign $data = null,
         ?string $name = null
     ): FormInterface {
         $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignSendType::class);
 
-        return $this->formFactory->createNamed($name, CampaignSendType::class, null);
+        return $this->formFactory->createNamed($name, CampaignSendType::class, $data);
     }
 
     public function scheduleCampaign(

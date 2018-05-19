@@ -355,9 +355,44 @@ class CampaignController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
-    public function sendAction(string $campaignId): Response
+    public function sendAction(Request $request, Campaign $campaign): Response
     {
-        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaignId]));
+        $form = $this->formFactory->sendCampaign($campaign);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function () use ($campaign) {
+                try {
+                    $this->campaignService->send($campaign->getId());
+
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
+                        /** @Desc("Campaign '%name%' sended.") */
+                            'campaign.send.success',
+                            ['%name%' => $campaign->getTitle()],
+                            'edgarezcampaign'
+                        )
+                    );
+                } catch (MailchimpException $e) {
+                    $this->notificationHandler->error(
+                        $this->translator->trans(
+                        /** @Desc("Failed to send Campaign '%name%'.") */
+                            'campaign.send.error',
+                            ['%name%' => $campaign->getTitle()],
+                            'edgarezcampaign'
+                        )
+                    );
+                }
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
     public function scheduleAction(string $campaignId): Response
