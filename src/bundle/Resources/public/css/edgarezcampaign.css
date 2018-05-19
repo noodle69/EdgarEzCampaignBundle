@@ -14,8 +14,7 @@ td.edgarezcampaign-td-icon a{
     padding-left: 0;
 }
 
-button#campaign_create_content_select_content,
-button#update-campaign-0_content_select_content {
+.edgarezcampaign-form-campaign button.btn--open-udw {
     padding: 0.4rem 1.25rem;
     font-weight: bold;
     color: #fff;
