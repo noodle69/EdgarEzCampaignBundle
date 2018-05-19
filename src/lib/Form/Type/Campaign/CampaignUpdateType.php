@@ -67,7 +67,7 @@ class CampaignUpdateType extends AbstractType
                 UniversalDiscoveryWidgetType::class,
                 [
                     'required' => false,
-                    'label' => /** @Desc("Choose a content") */ 'edgar.campaign.campaign.create.content',
+                    'label' => /** @Desc("Select a content") */ 'edgar.campaign.campaign.create.content',
                 ]
             )
             ->add(

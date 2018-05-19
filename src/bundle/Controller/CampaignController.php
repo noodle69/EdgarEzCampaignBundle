@@ -9,6 +9,7 @@ use Edgar\EzCampaign\Data\Mapper\CampaignMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaign\Values\Core\Campaign;
+use Edgar\EzCampaign\Values\Core\CampaignContent;
 use Edgar\EzCampaign\Values\Core\Schedule;
 use Edgar\EzCampaignBundle\Service\CampaignService;
 use Edgar\EzCampaignBundle\Service\CampaignsService;
@@ -312,6 +313,7 @@ class CampaignController extends Controller
     public function viewAction(Campaign $campaign): Response
     {
         $campaignContent = $this->campaignService->getContent($campaign->getId());
+        $campaignCreateContent = $this->formFactory->createContent();
 
         $campaignDeleteType = $this->formFactory->deleteCampaign($campaign);
 
@@ -324,10 +326,12 @@ class CampaignController extends Controller
             'form_send' => $sendForm->createView(),
             'form_schedule' => $scheduleForm->createView(),
             'form_cancel_schedule' => $cancelScheduleForm->createView(),
+            'form_create_content' => $campaignCreateContent->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.campaign.delete', ['campaignId' => $campaign->getId()]),
             'actionUrlSend' => $this->generateUrl('edgar.campaign.send', ['campaignId' => $campaign->getId()]),
             'actionUrlSchedule' => $this->generateUrl('edgar.campaign.schedule', ['campaignId' => $campaign->getId()]),
             'actionUrlCancelSchedule' => $this->generateUrl('edgar.campaign.cancel.schedule', ['campaignId' => $campaign->getId()]),
+            'actionUrlCreateContent' => $this->generateUrl('edgar.campaign.create_content', ['campaignId' => $campaign->getId()]),
             'list' => $campaign->getList(),
             'folder' => $campaign->getFolder(),
             'campaign' => $campaign,
@@ -474,6 +478,47 @@ class CampaignController extends Controller
                 }
 
                 return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+    }
+
+    public function createContentAction(Request $request, Campaign $campaign): Response
+    {
+        $form = $this->formFactory->createContent();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function (CampaignContent $data) use ($campaign) {
+                try {
+                    $url = $this->urlAliasRouter->generate(
+                        $data->getContent(),
+                        ['siteaccess' => $data->getSite()->getIdentifier()],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    );
+
+                    $this->campaignService->putContent($campaign->getId(), $url);
+
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
+                        /** @Desc("Content has been associated to Campaign '%name%'.") */
+                            'campaign.create.content.success',
+                            ['%name%' => $campaign->getTitle()],
+                            'edgarezcampaign'
+                        )
+                    );
+
+                    return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+                } catch (MailchimpException $e) {
+                    $this->notifyError($e);
+
+                    return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+                }
             });
 
             if ($result instanceof Response) {

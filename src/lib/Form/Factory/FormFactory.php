@@ -8,6 +8,7 @@ use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Data\ReportsData;
 use Edgar\EzCampaign\Data\SubscribeData;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignCancelScheduleType;
+use Edgar\EzCampaign\Form\Type\Campaign\CampaignCreateContentType;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignScheduleType;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignSendType;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignCreateType;
@@ -23,6 +24,7 @@ use Edgar\EzCampaign\Form\Type\CampaignList\ListUpdateType;
 use Edgar\EzCampaign\Form\Type\ReportsType;
 use Edgar\EzCampaign\Form\Type\SubscribeType;
 use Edgar\EzCampaign\Values\Core\Campaign;
+use Edgar\EzCampaign\Values\Core\CampaignContent;
 use Edgar\EzCampaign\Values\Core\CampaignList;
 use Edgar\EzCampaign\Values\Core\Folder;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -200,5 +202,14 @@ class FormFactory
         $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignCancelScheduleType::class);
 
         return $this->formFactory->createNamed($name, CampaignCancelScheduleType::class, $data);
+    }
+
+    public function createContent(
+        ?CampaignContent $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignCreateContentType::class);
+
+        return $this->formFactory->createNamed($name, CampaignCreateContentType::class, $data);
     }
 }

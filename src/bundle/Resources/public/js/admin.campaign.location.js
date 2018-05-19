@@ -1,14 +1,20 @@
 (function () {
     const btnCreate = document.querySelector('#campaign_create_content_select_content');
     const btnEdit = document.querySelector('#update-campaign-0_content_select_content');
+    const btnCreateContent = document.querySelector('#campaign_create_content_content_select_content');
+
     const udwContainer = document.getElementById('react-udw');
     const token = document.querySelector('meta[name="CSRF-Token"]').content;
     const siteaccess = document.querySelector('meta[name="SiteAccess"]').content;
     const closeUDW = () => udwContainer.innerHTML = '';
+
     const selectedLocationCreateId = document.querySelector('#campaign_create_content_location');
     const selectedLocationCreateName = document.querySelector('#campaign_create_content_select_content_label');
-    const selectedLocationEditId = document.querySelector('#update-campaign-0_content_location');
+    const selectedLocationEditId = document.querySelector('#campaign_create_content_content_select_content');
     const selectedLocationEditName = document.querySelector('#campaign_edit_content_select_content_label');
+    const selectedLocationCreateContentId = document.querySelector('#campaign_create_content_content_location');
+    const selectedLocationCreateContentName = document.querySelector('#campaign_create_content_select_content_label');
+
     const onConfirm = (form, content) => {
         arrayLocationIds = [];
         arrayContentNames = [];
@@ -32,6 +38,13 @@
             selectedLocationEditName.innerHTML = arrayContentNames.join('');
         }
 
+        if (selectedLocationCreateContentId) {
+            selectedLocationCreateContentId.value = arrayLocationIds.join(',');
+        }
+        if (selectedLocationCreateContentName) {
+            selectedLocationCreateContentName.innerHTML = arrayContentNames.join('');
+        }
+
         closeUDW();
     };
     const onCancel = () => closeUDW();
@@ -52,6 +65,13 @@
             selectedLocationEditName.innerHTML = '';
         }
 
+        if (selectedLocationCreateContentId) {
+            selectedLocationCreateContentId.value = '';
+        }
+        if (selectedLocationCreateContentName) {
+            selectedLocationCreateContentName.innerHTML = '';
+        }
+
         const form = document.querySelector('form[name="edgarfiltercontentstype"]');
 
         ReactDOM.render(React.createElement(eZ.modules.UniversalDiscovery, {
@@ -68,5 +88,9 @@
 
     if (btnEdit) {
         btnEdit.addEventListener('click', openUDW, false);
+    }
+
+    if (btnCreateContent) {
+        btnCreateContent.addEventListener('click', openUDW, false);
     }
 })();

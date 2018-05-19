@@ -382,8 +382,8 @@
         <note>key: campaigns_delete_form.delete</note>
       </trans-unit>
       <trans-unit id="84e1996b0c3ee2e7a331c9f807e0a34a6097d926" resname="edgar.campaign.campaign.create.content">
-        <source>Choose a content</source>
-        <target>Choose a content</target>
+        <source>Select a content</source>
+        <target>Select a content</target>
         <note>key: edgar.campaign.campaign.create.content</note>
       </trans-unit>
       <trans-unit id="6f8e8c51273390974868f1af37b4c95416e9420b" resname="edgar.campaign.campaign.create.folder_id">
@@ -413,7 +413,7 @@
       </trans-unit>
       <trans-unit id="40d8ebe1214b760370502071f1e6d725a5b0ca79" resname="edgar.campaign.campaign.create.site.placeholder">
         <source>Select a site</source>
-        <target>Choose a site</target>
+        <target>Select a site</target>
         <note>key: edgar.campaign.campaign.create.site.placeholder</note>
       </trans-unit>
       <trans-unit id="bfed4bea527348f71f7d1892baa77c6493bbf210" resname="edgar.campaign.campaign.create.subject_line">

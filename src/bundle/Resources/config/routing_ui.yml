@@ -102,3 +102,10 @@ edgar.campaign.content:
     defaults: { _controller: "EdgarEzCampaignBundle:Campaign:content", campaignId: ~ }
     requirements:
         campaignId: "[0-9a-z]+"
+
+edgar.campaign.create_content:
+    path: /canpaign/content/create/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:createContent", campaignId: ~ }
+    methods: ['POST']
+    requirements:
+        campaignId: "[0-9a-z]+"
