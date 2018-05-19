@@ -83,7 +83,7 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
             )
         );
 
-        if ($campaign['status'] == 'save' && $campaign['content_type'] == 'url'
+        if (($campaign['status'] == 'save' || $campaign['status'] == 'sent') && $campaign['content_type'] == 'url'
             && $campaign['recipients']['list_is_active'] && $campaign['recipients']['recipient_count'] > 0
         ) {
             $menu->addChild(
