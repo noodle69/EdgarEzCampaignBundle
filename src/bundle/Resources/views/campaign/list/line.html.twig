@@ -3,7 +3,7 @@
         {{ form_widget(form_lists_delete.lists[list.id]) }}
     </td>
     <td>{{ list.name }}</td>
-    <td>{{ list.date_created }}</td>
+    <td>{{ list.date_created|date('Y M, d H:i') }}</td>
     <td>{{ list.stats.member_count }}</td>
     <td>{{ list.stats.open_rate }} %</td>
     <td>{{ list.stats.click_rate }} %</td>

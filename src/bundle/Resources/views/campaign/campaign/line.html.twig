@@ -10,9 +10,13 @@
     </td>
     <td>{{ campaign.settings.title }}</td>
     <td>{{ campaign.settings.subject_line }}</td>
-    <td>{{ campaign.create_time }}</td>
+    <td>{{ campaign.create_time|date('Y M, d H:i') }}</td>
     <td>{{ campaign.emails_sent }}</td>
-    <td>{{ campaign.send_time }}</td>
+    <td>
+        {% if not campaign.send_time is empty %}
+            {{ campaign.send_time|date('Y M, d H:i') }}
+        {% endif %}
+    </td>
     <td>
         <a href="{{ path('edgar.campaign.list.view', {'listId': campaign.recipients.list_id}) }}">{{ campaign.recipients.list_name }}</a>
     </td>

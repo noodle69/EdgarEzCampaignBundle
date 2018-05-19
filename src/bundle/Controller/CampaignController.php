@@ -29,11 +29,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
-/**
- * Class CampaignController
- *
- * @package Edgar\EzCampaignBundle\Controller
- */
 class CampaignController extends Controller
 {
     /** @var NotificationHandlerInterface */

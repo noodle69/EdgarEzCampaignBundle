@@ -293,12 +293,16 @@ class ListController extends Controller
         return array_combine($listsNumbers, array_fill_keys($listsNumbers, false));
     }
 
-    private function notifyError(MailchimpException $e) {
+    private function notifyError(MailchimpException $e)
+    {
         $errors = [];
+
         $errorsArray = $e->getErrors();
+
         foreach ($errorsArray as $error) {
             $errors[] = 'field: ' . $error['field'] . ', ' . $error['message'];
         }
+
         $this->notificationHandler->error(
             $this->translator->trans(
             /** @Desc("Field errors: %errors%.") */

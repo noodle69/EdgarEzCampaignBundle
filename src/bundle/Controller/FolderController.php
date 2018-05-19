@@ -153,5 +153,4 @@ class FolderController extends Controller
 
         return $this->redirect($this->generateUrl('edgar.campaign.campaigns'));
     }
-
 }
