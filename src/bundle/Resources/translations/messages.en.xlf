@@ -11,6 +11,16 @@
         <target>Campaign</target>
         <note>key: breadcrumb.campaign</note>
       </trans-unit>
+      <trans-unit id="dfa749669c267b35c189e74d072eadf188366e45" resname="campaign.cancel_schedule.form.cancel">
+        <source>Cancel</source>
+        <target>Cancel</target>
+        <note>key: campaign.cancel_schedule.form.cancel</note>
+      </trans-unit>
+      <trans-unit id="c5bf647fb165f1794f80857765e39fddc60a1efa" resname="campaign.cancel_schedule.modal.message">
+        <source>Are you sure you want to cancel schedule?</source>
+        <target>Are you sure you want to cancel schedule?</target>
+        <note>key: campaign.cancel_schedule.modal.message</note>
+      </trans-unit>
       <trans-unit id="02a6ae23020777b6c087394f9bd4a108810defbf" resname="campaign.folder.add">
         <source>Create new Campaign folder</source>
         <target>Create new Campaign folder</target>
@@ -58,7 +68,7 @@
       </trans-unit>
       <trans-unit id="4e979bbd8998b335de985be25a07d45cbcf5c0d1" resname="campaign.schedule.modal.message">
         <source>You are ready to shedule your Campaign.</source>
-        <target state="new">You are ready to shedule your Campaign.</target>
+        <target>You are ready to shedule your Campaign.</target>
         <note>key: campaign.schedule.modal.message</note>
       </trans-unit>
       <trans-unit id="d095e58376e53fa1990b807a11fc67ab408fd70b" resname="campaign.send.form.cancel">
@@ -68,7 +78,7 @@
       </trans-unit>
       <trans-unit id="b0399289c4424870cbe58c331f1031060b78aa88" resname="campaign.send.modal.message">
         <source>You are ready to send this Campaign</source>
-        <target state="new">You are ready to send this Campaign</target>
+        <target>You are ready to send this Campaign</target>
         <note>key: campaign.send.modal.message</note>
       </trans-unit>
       <trans-unit id="df482fc7bdc8a9ac10e56a67c4b5b81401f4e971" resname="campaign.trash.form.cancel">

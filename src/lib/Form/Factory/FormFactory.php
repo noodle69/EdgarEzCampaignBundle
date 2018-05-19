@@ -7,6 +7,7 @@ use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Data\ReportsData;
 use Edgar\EzCampaign\Data\SubscribeData;
+use Edgar\EzCampaign\Form\Type\Campaign\CampaignCancelScheduleType;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignScheduleType;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignSendType;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignCreateType;
@@ -190,5 +191,14 @@ class FormFactory
         $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignScheduleType::class);
 
         return $this->formFactory->createNamed($name, CampaignScheduleType::class, null);
+    }
+
+    public function cancelScheduleCampaign(
+        ?Campaign $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignCancelScheduleType::class);
+
+        return $this->formFactory->createNamed($name, CampaignCancelScheduleType::class, $data);
     }
 }

@@ -17,14 +17,23 @@ use Welp\MailchimpBundle\Exception\MailchimpException;
 
 class CampaignViewRightSidebarBuilder extends AbstractBuilder implements TranslationContainerInterface
 {
+    const STATUS_SAVE = 'save';
+    const STATUS_SENT = 'sent';
+    const STATUS_PAUSED = 'paused';
+    const STATUS_SCHEDULE = 'schedule';
+
     /* Menu items */
     const ITEM__EDIT = 'campaign_view__sidebar_right__edit';
     const ITEM__SEND = 'campaign_view__sidebar_right__send';
     const ITEM__SCHEDULE = 'campaign_view__sidebar_right__schedule';
+    const ITEM__CANCEL_SCHEDULE = 'campaign_view__sidebar_right__cancel_schedule';
     const ITEM__REPORTS = 'campaign_view__sidebar_right__reports';
     const ITEM__REMOVE = 'campaign_view__sidebar_right__remove';
 
+    /** @var CampaignService  */
     protected $campaignService;
+
+    protected $status;
 
     public function __construct(
         MenuItemFactory $factory,
@@ -33,6 +42,12 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
     ) {
         parent::__construct($factory, $eventDispatcher);
         $this->campaignService = $campaignService;
+        $this->status = [
+            self::STATUS_SAVE,
+            self::STATUS_SENT,
+            self::STATUS_PAUSED,
+            self::STATUS_SCHEDULE,
+        ];
     }
 
     /**
@@ -83,34 +98,49 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
             )
         );
 
-        if (($campaign['status'] == 'save' || $campaign['status'] == 'sent') && $campaign['content_type'] == 'url'
+        if (in_array($campaign['status'], $this->status) && $campaign['content_type'] == 'url'
             && $campaign['recipients']['list_is_active'] && $campaign['recipients']['recipient_count'] > 0
         ) {
-            $menu->addChild(
-                $this->createMenuItem(
-                    self::ITEM__SEND,
-                    [
-                        'attributes' => [
-                            'data-toggle' => 'modal',
-                            'data-target' => '#campaign-send-modal',
-                        ],
-                        'extras' => ['icon' => 'mail'],
-                    ]
-                )
-            );
+            if ($campaign['status'] != self::STATUS_SCHEDULE) {
+                $menu->addChild(
+                    $this->createMenuItem(
+                        self::ITEM__SEND,
+                        [
+                            'attributes' => [
+                                'data-toggle' => 'modal',
+                                'data-target' => '#campaign-send-modal',
+                            ],
+                            'extras' => ['icon' => 'mail'],
+                        ]
+                    )
+                );
 
-            $menu->addChild(
-                $this->createMenuItem(
-                    self::ITEM__SCHEDULE,
-                    [
-                        'attributes' => [
-                            'data-toggle' => 'modal',
-                            'data-target' => '#campaign-schedule-modal',
-                        ],
-                        'extras' => ['icon' => 'schedule'],
-                    ]
-                )
-            );
+                $menu->addChild(
+                    $this->createMenuItem(
+                        self::ITEM__SCHEDULE,
+                        [
+                            'attributes' => [
+                                'data-toggle' => 'modal',
+                                'data-target' => '#campaign-schedule-modal',
+                            ],
+                            'extras' => ['icon' => 'schedule'],
+                        ]
+                    )
+                );
+            } else {
+                $menu->addChild(
+                    $this->createMenuItem(
+                        self::ITEM__CANCEL_SCHEDULE,
+                        [
+                            'attributes' => [
+                                'data-toggle' => 'modal',
+                                'data-target' => '#campaign-cancel-schedule-modal',
+                            ],
+                            'extras' => ['icon' => 'schedule'],
+                        ]
+                    )
+                );
+            }
 
             $menu->addChild(
                 $this->createMenuItem(
@@ -151,6 +181,7 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
             (new Message(self::ITEM__EDIT, 'menu'))->setDesc('Edit'),
             (new Message(self::ITEM__SEND, 'menu'))->setDesc('Send'),
             (new Message(self::ITEM__SCHEDULE, 'menu'))->setDesc('Schedule'),
+            (new Message(self::ITEM__CANCEL_SCHEDULE, 'menu'))->setDesc('Cancel schedule'),
             (new Message(self::ITEM__REPORTS, 'menu'))->setDesc('Reports'),
             (new Message(self::ITEM__REMOVE, 'menu'))->setDesc('Remove'),
         ];

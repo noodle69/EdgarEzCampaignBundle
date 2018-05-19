@@ -121,6 +121,11 @@
         <target><![CDATA[Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items]]></target>
         <note>key: campaign.campaigns.viewing</note>
       </trans-unit>
+      <trans-unit id="8a4a11b2a61c51846732987416dcc5128aa11a32" resname="campaign.cancel.schedule.error">
+        <source>Failed to cancel Campaign '%name%' schedule.</source>
+        <target>Failed to cancel Campaign '%name%' schedule.</target>
+        <note>key: campaign.cancel.schedule.error</note>
+      </trans-unit>
       <trans-unit id="d4e814701ca13375e1793cdb7a8f23565d6eb8c2" resname="campaign.create.success">
         <source>Campaign '%name%' created.</source>
         <target>Campaign '%name%' created.</target>
@@ -311,14 +316,19 @@
         <target>Open</target>
         <note>key: campaign.reports.name.open</note>
       </trans-unit>
+      <trans-unit id="123f95e01f06a8937207a3af821899c8e43ed3c7" resname="campaign.schedule.cancel.success">
+        <source>Campaign '%name%' schedule canceled.</source>
+        <target>Campaign '%name%' schedule canceled.</target>
+        <note>key: campaign.schedule.cancel.success</note>
+      </trans-unit>
       <trans-unit id="348205ecb6c4f1666408e6ffa4ee2c5be7ad2c7d" resname="campaign.send.error">
         <source>Failed to send Campaign '%name%'.</source>
-        <target state="new">Failed to send Campaign '%name%'.</target>
+        <target>Failed to send Campaign '%name%'.</target>
         <note>key: campaign.send.error</note>
       </trans-unit>
       <trans-unit id="890b1ca6c0ed440cfaee4d2dc95d4e483cff2df9" resname="campaign.send.success">
         <source>Campaign '%name%' sended.</source>
-        <target state="new">Campaign '%name%' sended.</target>
+        <target>Campaign '%name%' sended.</target>
         <note>key: campaign.send.success</note>
       </trans-unit>
       <trans-unit id="1682bec6b5b6ad80b214dab0dcb466230181f284" resname="campaign.update.error">
@@ -551,6 +561,11 @@
         <target>Choose</target>
         <note>key: edgar.campaign.reports.choose</note>
       </trans-unit>
+      <trans-unit id="84a4435afea0515569ca75ddba205b84a606d164" resname="edgar.campaign.schedule.cancel">
+        <source>Cancel schedule</source>
+        <target>Cancel schedule</target>
+        <note>key: edgar.campaign.schedule.cancel</note>
+      </trans-unit>
       <trans-unit id="f2540a3047f2a13984784257dc3df826bbbfe3a9" resname="edgar.campaign.schedule.schedule">
         <source>Schedule</source>
         <target>Schedule</target>
@@ -558,7 +573,7 @@
       </trans-unit>
       <trans-unit id="706a3fd30b20d01f8cd6e96c87dcf5b11d59cfb8" resname="edgar.campaign.schedule.schedule_time">
         <source>Schedule time</source>
-        <target state="new">Schedule time</target>
+        <target>Schedule time</target>
         <note>key: edgar.campaign.schedule.schedule_time</note>
       </trans-unit>
       <trans-unit id="8b1d33b60b308ffcca74c5c4dbd77b9836015b81" resname="edgar.campaign.send.send">

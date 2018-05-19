@@ -9,6 +9,7 @@ use Edgar\EzCampaign\Data\Mapper\CampaignMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaign\Values\Core\Campaign;
+use Edgar\EzCampaign\Values\Core\Schedule;
 use Edgar\EzCampaignBundle\Service\CampaignService;
 use Edgar\EzCampaignBundle\Service\CampaignsService;
 use Edgar\EzCampaignBundle\Service\FolderService;
@@ -133,6 +134,7 @@ class CampaignController extends Controller
 
         $sendForm = $this->formFactory->sendCampaign();
         $scheduleForm = $this->formFactory->scheduleCampaign();
+        $cancelScheduleForm = $this->formFactory->cancelScheduleCampaign();
 
         return $this->render('@EdgarEzCampaign/campaign/campaigns.html.twig', [
             'pager' => $pagerfanta,
@@ -144,6 +146,7 @@ class CampaignController extends Controller
             'fomr_folders_delete' => $deleteFoldersForm->createView(),
             'form_send' => $sendForm->createView(),
             'form_schedule' => $scheduleForm->createView(),
+            'form_cancel_schedule' => $cancelScheduleForm->createView(),
         ]);
     }
 
@@ -312,14 +315,17 @@ class CampaignController extends Controller
 
         $sendForm = $this->formFactory->sendCampaign();
         $scheduleForm = $this->formFactory->scheduleCampaign();
+        $cancelScheduleForm = $this->formFactory->cancelScheduleCampaign();
 
         return $this->render('@EdgarEzCampaign/campaign/campaign/view.html.twig', [
             'form_delete' => $campaignDeleteType->createView(),
             'form_send' => $sendForm->createView(),
             'form_schedule' => $scheduleForm->createView(),
+            'form_cancel_schedule' => $cancelScheduleForm->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.campaign.delete', ['campaignId' => $campaign->getId()]),
             'actionUrlSend' => $this->generateUrl('edgar.campaign.send', ['campaignId' => $campaign->getId()]),
             'actionUrlSchedule' => $this->generateUrl('edgar.campaign.schedule', ['campaignId' => $campaign->getId()]),
+            'actionUrlCancelSchedule' => $this->generateUrl('edgar.campaign.cancel.schedule', ['campaignId' => $campaign->getId()]),
             'list' => $campaign->getList(),
             'folder' => $campaign->getFolder(),
             'campaign' => $campaign,
@@ -395,9 +401,84 @@ class CampaignController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
-    public function scheduleAction(string $campaignId): Response
+    public function scheduleAction(Request $request, Campaign $campaign): Response
     {
-        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaignId]));
+        $form = $this->formFactory->scheduleCampaign();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function (Schedule $data) use ($campaign) {
+                try {
+                    $this->campaignService->schedule($campaign->getId(), $data);
+
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
+                        /** @Desc("Campaign '%name%' sended.") */
+                            'campaign.send.success',
+                            ['%name%' => $campaign->getTitle()],
+                            'edgarezcampaign'
+                        )
+                    );
+                } catch (MailchimpException $e) {
+                    $this->notificationHandler->error(
+                        $this->translator->trans(
+                        /** @Desc("Failed to send Campaign '%name%'.") */
+                            'campaign.send.error',
+                            ['%name%' => $campaign->getTitle()],
+                            'edgarezcampaign'
+                        )
+                    );
+                }
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+    }
+
+    public function cancelScheduleAction(Request $request, Campaign $campaign): Response
+    {
+        $form = $this->formFactory->cancelScheduleCampaign($campaign);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $result = $this->submitHandler->handle($form, function () use ($campaign) {
+                try {
+                    $this->campaignService->cancelSchedule($campaign->getId());
+
+                    $this->notificationHandler->success(
+                        $this->translator->trans(
+                        /** @Desc("Campaign '%name%' schedule canceled.") */
+                            'campaign.schedule.cancel.success',
+                            ['%name%' => $campaign->getTitle()],
+                            'edgarezcampaign'
+                        )
+                    );
+                } catch (MailchimpException $e) {
+                    $this->notificationHandler->error(
+                        $this->translator->trans(
+                        /** @Desc("Failed to cancel Campaign '%name%' schedule.") */
+                            'campaign.cancel.schedule.error',
+                            ['%name%' => $campaign->getTitle()],
+                            'edgarezcampaign'
+                        )
+                    );
+                }
+
+                return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
+        return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
     private function getCampaignsNumbers(array $campaigns): array

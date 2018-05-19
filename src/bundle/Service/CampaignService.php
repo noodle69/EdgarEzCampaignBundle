@@ -5,6 +5,7 @@ namespace Edgar\EzCampaignBundle\Service;
 use DrewM\MailChimp\MailChimp;
 use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Values\Core\Campaign;
+use Edgar\EzCampaign\Values\Core\Schedule;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
 /**
@@ -228,10 +229,10 @@ class CampaignService extends BaseService
      * @return array MailChimp service informations
      * @throws MailchimpException MailChimpException
      */
-    public function schedule($campaignID, $scheduleTime)
+    public function schedule($campaignID, Schedule $scheduleTime)
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/schedule', [
-            'schedule_time' => $scheduleTime,
+            'schedule_time' => $scheduleTime->getScheduleTime()->value->format('Y-m-d\TH:i:s') . '+00:00',
         ]);
 
         if (!$this->mailChimp->success()) {
@@ -241,14 +242,7 @@ class CampaignService extends BaseService
         return $return;
     }
 
-    /**
-     * Remove Campaign schedule programmation
-     *
-     * @param string $campaignID Campaign ID
-     * @return array MailChimp service informations
-     * @throws MailchimpException MailChimpException
-     */
-    public function unschedule($campaignID)
+    public function cancelSchedule($campaignID)
     {
         $return = $this->mailChimp->post('/campaigns/' . $campaignID . '/actions/unschedule', []);
 

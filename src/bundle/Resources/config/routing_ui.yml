@@ -84,8 +84,15 @@ edgar.campaign.send:
         campaignId: "[0-9a-z]+"
 
 edgar.campaign.schedule:
-    path: /canpaign/send/{campaignId}
+    path: /canpaign/schedule/{campaignId}
     defaults: { _controller: "EdgarEzCampaignBundle:Campaign:schedule", campaignId: ~ }
+    methods: ['POST']
+    requirements:
+        campaignId: "[0-9a-z]+"
+
+edgar.campaign.cancel.schedule:
+    path: /canpaign/schedule/cancel/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:cancelSchedule", campaignId: ~ }
     methods: ['POST']
     requirements:
         campaignId: "[0-9a-z]+"
