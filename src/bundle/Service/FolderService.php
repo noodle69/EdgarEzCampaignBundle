@@ -98,4 +98,15 @@ class FolderService extends BaseService
 
         return $folder;
     }
+
+    public function getCampaigns(string $folderId)
+    {
+        $return = $this->mailChimp->get('campaigns?folder_id=' . $folderId, []);
+
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
+        }
+
+        return $return;
+    }
 }
