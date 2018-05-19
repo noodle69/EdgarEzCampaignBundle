@@ -311,6 +311,8 @@ class CampaignController extends Controller
 
     public function viewAction(Campaign $campaign): Response
     {
+        $campaignContent = $this->campaignService->getContent($campaign->getId());
+
         $campaignDeleteType = $this->formFactory->deleteCampaign($campaign);
 
         $sendForm = $this->formFactory->sendCampaign();
@@ -329,6 +331,7 @@ class CampaignController extends Controller
             'list' => $campaign->getList(),
             'folder' => $campaign->getFolder(),
             'campaign' => $campaign,
+            'campaign_content' => $campaignContent,
         ]);
     }
 
@@ -479,6 +482,16 @@ class CampaignController extends Controller
         }
 
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
+    }
+
+    public function contentAction(Request $request, Campaign $campaign): Response
+    {
+        $campaignContent = $this->campaignService->getContent($campaign->getId());
+
+        $response = new Response();
+        $response->setContent($campaignContent['html']);
+
+        return $response;
     }
 
     private function getCampaignsNumbers(array $campaigns): array

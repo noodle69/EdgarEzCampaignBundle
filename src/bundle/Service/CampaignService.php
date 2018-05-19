@@ -18,9 +18,6 @@ class CampaignService extends BaseService
     /** @var ListService $listService Campaign List service */
     protected $listService;
 
-    /** @var FolderService  */
-    protected $folderService;
-
     /**
      * CampaignService constructor.
      *
@@ -29,12 +26,10 @@ class CampaignService extends BaseService
      */
     public function __construct(
         MailChimp $mailChimp,
-        ListService $listService,
-        FolderService $folderService
+        ListService $listService
     ) {
         parent::__construct($mailChimp);
         $this->listService = $listService;
-        $this->folderService = $folderService;
     }
 
     /**
@@ -274,7 +269,8 @@ class CampaignService extends BaseService
 
     public function putContent(string $campaignId, string $url)
     {
-        $url = 'http://www.smile.fr';
+// var_dump($url);exit();
+// $url = 'http://www.smile.fr';
         $return = $this->mailChimp->put('/campaigns/' . $campaignId . '/content', [
             'url' => $url,
         ]);
@@ -284,6 +280,17 @@ class CampaignService extends BaseService
         }
 
         return $return;
+    }
+
+    public function getContent($campaignID, array $fields = []): array
+    {
+        $campaignContent = $this->mailChimp->get('/campaigns/' . $campaignID . '/content', $fields);
+
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
+        }
+
+        return $campaignContent;
     }
 
     public function map(array $campaign): Campaign

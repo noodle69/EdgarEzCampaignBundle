@@ -96,3 +96,9 @@ edgar.campaign.cancel.schedule:
     methods: ['POST']
     requirements:
         campaignId: "[0-9a-z]+"
+
+edgar.campaign.content:
+    path: /canpaign/content/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:content", campaignId: ~ }
+    requirements:
+        campaignId: "[0-9a-z]+"

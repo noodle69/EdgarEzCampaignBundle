@@ -57,6 +57,28 @@
         </table>
     </section>
 
+    {% if campaign_content.html is defined %}
+        <header class="ez-table-header">
+            <div class="ez-table-header__headline">
+                {{ 'campaign.campaign.content.table.header'|trans|desc('Campaign content') }}
+            </div>
+        </header>
+        <table class="table">
+            <colgroup>
+                <col width="30%">
+                <col>
+            </colgroup>
+            <tbody>
+            <tr>
+                <td>
+                    <iframe src="{{ path('edgar.campaign.content', {'campaignId': campaign.id}) }}" width="100%" height="400" frameborder="no"></iframe>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </section>
+    {% endif %}
+
     {% include '@EdgarEzCampaign/campaign/campaign/modal_delete.html.twig' with {'form': form_delete, 'actionUrl' : actionUrl} only %}
     {% include '@EdgarEzCampaign/campaign/campaign/modal_send.html.twig' with {'form': form_send, 'actionUrl' : actionUrlSend} only %}
     {% include '@EdgarEzCampaign/campaign/campaign/modal_schedule.html.twig' with {'form': form_schedule, 'actionUrl' : actionUrlSchedule} only %}
