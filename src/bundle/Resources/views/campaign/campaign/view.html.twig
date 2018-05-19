@@ -63,6 +63,20 @@
 
 {% endblock %}
 
+{% block javascripts %}
+    {% javascripts
+        '@EzPlatformAdminUiAssetsBundle/Resources/public/vendors/flatpickr/dist/flatpickr.min.js'
+        '@EzPlatformAdminUiBundle/Resources/public/js/scripts/fieldType/base/base-field.js'
+        '@EzPlatformAdminUiBundle/Resources/public/js/scripts/fieldType/ezdatetime.js'
+    %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+
+{% block stylesheets %}
+    {% include 'EzPlatformAdminUiBundle:content/content_edit/parts:stylesheets.html.twig' %}
+{% endblock %}
+
 {% block right_sidebar %}
     {% set campaign_view_sidebar_right = knp_menu_get('edgar.menu.campaign_view.sidebar_right', [], {'campaign_id': campaign.id}) %}
     {{ knp_menu_render(campaign_view_sidebar_right, {'template': '@EzPlatformAdminUi/parts/menu/sidebar_right.html.twig'}) }}

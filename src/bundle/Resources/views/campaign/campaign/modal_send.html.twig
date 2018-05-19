@@ -12,7 +12,7 @@
             </div>
 
             <div class="modal-body">
-                <p class="ez-modal-body__main">
+                <p class="ez-modal-body__main text-center">
                     {{ 'campaign.send.modal.message'|trans|desc('You are ready to send this Campaign') }}
                 </p>
 
@@ -21,7 +21,9 @@
                 {% else %}
                     {{ form_start(form) }}
                 {% endif %}
-                {{ form_widget(form.send, {'attr': {'class': 'btn-danger'}}) }}
+                    <div class="text-center">
+                        {{ form_widget(form.send, {'attr': {'class': 'btn-danger'}}) }}
+                    </div>
                 {{ form_end(form) }}
             </div>
 

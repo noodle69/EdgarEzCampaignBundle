@@ -116,6 +116,9 @@
 {% block javascripts %}
     {% javascripts
         '@EzPlatformAdminUiBundle/Resources/public/js/scripts/button.state.toggle.js'
+        '@EzPlatformAdminUiAssetsBundle/Resources/public/vendors/flatpickr/dist/flatpickr.min.js'
+        '@EzPlatformAdminUiBundle/Resources/public/js/scripts/fieldType/base/base-field.js'
+        '@EzPlatformAdminUiBundle/Resources/public/js/scripts/fieldType/ezdatetime.js'
     %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
@@ -126,5 +129,6 @@
         '@EdgarEzCampaignBundle/Resources/public/css/edgarezcampaign.css'
     %}
         <link rel="stylesheet" href="{{ asset_url }}" />
+        {% include 'EzPlatformAdminUiBundle:content/content_edit/parts:stylesheets.html.twig' %}
     {% endstylesheets %}
 {% endblock %}

@@ -253,7 +253,7 @@
       </trans-unit>
       <trans-unit id="223b4b3781395d0046648bb25a2ca06212869f85" resname="campaign.lists.empty">
         <source>No Subscription List yet registered</source>
-        <target state="new">No Subscription List yet registered</target>
+        <target>No Subscription List yet registered</target>
         <note>key: campaign.lists.empty</note>
       </trans-unit>
       <trans-unit id="5e154c4b8eaae136811ec327906c563f0d70a8b9" resname="campaign.lists.member_count.th">
@@ -310,6 +310,16 @@
         <source>Open</source>
         <target>Open</target>
         <note>key: campaign.reports.name.open</note>
+      </trans-unit>
+      <trans-unit id="348205ecb6c4f1666408e6ffa4ee2c5be7ad2c7d" resname="campaign.send.error">
+        <source>Failed to send Campaign '%name%'.</source>
+        <target state="new">Failed to send Campaign '%name%'.</target>
+        <note>key: campaign.send.error</note>
+      </trans-unit>
+      <trans-unit id="890b1ca6c0ed440cfaee4d2dc95d4e483cff2df9" resname="campaign.send.success">
+        <source>Campaign '%name%' sended.</source>
+        <target state="new">Campaign '%name%' sended.</target>
+        <note>key: campaign.send.success</note>
       </trans-unit>
       <trans-unit id="1682bec6b5b6ad80b214dab0dcb466230181f284" resname="campaign.update.error">
         <source>Failed to retrieve Campaign.</source>
@@ -545,6 +555,11 @@
         <source>Schedule</source>
         <target>Schedule</target>
         <note>key: edgar.campaign.schedule.schedule</note>
+      </trans-unit>
+      <trans-unit id="706a3fd30b20d01f8cd6e96c87dcf5b11d59cfb8" resname="edgar.campaign.schedule.schedule_time">
+        <source>Schedule time</source>
+        <target state="new">Schedule time</target>
+        <note>key: edgar.campaign.schedule.schedule_time</note>
       </trans-unit>
       <trans-unit id="8b1d33b60b308ffcca74c5c4dbd77b9836015b81" resname="edgar.campaign.send.send">
         <source>Send</source>
