@@ -91,6 +91,11 @@
         <target>Are you sure you want to Delete this Campaign?</target>
         <note>key: campaign.trash.modal.message</note>
       </trans-unit>
+      <trans-unit id="d99574c8022db831705f7b61624a91555649dc14" resname="edgar.campaign.campaign.cancel.schedule">
+        <source>Cancel schedule</source>
+        <target state="new">Cancel schedule</target>
+        <note>key: edgar.campaign.campaign.cancel.schedule</note>
+      </trans-unit>
       <trans-unit id="059b08c8defaed39f3538729eaf9fec2c5c5aa0d" resname="edgar.campaign.campaign.edit">
         <source>Edit</source>
         <target>Edit</target>

@@ -28,7 +28,7 @@
       </trans-unit>
       <trans-unit id="9cb9e1ae140a90b56b376ffec9ffdd9f77f77e65" resname="campaign_view__sidebar_right__cancel_schedule">
         <source>Cancel schedule</source>
-        <target state="new">Cancel schedule</target>
+        <target>Cancel schedule</target>
         <note>key: campaign_view__sidebar_right__cancel_schedule</note>
       </trans-unit>
       <trans-unit id="d820627927e995ebc2bd17afc44f7c55aa73d7a3" resname="campaign_view__sidebar_right__edit">

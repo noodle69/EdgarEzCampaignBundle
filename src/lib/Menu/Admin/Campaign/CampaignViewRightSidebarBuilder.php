@@ -136,7 +136,7 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
                                 'data-toggle' => 'modal',
                                 'data-target' => '#campaign-cancel-schedule-modal',
                             ],
-                            'extras' => ['icon' => 'schedule'],
+                            'extras' => ['icon' => 'circle-close'],
                         ]
                     )
                 );
