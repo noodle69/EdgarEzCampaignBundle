@@ -1,5 +1,7 @@
 {% extends 'EzPlatformAdminUiBundle:admin/language:base.html.twig' %}
 
+{% form_theme form_create_content '@EzPlatformAdminUi/form_fields.html.twig'  %}
+
 {% trans_default_domain 'edgarezcampaign' %}
 
 {% block breadcrumbs_admin %}
@@ -57,12 +59,12 @@
         </table>
     </section>
 
-
     <header class="ez-table-header">
         <div class="ez-table-header__headline">
-            {{ 'campaign.campaign.content.table.header'|trans|desc('Campaign content') }}
+            {{ 'campaign.campaigns.create.content.table.header'|trans|desc('Create/Update Campaign content') }}
         </div>
     </header>
+    {{ form_start(form_create_content, {'action': actionUrlCreateContent}) }}
     <table class="table">
         <colgroup>
             <col width="30%">
@@ -70,33 +72,47 @@
         </colgroup>
         <tbody>
             <tr>
+                <th><label class="form-control-label required" for="campaign_create_content_content_location">Content</label></th>
                 <td>
-                    <section class="container mt-4 px-5">
-                        <div class="card ez-card">
-                            <div class="card-body edgarezcampaign-form-campaign">
-                                {{ form_start(form_create_content, {'action': actionUrlCreateContent}) }}
-                                <div class="form-group">
-                                    {{ form_widget(form_create_content.content) }}
-                                    <div id="campaign_create_content_select_content_label"></div>
-                                </div>
-                                {{ form_row(form_create_content.site) }}
-                                {{ form_widget(form_create_content.save) }}
-                                {{ form_end(form_create_content) }}
-                            </div>
-                        </div>
-                    </section>
+                    <div class="form-group edgarezcampaign-form-campaign">
+                        {{ form_widget(form_create_content.content) }}
+                        <div id="campaign_create_content_select_content_label"></div>
+                    </div>
                 </td>
             </tr>
-        {% if campaign_content.html is defined %}
             <tr>
-                <td>
-                    <iframe src="{{ path('edgar.campaign.content', {'campaignId': campaign.id}) }}" width="100%" height="400" frameborder="no"></iframe>
-                </td>
+                <th>{{ form_label(form_create_content.site) }}</th>
+                <td>{{ form_widget(form_create_content.site) }}</td>
             </tr>
-        {% endif %}
+            <tr>
+                <th colspan="2" class="text-center">{{ form_widget(form_create_content.save) }}</th>
+            </tr>
         </tbody>
     </table>
-    </section>
+    {{ form_end(form_create_content) }}
+
+    <header class="ez-table-header">
+        <div class="ez-table-header__headline">
+            {{ 'campaign.campaign.content.table.header'|trans|desc('Campaign content') }}
+        </div>
+    </header>
+    {{ form_start(form_create_content, {'action': actionUrlCreateContent}) }}
+
+    {% if campaign_content.html is defined %}
+        <table class="table">
+            <colgroup>
+                <col width="30%">
+                <col>
+            </colgroup>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <iframe src="{{ path('edgar.campaign.content', {'campaignId': campaign.id}) }}" width="100%" height="400" frameborder="no"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
 
     {% include '@EdgarEzCampaign/campaign/campaign/modal_delete.html.twig' with {'form': form_delete, 'actionUrl' : actionUrl} only %}
     {% include '@EdgarEzCampaign/campaign/campaign/modal_send.html.twig' with {'form': form_send, 'actionUrl' : actionUrlSend} only %}

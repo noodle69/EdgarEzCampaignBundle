@@ -18,7 +18,7 @@
       </trans-unit>
       <trans-unit id="41a6e2f25f8bdf4c7d479dfc5aa5b41a8bd2a34b" resname="campaign.campaign.content.table.header">
         <source>Campaign content</source>
-        <target state="new">Campaign content</target>
+        <target>Campaign content</target>
         <note>key: campaign.campaign.content.table.header</note>
       </trans-unit>
       <trans-unit id="d194f4e45d7da9c18717e9ca78b4f745e7060e90" resname="campaign.campaign.delete">
@@ -70,6 +70,11 @@
         <source>Send to Trash</source>
         <target>Send to Trash</target>
         <note>key: campaign.campaign_trash_form.trash</note>
+      </trans-unit>
+      <trans-unit id="374825f919df7bb5a797fbf6dfc09f7ed06f49dd" resname="campaign.campaigns.create.content.table.header">
+        <source>Create/Update Campaign content</source>
+        <target state="new">Create/Update Campaign content</target>
+        <note>key: campaign.campaigns.create.content.table.header</note>
       </trans-unit>
       <trans-unit id="d7b46a2dffff1e8982526922efadf7207eb2c881" resname="campaign.campaigns.create_time.th">
         <source>Create time</source>
@@ -133,7 +138,7 @@
       </trans-unit>
       <trans-unit id="81f1ce6700c5617b9b8080b4d7cd00cb1b84712e" resname="campaign.create.content.success">
         <source>Content has been associated to Campaign '%name%'.</source>
-        <target state="new">Content has been associated to Campaign '%name%'.</target>
+        <target>Content has been associated to Campaign '%name%'.</target>
         <note>key: campaign.create.content.success</note>
       </trans-unit>
       <trans-unit id="d4e814701ca13375e1793cdb7a8f23565d6eb8c2" resname="campaign.create.success">
