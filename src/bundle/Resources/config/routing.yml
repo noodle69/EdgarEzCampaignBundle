@@ -4,3 +4,10 @@ edgar.campaign.campaign.subscribe:
     requirements:
         campaignId: "[0-9a-z]+"
         contentId: "[0-9]+"
+
+edgar.campaign.view:
+    path: /view/{locationId}/{site}
+    defaults: { _controller: "EdgarEzCampaignBundle:Front:view" }
+    requirements:
+        locationId: "[0-9]+"
+        site: "[0-9a-z]+"

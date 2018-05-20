@@ -9,6 +9,8 @@ use eZ\Bundle\EzPublishCoreBundle\Controller;
 use Edgar\EzCampaign\Data\SubscribeData;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
+use eZ\Publish\Core\MVC\Symfony\View\Renderer;
+use eZ\Publish\Core\Repository\Values\Content\Location;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +35,11 @@ class FrontController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /** @var UrlAliasRouter  */
     private $router;
+
+    /** @var string  */
+    private $viewType;
 
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
@@ -41,7 +47,8 @@ class FrontController extends Controller
         CampaignService $campaignService,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
-        UrlAliasRouter $router
+        UrlAliasRouter $router,
+        string $viewType
     ) {
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
@@ -49,6 +56,7 @@ class FrontController extends Controller
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
         $this->router = $router;
+        $this->viewType = $viewType;
     }
 
     public function subscribeAction(Request $request, string $campaignId, Content $content): Response
@@ -100,13 +108,22 @@ class FrontController extends Controller
             }
         }
 
-        return $this->render('@EdgarEzCampaign/campaign/campaign/subscribe.html.twig', [
+        return $this->render('@EdgarEzCampaign/campaign/front/subscribe.html.twig', [
             'form' => $form->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.campaign.subscribe', [
                 'campaignId' => $campaignId,
                 'contentId' => $content->id,
             ]),
             'campaign' => $campaign,
+        ]);
+    }
+
+    public function viewAction(Location $location, string $site): Response
+    {
+        return $this->render('@EdgarEzCampaign/campaign/front/view.html.twig', [
+            'locationId' => $location->id,
+            'viewType' => $this->viewType,
+            'siteaccess' => $site
         ]);
     }
 }

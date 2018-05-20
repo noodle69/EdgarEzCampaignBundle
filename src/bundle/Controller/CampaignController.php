@@ -17,7 +17,6 @@ use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
 use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
-use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Pagerfanta\Adapter\ArrayAdapter;
@@ -26,6 +25,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
@@ -64,8 +64,8 @@ class CampaignController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
-    /** @var UrlAliasRouter  */
-    private $urlAliasRouter;
+    /** @var RouterInterface  */
+    private $router;
 
     /** @var int */
     private $defaultPaginationLimit;
@@ -82,7 +82,7 @@ class CampaignController extends Controller
         CampaignMapper $campaignCreateMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
-        UrlAliasRouter $urlAliasRouter,
+        RouterInterface $router,
         int $defaultPaginationLimit
     ) {
         $this->notificationHandler = $notificationHandler;
@@ -96,7 +96,7 @@ class CampaignController extends Controller
         $this->campaignMapper = $campaignCreateMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
-        $this->urlAliasRouter = $urlAliasRouter;
+        $this->router = $router;
         $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
 
@@ -211,9 +211,13 @@ class CampaignController extends Controller
                     $campaign = $this->campaignService->post($data);
 
                     if ($data->getSite() && $data->getContent()) {
-                        $url = $this->urlAliasRouter->generate(
-                            $data->getContent(),
-                            ['siteaccess' => $data->getSite()->getIdentifier()],
+                        $url = $this->router->generate(
+                            'edgar.campaign.view',
+                            [
+                                'locationId' => $data->getContent()->id,
+                                'site' => $data->getSite()->getIdentifier(),
+                                'siteaccess' => $data->getSite()->getIdentifier(),
+                            ],
                             UrlGeneratorInterface::ABSOLUTE_URL
                         );
 
@@ -263,9 +267,13 @@ class CampaignController extends Controller
                     $this->campaignService->patch($campaignId, $campaign);
 
                     if ($campaign->site && $campaign->content) {
-                        $url = $this->urlAliasRouter->generate(
-                            $campaign->content,
-                            ['siteaccess' => $campaign->site->getIdentifier()],
+                        $url = $this->router->generate(
+                            'edgar.campaign.view',
+                            [
+                                'locationId' => $campaign->content,
+                                'site' => $campaign->site->getIdentifier(),
+                                'siteaccess' => $campaign->site->getIdentifier(),
+                            ],
                             UrlGeneratorInterface::ABSOLUTE_URL
                         );
 
@@ -491,9 +499,13 @@ class CampaignController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $result = $this->submitHandler->handle($form, function (CampaignContent $data) use ($campaign) {
                 try {
-                    $url = $this->urlAliasRouter->generate(
-                        $data->getContent(),
-                        ['siteaccess' => $data->getSite()->getIdentifier()],
+                    $url = $this->router->generate(
+                        'edgar.campaign.view',
+                        [
+                            'locationId' => $data->getContent()->id,
+                            'site' => $data->getSite()->getIdentifier(),
+                            'siteaccess' => $data->getSite()->getIdentifier(),
+                        ],
                         UrlGeneratorInterface::ABSOLUTE_URL
                     );
 

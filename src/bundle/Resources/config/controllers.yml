@@ -6,3 +6,5 @@ services:
 
     Edgar\EzCampaignBundle\Controller\FrontController:
         public: true
+        arguments:
+            $viewType: '$campaign_view;edgar_ez_campaign$'

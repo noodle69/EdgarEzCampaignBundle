@@ -73,7 +73,7 @@
       </trans-unit>
       <trans-unit id="374825f919df7bb5a797fbf6dfc09f7ed06f49dd" resname="campaign.campaigns.create.content.table.header">
         <source>Create/Update Campaign content</source>
-        <target state="new">Create/Update Campaign content</target>
+        <target>Create/Update Campaign content</target>
         <note>key: campaign.campaigns.create.content.table.header</note>
       </trans-unit>
       <trans-unit id="d7b46a2dffff1e8982526922efadf7207eb2c881" resname="campaign.campaigns.create_time.th">

@@ -16,12 +16,15 @@ class Configuration extends SiteAccessConfiguration
         $rootNode = $treeBuilder->root('edgar_ez_campaign');
         $systemNode = $this->generateScopeBaseNode($rootNode);
         $systemNode
-            ->arrayNode('pagination')
-            ->info('System pagination configuration')
-            ->children()
-            ->scalarNode('campaign_limit')->isRequired()->end()
-            ->scalarNode('list_limit')->isRequired()->end()
+            ->scalarNode('campaign_view')
+                ->info('content_view type used to anage Campaign content view')
             ->end()
+            ->arrayNode('pagination')
+                ->info('System pagination configuration')
+                ->children()
+                    ->scalarNode('campaign_limit')->isRequired()->end()
+                    ->scalarNode('list_limit')->isRequired()->end()
+                ->end()
             ->end();
         return $treeBuilder;
     }

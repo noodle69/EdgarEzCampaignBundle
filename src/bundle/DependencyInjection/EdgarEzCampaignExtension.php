@@ -48,6 +48,7 @@ class EdgarEzCampaignExtension extends Extension implements PrependExtensionInte
         $config = $this->processConfiguration($configuration, $configs);
 
         $processor = new ConfigurationProcessor($container, 'edgar_ez_campaign');
+        $processor->mapSetting('campaign_view', $config);
         $processor->mapSetting('pagination', $config);
     }
 
