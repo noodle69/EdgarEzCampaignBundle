@@ -45,6 +45,19 @@ edgar.ezcampaign:
     prefix: /_campaign
 ```
 
+### MailChimp account
+
+Create a MailChimp account and generate and API key you would register in your config.yml
+
+```yaml
+welp_mailchimp:
+    api_key: %your.api.key.here%
+```
+
+You will find MailChimp reference here:
+
+https://kb.mailchimp.com/integrations/api-integrations/about-api-keys
+
 ## (optional) Add specific configuration
 
 in your ezplatform.yml, add folowing configuration
