@@ -8,24 +8,40 @@ use eZ\Bundle\EzPublishCoreBundle\Converter\RepositoryParamConverter;
 
 class ListParamConverter extends RepositoryParamConverter
 {
-    /** @var ListService  */
+    /** @var ListService */
     private $listService;
 
+    /**
+     * ListParamConverter constructor.
+     *
+     * @param ListService $listService
+     */
     public function __construct(ListService $listService)
     {
         $this->listService = $listService;
     }
 
-    protected function getSupportedClass()
+    /**
+     * @return string
+     */
+    protected function getSupportedClass(): string
     {
         return CampaignList::class;
     }
 
-    protected function getPropertyName()
+    /**
+     * @return string
+     */
+    protected function getPropertyName(): string
     {
         return 'listId';
     }
 
+    /**
+     * @param $id
+     *
+     * @return CampaignList
+     */
     public function loadValueObject($id): CampaignList
     {
         $list = $this->listService->get($id);

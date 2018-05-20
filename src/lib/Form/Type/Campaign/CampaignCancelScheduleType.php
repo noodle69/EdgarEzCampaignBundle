@@ -33,7 +33,7 @@ class CampaignCancelScheduleType extends AbstractType
             ->add(
                 'cancel',
                 SubmitType::class,
-                ['label' => /** @Desc("Cancel schedule") */ 'edgar.campaign.schedule.cancel']
+                ['label' => /* @Desc("Cancel schedule") */ 'edgar.campaign.schedule.cancel']
             );
     }
 }

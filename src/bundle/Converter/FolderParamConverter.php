@@ -8,24 +8,40 @@ use eZ\Bundle\EzPublishCoreBundle\Converter\RepositoryParamConverter;
 
 class FolderParamConverter extends RepositoryParamConverter
 {
-    /** @var FolderService  */
+    /** @var FolderService */
     private $folderService;
 
+    /**
+     * FolderParamConverter constructor.
+     *
+     * @param FolderService $folderService
+     */
     public function __construct(FolderService $folderService)
     {
         $this->folderService = $folderService;
     }
 
-    protected function getSupportedClass()
+    /**
+     * @return string
+     */
+    protected function getSupportedClass(): string
     {
         return Folder::class;
     }
 
-    protected function getPropertyName()
+    /**
+     * @return string
+     */
+    protected function getPropertyName(): string
     {
         return 'folderId';
     }
 
+    /**
+     * @param $id
+     *
+     * @return Folder|string
+     */
     public function loadValueObject($id)
     {
         $folder = $this->folderService->get($id);

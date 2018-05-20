@@ -34,12 +34,12 @@ class SubscribeType extends AbstractType
             ->add(
                 'email',
                 EmailType::class,
-                ['label' => /** @Desc("Email") */ 'edgar.campaign.campaign.subscribe.title']
+                ['label' => /* @Desc("Email") */ 'edgar.campaign.campaign.subscribe.title']
             )
             ->add(
                 'subscribe',
                 SubmitType::class,
-                ['label' => /** @Desc("Subscribe") */ 'edgar.campaign.create.subscribe']
+                ['label' => /* @Desc("Subscribe") */ 'edgar.campaign.create.subscribe']
             );
     }
 }

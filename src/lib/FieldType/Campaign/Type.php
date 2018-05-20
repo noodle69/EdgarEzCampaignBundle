@@ -18,6 +18,11 @@ class Type extends FieldType
      */
     protected $campaigns;
 
+    /**
+     * Type constructor.
+     *
+     * @param CampaignsService $campaignsService
+     */
     public function __construct(CampaignsService $campaignsService)
     {
         try {
@@ -50,7 +55,7 @@ class Type extends FieldType
      */
     public function getName(SPIValue $value)
     {
-        return (string)$value->campaigns['settings']['title'];
+        return (string) $value->campaigns['settings']['title'];
     }
 
     /**
@@ -69,7 +74,7 @@ class Type extends FieldType
      *
      * @param array|Value $inputValue
      *
-     * @return Value The potentially converted and structurally plausible value.
+     * @return Value the potentially converted and structurally plausible value
      */
     protected function createValueFromInput($inputValue)
     {
@@ -83,7 +88,7 @@ class Type extends FieldType
     /**
      * Throws an exception if value structure is not of expected format.
      *
-     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException If the value does not match the expected structure.
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException if the value does not match the expected structure
      *
      * @param Value $value
      */
@@ -106,7 +111,7 @@ class Type extends FieldType
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      *
      * @param \eZ\Publish\API\Repository\Values\ContentType\FieldDefinition $fieldDefinition The field definition of the field
-     * @param Value $fieldValue The field value for which an action is performed
+     * @param Value                                                         $fieldValue      The field value for which an action is performed
      *
      * @return \eZ\Publish\SPI\FieldType\ValidationError[]
      */
@@ -160,9 +165,14 @@ class Type extends FieldType
         return implode(',', $campaigns);
     }
 
+    /**
+     * @param mixed $hash
+     *
+     * @return Value|SPIValue
+     */
     public function fromHash($hash)
     {
-        if ($hash === null) {
+        if (null === $hash) {
             return $this->getEmptyValue();
         }
 

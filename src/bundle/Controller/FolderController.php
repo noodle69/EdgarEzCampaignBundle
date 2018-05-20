@@ -3,7 +3,6 @@
 namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\FoldersDeleteData;
-use Edgar\EzCampaign\Data\Mapper\FolderMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaign\Values\Core\Folder;
@@ -25,14 +24,11 @@ class FolderController extends Controller
     /** @var TranslatorInterface */
     private $translator;
 
-    /** @var FolderService  */
+    /** @var FolderService */
     protected $folderService;
 
-    /** @var FoldersService  */
+    /** @var FoldersService */
     protected $foldersService;
-
-    /** @var FolderMapper  */
-    protected $folderMapper;
 
     /** @var SubmitHandler $submitHandler */
     private $submitHandler;
@@ -40,12 +36,21 @@ class FolderController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /**
+     * FolderController constructor.
+     *
+     * @param NotificationHandlerInterface $notificationHandler
+     * @param TranslatorInterface $translator
+     * @param FolderService $folderService
+     * @param FoldersService $foldersService
+     * @param SubmitHandler $submitHandler
+     * @param FormFactory $formFactory
+     */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
         FolderService $folderService,
         FoldersService $foldersService,
-        FolderMapper $folderMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory
     ) {
@@ -53,11 +58,15 @@ class FolderController extends Controller
         $this->translator = $translator;
         $this->folderService = $folderService;
         $this->foldersService = $foldersService;
-        $this->folderMapper = $folderMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function createAction(Request $request): Response
     {
         $form = $this->formFactory->createFolder();
@@ -69,7 +78,7 @@ class FolderController extends Controller
 
                 $this->notificationHandler->success(
                     $this->translator->trans(
-                    /** @Desc("Campaign Folder '%name%' created.") */
+                    /* @Desc("Campaign Folder '%name%' created.") */
                         'folder.create.success',
                         ['%name%' => $folder['name']],
                         'edgarezcampaign'
@@ -87,6 +96,11 @@ class FolderController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', []));
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function bulkDeleteAction(Request $request): Response
     {
         $form = $this->formFactory->deleteFolders(
@@ -99,11 +113,11 @@ class FolderController extends Controller
                 foreach ($data->getFolders() as $folderId => $selected) {
                     try {
                         $folder = $this->folderService->get($folderId);
-                        if ($folder !== false) {
+                        if (false !== $folder) {
                             if ($this->foldersService->countCampaigns($folderId) > 0) {
                                 $this->notificationHandler->success(
                                     $this->translator->trans(
-                                    /** @Desc("Campaign Folder '%name%' is associated with Campaigns, so it can't be removed.") */
+                                    /* @Desc("Campaign Folder '%name%' is associated with Campaigns, so it can't be removed.") */
                                         'folder.delete.campaigns_exists',
                                         ['%name%' => $folder['name']],
                                         'edgarezcampaign'
@@ -114,7 +128,7 @@ class FolderController extends Controller
 
                                 $this->notificationHandler->success(
                                     $this->translator->trans(
-                                    /** @Desc("Campaign Folder '%name%' removed.") */
+                                    /* @Desc("Campaign Folder '%name%' removed.") */
                                         'folder.delete.success',
                                         ['%name%' => $folder['name']],
                                         'edgarezcampaign'
@@ -124,7 +138,7 @@ class FolderController extends Controller
                         } else {
                             $this->notificationHandler->warning(
                                 $this->translator->trans(
-                                /** @Desc("Campaign Folder '%id%' doesn't exists.") */
+                                /* @Desc("Campaign Folder '%id%' doesn't exists.") */
                                     'folders.delete.warning',
                                     ['%id%' => $folderId],
                                     'edgarezcampaign'
@@ -134,7 +148,7 @@ class FolderController extends Controller
                     } catch (MailchimpException $e) {
                         $this->notificationHandler->error(
                             $this->translator->trans(
-                            /** @Desc("Error when deleting Campaign Folder.") */
+                            /* @Desc("Error when deleting Campaign Folder.") */
                                 'folders.delete.error',
                                 [],
                                 'edgarezcampaign'

@@ -5,19 +5,14 @@ namespace Edgar\EzCampaign\Data\Mapper;
 use Edgar\EzCampaign\Data\ReportsData;
 use eZ\Publish\API\Repository\Values\ValueObject;
 use EzSystems\RepositoryForms\Data\Mapper\FormDataMapperInterface;
-use Edgar\EzCampaign\Data\CampaignCreateData;
-use Edgar\EzCampaign\Data\CampaignUpdateData;
-use Edgar\EzCampaign\Values\API\Campaign;
 
 class ReportsMapper implements FormDataMapperInterface
 {
     /**
-     * Maps a ValueObject from eZ content repository to a data usable as underlying form data (e.g. create/update struct).
-     *
-     * @param ValueObject|Campaign $campaign
+     * @param ValueObject $campaign
      * @param array $params
      *
-     * @return CampaignCreateData|CampaignUpdateData
+     * @return ReportsData
      */
     public function mapToFormData(ValueObject $campaign, array $params = []): ReportsData
     {

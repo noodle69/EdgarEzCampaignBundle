@@ -9,6 +9,9 @@ class ReportsData extends ReportsStruct implements NewnessCheckable
 {
     use ReportsDataTrait;
 
+    /**
+     * @return bool
+     */
     public function isNew()
     {
         return true;

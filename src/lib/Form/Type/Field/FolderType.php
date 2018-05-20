@@ -12,10 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FolderType extends AbstractType
 {
-    /** @var FoldersService  */
+    /** @var FoldersService */
     protected $foldersService;
 
-    /** @var FolderService  */
+    /** @var FolderService */
     protected $folderService;
 
     public function __construct(
@@ -39,8 +39,9 @@ class FolderType extends AbstractType
                     $foldersChoices = [];
                     $folders = $this->foldersService->get(0, 0);
                     foreach ($folders['folders'] as $folder) {
-                        $foldersChoices[$folder['name']] = (object)$folder;
+                        $foldersChoices[$folder['name']] = (object) $folder;
                     }
+
                     return $foldersChoices;
                 }),
                 'data_class' => Folder::class,

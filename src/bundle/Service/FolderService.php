@@ -3,23 +3,17 @@
 namespace Edgar\EzCampaignBundle\Service;
 
 use Edgar\EzCampaign\Values\Core\Folder;
-use Welp\MailchimpBundle\Exception\MailchimpException;
 
-/**
- * Class FolderService
- *
- * @package Edgar\EzCampaignBundle\Service
- */
 class FolderService extends BaseService
 {
     /**
-     * Retrieve Campaign Folder by Folder ID
+     * @param string $campaignFolderID
      *
-     * @param int $campaignFolderID Campaign Folder ID
-     * @return array Campaign Folder informations
-     * @throws MailchimpException MailChimpException
+     * @return array
+     *
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
-    public function get($campaignFolderID)
+    public function get(string $campaignFolderID): array
     {
         $campaignFolder = $this->mailChimp->get('/campaign-folders/' . $campaignFolderID, []);
 
@@ -31,13 +25,13 @@ class FolderService extends BaseService
     }
 
     /**
-     * Create a new Campaign Folder
+     * @param Folder $folder
      *
-     * @param string $name Campaign Folder name
-     * @return array MailChimp service informations
-     * @throws MailchimpException MailChimpException
+     * @return array
+     *
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
-    public function post(Folder $folder)
+    public function post(Folder $folder): array
     {
         $return = $this->mailChimp->post('/campaign-folders', [
             'name' => $folder->getName(),
@@ -51,14 +45,14 @@ class FolderService extends BaseService
     }
 
     /**
-     * Update Campaign Folder
-     *
-     * @param int $campaignFolderID
+     * @param string $campaignFolderID
      * @param string $name
-     * @return array MailChimp service informations
-     * @throws MailchimpException MailChimpException
+     *
+     * @return array
+     *
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
-    public function patch($campaignFolderID, $name)
+    public function patch(string $campaignFolderID, string $name): array
     {
         $return = $this->mailChimp->patch('/campaign-folders/' . $campaignFolderID, [
             'name' => $name,
@@ -72,36 +66,15 @@ class FolderService extends BaseService
     }
 
     /**
-     * Delete Campaign Folder
+     * @param string $folderId
      *
-     * @param string $folderId Campaign Folder ID
-     * @return array MailChimp service informations
-     * @throws MailchimpException MailChimpException
+     * @return bool
+     *
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
-    public function delete(string $folderId)
+    public function delete(string $folderId): bool
     {
         $return = $this->mailChimp->delete('/campaign-folders/' . $folderId, []);
-
-        if (!$this->mailChimp->success()) {
-            $this->throwMailchimpError($this->mailChimp->getLastResponse());
-        }
-
-        return $return;
-    }
-
-    public function map(array $folder): Folder
-    {
-        $folder = new Folder([
-            'id' => $folder['id'],
-            'name' => $folder['name'],
-        ]);
-
-        return $folder;
-    }
-
-    public function getCampaigns(string $folderId)
-    {
-        $return = $this->mailChimp->get('campaigns?folder_id=' . $folderId, []);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());

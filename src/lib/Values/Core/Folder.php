@@ -12,6 +12,7 @@ class Folder extends \Edgar\EzCampaign\Values\API\Folder
     public function setId(string $folderId): self
     {
         $this->id = $folderId;
+
         return $this;
     }
 
@@ -23,6 +24,7 @@ class Folder extends \Edgar\EzCampaign\Values\API\Folder
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 }

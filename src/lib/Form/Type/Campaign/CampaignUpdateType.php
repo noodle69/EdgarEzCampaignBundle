@@ -44,14 +44,14 @@ class CampaignUpdateType extends AbstractType
             ->add(
                 'title',
                 TextType::class,
-                ['label' => /** @Desc("Title") */ 'edgar.campaign.campaign.create.title']
+                ['label' => /* @Desc("Title") */ 'edgar.campaign.campaign.create.title']
             )
             ->add(
                 'list_id',
                 ListType::class,
                 [
                     'data_class' => CampaignList::class,
-                    'label' => /** @Desc("List") */ 'edgar.campaign.campaign.create.list_id',
+                    'label' => /* @Desc("List") */ 'edgar.campaign.campaign.create.list_id',
                 ]
             )
             ->add(
@@ -59,7 +59,7 @@ class CampaignUpdateType extends AbstractType
                 FolderType::class,
                 [
                     'data_class' => Folder::class,
-                    'label' => /** @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id',
+                    'label' => /* @Desc("Folder") */ 'edgar.campaign.campaign.create.folder_id',
                 ]
             )
             ->add(
@@ -67,16 +67,16 @@ class CampaignUpdateType extends AbstractType
                 UniversalDiscoveryWidgetType::class,
                 [
                     'required' => false,
-                    'label' => /** @Desc("Select a content") */ 'edgar.campaign.campaign.create.content',
+                    'label' => /* @Desc("Select a content") */ 'edgar.campaign.campaign.create.content',
                 ]
             )
             ->add(
                 'site',
                 FilterSitesType::class,
                 [
-                    'label' => /** @Desc("Site") */ 'edgar.campaign.campaign.create.site',
+                    'label' => /* @Desc("Site") */ 'edgar.campaign.campaign.create.site',
                     'required' => false,
-                    'placeholder' => /** @Desc("Select a site") */ 'edgar.campaign.campaign.create.site.placeholder',
+                    'placeholder' => /* @Desc("Select a site") */ 'edgar.campaign.campaign.create.site.placeholder',
                     'multiple' => false,
                     'expanded' => false,
                     'constraints' => [new SiteConstraint()],
@@ -85,22 +85,22 @@ class CampaignUpdateType extends AbstractType
             ->add(
                 'subject_line',
                 TextType::class,
-                ['label' => /** @Desc("Subject") */ 'edgar.campaign.campaign.create.subject_line']
+                ['label' => /* @Desc("Subject") */ 'edgar.campaign.campaign.create.subject_line']
             )
             ->add(
                 'from_name',
                 TextType::class,
-                ['label' => /** @Desc("From name") */ 'edgar.campaign.campaign.create.from_name']
+                ['label' => /* @Desc("From name") */ 'edgar.campaign.campaign.create.from_name']
             )
             ->add(
                 'reply_to',
                 EmailType::class,
-                ['label' => /** @Desc("Reply to") */ 'edgar.campaign.campaign.create.reply_to']
+                ['label' => /* @Desc("Reply to") */ 'edgar.campaign.campaign.create.reply_to']
             )
             ->add(
                 'save',
                 SubmitType::class,
-                ['label' => /** @Desc("Create") */ 'edgar.campaign.create.save']
+                ['label' => /* @Desc("Create") */ 'edgar.campaign.create.save']
             );
     }
 }

@@ -15,6 +15,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setId(string $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -42,6 +43,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setList(CampaignList $list): self
     {
         $this->list = $list;
+
         return $this;
     }
 
@@ -69,6 +71,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setFolder(Folder $folder): self
     {
         $this->folder = $folder;
+
         return $this;
     }
 
@@ -80,6 +83,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setContent(?Location $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -91,6 +95,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setSite(?SiteData $site): self
     {
         $this->site = $site;
+
         return $this;
     }
 
@@ -102,6 +107,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setSubjectLine(string $subjectLine): self
     {
         $this->subject_line = $subjectLine;
+
         return $this;
     }
 
@@ -113,6 +119,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -124,6 +131,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setFromName(string $fromName): self
     {
         $this->from_name = $fromName;
+
         return $this;
     }
 
@@ -135,6 +143,7 @@ class Campaign extends \Edgar\EzCampaign\Values\API\Campaign
     public function setReplyTo(string $replyTo): self
     {
         $this->reply_to = $replyTo;
+
         return $this;
     }
 }

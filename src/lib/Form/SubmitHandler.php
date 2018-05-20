@@ -18,7 +18,7 @@ class SubmitHandler
 
     /**
      * @param NotificationHandlerInterface $notificationHandler
-     * @param RouterInterface $router
+     * @param RouterInterface              $router
      */
     public function __construct(NotificationHandlerInterface $notificationHandler, RouterInterface $router)
     {
@@ -32,7 +32,7 @@ class SubmitHandler
      * Handles form errors (NotificationHandler:warning).
      * Handles business logic exceptions (NotificationHandler:error).
      *
-     * @param FormInterface $form
+     * @param FormInterface         $form
      * @param callable(mixed):array $handler
      *
      * @return null|Response

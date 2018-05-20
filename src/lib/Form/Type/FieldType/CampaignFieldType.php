@@ -18,7 +18,7 @@ class CampaignFieldType extends AbstractType
     /** @var FieldTypeService */
     private $fieldTypeService;
 
-    /** @var CampaignsService  */
+    /** @var CampaignsService */
     private $campaignsService;
 
     private $campaignsData;

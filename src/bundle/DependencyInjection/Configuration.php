@@ -26,6 +26,7 @@ class Configuration extends SiteAccessConfiguration
                     ->scalarNode('list_limit')->isRequired()->end()
                 ->end()
             ->end();
+
         return $treeBuilder;
     }
 }

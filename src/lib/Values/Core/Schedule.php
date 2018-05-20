@@ -14,6 +14,7 @@ class Schedule extends \Edgar\EzCampaign\Values\API\Schedule
     public function setScheduleTime(?DateAndTimeValue $schedule_time): self
     {
         $this->schedule_time = $schedule_time;
+
         return $this;
     }
 }

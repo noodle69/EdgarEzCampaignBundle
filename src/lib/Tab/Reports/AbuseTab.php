@@ -14,7 +14,7 @@ class AbuseTab extends AbstractTab implements OrderedTabInterface
 
     public function getName(): string
     {
-        return /** @Desc("Abuse") */
+        return /* @Desc("Abuse") */
             $this->translator->trans('campaign.reports.name.abuse', [], 'edgarezcampaign');
     }
 

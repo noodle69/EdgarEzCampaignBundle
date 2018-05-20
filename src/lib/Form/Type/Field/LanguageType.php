@@ -40,6 +40,7 @@ class LanguageType extends AbstractType
                         $languageData->setName($language->name);
                         $languages[$languageData->getName()] = $languageData;
                     }
+
                     return $languages;
                 }),
                 'choice_name' => 'name',

@@ -7,10 +7,13 @@ use Edgar\EzCampaign\Values\Core\Subscribe;
 trait SubscribeDataTrait
 {
     /**
-     * @var Subscribe $subscribe
+     * @var Subscribe
      */
     protected $subscribe;
 
+    /**
+     * @param Subscribe $subscribe
+     */
     public function setSubscribe(Subscribe $subscribe)
     {
         $this->subscribe = $subscribe;

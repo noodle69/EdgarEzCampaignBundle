@@ -2,19 +2,15 @@
 
 namespace Edgar\EzCampaignBundle\Service;
 
-use Welp\MailchimpBundle\Exception\MailchimpException;
-
 class FoldersService extends BaseService
 {
     /**
-     * Retrive a list of Campaign Folder
+     * @param int $offset
+     * @param int $count
      *
-     * @param int $offset search offset
-     * @param int $count maximum folder count
-     * @return array List of Campaign Folders
-     * @throws MailchimpException MailChimpException
+     * @return array
      */
-    public function get($offset = 0, $count = 10)
+    public function get(int $offset = 0, int $count = 10): array
     {
         $campaignFolders = $this->mailChimp->get('/campaign-folders', [
             'offset' => $offset,
@@ -31,6 +27,11 @@ class FoldersService extends BaseService
         return $campaignFolders;
     }
 
+    /**
+     * @param string $folderId
+     *
+     * @return int
+     */
     public function countCampaigns(string $folderId): int
     {
         $return = $this->mailChimp->get('/campaigns?folder_id=' . $folderId, []);

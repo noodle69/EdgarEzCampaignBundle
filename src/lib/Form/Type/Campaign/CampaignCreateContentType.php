@@ -39,15 +39,15 @@ class CampaignCreateContentType extends AbstractType
                 'content',
                 UniversalDiscoveryWidgetType::class,
                 [
-                    'label' => /** @Desc("Select a content") */ 'edgar.campaign.campaign.create.content',
+                    'label' => /* @Desc("Select a content") */ 'edgar.campaign.campaign.create.content',
                 ]
             )
             ->add(
                 'site',
                 FilterSitesType::class,
                 [
-                    'label' => /** @Desc("Site") */ 'edgar.campaign.campaign.create.site',
-                    'placeholder' => /** @Desc("Select a site") */ 'edgar.campaign.campaign.create.site.placeholder',
+                    'label' => /* @Desc("Site") */ 'edgar.campaign.campaign.create.site',
+                    'placeholder' => /* @Desc("Select a site") */ 'edgar.campaign.campaign.create.site.placeholder',
                     'multiple' => false,
                     'expanded' => false,
                     'constraints' => [new SiteConstraint()],
@@ -56,7 +56,7 @@ class CampaignCreateContentType extends AbstractType
             ->add(
                 'save',
                 SubmitType::class,
-                ['label' => /** @Desc("Create") */ 'edgar.campaign.create.save']
+                ['label' => /* @Desc("Create") */ 'edgar.campaign.create.save']
             );
     }
 }

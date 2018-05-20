@@ -2,53 +2,19 @@
 
 namespace Edgar\EzCampaignBundle\Service;
 
-use Welp\MailchimpBundle\Exception\MailchimpException;
-
-/**
- * Class CampaignsService
- *
- * @package Edgar\EzCampaignBundle\Service
- */
 class CampaignsService extends BaseService
 {
     /**
-     * List Campgigns
+     * @param int $offset
+     * @param int $count
      *
-     * @param int $offset search offset
-     * @param int $count search limit
-     * @return array List of Campaigns
-     * @throws MailchimpException MailChimpException
+     * @return array
      */
-    public function get($offset = 0, $count = 10)
+    public function get(int $offset = 0, int $count = 10): array
     {
         $campaigns = $this->mailChimp->get('/campaigns', [
             'offset' => $offset,
             'count' => $count,
-        ]);
-
-        if (!$this->mailChimp->success()) {
-            $campaigns = [
-                'campaigns' => [],
-                'total_items' => 0,
-            ];
-        }
-
-        return $campaigns;
-    }
-
-    /**
-     * Search Campgian
-     *
-     * @param string $query search query
-     * @return array List of Campaigns
-     * @param string $email member email
-     * @throws MailchimpException MailChimpException
-     */
-    public function search($query)
-    {
-        $campaigns = $this->mailChimp->get('/search-campaigns', [
-            'query' => $query,
-            'fields' => 'id,settings.title',
         ]);
 
         if (!$this->mailChimp->success()) {

@@ -26,8 +26,8 @@ class ConfigureMenuEvent extends Event
 
     /**
      * @param FactoryInterface $factory
-     * @param ItemInterface $menu
-     * @param array $options
+     * @param ItemInterface    $menu
+     * @param array            $options
      */
     public function __construct(FactoryInterface $factory, ItemInterface $menu, array $options = [])
     {

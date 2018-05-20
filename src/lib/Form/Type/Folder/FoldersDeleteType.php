@@ -24,7 +24,7 @@ class FoldersDeleteType extends AbstractType
             ])
             ->add('delete', SubmitType::class, [
                 'attr' => ['hidden' => true],
-                'label' => /** @Desc("Delete Campaign Folders") */ 'folders_delete_form.delete',
+                'label' => /* @Desc("Delete Campaign Folders") */ 'folders_delete_form.delete',
             ]);
     }
 

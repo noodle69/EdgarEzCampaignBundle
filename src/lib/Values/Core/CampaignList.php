@@ -2,8 +2,6 @@
 
 namespace Edgar\EzCampaign\Values\Core;
 
-use eZ\Publish\Core\FieldType\Country\Value as CountryValue;
-
 class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
 {
     public function getId(): ?string
@@ -14,6 +12,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setId(string $id): self
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -25,6 +24,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -36,6 +36,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setCompany(string $company): self
     {
         $this->company = $company;
+
         return $this;
     }
 
@@ -47,6 +48,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -58,6 +60,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setAddress2(?string $address2): self
     {
         $this->address2 = $address2;
+
         return $this;
     }
 
@@ -69,6 +72,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setCity(string $city): self
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -80,6 +84,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setState(string $state): self
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -91,6 +96,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setZip(string $zip): self
     {
         $this->zip = $zip;
+
         return $this;
     }
 
@@ -118,6 +124,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setPhone(?string $phone): self
     {
         $this->phone = $phone;
+
         return $this;
     }
 
@@ -129,6 +136,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setPermissionReminder(string $permissionReminder): self
     {
         $this->permission_reminder = $permissionReminder;
+
         return $this;
     }
 
@@ -140,6 +148,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setUseArchiveBar(bool $useArchiveBar = false): self
     {
         $this->use_archive_bar = $useArchiveBar;
+
         return $this;
     }
 
@@ -151,6 +160,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setFromName(string $fromName): self
     {
         $this->from_name = $fromName;
+
         return $this;
     }
 
@@ -162,6 +172,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setFromEmail(string $fromEmail): self
     {
         $this->from_email = $fromEmail;
+
         return $this;
     }
 
@@ -173,6 +184,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setSubject(string $subject): self
     {
         $this->subject = $subject;
+
         return $this;
     }
 
@@ -184,6 +196,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setLanguage(string $language): self
     {
         $this->language = $language;
+
         return $this;
     }
 
@@ -195,6 +208,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setNotifyOnSubscribe(?string $notifyOnSubscribe): self
     {
         $this->notify_on_subscribe = $notifyOnSubscribe;
+
         return $this;
     }
 
@@ -206,6 +220,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setNotifyOnUnsubscribe(?string $notifyOnUnsubscribe): self
     {
         $this->notify_on_unsubscribe = $notifyOnUnsubscribe;
+
         return $this;
     }
 
@@ -217,6 +232,7 @@ class CampaignList extends \Edgar\EzCampaign\Values\API\CampaignList
     public function setVisibility(string $visibility): self
     {
         $this->visibility = $visibility;
+
         return $this;
     }
 }

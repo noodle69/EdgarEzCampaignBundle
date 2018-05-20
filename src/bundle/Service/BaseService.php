@@ -5,7 +5,7 @@ namespace Edgar\EzCampaignBundle\Service;
 use DrewM\MailChimp\MailChimp;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
-Abstract class BaseService
+abstract class BaseService
 {
     /** @var MailChimp $mailChimp MailChimp service */
     protected $mailChimp;
@@ -13,7 +13,7 @@ Abstract class BaseService
     /**
      * BaseService constructor.
      *
-     * @param MailChimp $mailChimp MailChimp service
+     * @param MailChimp $mailChimp
      */
     public function __construct(MailChimp $mailChimp)
     {
@@ -21,10 +21,9 @@ Abstract class BaseService
     }
 
     /**
-     * Thorw a MailChimp Exception
+     * @param array $errorResponse
      *
-     * @param array $errorResponse array of error Response
-     * @throws MailchimpException MailChimpException
+     * @throws MailchimpException
      */
     protected function throwMailchimpError(array $errorResponse)
     {

@@ -12,10 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ListType extends AbstractType
 {
-    /** @var ListsService  */
+    /** @var ListsService */
     protected $listsService;
 
-    /** @var ListService  */
+    /** @var ListService */
     protected $listService;
 
     public function __construct(
@@ -39,8 +39,9 @@ class ListType extends AbstractType
                     $listsChoices = [];
                     $lists = $this->listsService->get(0, 0);
                     foreach ($lists['lists'] as $list) {
-                        $listsChoices[$list['name']] = (object)$list;
+                        $listsChoices[$list['name']] = (object) $list;
                     }
+
                     return $listsChoices;
                 }),
                 'data_class' => CampaignList::class,

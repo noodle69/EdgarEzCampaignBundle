@@ -3,9 +3,7 @@
 namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
-use Edgar\EzCampaign\Data\CampaignUpdateData;
 use Edgar\EzCampaign\Data\FoldersDeleteData;
-use Edgar\EzCampaign\Data\Mapper\CampaignMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaign\Values\Core\Campaign;
@@ -37,26 +35,23 @@ class CampaignController extends Controller
     /** @var TranslatorInterface */
     private $translator;
 
-    /** @var CampaignService  */
+    /** @var CampaignService */
     protected $campaignService;
 
-    /** @var CampaignsService  */
+    /** @var CampaignsService */
     protected $campaignsService;
 
-    /** @var FolderService  */
+    /** @var FolderService */
     protected $folderService;
 
-    /** @var FoldersService  */
+    /** @var FoldersService */
     protected $foldersService;
 
-    /** @var ListService  */
+    /** @var ListService */
     protected $listService;
 
-    /** @var ListsService  */
+    /** @var ListsService */
     protected $listsService;
-
-    /** @var CampaignMapper  */
-    protected $campaignMapper;
 
     /** @var SubmitHandler $submitHandler */
     private $submitHandler;
@@ -64,12 +59,28 @@ class CampaignController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
-    /** @var RouterInterface  */
+    /** @var RouterInterface */
     private $router;
 
     /** @var int */
     private $defaultPaginationLimit;
 
+    /**
+     * CampaignController constructor.
+     *
+     * @param NotificationHandlerInterface $notificationHandler
+     * @param TranslatorInterface $translator
+     * @param CampaignsService $campaignsService
+     * @param CampaignService $campaignService
+     * @param FoldersService $foldersService
+     * @param FolderService $folderService
+     * @param ListService $listService
+     * @param ListsService $listsService
+     * @param SubmitHandler $submitHandler
+     * @param FormFactory $formFactory
+     * @param RouterInterface $router
+     * @param int $defaultPaginationLimit
+     */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
@@ -79,7 +90,6 @@ class CampaignController extends Controller
         FolderService $folderService,
         ListService $listService,
         ListsService $listsService,
-        CampaignMapper $campaignCreateMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
         RouterInterface $router,
@@ -93,13 +103,17 @@ class CampaignController extends Controller
         $this->foldersService = $foldersService;
         $this->listService = $listService;
         $this->listsService = $listsService;
-        $this->campaignMapper = $campaignCreateMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function campaignsAction(Request $request): Response
     {
         $page = $request->query->get('page') ?? 1;
@@ -146,6 +160,11 @@ class CampaignController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function bulkDeleteAction(Request $request): Response
     {
         $form = $this->formFactory->deleteCampaigns(
@@ -158,12 +177,12 @@ class CampaignController extends Controller
                 foreach ($data->getCampaigns() as $campaignId => $selected) {
                     try {
                         $campaign = $this->campaignService->get($campaignId);
-                        if ($campaign !== false) {
+                        if (false !== $campaign) {
                             $this->campaignService->delete($campaignId);
 
                             $this->notificationHandler->success(
                                 $this->translator->trans(
-                                /** @Desc("Campaign '%name%' removed.") */
+                                /* @Desc("Campaign '%name%' removed.") */
                                     'campaigns.delete.success',
                                     ['%name%' => $campaign['settings']['title']],
                                     'edgarezcampaign'
@@ -172,7 +191,7 @@ class CampaignController extends Controller
                         } else {
                             $this->notificationHandler->warning(
                                 $this->translator->trans(
-                                /** @Desc("Campaign '%id%' doesn't exists.") */
+                                /* @Desc("Campaign '%id%' doesn't exists.") */
                                     'campaigns.delete.warning',
                                     ['%id%' => $campaignId],
                                     'edgarezcampaign'
@@ -182,7 +201,7 @@ class CampaignController extends Controller
                     } catch (MailchimpException $e) {
                         $this->notificationHandler->error(
                             $this->translator->trans(
-                            /** @Desc("Error when deleting campaign.") */
+                            /* @Desc("Error when deleting campaign.") */
                                 'campaigns.delete.error',
                                 [],
                                 'edgarezcampaign'
@@ -200,6 +219,11 @@ class CampaignController extends Controller
         return $this->redirect($this->generateUrl('edgar.campaign.campaigns'));
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function createAction(Request $request): Response
     {
         $form = $this->formFactory->createCampaign();
@@ -226,7 +250,7 @@ class CampaignController extends Controller
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("Campaign '%name%' created.") */
+                        /* @Desc("Campaign '%name%' created.") */
                             'campaign.create.success',
                             ['%name%' => $campaign['settings']['title']],
                             'edgarezcampaign'
@@ -255,6 +279,12 @@ class CampaignController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     *
+     * @return Response
+     */
     public function editAction(Request $request, Campaign $campaign): Response
     {
         $form = $this->formFactory->updateCampaign($campaign);
@@ -262,17 +292,17 @@ class CampaignController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $campaignId = $campaign->getId();
-            $result = $this->submitHandler->handle($form, function (CampaignUpdateData $campaign) use ($form, $campaignId) {
+            $result = $this->submitHandler->handle($form, function (Campaign $campaign) use ($form, $campaignId) {
                 try {
                     $this->campaignService->patch($campaignId, $campaign);
 
-                    if ($campaign->site && $campaign->content) {
+                    if ($campaign->getSite() && $campaign->getContent()) {
                         $url = $this->router->generate(
                             'edgar.campaign.view',
                             [
-                                'locationId' => $campaign->content,
-                                'site' => $campaign->site->getIdentifier(),
-                                'siteaccess' => $campaign->site->getIdentifier(),
+                                'locationId' => $campaign->getContent()->id,
+                                'site' => $campaign->getSite()->getIdentifier(),
+                                'siteaccess' => $campaign->getSite()->getIdentifier(),
                             ],
                             UrlGeneratorInterface::ABSOLUTE_URL
                         );
@@ -282,9 +312,9 @@ class CampaignController extends Controller
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("Campaign '%name%' updated.") */
+                        /* @Desc("Campaign '%name%' updated.") */
                             'campaign.update.success',
-                            ['%name%' => $campaign->title],
+                            ['%name%' => $campaign->getTitle()],
                             'edgarezcampaign'
                         )
                     );
@@ -313,6 +343,11 @@ class CampaignController extends Controller
         ]);
     }
 
+    /**
+     * @param Campaign $campaign
+     *
+     * @return Response
+     */
     public function viewAction(Campaign $campaign): Response
     {
         $campaignContent = $this->campaignService->getContent($campaign->getId());
@@ -342,6 +377,12 @@ class CampaignController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     *
+     * @return Response
+     */
     public function deleteAction(Request $request, Campaign $campaign): Response
     {
         $form = $this->formFactory->deleteCampaign($campaign);
@@ -353,7 +394,7 @@ class CampaignController extends Controller
 
                 $this->notificationHandler->success(
                     $this->translator->trans(
-                    /** @Desc("Campaign '%name%' updated.") */
+                    /* @Desc("Campaign '%name%' updated.") */
                         'campaign.delete.success',
                         ['%name%' => $campaign->getTitle()],
                         'edgarezcampaign'
@@ -371,6 +412,12 @@ class CampaignController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     *
+     * @return Response
+     */
     public function sendAction(Request $request, Campaign $campaign): Response
     {
         $form = $this->formFactory->sendCampaign($campaign);
@@ -383,7 +430,7 @@ class CampaignController extends Controller
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("Campaign '%name%' sended.") */
+                        /* @Desc("Campaign '%name%' sended.") */
                             'campaign.send.success',
                             ['%name%' => $campaign->getTitle()],
                             'edgarezcampaign'
@@ -392,7 +439,7 @@ class CampaignController extends Controller
                 } catch (MailchimpException $e) {
                     $this->notificationHandler->error(
                         $this->translator->trans(
-                        /** @Desc("Failed to send Campaign '%name%'.") */
+                        /* @Desc("Failed to send Campaign '%name%'.") */
                             'campaign.send.error',
                             ['%name%' => $campaign->getTitle()],
                             'edgarezcampaign'
@@ -411,6 +458,12 @@ class CampaignController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     *
+     * @return Response
+     */
     public function scheduleAction(Request $request, Campaign $campaign): Response
     {
         $form = $this->formFactory->scheduleCampaign();
@@ -423,8 +476,8 @@ class CampaignController extends Controller
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("Campaign '%name%' sended.") */
-                            'campaign.send.success',
+                        /* @Desc("Campaign '%name%' scheduled.") */
+                            'campaign.schedule.success',
                             ['%name%' => $campaign->getTitle()],
                             'edgarezcampaign'
                         )
@@ -432,8 +485,8 @@ class CampaignController extends Controller
                 } catch (MailchimpException $e) {
                     $this->notificationHandler->error(
                         $this->translator->trans(
-                        /** @Desc("Failed to send Campaign '%name%'.") */
-                            'campaign.send.error',
+                        /* @Desc("Failed to schedule Campaign '%name%'.") */
+                            'campaign.schedule.error',
                             ['%name%' => $campaign->getTitle()],
                             'edgarezcampaign'
                         )
@@ -451,6 +504,12 @@ class CampaignController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     *
+     * @return Response
+     */
     public function cancelScheduleAction(Request $request, Campaign $campaign): Response
     {
         $form = $this->formFactory->cancelScheduleCampaign($campaign);
@@ -463,7 +522,7 @@ class CampaignController extends Controller
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("Campaign '%name%' schedule canceled.") */
+                        /* @Desc("Campaign '%name%' schedule canceled.") */
                             'campaign.schedule.cancel.success',
                             ['%name%' => $campaign->getTitle()],
                             'edgarezcampaign'
@@ -472,7 +531,7 @@ class CampaignController extends Controller
                 } catch (MailchimpException $e) {
                     $this->notificationHandler->error(
                         $this->translator->trans(
-                        /** @Desc("Failed to cancel Campaign '%name%' schedule.") */
+                        /* @Desc("Failed to cancel Campaign '%name%' schedule.") */
                             'campaign.cancel.schedule.error',
                             ['%name%' => $campaign->getTitle()],
                             'edgarezcampaign'
@@ -491,6 +550,12 @@ class CampaignController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     *
+     * @return Response
+     */
     public function createContentAction(Request $request, Campaign $campaign): Response
     {
         $form = $this->formFactory->createContent();
@@ -513,7 +578,7 @@ class CampaignController extends Controller
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("Content has been associated to Campaign '%name%'.") */
+                        /* @Desc("Content has been associated to Campaign '%name%'.") */
                             'campaign.create.content.success',
                             ['%name%' => $campaign->getTitle()],
                             'edgarezcampaign'
@@ -536,6 +601,12 @@ class CampaignController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.campaign.view', ['campaignId' => $campaign->getId()]));
     }
 
+    /**
+     * @param Request $request
+     * @param Campaign $campaign
+     *
+     * @return Response
+     */
     public function contentAction(Request $request, Campaign $campaign): Response
     {
         $campaignContent = $this->campaignService->getContent($campaign->getId());
@@ -546,11 +617,16 @@ class CampaignController extends Controller
         return $response;
     }
 
+    /**
+     * @param array $campaigns
+     *
+     * @return array
+     */
     private function getCampaignsNumbers(array $campaigns): array
     {
         $campaignsNumbers = [];
         foreach ($campaigns as $campaign) {
-            if ($campaign['id'] !== false) {
+            if (false !== $campaign['id']) {
                 $campaignsNumbers[] = $campaign['id'];
             }
         }
@@ -558,11 +634,16 @@ class CampaignController extends Controller
         return array_combine($campaignsNumbers, array_fill_keys($campaignsNumbers, false));
     }
 
+    /**
+     * @param array $folders
+     *
+     * @return array
+     */
     private function getFoldersNumbers(array $folders): array
     {
         $foldersNumbers = [];
         foreach ($folders as $folder) {
-            if ($folder['id'] !== false) {
+            if (false !== $folder['id']) {
                 $foldersNumbers[] = $folder['id'];
             }
         }
@@ -570,7 +651,11 @@ class CampaignController extends Controller
         return array_combine($foldersNumbers, array_fill_keys($foldersNumbers, false));
     }
 
-    private function notifyError(MailchimpException $e) {
+    /**
+     * @param MailchimpException $e
+     */
+    private function notifyError(MailchimpException $e)
+    {
         $errors = [];
         $errorsArray = $e->getErrors();
         foreach ($errorsArray as $error) {
@@ -578,9 +663,9 @@ class CampaignController extends Controller
         }
         $this->notificationHandler->error(
             $this->translator->trans(
-            /** @Desc("Field errors: %errors%.") */
+            /* @Desc("Field errors: %errors%.") */
                 'edgar.campaign.error',
-                ['%errors%' => implode( '|', $errors)],
+                ['%errors%' => implode('|', $errors)],
                 'edgarezcampaign'
             )
         );

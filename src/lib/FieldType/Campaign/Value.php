@@ -6,8 +6,16 @@ use eZ\Publish\Core\FieldType\Value as BaseValue;
 
 class Value extends BaseValue
 {
+    /**
+     * @var array
+     */
     public $campaigns = [];
 
+    /**
+     * Value constructor.
+     *
+     * @param array $campaigns
+     */
     public function __construct(array $campaigns = [])
     {
         $this->campaigns = $campaigns;

@@ -24,7 +24,7 @@ class CampaignsDeleteType extends AbstractType
             ])
             ->add('delete', SubmitType::class, [
                 'attr' => ['hidden' => true],
-                'label' => /** @Desc("Delete Campaigns") */ 'campaigns_delete_form.delete',
+                'label' => /* @Desc("Delete Campaigns") */ 'campaigns_delete_form.delete',
             ]);
     }
 

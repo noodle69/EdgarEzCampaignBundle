@@ -41,7 +41,7 @@ class FormFactory
     protected $urlGenerator;
 
     /**
-     * @param FormFactoryInterface $formFactory
+     * @param FormFactoryInterface  $formFactory
      * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(FormFactoryInterface $formFactory, UrlGeneratorInterface $urlGenerator)

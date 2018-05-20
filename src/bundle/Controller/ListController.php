@@ -3,8 +3,6 @@
 namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\ListsDeleteData;
-use Edgar\EzCampaign\Data\ListUpdateData;
-use Edgar\EzCampaign\Data\Mapper\ListMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaign\Values\Core\CampaignList;
@@ -31,11 +29,8 @@ class ListController extends Controller
     /** @var ListService */
     protected $listService;
 
-    /** @var ListsService  */
+    /** @var ListsService */
     protected $listsService;
-
-    /** @var ListMapper  */
-    protected $listMapper;
 
     /** @var SubmitHandler $submitHandler */
     private $submitHandler;
@@ -46,12 +41,22 @@ class ListController extends Controller
     /** @var int */
     private $defaultPaginationLimit;
 
+    /**
+     * ListController constructor.
+     *
+     * @param NotificationHandlerInterface $notificationHandler
+     * @param TranslatorInterface $translator
+     * @param ListService $listService
+     * @param ListsService $listsService
+     * @param SubmitHandler $submitHandler
+     * @param FormFactory $formFactory
+     * @param int $defaultPaginationLimit
+     */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
         ListService $listService,
         ListsService $listsService,
-        ListMapper $listMapper,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
         int $defaultPaginationLimit
@@ -60,12 +65,16 @@ class ListController extends Controller
         $this->translator = $translator;
         $this->listService = $listService;
         $this->listsService = $listsService;
-        $this->listMapper = $listMapper;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
         $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function listsAction(Request $request): Response
     {
         $page = $request->query->get('page') ?? 1;
@@ -91,6 +100,11 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function bulkDeleteAction(Request $request): Response
     {
         $form = $this->formFactory->deleteLists(
@@ -103,11 +117,11 @@ class ListController extends Controller
                 foreach ($data->getLists() as $listId => $selected) {
                     try {
                         $list = $this->listService->get($listId);
-                        if ($list !== false) {
+                        if (false !== $list) {
                             if ($this->listsService->countCampaigns($listId) > 0) {
                                 $this->notificationHandler->success(
                                     $this->translator->trans(
-                                    /** @Desc("List '%name%' is associated with campaigns, it can't be removedd.") */
+                                    /* @Desc("List '%name%' is associated with campaigns, it can't be removedd.") */
                                         'lists.delete.campaigns_exists',
                                         ['%name%' => $list['name']],
                                         'edgarezcampaign'
@@ -118,7 +132,7 @@ class ListController extends Controller
 
                                 $this->notificationHandler->success(
                                     $this->translator->trans(
-                                    /** @Desc("List '%name%' removed.") */
+                                    /* @Desc("List '%name%' removed.") */
                                         'lists.delete.success',
                                         ['%name%' => $list['name']],
                                         'edgarezcampaign'
@@ -128,7 +142,7 @@ class ListController extends Controller
                         } else {
                             $this->notificationHandler->warning(
                                 $this->translator->trans(
-                                /** @Desc("List '%id%' doesn't exists.") */
+                                /* @Desc("List '%id%' doesn't exists.") */
                                     'lists.delete.warning',
                                     ['%id%' => $listId],
                                     'edgarezcampaign'
@@ -138,7 +152,7 @@ class ListController extends Controller
                     } catch (MailchimpException $e) {
                         $this->notificationHandler->error(
                             $this->translator->trans(
-                            /** @Desc("Error when deleting list.") */
+                            /* @Desc("Error when deleting list.") */
                                 'lists.delete.error',
                                 [],
                                 'edgarezcampaign'
@@ -156,6 +170,11 @@ class ListController extends Controller
         return $this->redirect($this->generateUrl('edgar.campaign.lists'));
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function createAction(Request $request): Response
     {
         $form = $this->formFactory->createList();
@@ -168,7 +187,7 @@ class ListController extends Controller
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("List '%name%' created.") */
+                        /* @Desc("List '%name%' created.") */
                             'list.create.success',
                             ['%name%' => $data->getName()],
                             'edgarezcampaign'
@@ -197,6 +216,12 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param CampaignList $list
+     *
+     * @return Response
+     */
     public function editAction(Request $request, CampaignList $list): Response
     {
         $form = $this->formFactory->updateList($list);
@@ -204,15 +229,15 @@ class ListController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $listId = $list->getId();
-            $result = $this->submitHandler->handle($form, function (ListUpdateData $list) use ($form, $listId) {
+            $result = $this->submitHandler->handle($form, function (CampaignList $list) use ($form, $listId) {
                 try {
                     $this->listService->patch($listId, $list);
 
                     $this->notificationHandler->success(
                         $this->translator->trans(
-                        /** @Desc("Subscription list '%name%' updated.") */
+                        /* @Desc("Subscription list '%name%' updated.") */
                             'list.update.success',
-                            ['%name%' => $list->name],
+                            ['%name%' => $list->getName()],
                             'edgarezcampaign'
                         )
                     );
@@ -241,6 +266,11 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param CampaignList $list
+     *
+     * @return Response
+     */
     public function viewAction(CampaignList $list): Response
     {
         $listDeleteType = $this->formFactory->deleteList($list);
@@ -252,6 +282,12 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param CampaignList $list
+     *
+     * @return Response
+     */
     public function deleteAction(Request $request, CampaignList $list): Response
     {
         $form = $this->formFactory->deleteList($list);
@@ -263,7 +299,7 @@ class ListController extends Controller
 
                 $this->notificationHandler->success(
                     $this->translator->trans(
-                    /** @Desc("Subscription list '%name%' updated.") */
+                    /* @Desc("Subscription list '%name%' updated.") */
                         'list.delete.success',
                         ['%name%' => $list->getName()],
                         'edgarezcampaign'
@@ -281,11 +317,16 @@ class ListController extends Controller
         return new RedirectResponse($this->generateUrl('edgar.campaign.list.view', ['listId' => $list->getId()]));
     }
 
+    /**
+     * @param array $lists
+     *
+     * @return array
+     */
     private function getListsNumbers(array $lists): array
     {
         $listsNumbers = [];
         foreach ($lists as $list) {
-            if ($list['id'] !== false) {
+            if (false !== $list['id']) {
                 $listsNumbers[] = $list['id'];
             }
         }
@@ -293,6 +334,9 @@ class ListController extends Controller
         return array_combine($listsNumbers, array_fill_keys($listsNumbers, false));
     }
 
+    /**
+     * @param MailchimpException $e
+     */
     private function notifyError(MailchimpException $e)
     {
         $errors = [];
@@ -305,9 +349,9 @@ class ListController extends Controller
 
         $this->notificationHandler->error(
             $this->translator->trans(
-            /** @Desc("Field errors: %errors%.") */
+            /* @Desc("Field errors: %errors%.") */
                 'edgar.campaign.error',
-                ['%errors%' => implode( '|', $errors)],
+                ['%errors%' => implode('|', $errors)],
                 'edgarezcampaign'
             )
         );

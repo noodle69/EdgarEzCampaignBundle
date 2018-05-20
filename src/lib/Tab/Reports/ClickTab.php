@@ -14,7 +14,7 @@ class ClickTab extends AbstractTab implements OrderedTabInterface
 
     public function getName(): string
     {
-        return /** @Desc("Click") */
+        return /* @Desc("Click") */
             $this->translator->trans('campaign.reports.name.click', [], 'edgarezcampaign');
     }
 

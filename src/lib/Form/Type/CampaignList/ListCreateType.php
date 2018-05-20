@@ -41,93 +41,93 @@ class ListCreateType extends AbstractType
             ->add(
                 'name',
                 TextType::class,
-                ['label' => /** @Desc("Name") */ 'edgar.campaign.list.create.name']
+                ['label' => /* @Desc("Name") */ 'edgar.campaign.list.create.name']
             )
             ->add(
                 'company',
                 TextType::class,
-                ['label' => /** @Desc("Company") */ 'edgar.campaign.list.create.company']
+                ['label' => /* @Desc("Company") */ 'edgar.campaign.list.create.company']
             )
             ->add(
                 'address',
                 TextType::class,
-                ['label' => /** @Desc("Address") */ 'edgar.campaign.list.create.address']
+                ['label' => /* @Desc("Address") */ 'edgar.campaign.list.create.address']
             )
             ->add(
                 'address2',
                 TextType::class,
                 [
                     'required' => false,
-                    'label' => /** @Desc("Additionnal address") */ 'edgar.campaign.list.create.address2'
+                    'label' => /* @Desc("Additionnal address") */ 'edgar.campaign.list.create.address2',
                 ]
             )
             ->add(
                 'city',
                 TextType::class,
-                ['label' => /** @Desc("City") */ 'edgar.campaign.list.create.city']
+                ['label' => /* @Desc("City") */ 'edgar.campaign.list.create.city']
             )
             ->add(
                 'state',
                 TextType::class,
-                ['label' => /** @Desc("State") */ 'edgar.campaign.list.create.state']
+                ['label' => /* @Desc("State") */ 'edgar.campaign.list.create.state']
             )
             ->add(
                 'zip',
                 TextType::class,
-                ['label' => /** @Desc("Zip") */ 'edgar.campaign.list.create.zip']
+                ['label' => /* @Desc("Zip") */ 'edgar.campaign.list.create.zip']
             )
             ->add(
                 'country',
                 CountryFieldType::class,
-                ['label' => /** @Desc("Country") */ 'edgar.campaign.list.create.country']
+                ['label' => /* @Desc("Country") */ 'edgar.campaign.list.create.country']
             )
             ->add(
                 'phone',
                 TextType::class,
                 [
                     'required' => false,
-                    'label' => /** @Desc("Phone") */ 'edgar.campaign.list.create.phone'
+                    'label' => /* @Desc("Phone") */ 'edgar.campaign.list.create.phone',
                 ]
             )
             ->add(
                 'permission_reminder',
                 TextType::class,
-                ['label' => /** @Desc("Permission reminder") */ 'edgar.campaign.list.create.permission_reminder']
+                ['label' => /* @Desc("Permission reminder") */ 'edgar.campaign.list.create.permission_reminder']
             )
             ->add(
                 'use_archive_bar',
                 CheckboxType::class,
                 [
                     'required' => false,
-                    'label' => /** @Desc("Use archive bar?") */ 'edgar.campaign.list.create.use_archive_bar'
+                    'label' => /* @Desc("Use archive bar?") */ 'edgar.campaign.list.create.use_archive_bar',
                 ]
             )
             ->add(
                 'from_name',
                 TextType::class,
-                ['label' => /** @Desc("From name") */ 'edgar.campaign.list.create.from_name']
+                ['label' => /* @Desc("From name") */ 'edgar.campaign.list.create.from_name']
             )
             ->add(
                 'from_email',
                 EmailType::class,
-                ['label' => /** @Desc("From email") */ 'edgar.campaign.list.create.from_email']
+                ['label' => /* @Desc("From email") */ 'edgar.campaign.list.create.from_email']
             )
             ->add(
                 'subject',
                 TextType::class,
-                ['label' => /** @Desc("Subject") */ 'edgar.campaign.list.create.subject']
+                ['label' => /* @Desc("Subject") */ 'edgar.campaign.list.create.subject']
             )
             ->add(
                 'language',
                 LanguageType::class,
-                ['label' => /** @Desc("Language") */ 'edgar.campaign.list.create.language']
+                ['label' => /* @Desc("Language") */ 'edgar.campaign.list.create.language']
             )
             ->add(
                 'notify_on_subscribe',
                 EmailType::class,
                 [
                     'required' => false,
-                    'label' => /** @Desc("Notify on subscribe") */ 'edgar.campaign.list.create.notify_on_subscribe'
+                    'label' => /* @Desc("Notify on subscribe") */ 'edgar.campaign.list.create.notify_on_subscribe',
                 ]
             )
             ->add(
@@ -135,24 +135,24 @@ class ListCreateType extends AbstractType
                 EmailType::class,
                 [
                     'required' => false,
-                    'label' => /** @Desc("Notify on unsubscribe") */ 'edgar.campaign.list.create.notify_on_unsubscribe'
+                    'label' => /* @Desc("Notify on unsubscribe") */ 'edgar.campaign.list.create.notify_on_unsubscribe',
                 ]
             )
             ->add(
                 'visibility',
                 ChoiceType::class,
                 [
-                    'choices'  => [
+                    'choices' => [
                         'Public' => 'pub',
                         'Private' => 'prv',
                     ],
-                    'label' => /** @Desc("Visibility") */ 'edgar.campaign.list.create.visibility'
+                    'label' => /* @Desc("Visibility") */ 'edgar.campaign.list.create.visibility',
                 ]
             )
             ->add(
                 'save',
                 SubmitType::class,
-                ['label' => /** @Desc("Create") */ 'edgar.campaign.list.create.save']
+                ['label' => /* @Desc("Create") */ 'edgar.campaign.list.create.save']
             );
     }
 }

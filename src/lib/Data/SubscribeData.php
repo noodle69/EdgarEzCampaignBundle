@@ -9,6 +9,9 @@ class SubscribeData extends SubscribeStruct implements NewnessCheckable
 {
     use SubscribeDataTrait;
 
+    /**
+     * @return bool
+     */
     public function isNew()
     {
         return true;

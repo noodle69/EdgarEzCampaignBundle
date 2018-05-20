@@ -24,10 +24,10 @@ class ReportsController extends Controller
     /** @var TranslatorInterface */
     private $translator;
 
-    /** @var ReportsService  */
+    /** @var ReportsService */
     private $reportsService;
 
-    /** @var CampaignService  */
+    /** @var CampaignService */
     private $campaignService;
 
     /** @var SubmitHandler $submitHandler */
@@ -36,6 +36,16 @@ class ReportsController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /**
+     * ReportsController constructor.
+     *
+     * @param NotificationHandlerInterface $notificationHandler
+     * @param TranslatorInterface $translator
+     * @param ReportsService $reportsService
+     * @param CampaignService $campaignService
+     * @param SubmitHandler $submitHandler
+     * @param FormFactory $formFactory
+     */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
@@ -52,6 +62,12 @@ class ReportsController extends Controller
         $this->formFactory = $formFactory;
     }
 
+    /**
+     * @param Request $request
+     * @param null|string $campaignId
+     *
+     * @return Response
+     */
     public function viewAction(Request $request, ?string $campaignId): Response
     {
         $reportsData = null;
@@ -62,10 +78,10 @@ class ReportsController extends Controller
                 $campaign = $this->campaignService->map($campaign);
                 $reportsData = (new ReportsMapper())->mapToFormData($campaign);
 
-                if ($campaign === false) {
+                if (false === $campaign) {
                     $this->notificationHandler->warning(
                         $this->translator->trans(
-                        /** @Desc("Campaign does not exists.") */
+                        /* @Desc("Campaign does not exists.") */
                             'campaign.update.warning',
                             [],
                             'edgarezcampaign'
@@ -75,7 +91,7 @@ class ReportsController extends Controller
             } catch (MailchimpException $e) {
                 $this->notificationHandler->error(
                     $this->translator->trans(
-                    /** @Desc("Failed to retrieve Campaign.") */
+                    /* @Desc("Failed to retrieve Campaign.") */
                         'campaign.update.error',
                         [],
                         'edgarezcampaign'

@@ -24,12 +24,23 @@ class EdgarEzCampaignExtension extends Extension implements PrependExtensionInte
      */
     private $configParsers;
 
+    /**
+     * EdgarEzCampaignExtension constructor.
+     *
+     * @param array $configParsers
+     */
     public function __construct(array $configParsers = [])
     {
         $this->configParsers = $configParsers;
         $this->suggestionCollector = new SuggestionCollector();
     }
 
+    /**
+     * @param array $configs
+     * @param ContainerBuilder $container
+     *
+     * @throws \Exception
+     */
     public function load(array $configs, ContainerBuilder $container)
     {
         $loader = new YamlFileLoader(
@@ -52,6 +63,9 @@ class EdgarEzCampaignExtension extends Extension implements PrependExtensionInte
         $processor->mapSetting('pagination', $config);
     }
 
+    /**
+     * @param ContainerBuilder $container
+     */
     public function prepend(ContainerBuilder $container)
     {
         $container->prependExtensionConfig('assetic', ['bundles' => ['EdgarEzCampaignBundle']]);

@@ -26,7 +26,7 @@ class ListDeleteType extends AbstractType
             ->add(
                 'trash',
                 SubmitType::class,
-                ['label' => /** @Desc("Send to Trash") */ 'campaign.list_trash_form.trash']
+                ['label' => /* @Desc("Send to Trash") */ 'campaign.list_trash_form.trash']
             );
     }
 

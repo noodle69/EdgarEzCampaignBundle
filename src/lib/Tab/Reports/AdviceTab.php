@@ -14,7 +14,7 @@ class AdviceTab extends AbstractTab implements OrderedTabInterface
 
     public function getName(): string
     {
-        return /** @Desc("Advice") */
+        return /* @Desc("Advice") */
             $this->translator->trans('campaign.reports.name.advice', [], 'edgarezcampaign');
     }
 

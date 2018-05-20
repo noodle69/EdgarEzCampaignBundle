@@ -15,6 +15,7 @@ class CampaignContent extends \Edgar\EzCampaign\Values\API\CampaignContent
     public function setContent(?Location $content): self
     {
         $this->content = $content;
+
         return $this;
     }
 
@@ -26,6 +27,7 @@ class CampaignContent extends \Edgar\EzCampaign\Values\API\CampaignContent
     public function setSite(?SiteData $site): self
     {
         $this->site = $site;
+
         return $this;
     }
 }

@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CampaignsType extends AbstractType
 {
-    /** @var CampaignsService  */
+    /** @var CampaignsService */
     protected $campaignsService;
 
     public function __construct(CampaignsService $campaignsService)
@@ -31,8 +31,9 @@ class CampaignsType extends AbstractType
                     $campaignsChoices = [];
                     $campaigns = $this->campaignsService->get(0, 0);
                     foreach ($campaigns['campaigns'] as $campaign) {
-                        $campaignsChoices[$campaign['settings']['title']] = (object)$campaign;
+                        $campaignsChoices[$campaign['settings']['title']] = (object) $campaign;
                     }
+
                     return $campaignsChoices;
                 }),
                 'choice_value' => 'id',

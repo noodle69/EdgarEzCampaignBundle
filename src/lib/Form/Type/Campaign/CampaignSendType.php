@@ -33,7 +33,7 @@ class CampaignSendType extends AbstractType
             ->add(
                 'send',
                 SubmitType::class,
-                ['label' => /** @Desc("Send") */ 'edgar.campaign.send.send']
+                ['label' => /* @Desc("Send") */ 'edgar.campaign.send.send']
             );
     }
 }

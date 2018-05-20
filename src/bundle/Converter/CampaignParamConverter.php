@@ -8,7 +8,7 @@ use eZ\Bundle\EzPublishCoreBundle\Converter\RepositoryParamConverter;
 
 class CampaignParamConverter extends RepositoryParamConverter
 {
-    /** @var CampaignService  */
+    /** @var CampaignService */
     private $campaignService;
 
     /** @var ListParamConverter */
@@ -17,6 +17,13 @@ class CampaignParamConverter extends RepositoryParamConverter
     /** @var FolderParamConverter */
     private $folderParamConverter;
 
+    /**
+     * CampaignParamConverter constructor.
+     *
+     * @param CampaignService $campaignService
+     * @param ListParamConverter $listParamConverter
+     * @param FolderParamConverter $folderParamConverter
+     */
     public function __construct(
         CampaignService $campaignService,
         ListParamConverter $listParamConverter,
@@ -27,16 +34,27 @@ class CampaignParamConverter extends RepositoryParamConverter
         $this->folderParamConverter = $folderParamConverter;
     }
 
-    protected function getSupportedClass()
+    /**
+     * @return string
+     */
+    protected function getSupportedClass(): string
     {
         return Campaign::class;
     }
 
-    protected function getPropertyName()
+    /**
+     * @return string
+     */
+    protected function getPropertyName(): string
     {
         return 'campaignId';
     }
 
+    /**
+     * @param $id
+     *
+     * @return Campaign|string
+     */
     protected function loadValueObject($id)
     {
         $campaign = $this->campaignService->get($id);

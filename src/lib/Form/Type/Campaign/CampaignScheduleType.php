@@ -36,12 +36,12 @@ class CampaignScheduleType extends AbstractType
             ->add(
                 'schedule_time',
                 DateTimeFieldType::class,
-                ['label' => /** @Desc("Schedule time") */ 'edgar.campaign.schedule.schedule_time']
+                ['label' => /* @Desc("Schedule time") */ 'edgar.campaign.schedule.schedule_time']
             )
             ->add(
                 'schedule',
                 SubmitType::class,
-                ['label' => /** @Desc("Schedule") */ 'edgar.campaign.schedule.schedule']
+                ['label' => /* @Desc("Schedule") */ 'edgar.campaign.schedule.schedule']
             );
     }
 }

@@ -9,7 +9,6 @@ use eZ\Bundle\EzPublishCoreBundle\Controller;
 use Edgar\EzCampaign\Data\SubscribeData;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\Core\MVC\Symfony\Routing\UrlAliasRouter;
-use eZ\Publish\Core\MVC\Symfony\View\Renderer;
 use eZ\Publish\Core\Repository\Values\Content\Location;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -26,7 +25,7 @@ class FrontController extends Controller
     /** @var TranslatorInterface */
     private $translator;
 
-    /** @var CampaignService  */
+    /** @var CampaignService */
     protected $campaignService;
 
     /** @var SubmitHandler $submitHandler */
@@ -35,12 +34,23 @@ class FrontController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
-    /** @var UrlAliasRouter  */
+    /** @var UrlAliasRouter */
     private $router;
 
-    /** @var string  */
+    /** @var string */
     private $viewType;
 
+    /**
+     * FrontController constructor.
+     *
+     * @param NotificationHandlerInterface $notificationHandler
+     * @param TranslatorInterface $translator
+     * @param CampaignService $campaignService
+     * @param SubmitHandler $submitHandler
+     * @param FormFactory $formFactory
+     * @param UrlAliasRouter $router
+     * @param string $viewType
+     */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
@@ -59,6 +69,13 @@ class FrontController extends Controller
         $this->viewType = $viewType;
     }
 
+    /**
+     * @param Request $request
+     * @param string $campaignId
+     * @param Content $content
+     *
+     * @return Response
+     */
     public function subscribeAction(Request $request, string $campaignId, Content $content): Response
     {
         $redirectUrl = $this->router->generate(URLAliasRouter::URL_ALIAS_ROUTE_NAME, ['contentId' => $content->id]);
@@ -66,10 +83,10 @@ class FrontController extends Controller
         try {
             $campaign = $this->campaignService->get($campaignId);
 
-            if ($campaign === false) {
+            if (false === $campaign) {
                 $this->notificationHandler->warning(
                     $this->translator->trans(
-                    /** @Desc("Campaign does not exists.") */
+                    /* @Desc("Campaign does not exists.") */
                         'campaign.update.warning',
                         [],
                         'edgarezcampaign'
@@ -79,7 +96,7 @@ class FrontController extends Controller
         } catch (MailchimpException $e) {
             $this->notificationHandler->error(
                 $this->translator->trans(
-                /** @Desc("Failed to retrieve Campaign.") */
+                /* @Desc("Failed to retrieve Campaign.") */
                     'campaign.update.error',
                     [],
                     'edgarezcampaign'
@@ -118,12 +135,18 @@ class FrontController extends Controller
         ]);
     }
 
+    /**
+     * @param Location $location
+     * @param string $site
+     *
+     * @return Response
+     */
     public function viewAction(Location $location, string $site): Response
     {
         return $this->render('@EdgarEzCampaign/campaign/front/view.html.twig', [
             'locationId' => $location->id,
             'viewType' => $this->viewType,
-            'siteaccess' => $site
+            'siteaccess' => $site,
         ]);
     }
 }

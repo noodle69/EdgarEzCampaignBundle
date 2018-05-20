@@ -36,10 +36,10 @@ class FolderCreateType extends AbstractType
             ->add(
                 'name',
                 TextType::class,
-                ['label' => /** @Desc("Name") */ 'edgar.campaign.folder.create.name']
+                ['label' => /* @Desc("Name") */ 'edgar.campaign.folder.create.name']
             )
             ->add('create', SubmitType::class, [
-                'label' => /** @Desc("Create") */ 'edgar.campaign.folder.create'
+                'label' => /* @Desc("Create") */ 'edgar.campaign.folder.create',
             ]);
     }
 }

@@ -30,8 +30,6 @@ class ConfigureMenuListener implements TranslationContainerInterface
     }
 
     /**
-     * Add Audit menu.
-     *
      * @param ConfigureMenuEvent $event
      */
     public function onMenuConfigure(ConfigureMenuEvent $event)
@@ -44,9 +42,9 @@ class ConfigureMenuListener implements TranslationContainerInterface
     }
 
     /**
-     * Add campaign menu items.
+     * @param ItemInterface $campaignMenu
      *
-     * @param ItemInterface $auditMenu
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
     private function addCampaignMenuItems(ItemInterface $campaignMenu)
     {

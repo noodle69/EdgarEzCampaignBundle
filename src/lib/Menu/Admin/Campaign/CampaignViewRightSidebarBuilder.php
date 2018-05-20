@@ -30,7 +30,7 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
     const ITEM__REPORTS = 'campaign_view__sidebar_right__reports';
     const ITEM__REMOVE = 'campaign_view__sidebar_right__remove';
 
-    /** @var CampaignService  */
+    /** @var CampaignService */
     protected $campaignService;
 
     protected $status;
@@ -98,10 +98,10 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
             )
         );
 
-        if (in_array($campaign['status'], $this->status) && $campaign['content_type'] == 'url'
+        if (in_array($campaign['status'], $this->status) && 'url' == $campaign['content_type']
             && $campaign['recipients']['list_is_active'] && $campaign['recipients']['recipient_count'] > 0
         ) {
-            if ($campaign['status'] != self::STATUS_SCHEDULE) {
+            if (self::STATUS_SCHEDULE != $campaign['status']) {
                 $menu->addChild(
                     $this->createMenuItem(
                         self::ITEM__SEND,

@@ -24,7 +24,7 @@ class ListsDeleteType extends AbstractType
             ])
             ->add('delete', SubmitType::class, [
                 'attr' => ['hidden' => true],
-                'label' => /** @Desc("Delete lists") */ 'lists_delete_form.delete',
+                'label' => /* @Desc("Delete lists") */ 'lists_delete_form.delete',
             ]);
     }
 
