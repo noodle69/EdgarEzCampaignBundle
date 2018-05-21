@@ -1,6 +1,6 @@
 edgar.campaign.campaigns:
-    path: /campaigns
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:campaigns" }
+    path: /campaigns/{folderId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:campaigns", folderId: ~ }
 
 edgar.campaign.lists:
     path: /lists

@@ -2,6 +2,7 @@
 
 namespace Edgar\EzCampaign\Form\Factory;
 
+use Edgar\EzCampaign\Data\FilterFolderData;
 use Edgar\EzCampaign\Data\FoldersDeleteData;
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
 use Edgar\EzCampaign\Data\ListsDeleteData;
@@ -16,6 +17,7 @@ use Edgar\EzCampaign\Form\Type\Campaign\CampaignDeleteType;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignUpdateType;
 use Edgar\EzCampaign\Form\Type\Campaign\CampaignsDeleteType;
 use Edgar\EzCampaign\Form\Type\Folder\FolderCreateType;
+use Edgar\EzCampaign\Form\Type\Folder\FolderFilterType;
 use Edgar\EzCampaign\Form\Type\Folder\FoldersDeleteType;
 use Edgar\EzCampaign\Form\Type\CampaignList\ListCreateType;
 use Edgar\EzCampaign\Form\Type\CampaignList\ListDeleteType;
@@ -26,6 +28,7 @@ use Edgar\EzCampaign\Form\Type\SubscribeType;
 use Edgar\EzCampaign\Values\Core\Campaign;
 use Edgar\EzCampaign\Values\Core\CampaignContent;
 use Edgar\EzCampaign\Values\Core\CampaignList;
+use Edgar\EzCampaign\Values\Core\FilterFolder;
 use Edgar\EzCampaign\Values\Core\Folder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -144,6 +147,19 @@ class FormFactory
             $name,
             ReportsType::class,
             $data ?? new ReportsData()
+        );
+    }
+
+    public function filterFolder(
+        ?FilterFolderData $data = null,
+        ?string $name = null
+    ): FormInterface {
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(FolderFilterType::class);
+
+        return $this->formFactory->createNamed(
+            $name,
+            FolderFilterType::class,
+            $data ?? new FilterFolderData()
         );
     }
 

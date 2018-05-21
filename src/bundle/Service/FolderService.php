@@ -82,4 +82,14 @@ class FolderService extends BaseService
 
         return $return;
     }
+
+    public function map(array $folder): Folder
+    {
+        $folder = new Folder([
+            'id' => $folder['id'],
+            'name' => $folder['name'],
+        ]);
+
+        return $folder;
+    }
 }

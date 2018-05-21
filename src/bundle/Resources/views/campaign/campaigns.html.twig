@@ -1,5 +1,7 @@
 {% extends 'EzPlatformAdminUiBundle::layout.html.twig' %}
 
+{% form_theme form_folder_filter '@EzPlatformAdminUi/form_fields.html.twig'  %}
+
 {% trans_default_domain 'edgarezcampaign' %}
 
 {% block body_class %}ez-info-view{% endblock %}
@@ -19,6 +21,18 @@
 {% endblock %}
 
 {% block content %}
+
+    <section class="container mt-4">
+        {{ form_start(form_folder_filter, {
+            'action': path('edgar.campaign.campaigns')
+        }) }}
+        <div class="input-group">
+            {{ form_widget(form_folder_filter.folder) }}
+            {{ form_widget(form_folder_filter.choose) }}
+        </div>
+        {{ form_end(form_folder_filter) }}
+    </section>
+
     {% set disable_crate = '' %}
     {% if folders.folders|length == 0 or lists.lists|length == 0 %}
         {% set disable_crate = 'disabled' %}

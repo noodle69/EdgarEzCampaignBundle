@@ -15,6 +15,7 @@ class ListsService extends BaseService
         $lists = $this->mailChimp->get('/lists', [
             'offset' => $offset,
             'count' => $count,
+            'sort_field' => 'date_created',
         ]);
 
         if (!$this->mailChimp->success()) {

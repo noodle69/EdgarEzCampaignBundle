@@ -3,11 +3,14 @@
 namespace Edgar\EzCampaignBundle\Controller;
 
 use Edgar\EzCampaign\Data\CampaignsDeleteData;
+use Edgar\EzCampaign\Data\FilterFolderData;
 use Edgar\EzCampaign\Data\FoldersDeleteData;
+use Edgar\EzCampaign\Data\Mapper\FilterFolderMapper;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaign\Values\Core\Campaign;
 use Edgar\EzCampaign\Values\Core\CampaignContent;
+use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzCampaign\Values\Core\Schedule;
 use Edgar\EzCampaignBundle\Service\CampaignService;
 use Edgar\EzCampaignBundle\Service\CampaignsService;
@@ -111,13 +114,14 @@ class CampaignController extends Controller
 
     /**
      * @param Request $request
+     * @param Folder|null $folder
      *
      * @return Response
      */
-    public function campaignsAction(Request $request): Response
+    public function campaignsAction(Request $request, ?Folder $folder): Response
     {
         $page = $request->query->get('page') ?? 1;
-        $allCampaigns = $this->campaignsService->get(0, 0);
+        $allCampaigns = $this->campaignsService->get(0, 0, $folder ? $folder->getId() : null);
 
         $pagerfanta = new Pagerfanta(
             new ArrayAdapter($allCampaigns['campaigns'])
@@ -126,7 +130,11 @@ class CampaignController extends Controller
         $pagerfanta->setMaxPerPage($this->defaultPaginationLimit);
         $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
 
-        $campaigns = $this->campaignsService->get($this->defaultPaginationLimit * ($page - 1), $this->defaultPaginationLimit);
+        $campaigns = $this->campaignsService->get(
+            $this->defaultPaginationLimit * ($page - 1),
+            $this->defaultPaginationLimit,
+            $folder ? $folder->getId() : null
+        );
 
         $deleteCampaignsForm = $this->formFactory->deleteCampaigns(
             new CampaignsDeleteData($this->getCampaignsNumbers($campaigns['campaigns']))
@@ -146,6 +154,23 @@ class CampaignController extends Controller
         $scheduleForm = $this->formFactory->scheduleCampaign();
         $cancelScheduleForm = $this->formFactory->cancelScheduleCampaign();
 
+        $filterFolderData = (new FilterFolderMapper())->mapToFormData($folder);
+
+        $folderFilterForm = $this->formFactory->filterFolder($filterFolderData);
+        $folderFilterForm->handleRequest($request);
+
+        if ($folderFilterForm->isSubmitted() && $folderFilterForm->isValid()) {
+            $result = $this->submitHandler->handle($folderFilterForm, function (FilterFolderData $data) {
+                return new RedirectResponse($this->generateUrl('edgar.campaign.campaigns', [
+                    'folderId' => $data->getFolder()->id,
+                ]));
+            });
+
+            if ($result instanceof Response) {
+                return $result;
+            }
+        }
+
         return $this->render('@EdgarEzCampaign/campaign/campaigns.html.twig', [
             'pager' => $pagerfanta,
             'campaigns' => $campaigns,
@@ -157,6 +182,7 @@ class CampaignController extends Controller
             'form_send' => $sendForm->createView(),
             'form_schedule' => $scheduleForm->createView(),
             'form_cancel_schedule' => $cancelScheduleForm->createView(),
+            'form_folder_filter' => $folderFilterForm->createView(),
         ]);
     }
 

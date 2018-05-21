@@ -1,23 +1,23 @@
 <?php
 
-namespace Edgar\EzCampaign\Form\Type;
+namespace Edgar\EzCampaign\Form\Type\Folder;
 
-use Edgar\EzCampaign\Form\Type\Field\CampaignsType;
+use Edgar\EzCampaign\Form\Type\Field\FoldersType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ReportsType extends AbstractType
+class FolderFilterType extends AbstractType
 {
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
-        return 'edgarcampaign_reports';
+        return 'edgarcampaign_filter_folders';
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -33,12 +33,16 @@ class ReportsType extends AbstractType
     {
         $builder
             ->add(
-                'campaign',
-                CampaignsType::class,
-                ['label' => /* @Desc("Campaigns") */ 'edgar.campaign.reports.campaigns.name']
+                'folder',
+                FoldersType::class,
+                [
+                    'required' => false,
+                    'placeholder' => /* @Desc("Select a Folder") */ 'edgar.campaign.filter.folder.placeeholder',
+                    'label' => /* @Desc("Folder") */ 'edgar.campaign.filter.folder.name'
+                ]
             )
             ->add('choose', SubmitType::class, [
-                'label' => /* @Desc("Choose") */ 'edgar.campaign.reports.choose',
+                'label' => /* @Desc("Choose") */ 'edgar.campaign.filter.folder.choose',
             ]);
     }
 }
