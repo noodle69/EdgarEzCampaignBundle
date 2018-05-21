@@ -338,12 +338,12 @@
       </trans-unit>
       <trans-unit id="0ca4ffd63bd524ebb2c950b48380350d598ae76a" resname="campaign.schedule.error">
         <source>campaign.schedule.error</source>
-        <target state="new">campaign.schedule.error</target>
+        <target>campaign.schedule.error</target>
         <note>key: campaign.schedule.error</note>
       </trans-unit>
       <trans-unit id="ab076defa687a3f6ab23fa5107684d8e446f21ef" resname="campaign.schedule.success">
         <source>campaign.schedule.success</source>
-        <target state="new">campaign.schedule.success</target>
+        <target>campaign.schedule.success</target>
         <note>key: campaign.schedule.success</note>
       </trans-unit>
       <trans-unit id="348205ecb6c4f1666408e6ffa4ee2c5be7ad2c7d" resname="campaign.send.error">

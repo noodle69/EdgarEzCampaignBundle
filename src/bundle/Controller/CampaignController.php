@@ -292,17 +292,17 @@ class CampaignController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $campaignId = $campaign->getId();
-            $result = $this->submitHandler->handle($form, function (Campaign $campaign) use ($form, $campaignId) {
+            $result = $this->submitHandler->handle($form, function (Campaign $data) use ($form, $campaignId) {
                 try {
-                    $this->campaignService->patch($campaignId, $campaign);
+                    $this->campaignService->patch($campaignId, $data);
 
-                    if ($campaign->getSite() && $campaign->getContent()) {
+                    if ($data->getSite() && $data->getContent()) {
                         $url = $this->router->generate(
                             'edgar.campaign.view',
                             [
-                                'locationId' => $campaign->getContent()->id,
-                                'site' => $campaign->getSite()->getIdentifier(),
-                                'siteaccess' => $campaign->getSite()->getIdentifier(),
+                                'locationId' => $data->getContent()->id,
+                                'site' => $data->getSite()->getIdentifier(),
+                                'siteaccess' => $data->getSite()->getIdentifier(),
                             ],
                             UrlGeneratorInterface::ABSOLUTE_URL
                         );
@@ -314,7 +314,7 @@ class CampaignController extends Controller
                         $this->translator->trans(
                         /* @Desc("Campaign '%name%' updated.") */
                             'campaign.update.success',
-                            ['%name%' => $campaign->getTitle()],
+                            ['%name%' => $data->getTitle()],
                             'edgarezcampaign'
                         )
                     );
@@ -326,7 +326,7 @@ class CampaignController extends Controller
                     return $this->render('@EdgarEzCampaign/campaign/campaign/edit.html.twig', [
                         'form' => $form->createView(),
                         'actionUrl' => $this->generateUrl('edgar.campaign.campaign.edit', ['campaignId' => $campaignId]),
-                        'campaign' => $campaign,
+                        'campaign' => $data,
                     ]);
                 }
             });

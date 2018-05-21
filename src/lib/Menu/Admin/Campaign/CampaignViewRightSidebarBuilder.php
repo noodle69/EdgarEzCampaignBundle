@@ -44,7 +44,6 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
         $this->campaignService = $campaignService;
         $this->status = [
             self::STATUS_SAVE,
-            self::STATUS_SENT,
             self::STATUS_PAUSED,
             self::STATUS_SCHEDULE,
         ];
@@ -141,20 +140,20 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
                     )
                 );
             }
-
-            $menu->addChild(
-                $this->createMenuItem(
-                    self::ITEM__REPORTS,
-                    [
-                        'route' => 'edgar.campaign.reports',
-                        'routeParameters' => [
-                            'campaignId' => $campaignId,
-                        ],
-                        'extras' => ['icon' => 'stats'],
-                    ]
-                )
-            );
         }
+
+        $menu->addChild(
+            $this->createMenuItem(
+                self::ITEM__REPORTS,
+                [
+                    'route' => 'edgar.campaign.reports',
+                    'routeParameters' => [
+                        'campaignId' => $campaignId,
+                    ],
+                    'extras' => ['icon' => 'stats'],
+                ]
+            )
+        );
 
         $menu->addChild(
             $this->createMenuItem(

@@ -120,7 +120,7 @@ class FormFactory
         Campaign $data,
         ?string $name = null
     ): FormInterface {
-        $name = $name ?: sprintf('update-campaign-%d', $data->getId());
+        $name = $name ?: StringUtil::fqcnToBlockPrefix(CampaignUpdateType::class);
 
         return $this->formFactory->createNamed($name, CampaignUpdateType::class, $data);
     }

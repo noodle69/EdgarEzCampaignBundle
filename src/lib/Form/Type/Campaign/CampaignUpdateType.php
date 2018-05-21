@@ -19,12 +19,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CampaignUpdateType extends AbstractType
 {
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'edgarcampaign_campaign_edit';
     }

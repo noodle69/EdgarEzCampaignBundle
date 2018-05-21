@@ -1,8 +1,5 @@
 (function () {
-    const btnCreate = document.querySelector('#campaign_create_content_select_content');
-    const btnEdit = document.querySelector('#update-campaign-0_content_select_content');
-    const btnCreateContent = document.querySelector('#campaign_create_content_content_select_content');
-
+    const btn = document.querySelector('.btn--open-udw');
     const udwContainer = document.getElementById('react-udw');
     const token = document.querySelector('meta[name="CSRF-Token"]').content;
     const siteaccess = document.querySelector('meta[name="SiteAccess"]').content;
@@ -10,7 +7,7 @@
 
     const selectedLocationCreateId = document.querySelector('#campaign_create_content_location');
     const selectedLocationCreateName = document.querySelector('#campaign_create_content_select_content_label');
-    const selectedLocationEditId = document.querySelector('#campaign_create_content_content_select_content');
+    const selectedLocationEditId = document.querySelector('#campaign_update_content_location');
     const selectedLocationEditName = document.querySelector('#campaign_edit_content_select_content_label');
     const selectedLocationCreateContentId = document.querySelector('#campaign_create_content_content_location');
     const selectedLocationCreateContentName = document.querySelector('#campaign_create_content_select_content_label');
@@ -82,15 +79,7 @@
         }), udwContainer);
     };
 
-    if (btnCreate) {
-        btnCreate.addEventListener('click', openUDW, false);
-    }
-
-    if (btnEdit) {
-        btnEdit.addEventListener('click', openUDW, false);
-    }
-
-    if (btnCreateContent) {
-        btnCreateContent.addEventListener('click', openUDW, false);
+    if (btn) {
+        btn.addEventListener('click', openUDW, false);
     }
 })();

@@ -33,7 +33,7 @@
         <a title="{{ 'edgar.campaign.campaign.send'|trans|desc('Send') }}"
            data-toggle="modal" data-target="#campaign-send-modal"
            data-action="{{ path('edgar.campaign.send', {'campaignId': campaign.id}) }}"
-           class="btn btn-icon mx-3 edgarcampaign-btn {{ disable_send }} {% if campaign.status == 'schedule' %}disabled{% endif %}">
+           class="btn btn-icon mx-3 edgarcampaign-btn {{ disable_send }} {% if campaign.status == 'schedule' or campaign.status == 'sent' %}disabled{% endif %}">
             <svg class="ez-icon ez-icon-edit">
                 <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#mail"></use>
             </svg>
@@ -44,7 +44,7 @@
             <a title="{{ 'edgar.campaign.campaign.cancel.schedule'|trans|desc('Cancel schedule') }}"
                data-toggle="modal" data-target="#campaign-cancel-schedule-modal"
                data-action="{{ path('edgar.campaign.cancel.schedule', {'campaignId': campaign.id}) }}"
-               class="btn btn-icon mx-3 edgarcampaign-btn {{ disable_send }}">
+               class="btn btn-icon mx-3 edgarcampaign-btn {{ disable_send }} ">
                 <svg class="ez-icon ez-icon-edit">
                     <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#circle-close"></use>
                 </svg>
@@ -53,7 +53,7 @@
             <a title="{{ 'edgar.campaign.campaign.schedule'|trans|desc('Schedule') }}"
                data-toggle="modal" data-target="#campaign-schedule-modal"
                data-action="{{ path('edgar.campaign.schedule', {'campaignId': campaign.id}) }}"
-               class="btn btn-icon mx-3 edgarcampaign-btn {{ disable_send }}">
+               class="btn btn-icon mx-3 edgarcampaign-btn {{ disable_send }} {% if campaign.status == 'schedule' or campaign.status == 'sent' %}disabled{% endif %}">
                 <svg class="ez-icon ez-icon-edit">
                     <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#schedule"></use>
                 </svg>
