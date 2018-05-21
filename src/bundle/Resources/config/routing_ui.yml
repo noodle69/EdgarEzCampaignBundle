@@ -11,7 +11,7 @@ edgar.campaign.reports:
     defaults: { _controller: "EdgarEzCampaignBundle:Reports:view", campaignId: ~ }
 
 edgar.campaign.campaign.bulk_delete:
-    path: /campaigns/delete
+    path: /campaigns_delete
     methods: ['POST']
     defaults: { _controller: "EdgarEzCampaignBundle:Campaign:bulkDelete" }
 
