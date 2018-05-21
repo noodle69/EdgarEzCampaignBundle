@@ -101,6 +101,60 @@
         </table>
     </section>
 
+    {% if campaigns.campaigns|length != 0 %}
+        <section class="container mt-4">
+            <div class="ez-table-header">
+                <div class="ez-table-header__headline">
+                    {{ 'campaign.list.campaigns.table.header'|trans|desc('Associated Campaigns') }}
+                </div>
+            </div>
+
+            <table class="table mb-3">
+                <thead>
+                    <tr>
+                        <th>{{ 'campaign.campaigns.title.th'|trans|desc('Title') }}</th>
+                        <th>{{ 'campaign.campaigns.subject.th'|trans|desc('Subject') }}</th>
+                        <th>{{ 'campaign.campaigns.create_time.th'|trans|desc('Create time') }}</th>
+                        <th>{{ 'campaign.campaigns.emails_sent.th'|trans|desc('Emails sent') }}</th>
+                        <th>{{ 'campaign.campaigns.send_time.th'|trans|desc('Send time') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for campaign in campaigns.campaigns %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('edgar.campaign.campaign.view', {'campaignId': campaign.id}) }}">
+                                    {{ campaign.settings.title }}
+                                </a>
+                            </td>
+                            <td>{{ campaign.settings.subject_line }}</td>
+                            <td>{{ campaign.create_time|date('Y M, d H:i') }}</td>
+                            <td>{{ campaign.emails_sent }}</td>
+                            <td>
+                                {% if not campaign.send_time is empty %}
+                                    {{ campaign.send_time|date('Y M, d H:i') }}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% if pager.haveToPaginate %}
+                <div class="row justify-content-center align-items-center mb-2">
+                    <span>
+                        {{ 'campaign.campaigns.viewing'|trans({
+                            '%viewing%': pager.currentPageResults|length,
+                            '%total%': pager.nbResults})|desc('Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items')|raw }}
+                    </span>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                    {{ pagerfanta(pager, 'ez') }}
+                </div>
+            {% endif %}
+        </section>
+    {% endif %}
+
     {% include '@EdgarEzCampaign/campaign/list/modal_delete.html.twig' with {'form': form_delete, 'actionUrl': actionUrl} only %}
 
 {% endblock %}

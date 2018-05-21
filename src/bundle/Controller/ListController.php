@@ -6,6 +6,7 @@ use Edgar\EzCampaign\Data\ListsDeleteData;
 use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaign\Values\Core\CampaignList;
+use Edgar\EzCampaignBundle\Service\CampaignsService;
 use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
@@ -32,6 +33,9 @@ class ListController extends Controller
     /** @var ListsService */
     protected $listsService;
 
+    /** @var CampaignsService  */
+    protected $campaignsService;
+
     /** @var SubmitHandler $submitHandler */
     private $submitHandler;
 
@@ -39,35 +43,43 @@ class ListController extends Controller
     private $formFactory;
 
     /** @var int */
-    private $defaultPaginationLimit;
+    private $defaultListPaginationLimit;
+
+    /** @var int */
+    private $defaultCampaignPaginationLimit;
 
     /**
      * ListController constructor.
-     *
      * @param NotificationHandlerInterface $notificationHandler
      * @param TranslatorInterface $translator
      * @param ListService $listService
      * @param ListsService $listsService
+     * @param CampaignsService $campaignsService
      * @param SubmitHandler $submitHandler
      * @param FormFactory $formFactory
-     * @param int $defaultPaginationLimit
+     * @param int $defaultListPaginationLimit
+     * * @param int $defaultCampaignPaginationLimit
      */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
         TranslatorInterface $translator,
         ListService $listService,
         ListsService $listsService,
+        CampaignsService $campaignsService,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
-        int $defaultPaginationLimit
+        int $defaultListPaginationLimit,
+        int $defaultCampaignPaginationLimit
     ) {
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
         $this->listService = $listService;
         $this->listsService = $listsService;
+        $this->campaignsService = $campaignsService;
         $this->submitHandler = $submitHandler;
         $this->formFactory = $formFactory;
-        $this->defaultPaginationLimit = $defaultPaginationLimit;
+        $this->defaultListPaginationLimit = $defaultListPaginationLimit;
+        $this->defaultCampaignPaginationLimit = $defaultCampaignPaginationLimit;
     }
 
     /**
@@ -84,10 +96,13 @@ class ListController extends Controller
             new ArrayAdapter($allLists['lists'])
         );
 
-        $pagerfanta->setMaxPerPage($this->defaultPaginationLimit);
+        $pagerfanta->setMaxPerPage($this->defaultListPaginationLimit);
         $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
 
-        $lists = $this->listsService->get($this->defaultPaginationLimit * ($page - 1), $this->defaultPaginationLimit);
+        $lists = $this->listsService->get(
+            $this->defaultListPaginationLimit * ($page - 1),
+            $this->defaultListPaginationLimit
+        );
 
         $deleteListsForm = $this->formFactory->deleteLists(
             new ListsDeleteData($this->getListsNumbers($lists['lists']))
@@ -267,18 +282,38 @@ class ListController extends Controller
     }
 
     /**
+     * @param Request $request
      * @param CampaignList $list
      *
      * @return Response
      */
-    public function viewAction(CampaignList $list): Response
+    public function viewAction(Request $request, CampaignList $list): Response
     {
         $listDeleteType = $this->formFactory->deleteList($list);
+
+        $page = $request->query->get('page') ?? 1;
+        $allCampaigns = $this->campaignsService->get(0, 0, null, $list->getId());
+
+        $pagerfanta = new Pagerfanta(
+            new ArrayAdapter($allCampaigns['campaigns'])
+        );
+
+        $pagerfanta->setMaxPerPage($this->defaultCampaignPaginationLimit);
+        $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
+
+        $campaigns = $this->campaignsService->get(
+            $this->defaultCampaignPaginationLimit * ($page - 1),
+            $this->defaultCampaignPaginationLimit,
+            null,
+            $list->getId()
+        );
 
         return $this->render('@EdgarEzCampaign/campaign/list/view.html.twig', [
             'form_delete' => $listDeleteType->createView(),
             'actionUrl' => $this->generateUrl('edgar.campaign.list.delete', ['listId' => $list->getId()]),
             'list' => $list,
+            'pager' => $pagerfanta,
+            'campaigns' => $campaigns,
         ]);
     }
 

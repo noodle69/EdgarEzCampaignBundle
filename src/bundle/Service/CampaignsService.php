@@ -8,10 +8,11 @@ class CampaignsService extends BaseService
      * @param int $offset
      * @param int $count
      * @param null|string $folderId
+     * @param null|string $listId
      *
      * @return array
      */
-    public function get(int $offset = 0, int $count = 10, ?string $folderId = null): array
+    public function get(int $offset = 0, int $count = 10, ?string $folderId = null, ?string $listId = null): array
     {
         $args = [
             'offset' => $offset,
@@ -21,6 +22,10 @@ class CampaignsService extends BaseService
 
         if ($folderId) {
             $args['folder_id'] = $folderId;
+        }
+
+        if ($listId) {
+            $args['list_id'] = $listId;
         }
 
         $campaigns = $this->mailChimp->get('/campaigns', $args);

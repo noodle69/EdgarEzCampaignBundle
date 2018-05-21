@@ -12,5 +12,6 @@ services:
     Edgar\EzCampaignBundle\Controller\ListController:
         parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
         arguments:
-            $defaultPaginationLimit: '$pagination.list_limit;edgar_ez_campaign$'
+            $defaultListPaginationLimit: '$pagination.list_limit;edgar_ez_campaign$'
+            $defaultCampaignPaginationLimit: '$pagination.campaign_limit;edgar_ez_campaign$'
 

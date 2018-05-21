@@ -156,6 +156,11 @@
         <target>Editing Campaign "%title%"</target>
         <note>key: campaign.edit.identifier</note>
       </trans-unit>
+      <trans-unit id="bed0dfb65e36c2dd4de0e6bac086a02797b348c1" resname="campaign.list.campaigns.table.header">
+        <source>Associated Campaigns</source>
+        <target state="new">Associated Campaigns</target>
+        <note>key: campaign.list.campaigns.table.header</note>
+      </trans-unit>
       <trans-unit id="2e83cc1d3a1cd46ff835c01fcd86ce975c6385c3" resname="campaign.list.delete">
         <source>Delete Subscription list</source>
         <target>Delete Subscription list</target>
@@ -472,7 +477,7 @@
         <note>key: edgar.campaign.error</note>
       </trans-unit>
       <trans-unit id="766a050e04d714d1d5d7c5070b9327a83815fc0f" resname="edgar.campaign.filter.folder.choose">
-        <source>edgar.campaign.filter.folder.choose</source>
+        <source>Select</source>
         <target>Select</target>
         <note>key: edgar.campaign.filter.folder.choose</note>
       </trans-unit>
@@ -482,7 +487,7 @@
         <note>key: edgar.campaign.filter.folder.name</note>
       </trans-unit>
       <trans-unit id="57a7cde7dadf1aa1ead839ba63463d5b52b2fc94" resname="edgar.campaign.filter.folder.placeeholder">
-        <source>edgar.campaign.filter.folder.placeeholder</source>
+        <source>Select a folder</source>
         <target>Select a folder</target>
         <note>key: edgar.campaign.filter.folder.placeeholder</note>
       </trans-unit>
