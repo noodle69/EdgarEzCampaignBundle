@@ -21,6 +21,7 @@
 {% endblock %}
 
 {% block content %}
+
     <section class="container mt-4">
         {{ form_start(form, {
             'action': path('edgar.campaign.reports')
@@ -32,5 +33,12 @@
         {{ form_end(form) }}
     </section>
 
-    {{ ez_platform_tabs('edgarezcampaign-reports', {}, 'EzPlatformAdminUiBundle:parts/tab:system_info.html.twig') }}
+    {% if not campaign is defined or not campaign %}
+        <section class="container mt-4">
+            {{ 'reports.view.no.campaign'|trans|desc('You should select a Campaign to access Reports.') }}
+        </section>
+    {% else %}
+        {{ ez_platform_tabs('edgarezcampaign-reports', {}, 'EzPlatformAdminUiBundle:parts/tab:system_info.html.twig') }}
+    {% endif %}
+
 {% endblock %}

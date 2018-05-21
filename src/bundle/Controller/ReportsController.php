@@ -70,6 +70,7 @@ class ReportsController extends Controller
      */
     public function viewAction(Request $request, ?string $campaignId): Response
     {
+        $campaign = null;
         $reportsData = null;
 
         if ($campaignId) {
@@ -108,7 +109,7 @@ class ReportsController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $result = $this->submitHandler->handle($form, function (ReportsData $data) {
                 return new RedirectResponse($this->generateUrl('edgar.campaign.reports', [
-                    'campaignId' => $data->campaign->id,
+                    'campaignId' => $data->campaign ? $data->campaign->id : null,
                 ]));
             });
 
@@ -119,6 +120,7 @@ class ReportsController extends Controller
 
         return $this->render('@EdgarEzCampaign/campaign/reports.html.twig', [
             'form' => $form->createView(),
+            'campaign' => $campaign,
         ]);
     }
 }

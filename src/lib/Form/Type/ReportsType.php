@@ -35,10 +35,14 @@ class ReportsType extends AbstractType
             ->add(
                 'campaign',
                 CampaignsType::class,
-                ['label' => /* @Desc("Campaigns") */ 'edgar.campaign.reports.campaigns.name']
+                [
+                    'required' => false,
+                    'placeholder' => /* @Desc("Select a Campaign") */ 'edgar.campaign.reports.campaigns.placeholder',
+                    'label' => /* @Desc("Campaigns") */ 'edgar.campaign.reports.campaigns.name'
+                ]
             )
             ->add('choose', SubmitType::class, [
-                'label' => /* @Desc("Choose") */ 'edgar.campaign.reports.choose',
+                'label' => /* @Desc("Select") */ 'edgar.campaign.reports.choose',
             ]);
     }
 }

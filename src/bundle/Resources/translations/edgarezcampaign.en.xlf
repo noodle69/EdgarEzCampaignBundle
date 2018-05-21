@@ -158,7 +158,7 @@
       </trans-unit>
       <trans-unit id="bed0dfb65e36c2dd4de0e6bac086a02797b348c1" resname="campaign.list.campaigns.table.header">
         <source>Associated Campaigns</source>
-        <target state="new">Associated Campaigns</target>
+        <target>Associated Campaigns</target>
         <note>key: campaign.list.campaigns.table.header</note>
       </trans-unit>
       <trans-unit id="2e83cc1d3a1cd46ff835c01fcd86ce975c6385c3" resname="campaign.list.delete">
@@ -601,9 +601,14 @@
         <target>Campaigns</target>
         <note>key: edgar.campaign.reports.campaigns.name</note>
       </trans-unit>
+      <trans-unit id="6bf90c1904a2a47d877db607feb44962104e10d0" resname="edgar.campaign.reports.campaigns.placeholder">
+        <source>Select a Campaign</source>
+        <target>Select a Campaign</target>
+        <note>key: edgar.campaign.reports.campaigns.placeholder</note>
+      </trans-unit>
       <trans-unit id="e468a8b94435b1b5c6a433617bd40f7e95c40a34" resname="edgar.campaign.reports.choose">
-        <source>Choose</source>
-        <target>Choose</target>
+        <source>Select</source>
+        <target>Select</target>
         <note>key: edgar.campaign.reports.choose</note>
       </trans-unit>
       <trans-unit id="84a4435afea0515569ca75ddba205b84a606d164" resname="edgar.campaign.schedule.cancel">
@@ -730,6 +735,11 @@
         <source>Reports</source>
         <target>Reports</target>
         <note>key: reports.view</note>
+      </trans-unit>
+      <trans-unit id="6ae4cec8e8a7a275d83d7409d86f633c59b150a0" resname="reports.view.no.campaign">
+        <source>You should select a Campaign to access Reports.</source>
+        <target state="new">You should select a Campaign to access Reports.</target>
+        <note>key: reports.view.no.campaign</note>
       </trans-unit>
       <trans-unit id="2cc9f2578616c505a308eadf82e9035dd594bffe" resname="reports.view.title">
         <source>Reports</source>

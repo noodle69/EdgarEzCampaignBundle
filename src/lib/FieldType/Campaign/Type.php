@@ -20,7 +20,6 @@ class Type extends FieldType
 
     /**
      * Type constructor.
-     *
      * @param CampaignsService $campaignsService
      */
     public function __construct(CampaignsService $campaignsService)
