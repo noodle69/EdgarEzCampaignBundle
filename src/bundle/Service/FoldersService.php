@@ -31,15 +31,23 @@ class FoldersService extends BaseService
      * @param string $folderId
      *
      * @return int
+     *
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function countCampaigns(string $folderId): int
     {
-        $return = $this->mailChimp->get('/campaigns?folder_id=' . $folderId, []);
+        $args = [
+            'offset' => 0,
+            'count' => 1,
+            'folder_id' => $folderId,
+        ];
 
-        if ($this->mailChimp->success()) {
-            return $return['total_items'];
+        $campaigns = $this->mailChimp->get('/campaigns', $args);
+
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
-        return 0;
+        return $campaigns['total_items'];
     }
 }

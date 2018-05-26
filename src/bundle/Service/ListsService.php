@@ -32,15 +32,23 @@ class ListsService extends BaseService
      * @param string $listId
      *
      * @return int
+     *
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function countCampaigns(string $listId): int
     {
-        $return = $this->mailChimp->get('/campaigns?list_id=' . $listId, []);
+        $args = [
+            'offset' => 0,
+            'count' => 1,
+            'list_id' => $listId,
+        ];
 
-        if ($this->mailChimp->success()) {
-            return $return['total_items'];
+        $campaigns = $this->mailChimp->get('/campaigns', $args);
+
+        if (!$this->mailChimp->success()) {
+            $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
-        return 0;
+        return $campaigns['total_items'];
     }
 }
