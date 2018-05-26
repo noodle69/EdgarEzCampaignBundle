@@ -18,8 +18,8 @@ use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
 use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
+use eZ\Publish\API\Repository\PermissionResolver;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
-use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -30,7 +30,7 @@ use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
-class CampaignController extends Controller
+class CampaignController extends BaseController
 {
     /** @var NotificationHandlerInterface */
     private $notificationHandler;
@@ -68,6 +68,9 @@ class CampaignController extends Controller
     /** @var int */
     private $defaultPaginationLimit;
 
+    /** @var PermissionResolver */
+    protected $permissionResolver;
+
     /**
      * CampaignController constructor.
      *
@@ -82,6 +85,7 @@ class CampaignController extends Controller
      * @param SubmitHandler $submitHandler
      * @param FormFactory $formFactory
      * @param RouterInterface $router
+     * @param PermissionResolver $permissionResolver
      * @param int $defaultPaginationLimit
      */
     public function __construct(
@@ -96,8 +100,10 @@ class CampaignController extends Controller
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
         RouterInterface $router,
+        PermissionResolver $permissionResolver,
         int $defaultPaginationLimit
     ) {
+        parent::__construct($permissionResolver);
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
         $this->campaignService = $campaignService;

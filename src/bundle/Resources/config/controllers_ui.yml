@@ -3,14 +3,26 @@ services:
         resource: "../../Controller/*"
         exclude: "../../Controller/FrontController.php"
         parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+        tags: ['controller.service_arguments']
+        calls:
+            - [setContainer, ["@service_container"]]
+            - [performAccessCheck, []]
 
     Edgar\EzCampaignBundle\Controller\CampaignController:
         parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+        tags: ['controller.service_arguments']
+        calls:
+            - [setContainer, ["@service_container"]]
+            - [performAccessCheck, []]
         arguments:
             $defaultPaginationLimit: '$pagination.campaign_limit;edgar_ez_campaign$'
 
     Edgar\EzCampaignBundle\Controller\ListController:
         parent: EzSystems\EzPlatformAdminUiBundle\Controller\Controller
+        tags: ['controller.service_arguments']
+        calls:
+            - [setContainer, ["@service_container"]]
+            - [performAccessCheck, []]
         arguments:
             $defaultListPaginationLimit: '$pagination.list_limit;edgar_ez_campaign$'
             $defaultCampaignPaginationLimit: '$pagination.campaign_limit;edgar_ez_campaign$'

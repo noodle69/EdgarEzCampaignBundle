@@ -9,8 +9,8 @@ use Edgar\EzCampaign\Values\Core\CampaignList;
 use Edgar\EzCampaignBundle\Service\CampaignsService;
 use Edgar\EzCampaignBundle\Service\ListService;
 use Edgar\EzCampaignBundle\Service\ListsService;
+use eZ\Publish\API\Repository\PermissionResolver;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
-use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\TranslatorInterface;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
-class ListController extends Controller
+class ListController extends BaseController
 {
     /** @var NotificationHandlerInterface */
     private $notificationHandler;
@@ -42,6 +42,9 @@ class ListController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /** @var PermissionResolver */
+    protected $permissionResolver;
+
     /** @var int */
     private $defaultListPaginationLimit;
 
@@ -57,8 +60,9 @@ class ListController extends Controller
      * @param CampaignsService $campaignsService
      * @param SubmitHandler $submitHandler
      * @param FormFactory $formFactory
+     * @param PermissionResolver $permissionResolver
      * @param int $defaultListPaginationLimit
-     * * @param int $defaultCampaignPaginationLimit
+     * @param int $defaultCampaignPaginationLimit
      */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
@@ -68,9 +72,11 @@ class ListController extends Controller
         CampaignsService $campaignsService,
         SubmitHandler $submitHandler,
         FormFactory $formFactory,
+        PermissionResolver $permissionResolver,
         int $defaultListPaginationLimit,
         int $defaultCampaignPaginationLimit
     ) {
+        parent::__construct($permissionResolver);
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
         $this->listService = $listService;

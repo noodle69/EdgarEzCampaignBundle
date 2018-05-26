@@ -50,7 +50,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
     {
         $menuItems = [];
 
-        if ($this->permissionResolver->hasAccess('campaign', 'campaigns')) {
+        if ($this->permissionResolver->hasAccess('campaign', 'campaign')) {
             $menuItems[self::ITEM_CAMPAIGN_CAMPAIGNS] = $campaignMenu->addChild(
                 self::ITEM_CAMPAIGN_CAMPAIGNS,
                 [
@@ -60,7 +60,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
             );
         }
 
-        if ($this->permissionResolver->hasAccess('campaign', 'lists')) {
+        if ($this->permissionResolver->hasAccess('campaign', 'campaign')) {
             $menuItems[self::ITEM_CAMPAIGN_LISTS] = $campaignMenu->addChild(
                 self::ITEM_CAMPAIGN_LISTS,
                 [
@@ -70,7 +70,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
             );
         }
 
-        if ($this->permissionResolver->hasAccess('campaign', 'reports')) {
+        if ($this->permissionResolver->hasAccess('campaign', 'campaign')) {
             $menuItems[self::ITEM_CAMPAIGN_REPORTS] = $campaignMenu->addChild(
                 self::ITEM_CAMPAIGN_REPORTS,
                 [

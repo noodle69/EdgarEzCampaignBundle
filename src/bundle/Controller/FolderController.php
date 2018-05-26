@@ -8,15 +8,15 @@ use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzCampaignBundle\Service\FolderService;
 use Edgar\EzCampaignBundle\Service\FoldersService;
+use eZ\Publish\API\Repository\PermissionResolver;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
-use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\TranslatorInterface;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
-class FolderController extends Controller
+class FolderController extends BaseController
 {
     /** @var NotificationHandlerInterface */
     private $notificationHandler;
@@ -36,6 +36,9 @@ class FolderController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /** @var PermissionResolver */
+    protected $permissionResolver;
+
     /**
      * FolderController constructor.
      *
@@ -45,6 +48,7 @@ class FolderController extends Controller
      * @param FoldersService $foldersService
      * @param SubmitHandler $submitHandler
      * @param FormFactory $formFactory
+     * @param PermissionResolver $permissionResolver
      */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
@@ -52,8 +56,10 @@ class FolderController extends Controller
         FolderService $folderService,
         FoldersService $foldersService,
         SubmitHandler $submitHandler,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        PermissionResolver $permissionResolver
     ) {
+        parent::__construct($permissionResolver);
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
         $this->folderService = $folderService;

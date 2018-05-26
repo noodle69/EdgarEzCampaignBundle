@@ -8,15 +8,15 @@ use Edgar\EzCampaign\Form\Factory\FormFactory;
 use Edgar\EzCampaign\Form\SubmitHandler;
 use Edgar\EzCampaignBundle\Service\CampaignService;
 use Edgar\EzCampaignBundle\Service\ReportsService;
+use eZ\Publish\API\Repository\PermissionResolver;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
-use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Translation\TranslatorInterface;
 use Welp\MailchimpBundle\Exception\MailchimpException;
 
-class ReportsController extends Controller
+class ReportsController extends BaseController
 {
     /** @var NotificationHandlerInterface */
     private $notificationHandler;
@@ -36,6 +36,9 @@ class ReportsController extends Controller
     /** @var FormFactory */
     private $formFactory;
 
+    /** @var PermissionResolver */
+    protected $permissionResolver;
+
     /**
      * ReportsController constructor.
      *
@@ -45,6 +48,7 @@ class ReportsController extends Controller
      * @param CampaignService $campaignService
      * @param SubmitHandler $submitHandler
      * @param FormFactory $formFactory
+     * @param PermissionResolver $permissionResolver
      */
     public function __construct(
         NotificationHandlerInterface $notificationHandler,
@@ -52,8 +56,10 @@ class ReportsController extends Controller
         ReportsService $reportsService,
         CampaignService $campaignService,
         SubmitHandler $submitHandler,
-        FormFactory $formFactory
+        FormFactory $formFactory,
+        PermissionResolver $permissionResolver
     ) {
+        parent::__construct($permissionResolver);
         $this->notificationHandler = $notificationHandler;
         $this->translator = $translator;
         $this->reportsService = $reportsService;
