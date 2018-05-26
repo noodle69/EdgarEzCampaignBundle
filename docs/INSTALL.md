@@ -29,6 +29,22 @@ public function registerBundles()
 }
 ```
 
+## Add doctrine ORM support
+
+in yout ezplatform.yml, add
+
+```yaml
+doctrine:
+    orm:
+        auto_mapping: true
+```
+
+## Update your SQL schema
+
+```
+php bin/console doctrine:schema:update --force
+```
+
 ## Add routing
 
 Add to your global configuration app/config/routing.yml
