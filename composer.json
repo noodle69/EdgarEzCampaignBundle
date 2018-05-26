@@ -20,6 +20,7 @@
   },
   "require": {
     "php": ">=7.1",
+    "doctrine/orm": "^2.6",
     "ezsystems/ezpublish-kernel": "^7.1",
     "ezsystems/ezplatform-admin-ui": "^1.1",
     "welp/mailchimp-bundle": "~1.2",

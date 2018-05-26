@@ -3,6 +3,7 @@ imports:
     - { resource: controllers.yml }
     - { resource: menu.yml }
     - { resource: tabs.yml }
+    - { resource: slots.yml }
 
 parameters:
     edgar.ezcampaign.param_converter.campaign.priority: 0

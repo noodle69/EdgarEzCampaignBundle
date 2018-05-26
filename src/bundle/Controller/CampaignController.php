@@ -277,7 +277,12 @@ class CampaignController extends BaseController
                             UrlGeneratorInterface::ABSOLUTE_URL
                         );
 
-                        $this->campaignService->putContent($campaign['id'], $url);
+                        $this->campaignService->putContent(
+                            $campaign['id'],
+                            $url,
+                            $data->getContent()->id,
+                            $data->getSite()->getIdentifier()
+                        );
                     }
 
                     $this->notificationHandler->success(
@@ -339,7 +344,12 @@ class CampaignController extends BaseController
                             UrlGeneratorInterface::ABSOLUTE_URL
                         );
 
-                        $this->campaignService->putContent($campaignId, $url);
+                        $this->campaignService->putContent(
+                            $campaignId,
+                            $url,
+                            $data->getContent()->id,
+                            $data->getSite()->getIdentifier()
+                        );
                     }
 
                     $this->notificationHandler->success(
@@ -606,7 +616,12 @@ class CampaignController extends BaseController
                         UrlGeneratorInterface::ABSOLUTE_URL
                     );
 
-                    $this->campaignService->putContent($campaign->getId(), $url);
+                    $this->campaignService->putContent(
+                        $campaign->getId(),
+                        $url,
+                        $data->getContent()->id,
+                        $data->getSite()->getIdentifier()
+                    );
 
                     $this->notificationHandler->success(
                         $this->translator->trans(

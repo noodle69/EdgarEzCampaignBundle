@@ -2,27 +2,38 @@
 
 namespace Edgar\EzCampaignBundle\Service;
 
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use DrewM\MailChimp\MailChimp;
+use Edgar\EzCampaign\Repository\EdgarEzCampaignRepository;
 use Edgar\EzCampaign\Values\Core\Campaign;
 use Edgar\EzCampaign\Values\Core\Schedule;
+use Edgar\EzCampaignBundle\Entity\EdgarEzCampaign;
 
 class CampaignService extends BaseService
 {
     /** @var ListService $listService Campaign List service */
     protected $listService;
 
+    /** @var EdgarEzCampaignRepository  */
+    protected $campaignRepository;
+
     /**
      * CampaignService constructor.
      *
      * @param MailChimp $mailChimp
      * @param ListService $listService
+     * @param Registry $doctrineRegistry
      */
     public function __construct(
         MailChimp $mailChimp,
-        ListService $listService
+        ListService $listService,
+        Registry $doctrineRegistry
     ) {
         parent::__construct($mailChimp);
         $this->listService = $listService;
+
+        $entityManager = $doctrineRegistry->getManager();
+        $this->campaignRepository = $entityManager->getRepository(EdgarEzCampaign::class);
     }
 
     /**
@@ -120,6 +131,8 @@ class CampaignService extends BaseService
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
         }
 
+        $this->campaignRepository->remove($campaignID);
+
         return $return;
     }
 
@@ -198,13 +211,18 @@ class CampaignService extends BaseService
     /**
      * @param string $campaignId
      * @param string $url
+     * @param string $locationId
+     * @param string $site
      *
      * @return array
      *
+     * @throws \Doctrine\ORM\ORMException
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
-    public function putContent(string $campaignId, string $url): array
+    public function putContent(string $campaignId, string $url, string $locationId, string $site): array
     {
+        $this->campaignRepository->save($campaignId, $locationId, $site);
+
         $return = $this->mailChimp->put('/campaigns/' . $campaignId . '/content', [
             'url' => $url,
         ]);

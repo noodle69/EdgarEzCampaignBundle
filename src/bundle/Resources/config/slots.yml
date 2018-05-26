@@ -1,0 +1,41 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Edgar\EzCampaignBundle\Slot\DeleteContentSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: ContentService\DeleteContentSignal }
+
+    Edgar\EzCampaignBundle\Slot\PublishVersionSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: ContentService\PublishVersionSignal }
+
+    Edgar\EzCampaignBundle\Slot\UpdateContentSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: ContentService\UpdateContentSignal }
+
+    Edgar\EzCampaignBundle\Slot\DeleteLocationSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: LocationService\DeleteLocationSignal }
+
+    Edgar\EzCampaignBundle\Slot\HideLocationSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: LocationService\HideLocationSignal }
+
+    Edgar\EzCampaignBundle\Slot\MoveSubtreeSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: LocationService\MoveSubtreeSignal }
+
+    Edgar\EzCampaignBundle\Slot\SwapLocationSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: LocationService\SwapLocationSignal }
+
+    Edgar\EzCampaignBundle\Slot\UnhideLocationSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: LocationService\UnhideLocationSignal }
+
+    Edgar\EzCampaignBundle\Slot\UpdateLocationSlot:
+        tags:
+            - { name: ezpublish.api.slot, signal: LocationService\UpdateLocationSignal }
