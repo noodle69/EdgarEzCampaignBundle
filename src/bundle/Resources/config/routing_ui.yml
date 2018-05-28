@@ -1,3 +1,8 @@
+edgar.campaign.campaign.bulk_delete:
+    path: /campaigns/delete
+    methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:bulkDelete" }
+
 edgar.campaign.campaigns:
     path: /campaigns/{folderId}
     defaults: { _controller: "EdgarEzCampaignBundle:Campaign:campaigns", folderId: ~ }
@@ -9,11 +14,6 @@ edgar.campaign.lists:
 edgar.campaign.reports:
     path: /reports/{campaignId}
     defaults: { _controller: "EdgarEzCampaignBundle:Reports:view", campaignId: ~ }
-
-edgar.campaign.campaign.bulk_delete:
-    path: /campaigns_delete
-    methods: ['POST']
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:bulkDelete" }
 
 edgar.campaign.folder.bulk_delete:
     path: /folders/delete
@@ -97,15 +97,16 @@ edgar.campaign.cancel.schedule:
     requirements:
         campaignId: "[0-9a-z]+"
 
-edgar.campaign.content:
-    path: /canpaign/content/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:content", campaignId: ~ }
-    requirements:
-        campaignId: "[0-9a-z]+"
-
 edgar.campaign.create_content:
     path: /canpaign/content/create/{campaignId}
     defaults: { _controller: "EdgarEzCampaignBundle:Campaign:createContent", campaignId: ~ }
     methods: ['POST']
     requirements:
         campaignId: "[0-9a-z]+"
+
+edgar.campaign.content:
+    path: /canpaign/content/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:content", campaignId: ~ }
+    requirements:
+        campaignId: "[0-9a-z]+"
+
