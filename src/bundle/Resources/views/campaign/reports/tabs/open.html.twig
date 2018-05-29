@@ -1,0 +1,25 @@
+{% trans_default_domain "edgarezcampaign" %}
+
+<div class="ez-table-header">
+    <div class="ez-table-header__headline">{{ 'edgar.campaign.reports.open.reports'|trans|desc('Open reports') }}</div>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        {% if open.members is empty %}
+            {{ 'edgar.campaign.reports.open.reports.emptu'|trans|desc('No open report for this campaign.') }}
+        {% else %}
+            <th>{{ 'edgar.campaign.reports.open.reports.email_address.th'|trans|desc('Email Address') }}</th>
+            <th>{{ 'edgar.campaign.reports.open.reports.opens_count.th'|trans|desc('Opens count') }}</th>
+        {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for member in open.members %}
+        <tr>
+            <td>{{ member.email_address }}</td>
+            <td>{{ member.opens_count.date }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
