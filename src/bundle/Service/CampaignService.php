@@ -252,24 +252,4 @@ class CampaignService extends BaseService
 
         return $campaignContent;
     }
-
-    /**
-     * @param array $campaign
-     *
-     * @return Campaign
-     */
-    public function map(array $campaign): Campaign
-    {
-        $campaign = new Campaign([
-            'id' => $campaign['id'],
-            'list_id' => $campaign['recipients']['list_id'],
-            'folder_id' => $campaign['settings']['folder_id'],
-            'subject_line' => $campaign['settings']['subject_line'],
-            'title' => $campaign['settings']['title'],
-            'from_name' => $campaign['settings']['from_name'],
-            'reply_to' => $campaign['settings']['reply_to'],
-        ]);
-
-        return $campaign;
-    }
 }

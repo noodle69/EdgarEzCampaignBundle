@@ -1,0 +1,33 @@
+{% trans_default_domain "edgarezcampaign" %}
+
+<div class="ez-table-header">
+    <div class="ez-table-header__headline">{{ 'edgar.campaign.reports.click.reports'|trans|desc('Click reports') }}</div>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        {% if clicks.urls_clicked is empty %}
+            {{ 'edgar.campaign.reports.click.reports.emptu'|trans|desc('No click report for this campaign.') }}
+        {% else %}
+            <th>{{ 'edgar.campaign.reports.click.reports.url.th'|trans|desc('Url') }}</th>
+            <th>{{ 'edgar.campaign.reports.click.reports.total_clicks.th'|trans|desc('Total clicks') }}</th>
+            <th>{{ 'edgar.campaign.reports.click.reports.click_percentage.th'|trans|desc('Click percentage') }}</th>
+            <th>{{ 'edgar.campaign.reports.click.reports.unique_clicks.th'|trans|desc('Unique clicks') }}</th>
+            <th>{{ 'edgar.campaign.reports.click.reports.unique_click_percentage.th'|trans|desc('Unique click percentage') }}</th>
+            <th>{{ 'edgar.campaign.reports.click.reports.last_click.th'|trans|desc('Last click') }}</th>
+        {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for click in clicks.urls_clicked %}
+        <tr>
+            <td>{{ click.url }}</td>
+            <td>{{ click.total_clicks }}</td>
+            <td>{{ click.click_percentage * 100 }}%</td>
+            <td>{{ click.unique_clicks }}</td>
+            <td>{{ click.unique_click_percentage * 100 }}%</td>
+            <td>{{ click.last_click|localizeddate( 'short', 'short', app.request.locale ) }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

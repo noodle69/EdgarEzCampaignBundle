@@ -1,0 +1,25 @@
+{% trans_default_domain "edgarezcampaign" %}
+
+<div class="ez-table-header">
+    <div class="ez-table-header__headline">{{ 'edgar.campaign.reports.advice.reports'|trans|desc('Advice reports') }}</div>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        {% if advice.advice is empty %}
+            {{ 'edgar.campaign.reports.advice.reports.emptu'|trans|desc('No advice report for this campaign.') }}
+        {% else %}
+            <th>{{ 'edgar.campaign.reports.advice.reports.type.th'|trans|desc('Type') }}</th>
+            <th>{{ 'edgar.campaign.reports.advice.reports.message.th'|trans|desc('Message') }}</th>
+        {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for advice in advice.advice %}
+        <tr>
+            <td>{{ advice.type }}</td>
+            <td>{{ advice.message }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

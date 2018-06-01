@@ -1,0 +1,25 @@
+{% trans_default_domain "edgarezcampaign" %}
+
+<div class="ez-table-header">
+    <div class="ez-table-header__headline">{{ 'edgar.campaign.reports.abuse.reports'|trans|desc('Abuse reports') }}</div>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        {% if abuses.abuse_reports is empty %}
+            {{ 'edgar.campaign.reports.abuse.reports.emptu'|trans|desc('No abuse report for this campaign.') }}
+        {% else %}
+            <th>{{ 'edgar.campaign.reports.abuse.reports.email.th'|trans|desc('Email') }}</th>
+            <th>{{ 'edgar.campaign.reports.abuse.reports.date.th'|trans|desc('Date') }}</th>
+        {% endif %}
+    </tr>
+    </thead>
+    <tbody>
+    {% for abuse in abuses.abuse_reports %}
+        <tr>
+            <td>{{ abuse.email_address }}</td>
+            <td>{{ abuse.date|localizeddate( 'short', 'short', app.request.locale ) }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
