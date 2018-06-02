@@ -50,18 +50,6 @@ edgar.campaign.list.edit:
     requirements:
         listId: "[0-9a-z]+"
 
-edgar.campaign.campaign.view:
-    path: /campaign/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:view", campaignId: ~ }
-    requirements:
-        campaignId: "[0-9a-z]+"
-
-edgar.campaign.list.view:
-    path: /list/{listId}
-    defaults: { _controller: "EdgarEzCampaignBundle:List:view", listId: ~ }
-    requirements:
-        listId: "[0-9a-z]+"
-
 edgar.campaign.campaign.delete:
     path: /campaign/delete/{campaignId}
     defaults: { _controller: "EdgarEzCampaignBundle:Campaign:delete", campaignId: ~ }
@@ -69,10 +57,22 @@ edgar.campaign.campaign.delete:
     requirements:
         campaignId: "[0-9a-z]+"
 
+edgar.campaign.campaign.view:
+    path: /campaign/{campaignId}
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:view", campaignId: ~ }
+    requirements:
+        campaignId: "[0-9a-z]+"
+
 edgar.campaign.list.delete:
     path: /list/delete/{listId}
     defaults: { _controller: "EdgarEzCampaignBundle:List:delete", listId: ~ }
     methods: ['POST']
+    requirements:
+        listId: "[0-9a-z]+"
+
+edgar.campaign.list.view:
+    path: /list/{listId}
+    defaults: { _controller: "EdgarEzCampaignBundle:List:view", listId: ~ }
     requirements:
         listId: "[0-9a-z]+"
 
