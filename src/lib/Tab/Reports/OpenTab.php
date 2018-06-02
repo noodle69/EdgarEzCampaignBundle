@@ -2,10 +2,12 @@
 
 namespace Edgar\EzCampaign\Tab\Reports;
 
-use Edgar\EzCampaign\Values\API\Campaign;
+use Edgar\EzCampaign\Values\Core\Campaign;
 use Edgar\EzCampaignBundle\Service\ReportsService;
 use EzSystems\EzPlatformAdminUi\Tab\AbstractTab;
 use EzSystems\EzPlatformAdminUi\Tab\OrderedTabInterface;
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Environment;
 
@@ -14,20 +16,26 @@ class OpenTab extends AbstractTab implements OrderedTabInterface
     /** @var ReportsService */
     protected $reportsService;
 
+    /** @var int */
+    protected $defaultPaginationLimit;
+
     /**
      * OpenTab constructor.
      *
      * @param Environment $twig
      * @param TranslatorInterface $translator
      * @param ReportsService $reportsService
+     * @param int $defaultPaginationLimit
      */
     public function __construct(
         Environment $twig,
         TranslatorInterface $translator,
-        ReportsService $reportsService
+        ReportsService $reportsService,
+        int $defaultPaginationLimit
     ) {
         parent::__construct($twig, $translator);
         $this->reportsService = $reportsService;
+        $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
 
     /**
@@ -67,6 +75,8 @@ class OpenTab extends AbstractTab implements OrderedTabInterface
      */
     public function renderView(array $parameters): string
     {
+        $page = $parameters['page'] ?? 1;
+
         $campaign = (isset($parameters['campaign']) && $parameters['campaign'] instanceof Campaign)
             ? $parameters['campaign'] : null;
 
@@ -74,10 +84,25 @@ class OpenTab extends AbstractTab implements OrderedTabInterface
             return '';
         }
 
-        $open = $this->reportsService->getOpen($campaign->getId());
+        $allOpens = $this->reportsService->getOpen($campaign->getId());
+
+        $pagerfanta = new Pagerfanta(
+            new ArrayAdapter($allOpens['members'])
+        );
+
+        $pagerfanta->setMaxPerPage($this->defaultPaginationLimit);
+        $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
+
+        $opens = $this->reportsService->getOpen(
+            $campaign->getId(),
+            $this->defaultPaginationLimit * ($page - 1),
+            $this->defaultPaginationLimit
+        );
 
         return $this->twig->render('EdgarEzCampaignBundle:campaign/reports/tabs:open.html.twig', [
-            'open' => $open,
+            'campaign_id' => $campaign->getId(),
+            'opens' => $opens,
+            'pager' => $pagerfanta,
         ]);
     }
 }

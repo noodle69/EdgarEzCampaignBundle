@@ -24,6 +24,7 @@ class Configuration extends SiteAccessConfiguration
                 ->children()
                     ->scalarNode('campaign_limit')->isRequired()->end()
                     ->scalarNode('list_limit')->isRequired()->end()
+                    ->scalarNode('report_limit')->isRequired()->end()
                 ->end()
             ->end();
 

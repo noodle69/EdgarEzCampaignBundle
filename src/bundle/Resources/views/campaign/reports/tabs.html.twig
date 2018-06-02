@@ -1,9 +1,22 @@
 <div class="row ez-header pt-3">
     <div class="container">
         <ul class="nav nav-tabs ez-tabs nav-tabs-{{ group }} px-4" role="tablist" id="ez-tab-list-{{ group }}">
+            {% set tab_activated = false %}
+            {% for tab in tabs %}
+                {% if tab.identifier == tab_id %}
+                    {% set tab_activated = true %}
+                {% endif %}
+            {% endfor %}
             {% for tab in tabs %}
                 {% set id = group ~ '-' ~ tab.identifier %}
-                {% set active = loop.first %}
+                {% set active = false %}
+                {% if not tab_activated %}
+                    {% set active = loop.first %}
+                {% else %}
+                    {% if tab.identifier == tab_id %}
+                        {% set active = true %}
+                    {% endif %}
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link{% if active %} active{% endif %}" id="ez-tab-label-{{ group }}"
                        data-toggle="tab" href="#ez-tab-{{ id }}" role="tab" aria-controls="ez-tab-{{ id }}"
@@ -16,7 +29,14 @@
 <div class="tab-content container mt-4 px-5" id="ez-tab-list-content-{{ group }}">
     {% for tab in tabs %}
         {% set id = group ~ '-' ~ tab.identifier %}
-        {% set active = loop.first %}
+        {% set active = false %}
+        {% if not tab_activated %}
+            {% set active = loop.first %}
+        {% else %}
+            {% if tab.identifier == tab_id %}
+                {% set active = true %}
+            {% endif %}
+        {% endif %}
 
         <div class="tab-pane{% if active %} active{% endif %}" id="ez-tab-{{ id }}" role="tabpanel"
              aria-labelledby="ez-tab-label-{{ group }}">

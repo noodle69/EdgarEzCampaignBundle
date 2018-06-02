@@ -71,10 +71,11 @@ class ReportsController extends BaseController
     /**
      * @param Request $request
      * @param null|Campaign $campaign
+     * @param null|string $tabId
      *
      * @return Response
      */
-    public function viewAction(Request $request, ?Campaign $campaign): Response
+    public function viewAction(Request $request, ?Campaign $campaign, ?string $tabId): Response
     {
         $reportsData = null;
 
@@ -97,9 +98,13 @@ class ReportsController extends BaseController
             }
         }
 
+        $page = $request->query->get('page') ?? 1;
+
         return $this->render('@EdgarEzCampaign/campaign/reports/reports.html.twig', [
             'form' => $form->createView(),
             'campaign' => $campaign->getId() ? $campaign : null,
+            'page' => $page,
+            'tab_id' => $tabId
         ]);
     }
 }

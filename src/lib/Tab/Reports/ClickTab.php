@@ -2,10 +2,12 @@
 
 namespace Edgar\EzCampaign\Tab\Reports;
 
-use Edgar\EzCampaign\Values\API\Campaign;
+use Edgar\EzCampaign\Values\Core\Campaign;
 use Edgar\EzCampaignBundle\Service\ReportsService;
 use EzSystems\EzPlatformAdminUi\Tab\AbstractTab;
 use EzSystems\EzPlatformAdminUi\Tab\OrderedTabInterface;
+use Pagerfanta\Adapter\ArrayAdapter;
+use Pagerfanta\Pagerfanta;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Environment;
 
@@ -14,20 +16,26 @@ class ClickTab extends AbstractTab implements OrderedTabInterface
     /** @var ReportsService */
     protected $reportsService;
 
+    /** @var int */
+    protected $defaultPaginationLimit;
+
     /**
      * ClickTab constructor.
      *
      * @param Environment $twig
      * @param TranslatorInterface $translator
      * @param ReportsService $reportsService
+     * @param int $defaultPaginationLimit
      */
     public function __construct(
         Environment $twig,
         TranslatorInterface $translator,
-        ReportsService $reportsService
+        ReportsService $reportsService,
+        int $defaultPaginationLimit
     ) {
         parent::__construct($twig, $translator);
         $this->reportsService = $reportsService;
+        $this->defaultPaginationLimit = $defaultPaginationLimit;
     }
 
     /**
@@ -67,6 +75,9 @@ class ClickTab extends AbstractTab implements OrderedTabInterface
      */
     public function renderView(array $parameters): string
     {
+        $page = $parameters['page'] ?? 1;
+
+        /** @var Campaign $campaign */
         $campaign = (isset($parameters['campaign']) && $parameters['campaign'] instanceof Campaign)
             ? $parameters['campaign'] : null;
 
@@ -74,10 +85,25 @@ class ClickTab extends AbstractTab implements OrderedTabInterface
             return '';
         }
 
-        $clicks = $this->reportsService->getClick($campaign->getId());
+        $allClicks = $this->reportsService->getClick($campaign->getId());
+
+        $pagerfanta = new Pagerfanta(
+            new ArrayAdapter($allClicks['urls_clicked'])
+        );
+
+        $pagerfanta->setMaxPerPage($this->defaultPaginationLimit);
+        $pagerfanta->setCurrentPage(min($page, $pagerfanta->getNbPages()));
+
+        $clicks = $this->reportsService->getClick(
+            $campaign->getId(),
+            $this->defaultPaginationLimit * ($page - 1),
+            $this->defaultPaginationLimit
+        );
 
         return $this->twig->render('EdgarEzCampaignBundle:campaign/reports/tabs:click.html.twig', [
+            'campaign_id' => $campaign->getId(),
             'clicks' => $clicks,
+            'pager' => $pagerfanta,
         ]);
     }
 }

@@ -6,7 +6,7 @@
 <table class="table">
     <thead>
     <tr>
-        {% if open.members is empty %}
+        {% if opens.members is empty %}
             {{ 'edgar.campaign.reports.open.reports.emptu'|trans|desc('No open report for this campaign.') }}
         {% else %}
             <th>{{ 'edgar.campaign.reports.open.reports.email_address.th'|trans|desc('Email Address') }}</th>
@@ -15,7 +15,7 @@
     </tr>
     </thead>
     <tbody>
-    {% for member in open.members %}
+    {% for member in opens.members %}
         <tr>
             <td>{{ member.email_address }}</td>
             <td>{{ member.opens_count }}</td>
@@ -23,3 +23,22 @@
     {% endfor %}
     </tbody>
 </table>
+
+{% if pager.haveToPaginate %}
+    <div class="row justify-content-center align-items-center mb-2">
+        <span>
+            {{ 'campaign.campaigns.viewing'|trans({
+                '%viewing%': pager.currentPageResults|length,
+                '%total%': pager.nbResults})|desc('Viewing <strong>%viewing%</strong> out of <strong>%total%</strong> items')|raw }}
+        </span>
+    </div>
+    <div class="row justify-content-center align-items-center">
+        {{ pagerfanta(pager, 'ez', {
+            'routeName': 'edgar.campaign.reports',
+            'routeParams': {
+                'campaignId': campaign_id,
+                'tabId': 'reports-open'
+            }
+        }) }}
+    </div>
+{% endif %}

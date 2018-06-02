@@ -14,11 +14,15 @@ services:
     Edgar\EzCampaign\Tab\Reports\OpenTab:
         parent: EzSystems\EzPlatformAdminUi\Tab\AbstractTab
         public: false
+        arguments:
+            $defaultPaginationLimit: "$pagination.report_limit;edgar_ez_campaign$"
         tags:
             - { name: ezplatform.tab, group: edgarezcampaign-reports }
 
     Edgar\EzCampaign\Tab\Reports\ClickTab:
         parent: EzSystems\EzPlatformAdminUi\Tab\AbstractTab
         public: false
+        arguments:
+            $defaultPaginationLimit: "$pagination.report_limit;edgar_ez_campaign$"
         tags:
             - { name: ezplatform.tab, group: edgarezcampaign-reports }

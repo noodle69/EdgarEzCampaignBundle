@@ -61,14 +61,21 @@ class ReportsService extends BaseService
 
     /**
      * @param string $campaignId
+     * @param int $offset
+     * @param int $count
      *
      * @return array|false
      *
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
-    public function getOpen(string $campaignId)
+    public function getOpen(string $campaignId, int $offset = 0, int $count = 0)
     {
-        $open = $this->mailChimp->get('/reports/' . $campaignId . '/open-details', []);
+        $args = [
+            'offset' => $offset,
+            'count' => $count
+        ];
+
+        $open = $this->mailChimp->get('/reports/' . $campaignId . '/open-details', $args);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
@@ -79,14 +86,21 @@ class ReportsService extends BaseService
 
     /**
      * @param string $campaignId
+     * @param int $offset
+     * @param int $count
      *
      * @return array|false
      *
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
-    public function getClick(string $campaignId)
+    public function getClick(string $campaignId, int $offset = 0, int $count = 0)
     {
-        $links = $this->mailChimp->get('/reports/' . $campaignId . '/click-details', []);
+        $args = [
+            'offset' => $offset,
+            'count' => $count
+        ];
+
+        $links = $this->mailChimp->get('/reports/' . $campaignId . '/click-details', $args);
 
         if (!$this->mailChimp->success()) {
             $this->throwMailchimpError($this->mailChimp->getLastResponse());
