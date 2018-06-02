@@ -78,7 +78,7 @@ class ReportsController extends BaseController
     {
         $reportsData = null;
 
-        if (!$campaign->getId()) {
+        if ($campaign->getId()) {
             $reportsData = (new ReportsMapper())->mapToFormData($campaign);
         }
 

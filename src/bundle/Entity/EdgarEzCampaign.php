@@ -37,18 +37,21 @@ class EdgarEzCampaign
     public function setCampaignId(string $campaignId): self
     {
         $this->campaignId = $campaignId;
+
         return $this;
     }
 
     public function setSite(string $site): self
     {
         $this->site = $site;
+
         return $this;
     }
 
     public function setLocationId(int $locationId): self
     {
         $this->locationId = $locationId;
+
         return $this;
     }
 

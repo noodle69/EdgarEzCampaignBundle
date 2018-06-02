@@ -26,6 +26,7 @@ class CampaignFieldType extends AbstractType
 
     /**
      * CampaignFieldType constructor.
+     *
      * @param FieldTypeService $fieldTypeService
      * @param CampaignsService $campaignsService
      */
@@ -106,6 +107,7 @@ class CampaignFieldType extends AbstractType
 
     /**
      * @param array $campaigns
+     *
      * @return array
      */
     private function getCampaignChoices(array $campaigns)

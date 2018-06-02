@@ -20,6 +20,7 @@ class ListType extends AbstractType
 
     /**
      * ListType constructor.
+     *
      * @param ListsService $listsService
      * @param ListService $listService
      */

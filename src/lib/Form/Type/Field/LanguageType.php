@@ -17,6 +17,7 @@ class LanguageType extends AbstractType
 
     /**
      * LanguageType constructor.
+     *
      * @param LanguageService $languageService
      */
     public function __construct(LanguageService $languageService)

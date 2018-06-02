@@ -51,7 +51,7 @@ class ReportsType extends AbstractType
                 [
                     'required' => false,
                     'placeholder' => /* @Desc("Select a Campaign") */ 'edgar.campaign.reports.campaigns.placeholder',
-                    'label' => /* @Desc("Campaigns") */ 'edgar.campaign.reports.campaigns.name'
+                    'label' => /* @Desc("Campaigns") */ 'edgar.campaign.reports.campaigns.name',
                 ]
             )
             ->add('choose', SubmitType::class, [

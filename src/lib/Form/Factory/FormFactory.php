@@ -56,6 +56,7 @@ class FormFactory
     /**
      * @param CampaignsDeleteData|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function deleteCampaigns(
@@ -70,6 +71,7 @@ class FormFactory
     /**
      * @param FoldersDeleteData|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function deleteFolders(
@@ -84,6 +86,7 @@ class FormFactory
     /**
      * @param ListsDeleteData|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function deleteLists(
@@ -98,6 +101,7 @@ class FormFactory
     /**
      * @param Campaign|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function createCampaign(
@@ -116,6 +120,7 @@ class FormFactory
     /**
      * @param Folder|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function createFolder(
@@ -134,6 +139,7 @@ class FormFactory
     /**
      * @param CampaignList|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function createList(
@@ -152,6 +158,7 @@ class FormFactory
     /**
      * @param Campaign $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function updateCampaign(
@@ -166,6 +173,7 @@ class FormFactory
     /**
      * @param CampaignList $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function updateList(
@@ -180,6 +188,7 @@ class FormFactory
     /**
      * @param ReportsData|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function reportsChooseCampaign(
@@ -198,6 +207,7 @@ class FormFactory
     /**
      * @param FilterFolderData|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function filterFolder(
@@ -216,6 +226,7 @@ class FormFactory
     /**
      * @param SubscribeData|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function subscribe(
@@ -234,6 +245,7 @@ class FormFactory
     /**
      * @param Campaign|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function deleteCampaign(
@@ -248,6 +260,7 @@ class FormFactory
     /**
      * @param CampaignList|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function deleteList(
@@ -262,6 +275,7 @@ class FormFactory
     /**
      * @param Campaign|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function sendCampaign(
@@ -275,6 +289,7 @@ class FormFactory
 
     /**
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function scheduleCampaign(
@@ -288,6 +303,7 @@ class FormFactory
     /**
      * @param Campaign|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function cancelScheduleCampaign(
@@ -302,6 +318,7 @@ class FormFactory
     /**
      * @param CampaignContent|null $data
      * @param null|string $name
+     *
      * @return FormInterface
      */
     public function createContent(

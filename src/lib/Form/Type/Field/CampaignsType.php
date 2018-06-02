@@ -14,11 +14,12 @@ class CampaignsType extends AbstractType
     /** @var CampaignsService */
     protected $campaignsService;
 
-    /** @var FolderService  */
+    /** @var FolderService */
     protected $folderService;
 
     /**
      * CampaignsType constructor.
+     *
      * @param CampaignsService $campaignsService
      * @param FolderService $folderService
      */

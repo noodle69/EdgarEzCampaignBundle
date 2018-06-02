@@ -85,6 +85,7 @@ class FolderService extends BaseService
 
     /**
      * @param array $folder
+     *
      * @return Folder
      */
     public function map(array $folder): Folder

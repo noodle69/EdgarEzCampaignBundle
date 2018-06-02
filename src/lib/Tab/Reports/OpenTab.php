@@ -11,11 +11,12 @@ use Twig\Environment;
 
 class OpenTab extends AbstractTab implements OrderedTabInterface
 {
-    /** @var ReportsService  */
+    /** @var ReportsService */
     protected $reportsService;
 
     /**
      * OpenTab constructor.
+     *
      * @param Environment $twig
      * @param TranslatorInterface $translator
      * @param ReportsService $reportsService
@@ -56,7 +57,9 @@ class OpenTab extends AbstractTab implements OrderedTabInterface
 
     /**
      * @param array $parameters
+     *
      * @return string
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

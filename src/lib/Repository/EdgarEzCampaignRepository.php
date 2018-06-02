@@ -11,6 +11,7 @@ class EdgarEzCampaignRepository extends EntityRepository
 {
     /**
      * @param Location[] $locations
+     *
      * @return EdgarEzCampaign[]
      */
     public function getCampaigns(array $locations): array
@@ -35,7 +36,6 @@ class EdgarEzCampaignRepository extends EntityRepository
     /**
      * @param string $campaignId
      * @param int $locationId
-     *
      * @param string $site
      *
      * @throws ORMException
@@ -62,6 +62,7 @@ class EdgarEzCampaignRepository extends EntityRepository
 
     /**
      * @param string $campaignId
+     *
      * @throws ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      */

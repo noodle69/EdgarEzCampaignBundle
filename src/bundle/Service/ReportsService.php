@@ -6,7 +6,9 @@ class ReportsService extends BaseService
 {
     /**
      * @param string $campaignId
+     *
      * @return array|false
+     *
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function getAbuses(string $campaignId)
@@ -23,7 +25,9 @@ class ReportsService extends BaseService
     /**
      * @param string $campaignId
      * @param string $abuseId
+     *
      * @return array|false
+     *
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function getAbuse(string $campaignId, string $abuseId)
@@ -39,7 +43,9 @@ class ReportsService extends BaseService
 
     /**
      * @param string $campaignId
+     *
      * @return array|false
+     *
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function getAdvice(string $campaignId)
@@ -55,7 +61,9 @@ class ReportsService extends BaseService
 
     /**
      * @param string $campaignId
+     *
      * @return array|false
+     *
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function getOpen(string $campaignId)
@@ -71,7 +79,9 @@ class ReportsService extends BaseService
 
     /**
      * @param string $campaignId
+     *
      * @return array|false
+     *
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function getClick(string $campaignId)
@@ -88,7 +98,9 @@ class ReportsService extends BaseService
     /**
      * @param string $campaignId
      * @param string $linkId
+     *
      * @return array|false
+     *
      * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function getuClickLink(string $campaignId, string $linkId)

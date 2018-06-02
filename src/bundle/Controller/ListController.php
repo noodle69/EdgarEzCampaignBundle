@@ -33,7 +33,7 @@ class ListController extends BaseController
     /** @var ListsService */
     protected $listsService;
 
-    /** @var CampaignsService  */
+    /** @var CampaignsService */
     protected $campaignsService;
 
     /** @var SubmitHandler $submitHandler */
@@ -53,6 +53,7 @@ class ListController extends BaseController
 
     /**
      * ListController constructor.
+     *
      * @param NotificationHandlerInterface $notificationHandler
      * @param TranslatorInterface $translator
      * @param ListService $listService

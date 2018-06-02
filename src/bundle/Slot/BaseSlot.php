@@ -20,23 +20,24 @@ use Welp\MailchimpBundle\Exception\MailchimpException;
 
 abstract class BaseSlot extends Slot
 {
-    /** @var ContentService  */
+    /** @var ContentService */
     protected $contentService;
 
-    /** @var LocationService  */
+    /** @var LocationService */
     protected $locationService;
 
     /** @var RouterInterface */
     private $router;
 
-    /** @var CampaignService  */
+    /** @var CampaignService */
     private $campaignService;
 
-    /** @var EdgarEzCampaignRepository  */
+    /** @var EdgarEzCampaignRepository */
     private $campaignRepository;
 
     /**
      * BaseSlot constructor.
+     *
      * @param ContentService $contentService
      * @param LocationService $locationService
      * @param RouterInterface $router
@@ -70,7 +71,7 @@ abstract class BaseSlot extends Slot
             $locations = $this->locationService->loadLocations($content->contentInfo);
             /** @var EdgarEzCampaign[] $campaigns */
             $campaigns = $this->campaignRepository->getCampaigns($locations);
-        } catch (NotFoundException|UnauthorizedException|BadStateException $e) {
+        } catch (NotFoundException | UnauthorizedException | BadStateException $e) {
             $campaigns = [];
         }
 
@@ -92,7 +93,7 @@ abstract class BaseSlot extends Slot
                     $campaign->getLocationId(),
                     $campaign->getSite()
                 );
-            } catch (MailchimpException|ORMException $e) {
+            } catch (MailchimpException | ORMException $e) {
             }
         }
     }

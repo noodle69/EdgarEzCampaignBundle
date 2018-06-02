@@ -14,6 +14,7 @@ class CampaignValueTransformer implements DataTransformerInterface
 
     /**
      * CampaignValueTransformer constructor.
+     *
      * @param array $campaigns
      */
     public function __construct(array $campaigns)
@@ -23,6 +24,7 @@ class CampaignValueTransformer implements DataTransformerInterface
 
     /**
      * @param mixed $value
+     *
      * @return mixed|null
      */
     public function transform($value)
@@ -36,6 +38,7 @@ class CampaignValueTransformer implements DataTransformerInterface
 
     /**
      * @param mixed $value
+     *
      * @return Value|mixed|null
      */
     public function reverseTransform($value)

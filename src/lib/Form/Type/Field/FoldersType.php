@@ -15,6 +15,7 @@ class FoldersType extends AbstractType
 
     /**
      * FoldersType constructor.
+     *
      * @param FoldersService $foldersService
      */
     public function __construct(FoldersService $foldersService)

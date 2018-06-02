@@ -3,7 +3,6 @@
 namespace Edgar\EzCampaignBundle\Slot;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use Edgar\EzCampaign\Repository\EdgarEzCampaignRepository;
 use Edgar\EzCampaignBundle\Service\CampaignService;
 use eZ\Publish\API\Repository\ContentService;
 use eZ\Publish\API\Repository\Exceptions\NotFoundException;
@@ -16,6 +15,7 @@ class MoveSubtreeSlot extends BaseSlot
 {
     /**
      * MoveSubtreeSlot constructor.
+     *
      * @param ContentService $contentService
      * @param LocationService $locationService
      * @param RouterInterface $router
@@ -45,7 +45,7 @@ class MoveSubtreeSlot extends BaseSlot
             $location = $this->locationService->loadLocation($signal->locationId);
 
             $this->updateCampaignContent($location->contentId);
-        } catch(UnauthorizedException|NotFoundException $e) {
+        } catch (UnauthorizedException | NotFoundException $e) {
             return;
         }
     }

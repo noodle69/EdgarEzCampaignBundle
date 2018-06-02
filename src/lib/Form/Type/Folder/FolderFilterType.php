@@ -51,7 +51,7 @@ class FolderFilterType extends AbstractType
                 [
                     'required' => false,
                     'placeholder' => /* @Desc("Select a Folder") */ 'edgar.campaign.filter.folder.placeeholder',
-                    'label' => /* @Desc("Folder") */ 'edgar.campaign.filter.folder.name'
+                    'label' => /* @Desc("Folder") */ 'edgar.campaign.filter.folder.name',
                 ]
             )
             ->add('choose', SubmitType::class, [

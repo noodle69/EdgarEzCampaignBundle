@@ -14,7 +14,7 @@ class CampaignService extends BaseService
     /** @var ListService $listService Campaign List service */
     protected $listService;
 
-    /** @var EdgarEzCampaignRepository  */
+    /** @var EdgarEzCampaignRepository */
     protected $campaignRepository;
 
     /**

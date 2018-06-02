@@ -20,6 +20,7 @@ class FolderType extends AbstractType
 
     /**
      * FolderType constructor.
+     *
      * @param FoldersService $foldersService
      * @param FolderService $folderService
      */

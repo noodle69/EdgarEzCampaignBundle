@@ -21,9 +21,6 @@ abstract class BaseController extends Controller
         $this->permissionResolver = $permissionResolver;
     }
 
-    /**
-     *
-     */
     public function performAccessCheck()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
@@ -37,9 +34,6 @@ abstract class BaseController extends Controller
         }
     }
 
-    /**
-     *
-     */
     private function throwException()
     {
         $exception = $this->createAccessDeniedException();
