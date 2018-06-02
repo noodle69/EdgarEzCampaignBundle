@@ -60,6 +60,11 @@ class EdgarEzCampaignRepository extends EntityRepository
         }
     }
 
+    /**
+     * @param string $campaignId
+     * @throws ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
     public function remove(string $campaignId)
     {
         /** @var EdgarEzCampaign $campaign */

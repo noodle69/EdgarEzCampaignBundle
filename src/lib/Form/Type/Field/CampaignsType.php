@@ -17,6 +17,11 @@ class CampaignsType extends AbstractType
     /** @var FolderService  */
     protected $folderService;
 
+    /**
+     * CampaignsType constructor.
+     * @param CampaignsService $campaignsService
+     * @param FolderService $folderService
+     */
     public function __construct(
         CampaignsService $campaignsService,
         FolderService $folderService
@@ -25,11 +30,17 @@ class CampaignsType extends AbstractType
         $this->folderService = $folderService;
     }
 
+    /**
+     * @return null|string
+     */
     public function getParent()
     {
         return ChoiceType::class;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver

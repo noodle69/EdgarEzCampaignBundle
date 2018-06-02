@@ -54,6 +54,8 @@ class CampaignParamConverter extends RepositoryParamConverter
      * @param $id
      *
      * @return Campaign|string
+     *
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     protected function loadValueObject($id)
     {

@@ -13,16 +13,26 @@ class FoldersType extends AbstractType
     /** @var FoldersService */
     protected $foldersService;
 
+    /**
+     * FoldersType constructor.
+     * @param FoldersService $foldersService
+     */
     public function __construct(FoldersService $foldersService)
     {
         $this->foldersService = $foldersService;
     }
 
+    /**
+     * @return null|string
+     */
     public function getParent()
     {
         return ChoiceType::class;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver

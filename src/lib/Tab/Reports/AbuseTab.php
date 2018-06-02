@@ -14,6 +14,12 @@ class AbuseTab extends AbstractTab implements OrderedTabInterface
     /** @var ReportsService  */
     protected $reportsService;
 
+    /**
+     * AbuseTab constructor.
+     * @param Environment $twig
+     * @param TranslatorInterface $translator
+     * @param ReportsService $reportsService
+     */
     public function __construct(
         Environment $twig,
         TranslatorInterface $translator,
@@ -23,22 +29,39 @@ class AbuseTab extends AbstractTab implements OrderedTabInterface
         $this->reportsService = $reportsService;
     }
 
+    /**
+     * @return string
+     */
     public function getIdentifier(): string
     {
         return 'reports-abuse';
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return /* @Desc("Abuse") */
             $this->translator->trans('campaign.reports.name.abuse', [], 'edgarezcampaign');
     }
 
+    /**
+     * @return int
+     */
     public function getOrder(): int
     {
         return 100;
     }
 
+    /**
+     * @param array $parameters
+     * @return string
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
+     */
     public function renderView(array $parameters): string
     {
         $campaign = (isset($parameters['campaign']) && $parameters['campaign'] instanceof Campaign)

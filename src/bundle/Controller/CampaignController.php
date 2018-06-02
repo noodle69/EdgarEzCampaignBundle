@@ -389,6 +389,8 @@ class CampaignController extends BaseController
      * @param Campaign $campaign
      *
      * @return Response
+     *
+     * @throws MailchimpException
      */
     public function viewAction(Campaign $campaign): Response
     {
@@ -653,6 +655,8 @@ class CampaignController extends BaseController
      * @param Campaign $campaign
      *
      * @return Response
+     *
+     * @throws MailchimpException
      */
     public function contentAction(Request $request, Campaign $campaign): Response
     {

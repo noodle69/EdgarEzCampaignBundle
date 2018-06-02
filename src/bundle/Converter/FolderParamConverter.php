@@ -5,7 +5,6 @@ namespace Edgar\EzCampaignBundle\Converter;
 use Edgar\EzCampaign\Values\Core\Folder;
 use Edgar\EzCampaignBundle\Service\FolderService;
 use eZ\Bundle\EzPublishCoreBundle\Converter\RepositoryParamConverter;
-use Welp\MailchimpBundle\Exception\MailchimpException;
 
 class FolderParamConverter extends RepositoryParamConverter
 {

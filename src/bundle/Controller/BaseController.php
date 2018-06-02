@@ -11,11 +11,19 @@ abstract class BaseController extends Controller
     /** @var PermissionResolver */
     protected $permissionResolver;
 
+    /**
+     * BaseController constructor.
+     *
+     * @param PermissionResolver $permissionResolver
+     */
     public function __construct(PermissionResolver $permissionResolver)
     {
         $this->permissionResolver = $permissionResolver;
     }
 
+    /**
+     *
+     */
     public function performAccessCheck()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
@@ -29,6 +37,9 @@ abstract class BaseController extends Controller
         }
     }
 
+    /**
+     *
+     */
     private function throwException()
     {
         $exception = $this->createAccessDeniedException();

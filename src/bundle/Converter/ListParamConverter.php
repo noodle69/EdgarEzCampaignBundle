@@ -41,6 +41,8 @@ class ListParamConverter extends RepositoryParamConverter
      * @param $id
      *
      * @return CampaignList
+     *
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
      */
     public function loadValueObject($id): CampaignList
     {

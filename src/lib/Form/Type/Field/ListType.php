@@ -18,6 +18,11 @@ class ListType extends AbstractType
     /** @var ListService */
     protected $listService;
 
+    /**
+     * ListType constructor.
+     * @param ListsService $listsService
+     * @param ListService $listService
+     */
     public function __construct(
         ListsService $listsService,
         ListService $listService
@@ -26,11 +31,17 @@ class ListType extends AbstractType
         $this->listService = $listService;
     }
 
+    /**
+     * @return null|string
+     */
     public function getParent()
     {
         return ChoiceType::class;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver

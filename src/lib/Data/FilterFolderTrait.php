@@ -11,6 +11,9 @@ trait FilterFolderTrait
      */
     protected $filterFolder;
 
+    /**
+     * @param FilterFolder $filterFolder
+     */
     public function setFilterFolder(FilterFolder $filterFolder)
     {
         $this->$filterFolder = $filterFolder;

@@ -10,16 +10,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FolderFilterType extends AbstractType
 {
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
+    /**
+     * @return string
+     */
     public function getBlockPrefix(): string
     {
         return 'edgarcampaign_filter_folders';
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
@@ -29,6 +38,10 @@ class FolderFilterType extends AbstractType
             ]);
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

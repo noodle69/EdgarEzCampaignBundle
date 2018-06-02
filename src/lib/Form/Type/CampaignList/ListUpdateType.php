@@ -16,16 +16,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ListUpdateType extends AbstractType
 {
+    /**
+     * @return null|string
+     */
     public function getName()
     {
         return $this->getBlockPrefix();
     }
 
+    /**
+     * @return null|string
+     */
     public function getBlockPrefix()
     {
         return 'edgarcampaign_list_edit';
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
@@ -35,6 +44,10 @@ class ListUpdateType extends AbstractType
             ]);
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

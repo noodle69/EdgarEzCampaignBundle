@@ -12,6 +12,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CampaignFormMapper implements FieldDefinitionFormMapperInterface, FieldValueFormMapperInterface
 {
+    /**
+     * @param FormInterface $fieldDefinitionForm
+     * @param FieldDefinitionData $data
+     */
     public function mapFieldDefinitionForm(FormInterface $fieldDefinitionForm, FieldDefinitionData $data)
     {
         $fieldDefinitionForm
@@ -27,11 +31,14 @@ class CampaignFormMapper implements FieldDefinitionFormMapperInterface, FieldVal
             );
     }
 
+    /**
+     * @param FormInterface $fieldForm
+     * @param FieldData $data
+     */
     public function mapFieldValueForm(FormInterface $fieldForm, FieldData $data)
     {
         $fieldDefinition = $data->fieldDefinition;
         $formConfig = $fieldForm->getConfig();
-        $validatorConfiguration = $fieldDefinition->getValidatorConfiguration();
         $names = $fieldDefinition->getNames();
         $label = $fieldDefinition->getName($formConfig->getOption('mainLanguageCode')) ?: reset($names);
 
@@ -51,6 +58,9 @@ class CampaignFormMapper implements FieldDefinitionFormMapperInterface, FieldVal
             );
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver

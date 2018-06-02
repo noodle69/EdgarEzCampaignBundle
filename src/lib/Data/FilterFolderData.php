@@ -17,6 +17,9 @@ class FilterFolderData extends FilterFolderStruct implements NewnessCheckable
         return true;
     }
 
+    /**
+     * @return mixed
+     */
     public function getFolder()
     {
         return $this->folder;

@@ -21,8 +21,14 @@ class CampaignFieldType extends AbstractType
     /** @var CampaignsService */
     private $campaignsService;
 
+    /** @var  */
     private $campaignsData;
 
+    /**
+     * CampaignFieldType constructor.
+     * @param FieldTypeService $fieldTypeService
+     * @param CampaignsService $campaignsService
+     */
     public function __construct(FieldTypeService $fieldTypeService, CampaignsService $campaignsService)
     {
         $this->fieldTypeService = $fieldTypeService;
@@ -39,21 +45,34 @@ class CampaignFieldType extends AbstractType
         }
     }
 
+    /**
+     * @return null|string
+     */
     public function getName()
     {
         return $this->getBlockPrefix();
     }
 
+    /**
+     * @return null|string
+     */
     public function getBlockPrefix()
     {
         return 'ezplatform_fieldtype_edgarcampaign';
     }
 
+    /**
+     * @return null|string
+     */
     public function getParent()
     {
         return ChoiceType::class;
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->addModelTransformer(
@@ -61,6 +80,11 @@ class CampaignFieldType extends AbstractType
         );
     }
 
+    /**
+     * @param FormView $view
+     * @param FormInterface $form
+     * @param array $options
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $attributes = [];
@@ -68,6 +92,9 @@ class CampaignFieldType extends AbstractType
         $view->vars['attr'] = array_merge($view->vars['attr'], $attributes);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
@@ -77,6 +104,10 @@ class CampaignFieldType extends AbstractType
         ]);
     }
 
+    /**
+     * @param array $campaigns
+     * @return array
+     */
     private function getCampaignChoices(array $campaigns)
     {
         $choices = [];

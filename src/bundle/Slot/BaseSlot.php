@@ -35,6 +35,14 @@ abstract class BaseSlot extends Slot
     /** @var EdgarEzCampaignRepository  */
     private $campaignRepository;
 
+    /**
+     * BaseSlot constructor.
+     * @param ContentService $contentService
+     * @param LocationService $locationService
+     * @param RouterInterface $router
+     * @param CampaignService $campaignService
+     * @param Registry $doctrineRegistry
+     */
     public function __construct(
         ContentService $contentService,
         LocationService $locationService,
@@ -51,6 +59,9 @@ abstract class BaseSlot extends Slot
         $this->campaignRepository = $entityManager->getRepository(EdgarEzCampaign::class);
     }
 
+    /**
+     * @param int $contentId
+     */
     protected function updateCampaignContent(int $contentId)
     {
         try {

@@ -53,6 +53,11 @@ class FormFactory
         $this->urlGenerator = $urlGenerator;
     }
 
+    /**
+     * @param CampaignsDeleteData|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function deleteCampaigns(
         CampaignsDeleteData $data = null,
         ?string $name = null
@@ -62,6 +67,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, CampaignsDeleteType::class, $data);
     }
 
+    /**
+     * @param FoldersDeleteData|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function deleteFolders(
         FoldersDeleteData $data = null,
         ?string $name = null
@@ -71,6 +81,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, FoldersDeleteType::class, $data);
     }
 
+    /**
+     * @param ListsDeleteData|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function deleteLists(
         ListsDeleteData $data = null,
         ?string $name = null
@@ -80,6 +95,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, ListsDeleteType::class, $data);
     }
 
+    /**
+     * @param Campaign|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function createCampaign(
         ?Campaign $data = null,
         ?string $name = null
@@ -93,6 +113,11 @@ class FormFactory
         );
     }
 
+    /**
+     * @param Folder|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function createFolder(
         ?Folder $data = null,
         ?string $name = null
@@ -106,6 +131,11 @@ class FormFactory
         );
     }
 
+    /**
+     * @param CampaignList|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function createList(
         ?CampaignList $data = null,
         ?string $name = null
@@ -119,6 +149,11 @@ class FormFactory
         );
     }
 
+    /**
+     * @param Campaign $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function updateCampaign(
         Campaign $data,
         ?string $name = null
@@ -128,6 +163,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, CampaignUpdateType::class, $data);
     }
 
+    /**
+     * @param CampaignList $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function updateList(
         CampaignList $data,
         ?string $name = null
@@ -137,6 +177,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, ListUpdateType::class, $data);
     }
 
+    /**
+     * @param ReportsData|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function reportsChooseCampaign(
         ?ReportsData $data = null,
         ?string $name = null
@@ -150,6 +195,11 @@ class FormFactory
         );
     }
 
+    /**
+     * @param FilterFolderData|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function filterFolder(
         ?FilterFolderData $data = null,
         ?string $name = null
@@ -163,6 +213,11 @@ class FormFactory
         );
     }
 
+    /**
+     * @param SubscribeData|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function subscribe(
         ?SubscribeData $data = null,
         ?string $name = null
@@ -176,6 +231,11 @@ class FormFactory
         );
     }
 
+    /**
+     * @param Campaign|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function deleteCampaign(
         Campaign $data = null,
         ?string $name = null
@@ -185,6 +245,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, CampaignDeleteType::class, $data);
     }
 
+    /**
+     * @param CampaignList|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function deleteList(
         CampaignList $data = null,
         ?string $name = null
@@ -194,6 +259,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, ListDeleteType::class, $data);
     }
 
+    /**
+     * @param Campaign|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function sendCampaign(
         ?Campaign $data = null,
         ?string $name = null
@@ -203,6 +273,10 @@ class FormFactory
         return $this->formFactory->createNamed($name, CampaignSendType::class, $data);
     }
 
+    /**
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function scheduleCampaign(
         ?string $name = null
     ): FormInterface {
@@ -211,6 +285,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, CampaignScheduleType::class, null);
     }
 
+    /**
+     * @param Campaign|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function cancelScheduleCampaign(
         ?Campaign $data = null,
         ?string $name = null
@@ -220,6 +299,11 @@ class FormFactory
         return $this->formFactory->createNamed($name, CampaignCancelScheduleType::class, $data);
     }
 
+    /**
+     * @param CampaignContent|null $data
+     * @param null|string $name
+     * @return FormInterface
+     */
     public function createContent(
         ?CampaignContent $data = null,
         ?string $name = null

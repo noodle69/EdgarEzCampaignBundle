@@ -35,6 +35,12 @@ class CampaignViewRightSidebarBuilder extends AbstractBuilder implements Transla
 
     protected $status;
 
+    /**
+     * CampaignViewRightSidebarBuilder constructor.
+     * @param MenuItemFactory $factory
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param CampaignService $campaignService
+     */
     public function __construct(
         MenuItemFactory $factory,
         EventDispatcherInterface $eventDispatcher,

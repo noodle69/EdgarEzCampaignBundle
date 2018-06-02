@@ -14,6 +14,14 @@ use Symfony\Component\Routing\RouterInterface;
 
 class MoveSubtreeSlot extends BaseSlot
 {
+    /**
+     * MoveSubtreeSlot constructor.
+     * @param ContentService $contentService
+     * @param LocationService $locationService
+     * @param RouterInterface $router
+     * @param CampaignService $campaignService
+     * @param Registry $doctrineRegistry
+     */
     public function __construct(
         ContentService $contentService,
         LocationService $locationService,
@@ -24,6 +32,9 @@ class MoveSubtreeSlot extends BaseSlot
         parent::__construct($contentService, $locationService, $router, $campaignService, $doctrineRegistry);
     }
 
+    /**
+     * @param Signal $signal
+     */
     public function receive(Signal $signal)
     {
         if (!$signal instanceof Signal\LocationService\MoveSubtreeSignal) {

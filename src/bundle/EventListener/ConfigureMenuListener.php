@@ -31,6 +31,8 @@ class ConfigureMenuListener implements TranslationContainerInterface
 
     /**
      * @param ConfigureMenuEvent $event
+     *
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
     public function onMenuConfigure(ConfigureMenuEvent $event)
     {

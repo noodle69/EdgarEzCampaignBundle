@@ -4,6 +4,11 @@ namespace Edgar\EzCampaignBundle\Service;
 
 class ReportsService extends BaseService
 {
+    /**
+     * @param string $campaignId
+     * @return array|false
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
+     */
     public function getAbuses(string $campaignId)
     {
         $abuses = $this->mailChimp->get('/reports/' . $campaignId . '/abuse-reports', []);
@@ -15,6 +20,12 @@ class ReportsService extends BaseService
         return $abuses;
     }
 
+    /**
+     * @param string $campaignId
+     * @param string $abuseId
+     * @return array|false
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
+     */
     public function getAbuse(string $campaignId, string $abuseId)
     {
         $abuse = $this->mailChimp->get('/reports/' . $campaignId . '/abuse-reports/' . $abuseId, []);
@@ -26,6 +37,11 @@ class ReportsService extends BaseService
         return $abuse;
     }
 
+    /**
+     * @param string $campaignId
+     * @return array|false
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
+     */
     public function getAdvice(string $campaignId)
     {
         $advice = $this->mailChimp->get('/reports/' . $campaignId . '/advice', []);
@@ -37,6 +53,11 @@ class ReportsService extends BaseService
         return $advice;
     }
 
+    /**
+     * @param string $campaignId
+     * @return array|false
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
+     */
     public function getOpen(string $campaignId)
     {
         $open = $this->mailChimp->get('/reports/' . $campaignId . '/open-details', []);
@@ -48,6 +69,11 @@ class ReportsService extends BaseService
         return $open;
     }
 
+    /**
+     * @param string $campaignId
+     * @return array|false
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
+     */
     public function getClick(string $campaignId)
     {
         $links = $this->mailChimp->get('/reports/' . $campaignId . '/click-details', []);
@@ -59,6 +85,12 @@ class ReportsService extends BaseService
         return $links;
     }
 
+    /**
+     * @param string $campaignId
+     * @param string $linkId
+     * @return array|false
+     * @throws \Welp\MailchimpBundle\Exception\MailchimpException
+     */
     public function getuClickLink(string $campaignId, string $linkId)
     {
         $link = $this->mailChimp->get('/reports/' . $campaignId . '/click-details/' . $linkId, []);

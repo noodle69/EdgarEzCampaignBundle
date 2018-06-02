@@ -11,16 +11,25 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FolderCreateType extends AbstractType
 {
+    /**
+     * @return null|string
+     */
     public function getName()
     {
         return $this->getBlockPrefix();
     }
 
+    /**
+     * @return null|string
+     */
     public function getBlockPrefix()
     {
         return 'edgarcampaign_folder_create';
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
@@ -30,6 +39,10 @@ class FolderCreateType extends AbstractType
             ]);
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

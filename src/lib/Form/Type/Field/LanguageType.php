@@ -15,16 +15,26 @@ class LanguageType extends AbstractType
     /** @var LanguageService */
     private $languageService;
 
+    /**
+     * LanguageType constructor.
+     * @param LanguageService $languageService
+     */
     public function __construct(LanguageService $languageService)
     {
         $this->languageService = $languageService;
     }
 
+    /**
+     * @return null|string
+     */
     public function getParent()
     {
         return ChoiceType::class;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
