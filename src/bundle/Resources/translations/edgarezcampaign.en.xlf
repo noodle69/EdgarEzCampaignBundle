@@ -596,6 +596,46 @@
         <target>Zip</target>
         <note>key: edgar.campaign.list.create.zip</note>
       </trans-unit>
+      <trans-unit id="a30b3daba4433e8d55d9d0c368e1133929035b0f" resname="edgar.campaign.reports.abuse.reports">
+        <source>Abuse reports</source>
+        <target state="new">Abuse reports</target>
+        <note>key: edgar.campaign.reports.abuse.reports</note>
+      </trans-unit>
+      <trans-unit id="e408f509a238a1ece58d9cb08920a659a71be174" resname="edgar.campaign.reports.abuse.reports.date.th">
+        <source>Date</source>
+        <target state="new">Date</target>
+        <note>key: edgar.campaign.reports.abuse.reports.date.th</note>
+      </trans-unit>
+      <trans-unit id="410f7933b9407bac5842546289fd9998cd7919e7" resname="edgar.campaign.reports.abuse.reports.email.th">
+        <source>Email</source>
+        <target state="new">Email</target>
+        <note>key: edgar.campaign.reports.abuse.reports.email.th</note>
+      </trans-unit>
+      <trans-unit id="2fb7becd1b7cfa38ed5c4d1e840429e75b72ae63" resname="edgar.campaign.reports.abuse.reports.emptu">
+        <source>No abuse report for this campaign.</source>
+        <target state="new">No abuse report for this campaign.</target>
+        <note>key: edgar.campaign.reports.abuse.reports.emptu</note>
+      </trans-unit>
+      <trans-unit id="05f71134942c66cbba0f928a638349d4dba0fcf3" resname="edgar.campaign.reports.advice.reports">
+        <source>Advice reports</source>
+        <target state="new">Advice reports</target>
+        <note>key: edgar.campaign.reports.advice.reports</note>
+      </trans-unit>
+      <trans-unit id="944cf6bc864ac307330d4e0ce8b4f69686483f0b" resname="edgar.campaign.reports.advice.reports.emptu">
+        <source>No advice report for this campaign.</source>
+        <target state="new">No advice report for this campaign.</target>
+        <note>key: edgar.campaign.reports.advice.reports.emptu</note>
+      </trans-unit>
+      <trans-unit id="830c86761f11a47f8a4493b3d7363f3a48afe777" resname="edgar.campaign.reports.advice.reports.message.th">
+        <source>Message</source>
+        <target state="new">Message</target>
+        <note>key: edgar.campaign.reports.advice.reports.message.th</note>
+      </trans-unit>
+      <trans-unit id="54d92e3578318aac2714147fdd93c35c3dfe2d12" resname="edgar.campaign.reports.advice.reports.type.th">
+        <source>Type</source>
+        <target state="new">Type</target>
+        <note>key: edgar.campaign.reports.advice.reports.type.th</note>
+      </trans-unit>
       <trans-unit id="20fd2f70efde204b93d1c3864a03dee59af62b62" resname="edgar.campaign.reports.campaigns.name">
         <source>Campaigns</source>
         <target>Campaigns</target>
@@ -610,6 +650,66 @@
         <source>Select</source>
         <target>Select</target>
         <note>key: edgar.campaign.reports.choose</note>
+      </trans-unit>
+      <trans-unit id="38780548d2e470599dc51897424a9d292c95accf" resname="edgar.campaign.reports.click.reports">
+        <source>Click reports</source>
+        <target state="new">Click reports</target>
+        <note>key: edgar.campaign.reports.click.reports</note>
+      </trans-unit>
+      <trans-unit id="edc1e5506085ea4c4cafbdebf740baf6da593f04" resname="edgar.campaign.reports.click.reports.click_percentage.th">
+        <source>Click percentage</source>
+        <target state="new">Click percentage</target>
+        <note>key: edgar.campaign.reports.click.reports.click_percentage.th</note>
+      </trans-unit>
+      <trans-unit id="66e42128e9a1dc4ad88bbbd086e698ff2d79fcea" resname="edgar.campaign.reports.click.reports.emptu">
+        <source>No click report for this campaign.</source>
+        <target state="new">No click report for this campaign.</target>
+        <note>key: edgar.campaign.reports.click.reports.emptu</note>
+      </trans-unit>
+      <trans-unit id="65e734ef1e7014b55812b9b3c7834638e15fb195" resname="edgar.campaign.reports.click.reports.last_click.th">
+        <source>Last click</source>
+        <target state="new">Last click</target>
+        <note>key: edgar.campaign.reports.click.reports.last_click.th</note>
+      </trans-unit>
+      <trans-unit id="76d5ef2c0ed896ff626910841f518c29b92ce816" resname="edgar.campaign.reports.click.reports.total_clicks.th">
+        <source>Total clicks</source>
+        <target state="new">Total clicks</target>
+        <note>key: edgar.campaign.reports.click.reports.total_clicks.th</note>
+      </trans-unit>
+      <trans-unit id="359ca1c3d1d4e26946ee10928ec62f1755a8de12" resname="edgar.campaign.reports.click.reports.unique_click_percentage.th">
+        <source>Unique click percentage</source>
+        <target state="new">Unique click percentage</target>
+        <note>key: edgar.campaign.reports.click.reports.unique_click_percentage.th</note>
+      </trans-unit>
+      <trans-unit id="359219d0f4684045035cbd890a367a43348bcbba" resname="edgar.campaign.reports.click.reports.unique_clicks.th">
+        <source>Unique clicks</source>
+        <target state="new">Unique clicks</target>
+        <note>key: edgar.campaign.reports.click.reports.unique_clicks.th</note>
+      </trans-unit>
+      <trans-unit id="8a5795f11064d0141bb7a6f13f3b602672daa26e" resname="edgar.campaign.reports.click.reports.url.th">
+        <source>Url</source>
+        <target state="new">Url</target>
+        <note>key: edgar.campaign.reports.click.reports.url.th</note>
+      </trans-unit>
+      <trans-unit id="df681d97ff58d44f6a1c56cafd5f820c2474e7cc" resname="edgar.campaign.reports.open.reports">
+        <source>Open reports</source>
+        <target state="new">Open reports</target>
+        <note>key: edgar.campaign.reports.open.reports</note>
+      </trans-unit>
+      <trans-unit id="ffddbd1cf75a985357fbc3d2b1860e0933b4c295" resname="edgar.campaign.reports.open.reports.email_address.th">
+        <source>Email Address</source>
+        <target state="new">Email Address</target>
+        <note>key: edgar.campaign.reports.open.reports.email_address.th</note>
+      </trans-unit>
+      <trans-unit id="fb1a9f096ee7dca12df25ecd9198931e6d749376" resname="edgar.campaign.reports.open.reports.emptu">
+        <source>No open report for this campaign.</source>
+        <target state="new">No open report for this campaign.</target>
+        <note>key: edgar.campaign.reports.open.reports.emptu</note>
+      </trans-unit>
+      <trans-unit id="6a001899dc3bc5a3bfe7bfc77bbf69bfc78dd8a0" resname="edgar.campaign.reports.open.reports.opens_count.th">
+        <source>Opens count</source>
+        <target state="new">Opens count</target>
+        <note>key: edgar.campaign.reports.open.reports.opens_count.th</note>
       </trans-unit>
       <trans-unit id="84a4435afea0515569ca75ddba205b84a606d164" resname="edgar.campaign.schedule.cancel">
         <source>Cancel schedule</source>
@@ -738,7 +838,7 @@
       </trans-unit>
       <trans-unit id="6ae4cec8e8a7a275d83d7409d86f633c59b150a0" resname="reports.view.no.campaign">
         <source>You should select a Campaign to access Reports.</source>
-        <target state="new">You should select a Campaign to access Reports.</target>
+        <target>You should select a Campaign to access Reports.</target>
         <note>key: reports.view.no.campaign</note>
       </trans-unit>
       <trans-unit id="2cc9f2578616c505a308eadf82e9035dd594bffe" resname="reports.view.title">
