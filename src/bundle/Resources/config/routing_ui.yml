@@ -5,15 +5,22 @@ edgar.campaign.campaign.bulk_delete:
 
 edgar.campaign.campaigns:
     path: /campaigns/{folderId}
+    methods: ['GET']
     defaults: { _controller: "EdgarEzCampaignBundle:Campaign:campaigns", folderId: ~ }
+    requirements:
+        folderId: "[0-9a-z]+"
 
 edgar.campaign.lists:
     path: /lists
+    methods: ['GET']
     defaults: { _controller: "EdgarEzCampaignBundle:List:lists" }
 
 edgar.campaign.reports:
-    path: /reports/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Reports:view", campaignId: ~ }
+    path: /reports/{campaignId}/{tabId}
+    methods: ['GET']
+    defaults: { _controller: "EdgarEzCampaignBundle:Reports:view", campaignId: ~, tabId: ~ }
+    requirements:
+        campaignId: "[0-9a-z]+"
 
 edgar.campaign.folder.bulk_delete:
     path: /folders/delete
@@ -40,73 +47,75 @@ edgar.campaign.list.create:
 
 edgar.campaign.campaign.edit:
     path: /campaign/edit/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:edit", campaignID: ~ }
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:edit" }
     requirements:
         campaignId: "[0-9a-z]+"
 
 edgar.campaign.list.edit:
     path: /list/edit/{listId}
-    defaults: { _controller: "EdgarEzCampaignBundle:List:edit", listId: ~ }
+    defaults: { _controller: "EdgarEzCampaignBundle:List:edit" }
     requirements:
         listId: "[0-9a-z]+"
 
 edgar.campaign.campaign.delete:
     path: /campaign/delete/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:delete", campaignId: ~ }
     methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:delete" }
     requirements:
         campaignId: "[0-9a-z]+"
 
 edgar.campaign.campaign.view:
     path: /campaign/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:view", campaignId: ~ }
+    methods: ['GET']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:view" }
     requirements:
         campaignId: "[0-9a-z]+"
 
 edgar.campaign.list.delete:
     path: /list/delete/{listId}
-    defaults: { _controller: "EdgarEzCampaignBundle:List:delete", listId: ~ }
     methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:List:delete" }
     requirements:
         listId: "[0-9a-z]+"
 
 edgar.campaign.list.view:
     path: /list/{listId}
-    defaults: { _controller: "EdgarEzCampaignBundle:List:view", listId: ~ }
+    methods: ['GET']
+    defaults: { _controller: "EdgarEzCampaignBundle:List:view" }
     requirements:
         listId: "[0-9a-z]+"
 
 edgar.campaign.send:
     path: /canpaign/send/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:send", campaignId: ~ }
     methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:send" }
     requirements:
         campaignId: "[0-9a-z]+"
 
 edgar.campaign.schedule:
     path: /canpaign/schedule/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:schedule", campaignId: ~ }
     methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:schedule" }
     requirements:
         campaignId: "[0-9a-z]+"
 
 edgar.campaign.cancel.schedule:
     path: /canpaign/schedule/cancel/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:cancelSchedule", campaignId: ~ }
     methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:cancelSchedule" }
     requirements:
         campaignId: "[0-9a-z]+"
 
 edgar.campaign.create_content:
     path: /canpaign/content/create/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:createContent", campaignId: ~ }
     methods: ['POST']
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:createContent" }
     requirements:
         campaignId: "[0-9a-z]+"
 
 edgar.campaign.content:
     path: /canpaign/content/{campaignId}
-    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:content", campaignId: ~ }
+    defaults: { _controller: "EdgarEzCampaignBundle:Campaign:content" }
     requirements:
         campaignId: "[0-9a-z]+"
 
