@@ -104,7 +104,7 @@ class ReportsController extends BaseController
             'form' => $form->createView(),
             'campaign' => $campaign->getId() ? $campaign : null,
             'page' => $page,
-            'tab_id' => $tabId
+            'tab_id' => $tabId,
         ]);
     }
 }

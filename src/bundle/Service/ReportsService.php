@@ -72,7 +72,7 @@ class ReportsService extends BaseService
     {
         $args = [
             'offset' => $offset,
-            'count' => $count
+            'count' => $count,
         ];
 
         $open = $this->mailChimp->get('/reports/' . $campaignId . '/open-details', $args);
@@ -97,7 +97,7 @@ class ReportsService extends BaseService
     {
         $args = [
             'offset' => $offset,
-            'count' => $count
+            'count' => $count,
         ];
 
         $links = $this->mailChimp->get('/reports/' . $campaignId . '/click-details', $args);
