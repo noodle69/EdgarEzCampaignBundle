@@ -81,8 +81,8 @@ in your ezplatform.yml, add folowing configuration
 edgar_ez_campaign:
     system:
         default:
-            camapgin_view: 'campaign # defined wich content_view is used to create campaign content
             pagination:
                 campaign_limit: 10
                 list_limit: 10
+                report_limit: 10
 ```
