@@ -23,7 +23,7 @@ public function registerBundles()
         // ...
         new Welp\MailchimpBundle\WelpMailchimpBundle(),
         new Edgar\EzUISitesBundle\EdgarEzUISitesBundle(),
-        new Edgar\EzCampaignBundle\EdgarEzCampaignBundle()
+        new Edgar\EzCampaignBundle\EdgarEzCampaignBundle(),
         // ...
     );
 }
