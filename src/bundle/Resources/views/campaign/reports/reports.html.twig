@@ -38,7 +38,7 @@
             {{ 'reports.view.no.campaign'|trans|desc('You should select a Campaign to access Reports.') }}
         </section>
     {% else %}
-        {{ ez_platform_tabs('edgarezcampaign-reports', {'campaign': campaign}, 'EdgarEzCampaignBundle:campaign/reports:tabs.html.twig') }}
+        {{ ez_platform_tabs('edgarezcampaign-reports', {'campaign': campaign, 'tab_id': tab_id}, 'EdgarEzCampaignBundle:campaign/reports:tabs.html.twig') }}
     {% endif %}
 
 {% endblock %}
